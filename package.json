@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.29.5",
@@ -39,6 +40,7 @@
     "@storybook/testing-library": "^0.0.14-next.2",
     "@testing-library/react": "^14.0.0",
     "eslint-plugin-storybook": "^0.6.11",
-    "jest": "^29.5.0"
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0"
   }
 }
