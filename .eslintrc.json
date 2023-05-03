@@ -1,30 +1,35 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "plugin:storybook/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended"
-  ],
+  "extends": ["next/core-web-vitals", "airbnb-base"],
   "env": {
     "browser": true,
     "node": true,
-    "jest": true
+    "jest": true,
+    "es6": true
   },
   "parserOptions": {
-    "ecmaVersion": 2020,
+    "ecmaVersion": 2018,
     "sourceType": "module",
-    "project": "./tsconfig.json",
     "ecmaFeatures": {
-      "tsx": true,
-      "jsx": false
+      "jsx": false,
+      "tsx": true
     }
   },
-  "plugins": [
-    "eslint-plugin-react-hooks",
-    "eslint-plugin-react"
-  ],
   "rules": {
-    "react/react-in-jsx-scope": "off" // jsx에선 무조건 import react: 필요없어 off
-  }
+    "import/extensions": "off", // import시 확장자명을 사용하지 않음
+    "no-unused-vars": "warn", // 일단 warn으로
+    "arrow-body-style": "off", // 화살표함수는 중괄호없이 작성: 가독성에 문제있어 제거
+    "no-else-return": "off", // else문을 사용하지 않고 return을 사용: 코드작성 문제
+    "object-curly-newline": "off", // 객체를 여러줄로 작성: 불필요한 코드 늘어남으로 제거
+    "import/newline-after-import": "off", // import문 다음에 빈줄을 사용하지 않음: 불필요한 코드 늘어남으로 제거
+    "no-console": "off", // console 사용 허용
+    "quotes": "off", // 따옴표를 사용하지 않음: ` 사용 못해서 제거
+    // 테스트 또는 개발환경을 구성하는 파일에서는 devDependency 사용을 허용
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.test.tsx"] }],
+    "import/prefer-default-export": "off", // export defualt 강제: 필요없음
+    "no-alert": "off", // alert 사용 허용
+    "consistent-return": "off" // 함수에 무조건 return을 사용: 필요없음
+  },
+  "ignorePatterns": ["nickname.tsx"] // 임시로 무시
 }
+
+

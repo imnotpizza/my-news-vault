@@ -1,9 +1,9 @@
 /* eslint-disable react/display-name */
 import { queryClient } from '@/constants/defaultOptions';
-import Palette from "@/styles/palette";
+import Palette from '@/styles/palette';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider } from "styled-components";
-
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
 
 const withTestProviders = (WrappedComponent: React.FC) => () => {
   return (

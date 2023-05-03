@@ -1,3 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
-export default createGlobalStyle``;
+export default createGlobalStyle`
+  ${reset};
+  
+`;
