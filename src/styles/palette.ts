@@ -1,6 +1,3 @@
-
-const Palette = {
-
-}
+const Palette = {};
 
 export default Palette;

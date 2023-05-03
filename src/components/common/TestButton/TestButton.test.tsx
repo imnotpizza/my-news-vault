@@ -5,14 +5,14 @@ import TestButton from '.';
 describe('test button', () => {
   it('hello', () => {
     expect(1).toBe(1);
-  })
+  });
 });
 
 describe('test button', () => {
   it('render', () => {
     render(withTestProviders(TestButton)());
     expect(screen.getByText('TestButton')).toBeInTheDocument();
-  })
+  });
 
   it('click', () => {
     render(withTestProviders(TestButton)());
@@ -23,5 +23,5 @@ describe('test button', () => {
     // 재클릭시 문구 사라짐
     fireEvent.click(button);
     expect(screen.queryByText('button clicked')).not.toBeInTheDocument();
-  })
-})
+  });
+});

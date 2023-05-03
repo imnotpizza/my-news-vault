@@ -10,7 +10,7 @@ const meta: Meta<typeof TestButton> = {
   tags: ['#test'],
   argTypes: {
     backgroundColor: {
-      control: 'color'
+      control: 'color',
     },
   },
 };
@@ -21,7 +21,7 @@ export const Primary: Story = {
   args: {
     primary: true,
     label: 'Button',
-  }
-}
-  
+  },
+};
+
 export default meta;
