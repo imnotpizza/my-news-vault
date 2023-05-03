@@ -1,6 +1,30 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "plugin:storybook/recommended"
-  ]
+    "plugin:storybook/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "tsx": true,
+      "jsx": false
+    }
+  },
+  "plugins": [
+    "eslint-plugin-react-hooks",
+    "eslint-plugin-react"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off" // jsx에선 무조건 import react: 필요없어 off
+  }
 }

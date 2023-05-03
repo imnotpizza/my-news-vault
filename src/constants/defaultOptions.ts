@@ -1,4 +1,4 @@
-import { QueryClient, UseQueryOptions } from '@tanstack/react-query';
+import { QueryClient } from '@tanstack/react-query';
 
 // query 캐시 유지기간
 const QUERY_CACHE_TIME = 1000 * 60 * 10;
