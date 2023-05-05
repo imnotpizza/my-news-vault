@@ -5,7 +5,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
-const withTestProviders = (WrappedComponent: React.FC) => () => {
+const withTestProviders = () => (WrappedComponent: React.FC) => {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={Palette}>
@@ -15,4 +15,4 @@ const withTestProviders = (WrappedComponent: React.FC) => () => {
   );
 };
 
-export default withTestProviders;
+export default withTestProviders();

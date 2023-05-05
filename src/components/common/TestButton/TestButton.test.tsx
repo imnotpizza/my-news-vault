@@ -10,12 +10,12 @@ describe('test button', () => {
 
 describe('test button', () => {
   it('render', () => {
-    render(withTestProviders(TestButton)());
+    render(withTestProviders(TestButton));
     expect(screen.getByText('TestButton')).toBeInTheDocument();
   });
 
   it('click', () => {
-    render(withTestProviders(TestButton)());
+    render(withTestProviders(TestButton));
     const button = screen.getByText('TestButton');
     // 클릭시 문구 출력
     fireEvent.click(button);
