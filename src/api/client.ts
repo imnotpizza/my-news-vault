@@ -1,3 +1,4 @@
+import { IBingNewsAPIRes, IBingNewsQuery, INewsItem, IRawNewsItem } from '@/types';
 import BingAPI from './BingAPI';
 
 // 한번에 몇개씩 호출할지 결정
@@ -9,9 +10,21 @@ const NEWS_COUNT_NUM = 20;
  * @param pageNum: 불러올 페이지
  * @returns
  */
-export const fetchBingNews = async (query: string, pageNum: number) => {
-  const offset = NEWS_COUNT_NUM * pageNum;
-  const url = `news/search?q=${query}&count=${NEWS_COUNT_NUM}&offset=${offset}`;
-  const apiRes = await BingAPI.get<any>(url);
-  return apiRes;
+export const fetchBingNews = async (query: IBingNewsQuery['query'], pageNum: IBingNewsQuery['pageNum']) => {
+  try{
+    const offset = NEWS_COUNT_NUM * pageNum;
+    const url = `news/search?q=${query}&count=${NEWS_COUNT_NUM}&offset=${offset}`;
+    const apiRes = await BingAPI.get<IBingNewsAPIRes>(url);
+  
+    const newsItems: INewsItem[] = apiRes.data.value.map((item: IRawNewsItem) => {
+      return {
+        ...item,
+        id: item.url,
+      };
+    });
+  
+    return newsItems;
+  }catch(e){
+    throw e;
+  }
 };

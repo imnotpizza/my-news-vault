@@ -22,6 +22,7 @@ const QueryInput = () => {
   return (
     <Container>
       <Input value={query} onChange={onChange} />
+      <button>call api</button>
     </Container>
   );
 };
