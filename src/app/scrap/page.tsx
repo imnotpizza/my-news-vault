@@ -1,7 +1,7 @@
 'use client'
 
 import QueryInput from '@/components/input/QueryInput';
-import useBingNewsFetch from '@/hooks/queries/useBingNewsFetch';
+import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import React from 'react';
 import styled from 'styled-components';
 
