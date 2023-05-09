@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { KeyboardEventHandler } from 'react';
 import { queryClient } from '@/queries/queryClient';
 import { bingNewsFetchQueryKey } from '@/queries/useBingNewsFetch';
 
@@ -28,15 +28,24 @@ const QueryInput = ({ setQuery }) => {
     });
   };
 
-  const onClickSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickSearch = () => {
+    if(queryForm.query === '') return;
     queryClient.invalidateQueries([bingNewsFetchQueryKey]);
     setQuery(queryForm.query);
-    e.preventDefault();
   };
 
   return (
     <Container>
-      <Input name="query" value={queryForm.query} onChange={onChange} />
+      <Input
+        name="query"
+        value={queryForm.query}
+        onChange={onChange}
+        onKeyDown={(e) => {
+          if (e.code === 'Enter') {
+            onClickSearch();
+          }
+        }}
+      />
       <button onClick={onClickSearch}>call api</button>
     </Container>
   );
