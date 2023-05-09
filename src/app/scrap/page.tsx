@@ -3,6 +3,7 @@
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import QueryInput from '@/components/input/QueryInput';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
+import NewsItemView from '@/views/news/NewsItemView';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -50,18 +51,13 @@ const NewsPage = () => {
         <p className="page-title">뉴스 검색</p>
       </div>
       <div className="search-input">
-        <QueryInput query={query} setQuery={setQuery}/>
+        <QueryInput query={query} setQuery={setQuery} />
       </div>
       <div className="news-list">
         <QueryStateWrapper queryStates={queryStates}>
           <GridContainer>
-            {data?.map((news) => (
-              <div key={news.url}>
-                {/* TODO: 이미지썸네일 없는경우 처리 */}
-                <img src={news.image?.thumbnail?.contentUrl} alt={news.name} />
-                <div>{news.name}</div>
-                <div>{news.description}</div>
-              </div>
+            {data?.map((newsItem) => (
+              <NewsItemView item={newsItem} />
             ))}
           </GridContainer>
         </QueryStateWrapper>
