@@ -4,9 +4,10 @@ import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import QueryInput from '@/components/input/QueryInput';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import NewsItemView from '@/views/news/NewsItemView';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { flatMap } from 'lodash-es';
+import { InView, useInView } from 'react-intersection-observer';
 
 const Container = styled.div`
   width: 100%;
@@ -38,10 +39,13 @@ const GridContainer = styled.div`
   display: grid !important;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
-  max-height: 100%;
+  background-color: blue;
 `;
 
 const NewsPage = () => {
+  const { ref, inView, entry } = useInView({
+    threshold: 0,
+  });
   const [query, setQuery] = React.useState('');
   const [pageNum, setPageNum] = React.useState(1);
 
@@ -50,6 +54,13 @@ const NewsPage = () => {
 
   // TODO: 문제있을시 변경하기
   const dataList = flatMap(data?.pages, (page) => page);
+
+  // 
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView]);
 
   return (
     <Container>
@@ -61,11 +72,14 @@ const NewsPage = () => {
       </div>
       <div className="news-list">
         <QueryStateWrapper queryStates={queryStates}>
-          <GridContainer>
-            {dataList.map((item) => (
-              <NewsItemView key={item.id} item={item} />
-            ))}
-          </GridContainer>
+          <InView>
+            <GridContainer>
+              {dataList.map((item) => (
+                <NewsItemView key={item.id} item={item} />
+              ))}
+            </GridContainer>
+            <div ref={ref}>loadingview</div>
+          </InView>
         </QueryStateWrapper>
         <button
           onClick={() => {
