@@ -42,7 +42,7 @@ const GridContainer = styled.div`
   background-color: blue;
 `;
 
-const NewsSearchPage = () => {
+const NewsScrapPage = () => {
   const { ref, inView, entry } = useInView({
     threshold: 0,
   });
@@ -92,4 +92,4 @@ const NewsSearchPage = () => {
   );
 };
 
-export default NewsSearchPage;
+export default NewsScrapPage;
