@@ -7,9 +7,9 @@ import styled from 'styled-components';
 
 interface IQueryStateWrapperProps {
   queryStates: UseQueryResult & { isEmpty: boolean };
-  LoadingUI?: React.ReactNode;
-  ErrorUI?: React.ReactNode;
-  EmptyUI?: React.ReactNode;
+  LoadingUI?: () => JSX.Element;
+  ErrorUI?: () => JSX.Element;
+  EmptyUI?: () => JSX.Element;
   children: React.ReactNode;
 }
 
@@ -20,23 +20,22 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
+//FIXME: error-boundary 적용
 const QueryStateWrapper = ({
   queryStates,
-  LoadingUI = <DefaultLoadingUI/>,
-  ErrorUI = <DefaultErrorUI/>,
-  EmptyUI = <DefaultEmptyUI/>,
+  LoadingUI = DefaultLoadingUI,
+  ErrorUI = DefaultErrorUI,
+  EmptyUI = DefaultEmptyUI,
   children,
 }: IQueryStateWrapperProps) => {
   const { isLoading, isError, isEmpty } = queryStates;
-  
+
   return (
     <Container>
-      {ErrorUI}
-      {/* {isLoading && LoadingUI}
-      {isError && ErrorUI}
-      {isEmpty && EmptyUI}
-      {isLoading || isError || isEmpty ? null : children} */}
+      {isLoading && <LoadingUI />}
+      {isError && <ErrorUI />}
+      {isEmpty && <EmptyUI />}
+      {isLoading || isError || isEmpty ? null : children}
     </Container>
   );
 };

@@ -42,7 +42,7 @@ const GridContainer = styled.div`
 
 const NewsPage = () => {
   const queryStates = useBingNewsFetch({ query: '코로나', pageNum: 1 });
-  const { isLoading, data } = queryStates;
+  const { data } = queryStates;
 
   return (
     <Container>
