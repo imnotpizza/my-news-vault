@@ -1,10 +1,12 @@
+import { UseQueryResult } from '@tanstack/react-query';
 import React from 'react';
 import styled from 'styled-components';
 
 interface IQueryStateWrapperProps {
-  isLoading: boolean;
-  isError: boolean;
-  isNone: boolean;
+  queryStates: UseQueryResult & { isEmpty: boolean };
+  LoadingUI: React.ReactNode;
+  ErrorUI: React.ReactNode;
+  EmptyUI: React.ReactNode;
   children: React.ReactNode;
 }
 
@@ -16,13 +18,21 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const QueryStateWrapper = ({ isLoading, isError, isNone, children }: IQueryStateWrapperProps) => {
+const QueryStateWrapper = ({
+  queryStates,
+  LoadingUI,
+  ErrorUI,
+  EmptyUI,
+  children,
+}: IQueryStateWrapperProps) => {
+  const { isLoading, isError, isEmpty } = queryStates;
+
   return (
     <Container>
-      {isLoading && <div>로딩중</div>}
-      {isError && <div>에러</div>}
-      {isNone && <div>데이터 없음</div>}
-      {children}
+      {isLoading && LoadingUI}
+      {isError && ErrorUI}
+      {isEmpty && EmptyUI}
+      {isLoading || isError || isEmpty ? null : children}
     </Container>
   );
 };

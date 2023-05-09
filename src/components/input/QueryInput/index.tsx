@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
+import { queryClient } from '@/queries/queryClient';
+import { bingNewsFetchQueryKey, fetchBingNewsQueryData } from '@/queries/useBingNewsFetch';
 
 /**
  * 뉴스 검색어 입력
@@ -19,10 +21,15 @@ const QueryInput = () => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
+
+  const onClickSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+  }
+
   return (
     <Container>
       <Input value={query} onChange={onChange} />
-      <button>call api</button>
+      <button onClick={onClickSearch}>call api</button>
     </Container>
   );
 };

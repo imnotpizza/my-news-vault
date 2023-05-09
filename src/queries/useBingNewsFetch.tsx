@@ -2,17 +2,31 @@ import { fetchBingNews } from '@/api/client';
 import { IBingNewsQuery } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+import { queryClient } from './queryClient';
 
-const bingNewsFetchQueryKey = 'BingNewsFetch';
+export const bingNewsFetchQueryKey = 'BingNewsFetch';
 
 const useBingNewsFetch = ({ query, pageNum }: IBingNewsQuery) => {
-  const queryState = useQuery<Awaited<ReturnType<typeof fetchBingNews>>, AxiosError>(
+  const queryStates = useQuery<Awaited<ReturnType<typeof fetchBingNews>>, AxiosError>(
     [bingNewsFetchQueryKey, query, pageNum],
     () => fetchBingNews(query, pageNum),
-    {},
+    {
+      enabled: false,
+    },
   );
 
-  return queryState;
+  return {
+    ...queryStates,
+    isEmpty: queryStates.data?.length === 0,
+  };
 };
+
+export const fetchBingNewsQueryData = ({query, pageNum}: IBingNewsQuery) => {
+  queryClient.invalidateQueries([bingNewsFetchQueryKey]);
+  return  queryClient.fetchQuery<ReturnType<typeof fetchBingNews>>(
+    [bingNewsFetchQueryKey, query, pageNum],
+    () => fetchBingNews(query, pageNum),
+  )
+}
 
 export default useBingNewsFetch;
