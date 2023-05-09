@@ -38,7 +38,10 @@ const GridContainer = styled.div`
 `;
 
 const NewsPage = () => {
-  const queryStates = useBingNewsFetch({ query: '코로나', pageNum: 1 });
+  const [query, setQuery] = React.useState('');
+  const [pageNum, setPageNum] = React.useState(1);
+
+  const queryStates = useBingNewsFetch({ query, pageNum });
   const { data } = queryStates;
 
   return (
@@ -47,13 +50,14 @@ const NewsPage = () => {
         <p className="page-title">뉴스 검색</p>
       </div>
       <div className="search-input">
-        <QueryInput />
+        <QueryInput query={query} setQuery={setQuery}/>
       </div>
       <div className="news-list">
         <QueryStateWrapper queryStates={queryStates}>
           <GridContainer>
-            {data!.map((news) => (
+            {data?.map((news) => (
               <div key={news.url}>
+                {/* TODO: 이미지썸네일 없는경우 처리 */}
                 <img src={news.image?.thumbnail?.contentUrl} alt={news.name} />
                 <div>{news.name}</div>
                 <div>{news.description}</div>

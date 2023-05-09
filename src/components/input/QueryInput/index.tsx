@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
+import { queryClient } from '@/queries/queryClient';
+import { bingNewsFetchQueryKey } from '@/queries/useBingNewsFetch';
 
 /**
  * 뉴스 검색어 입력
@@ -11,22 +13,30 @@ const Container = styled.div`
 const Input = styled.input.attrs({ type: 'text' })`
   width: 300px;
   height: 30px;
+  margin-bottom: 100px;
 `;
 
-const QueryInput = () => {
-  const [query, setQuery] = React.useState('');
+const QueryInput = ({ setQuery }) => {
+  const [queryForm, setQueryForm] = React.useState({
+    query: '',
+  });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
+    setQueryForm({
+      ...queryForm,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const onClickSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
+    queryClient.invalidateQueries([bingNewsFetchQueryKey]);
+    setQuery(queryForm.query);
     e.preventDefault();
   };
 
   return (
     <Container>
-      <Input value={query} onChange={onChange} />
+      <Input name="query" value={queryForm.query} onChange={onChange} />
       <button onClick={onClickSearch}>call api</button>
     </Container>
   );
