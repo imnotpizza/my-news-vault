@@ -7,9 +7,9 @@ import styled from 'styled-components';
 
 interface IQueryStateWrapperProps {
   queryStates: UseQueryResult & { isEmpty: boolean };
-  LoadingUI?: () => JSX.Element;
-  ErrorUI?: () => JSX.Element;
-  EmptyUI?: () => JSX.Element;
+  LoadingUI?: () => React.ReactElement;
+  ErrorUI?: () => React.ReactElement;
+  EmptyUI?: () => React.ReactElement;
   children: React.ReactNode;
 }
 
@@ -20,7 +20,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
-//FIXME: error-boundary 적용
+
+// FIXME: error-boundary 적용
 const QueryStateWrapper = ({
   queryStates,
   LoadingUI = DefaultLoadingUI,

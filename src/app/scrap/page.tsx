@@ -3,10 +3,8 @@
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import QueryInput from '@/components/input/QueryInput';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
-import DefaultLoadingUI from '@/views/common/DefaultLoadingUI';
 import React from 'react';
 import styled from 'styled-components';
-
 
 const Container = styled.div`
   width: 100%;
@@ -33,7 +31,6 @@ const Container = styled.div`
   }
 `;
 
-
 const GridContainer = styled.div`
   display: grid !important;
   grid-template-columns: repeat(3, 1fr);
@@ -53,18 +50,15 @@ const NewsPage = () => {
         <QueryInput />
       </div>
       <div className="news-list">
-        <QueryStateWrapper
-          queryStates={queryStates}
-        >
+        <QueryStateWrapper queryStates={queryStates}>
           <GridContainer>
-            {data &&
-              data!.map((news) => (
-                <div key={news.url}>
-                  <img src={news.image?.thumbnail?.contentUrl} alt={news.name} />
-                  <div>{news.name}</div>
-                  <div>{news.description}</div>
-                </div>
-              ))}
+            {data!.map((news) => (
+              <div key={news.url}>
+                <img src={news.image?.thumbnail?.contentUrl} alt={news.name} />
+                <div>{news.name}</div>
+                <div>{news.description}</div>
+              </div>
+            ))}
           </GridContainer>
         </QueryStateWrapper>
       </div>

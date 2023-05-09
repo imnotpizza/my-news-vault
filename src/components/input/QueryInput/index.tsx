@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import React from 'react';
-import { queryClient } from '@/queries/queryClient';
-import { bingNewsFetchQueryKey, fetchBingNewsQueryData } from '@/queries/useBingNewsFetch';
 
 /**
  * 뉴스 검색어 입력
@@ -24,7 +22,7 @@ const QueryInput = () => {
 
   const onClickSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-  }
+  };
 
   return (
     <Container>

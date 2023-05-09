@@ -7,19 +7,6 @@ export interface IBingNewsQuery {
 }
 
 /**
- *  Bing News API 응답 객체 형식
- */
-export interface IBingNewsAPIRes {
-  queryContext: {
-    adultIntent: boolean;
-    originalQuery: string;
-  },
-  readLink: string;
-  totalEstimatedMatches: number;
-  value: IRawNewsItem[];
-}
-
-/**
  *  Bing News API 응답데이터
  */
 export interface IRawNewsItem {
@@ -43,6 +30,19 @@ export interface IRawNewsItem {
     name: string;
   }[]
   url: string;
+}
+
+/**
+ *  Bing News API 응답 객체 형식
+ */
+export interface IBingNewsAPIRes {
+  queryContext: {
+    adultIntent: boolean;
+    originalQuery: string;
+  },
+  readLink: string;
+  totalEstimatedMatches: number;
+  value: IRawNewsItem[];
 }
 
 /**

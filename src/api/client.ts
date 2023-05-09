@@ -11,20 +11,16 @@ const NEWS_COUNT_NUM = 20;
  * @returns
  */
 export const fetchBingNews = async (query: IBingNewsQuery['query'], pageNum: IBingNewsQuery['pageNum']) => {
-  try{
-    const offset = NEWS_COUNT_NUM * pageNum;
-    const url = `news/search?q=${query}&count=${NEWS_COUNT_NUM}&offset=${offset}`;
-    const apiRes = await BingAPI.get<IBingNewsAPIRes>(url);
-  
-    const newsItems: INewsItem[] = apiRes.data.value.map((item: IRawNewsItem) => {
-      return {
-        ...item,
-        id: item.url,
-      };
-    });
-  
-    return newsItems;
-  }catch(e){
-    throw e;
-  }
+  const offset = NEWS_COUNT_NUM * pageNum;
+  const url = `news/search?q=${query}&count=${NEWS_COUNT_NUM}&offset=${offset}`;
+  const apiRes = await BingAPI.get<IBingNewsAPIRes>(url);
+
+  const newsItems: INewsItem[] = apiRes.data.value.map((item: IRawNewsItem) => {
+    return {
+      ...item,
+      id: item.url,
+    };
+  });
+
+  return newsItems;
 };

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const DefaultErrorUI = () => {
-  return (
-    <div>DefaultErrorUI</div>
-  )
-}
+  return <div>DefaultErrorUI</div>;
+};
 
-export default DefaultErrorUI
+export default DefaultErrorUI;
