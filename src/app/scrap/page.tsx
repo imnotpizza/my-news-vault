@@ -18,17 +18,18 @@ const Container = styled.div`
   .page-title {
     font-size: 2rem;
     font-weight: bold;
+    height: 10%;
   }
 
   .search-input {
-    height: 200px;
+    height: 10%;
   }
 
   .news-list {
     min-width: 100%;
     height: auto;
     width: 100%;
-    height: 100%;
+    height: 80%;
   }
 `;
 
@@ -36,6 +37,7 @@ const GridContainer = styled.div`
   display: grid !important;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
+  max-height: 100%;
 `;
 
 const NewsPage = () => {
@@ -43,7 +45,7 @@ const NewsPage = () => {
   const [pageNum, setPageNum] = React.useState(1);
 
   const queryStates = useBingNewsFetch({ query, pageNum });
-  const { data } = queryStates;
+  const { data, fetchNextPage } = queryStates;
 
   return (
     <Container>
@@ -56,11 +58,18 @@ const NewsPage = () => {
       <div className="news-list">
         <QueryStateWrapper queryStates={queryStates}>
           <GridContainer>
-            {data?.map((newsItem) => (
-              <NewsItemView item={newsItem} />
-            ))}
+            {data?.pages.map((page) => {
+              return page.map((newsItem) => <NewsItemView key={newsItem.id} item={newsItem} />);
+            })}
           </GridContainer>
         </QueryStateWrapper>
+        <button
+          onClick={() => {
+            fetchNextPage();
+          }}
+        >
+          추가호출
+        </button>
       </div>
     </Container>
   );
