@@ -3,8 +3,10 @@
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import QueryInput from '@/components/input/QueryInput';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
+import DefaultLoadingUI from '@/views/common/DefaultLoadingUI';
 import React from 'react';
 import styled from 'styled-components';
+
 
 const Container = styled.div`
   width: 100%;
@@ -27,23 +29,15 @@ const Container = styled.div`
     min-width: 100%;
     height: auto;
     width: 100%;
-    background-color: orange;
     height: 100%;
   }
 `;
 
-const Loading = styled.div`
-  background-color: green;
-  width: 100%;
-  height: 100%;
-`
 
 const GridContainer = styled.div`
-  display: grid;
+  display: grid !important;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
-  display: flex;
-  
 `;
 
 const NewsPage = () => {
@@ -61,9 +55,6 @@ const NewsPage = () => {
       <div className="news-list">
         <QueryStateWrapper
           queryStates={queryStates}
-          LoadingUI={<Loading>로딩중</Loading>}
-          ErrorUI={<div>에러</div>}
-          EmptyUI={<div>데이터가 없습니다.</div>}
         >
           <GridContainer>
             {data &&

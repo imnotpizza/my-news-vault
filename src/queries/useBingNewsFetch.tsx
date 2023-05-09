@@ -11,7 +11,6 @@ const useBingNewsFetch = ({ query, pageNum }: IBingNewsQuery) => {
     [bingNewsFetchQueryKey, query, pageNum],
     () => fetchBingNews(query, pageNum),
     {
-      enabled: false,
     },
   );
 
