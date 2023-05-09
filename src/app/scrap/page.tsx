@@ -6,6 +6,7 @@ import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import NewsItemView from '@/views/news/NewsItemView';
 import React from 'react';
 import styled from 'styled-components';
+import { flatMap } from 'lodash-es';
 
 const Container = styled.div`
   width: 100%;
@@ -47,6 +48,9 @@ const NewsPage = () => {
   const queryStates = useBingNewsFetch({ query, pageNum });
   const { data, fetchNextPage } = queryStates;
 
+  // TODO: 문제있을시 변경하기
+  const dataList = flatMap(data?.pages, (page) => page);
+
   return (
     <Container>
       <div>
@@ -58,9 +62,9 @@ const NewsPage = () => {
       <div className="news-list">
         <QueryStateWrapper queryStates={queryStates}>
           <GridContainer>
-            {data?.pages.map((page) => {
-              return page.map((newsItem) => <NewsItemView key={newsItem.id} item={newsItem} />);
-            })}
+            {dataList.map((item) => (
+              <NewsItemView key={item.id} item={item} />
+            ))}
           </GridContainer>
         </QueryStateWrapper>
         <button
