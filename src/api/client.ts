@@ -24,3 +24,25 @@ export const fetchBingNews = async (query: IBingNewsQuery['query'], pageNum: IBi
 
   return newsItems;
 };
+
+/**
+ * 스크랩된 데이터 호출
+ */
+export const fetchScrappedList = () => {
+  
+}
+
+/**
+ * 스크랩
+ */
+export const scrapNews = () => {
+
+}
+
+
+/**
+ * 스크랩 해제
+ */
+export const unscrapNews = () => {
+
+}

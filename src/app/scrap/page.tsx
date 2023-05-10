@@ -64,7 +64,7 @@ const NewsScrapPage = () => {
   return (
     <Container>
       <div>
-        <p className="page-title">뉴스 검색</p>
+        <p className="page-title">뉴스 스크랩 목록</p>
       </div>
       <div className="search-input">
         <QueryInput query={query} setQuery={setQuery} />
