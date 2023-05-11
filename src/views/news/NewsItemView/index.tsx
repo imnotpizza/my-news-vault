@@ -2,6 +2,7 @@ import { INewsItem } from '@/types';
 import React from 'react';
 import styled from 'styled-components';
 import NewsThumbnailView from '../NewsThumbnailView';
+import { scrapNews } from '@/api/client';
 
 const Container = styled.div`
   width: 300px;
@@ -27,12 +28,18 @@ const NewsItemView = ({ item }: { item: INewsItem }) => {
     window.open(item.thumbnail);
   };
 
+  const onClickScarp = async () => {
+    await scrapNews('userId', item);
+    alert('success');
+  }
+
   return (
     <Container>
       <p className="news-title">{item.title}</p>
       <NewsThumbnailView src={item.thumbnail} alt={`${item.title} thumbnail`} />
       <p className="news-desc">{item.description}</p>
       <button onClick={onClickVisit}>방문하기</button>
+      <button onClick={onClickScarp}>스크랩</button>
     </Container>
   );
 };

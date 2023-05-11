@@ -74,7 +74,7 @@ const NewsSearchPage = () => {
           <InView>
             <GridContainer>
               {dataList.map((item) => (
-                <NewsItemView key={item.id} item={item} />
+                <NewsItemView key={item.newsId} item={item} />
               ))}
             </GridContainer>
             <div ref={ref}>loadingview</div>

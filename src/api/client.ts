@@ -1,5 +1,5 @@
 import { IBingNewsAPIRes, IBingNewsQuery, INewsItem, IRawNewsItem } from '@/types';
-import { doc, getDocs, collection, addDoc, deleteDoc } from 'firebase/firestore/lite';
+import { doc, getDocs, collection, addDoc, deleteDoc, setDoc } from 'firebase/firestore/lite';
 import { database } from '@/firebase';
 import BingAPI from './BingAPI';
 import { parseToNewsItem } from '@/utils';
@@ -40,9 +40,8 @@ export const fetchScrappedList = async (userId) => {
 /**
  * 스크랩
  */
-export const scrapNews = async (userId, newsData) => {
-  const userCollection = collection(database, `scrap/${userId}/scrap`);
-  await addDoc(userCollection, news);
+export const scrapNews = async (userId, newsItem: INewsItem) => {
+  await setDoc(doc(database, `scrap/${userId}/scrap`, newsItem.newsId), newsItem);
 };
 
 /**
