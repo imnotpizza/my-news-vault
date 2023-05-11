@@ -1,8 +1,10 @@
 import { INewsItem } from '@/types';
 import React from 'react';
 import styled from 'styled-components';
-import NewsThumbnailView from '../NewsThumbnailView';
 import { scrapNews, unscrapNews } from '@/api/client';
+import { queryClient } from '@/queries/queryClient';
+import { scrappedNewsListQueryKey } from '@/queries/useScrappedNewsList';
+import NewsThumbnailView from '@/views/news/NewsThumbnailView';
 
 const Container = styled.div`
   width: 300px;
@@ -29,13 +31,27 @@ const NewsItemView = ({ item }: { item: INewsItem }) => {
   };
 
   const onClickScarp = async () => {
-    await scrapNews('userId', item);
-    alert('success');
+    try {
+      await scrapNews('userId', item);
+      queryClient.setQueryData([scrappedNewsListQueryKey], (oldData: any) => {
+        return [...oldData, item];
+      });
+      alert('success');
+    } catch (e) {
+      alert('failed');
+    }
   };
 
   const onClickDeleteScrap = async () => {
-    await unscrapNews('userId', item.newsId);
-    alert('success');
+    try {
+      await unscrapNews('userId', item.newsId);
+      queryClient.setQueryData([scrappedNewsListQueryKey], (oldData: any) => {
+        return oldData.filter((news: INewsItem) => news.newsId !== item.newsId);
+      });
+      alert('success');
+    } catch (e) {
+      alert('failed');
+    }
   };
 
   return (
