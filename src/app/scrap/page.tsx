@@ -68,7 +68,7 @@ const NewsScrapPage = () => {
         <p className="page-title">뉴스 스크랩 목록</p>
       </div>
       <div className="search-input">
-        <QueryInput query={query} setQuery={setQuery} />
+        <QueryInput setQuery={setQuery} />
       </div>
       <div className="news-list">
         <button
@@ -111,26 +111,26 @@ const NewsScrapPage = () => {
 
 export default NewsScrapPage;
 
-{
-  /* // <button
-// onClick={async () => {
-//   const val = await getArticles();
-//   console.log('##### val', val);
-// }}
-// >
-// get
-// </button>
-// <button onClick={async () => {
-// updateArticle('D7df7q3M6BK1mTdtTsjz', {
-//   datePublished: 'updated',
-//   description: 'updated',
-//   headline: 'updatedtitle',
-//   providerIcon: 'updatedicon',
-//   providerName: 'updatedname',
-//   userId: 'userId',
-// })
-// }}>update</button>
-// <button onClick={() => {
-// deleteArticle('D7df7q3M6BK1mTdtTsjz');
-// }}>delete</button> */
-}
+// {
+//   /* // <button
+// // onClick={async () => {
+// //   const val = await getArticles();
+// //   console.log('##### val', val);
+// // }}
+// // >
+// // get
+// // </button>
+// // <button onClick={async () => {
+// // updateArticle('D7df7q3M6BK1mTdtTsjz', {
+// //   datePublished: 'updated',
+// //   description: 'updated',
+// //   headline: 'updatedtitle',
+// //   providerIcon: 'updatedicon',
+// //   providerName: 'updatedname',
+// //   userId: 'userId',
+// // })
+// // }}>update</button>
+// // <button onClick={() => {
+// // deleteArticle('D7df7q3M6BK1mTdtTsjz');
+// // }}>delete</button> */
+// }
