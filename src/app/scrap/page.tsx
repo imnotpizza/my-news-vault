@@ -4,6 +4,7 @@ import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import QueryInput from '@/components/input/QueryInput';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import NewsItemView from '@/views/news/NewsItemView';
+import { createArticle, deleteArticle, getArticles, updateArticle } from '@/firebase';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { flatMap } from 'lodash-es';
@@ -70,7 +71,45 @@ const NewsScrapPage = () => {
         <QueryInput query={query} setQuery={setQuery} />
       </div>
       <div className="news-list">
-        <QueryStateWrapper queryStates={queryStates}>
+        <button
+          onClick={() => {
+            createArticle({
+              datePublished: '123',
+              description: '123',
+              headline: 'title',
+              providerIcon: 'icon',
+              providerName: 'name',
+              thumbnaiil: 'thumbnail',
+              userId: 'userId',
+            });
+          }}
+        >
+          create
+        </button>
+        <button
+          onClick={async () => {
+            const val = await getArticles();
+            console.log('##### val', val);
+          }}
+        >
+          get
+        </button>
+        <button onClick={async () => {
+          updateArticle('D7df7q3M6BK1mTdtTsjz', {
+            datePublished: 'updated',
+            description: 'updated',
+            headline: 'updatedtitle',
+            providerIcon: 'updatedicon',
+            providerName: 'updatedname',
+            thumbnaiil: 'updatedthumbnail',
+            userId: 'userId',
+          })
+        }}>update</button>
+        <button onClick={() => {
+          deleteArticle('D7df7q3M6BK1mTdtTsjz');
+        }}>delete</button>
+
+        {/* <QueryStateWrapper queryStates={queryStates}>
           <InView>
             <GridContainer>
               {dataList.map((item) => (
@@ -79,7 +118,7 @@ const NewsScrapPage = () => {
             </GridContainer>
             <div ref={ref}>loadingview</div>
           </InView>
-        </QueryStateWrapper>
+        </QueryStateWrapper> */}
         <button
           onClick={() => {
             fetchNextPage();

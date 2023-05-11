@@ -1,0 +1,13 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "config": {
+    "authDomain": "myartic-44020.firebaseapp.com",
+    "projectId": "myartic-44020",
+    "storageBucket": "myartic-44020.appspot.com",
+    "messagingSenderId": "772485094466",
+    "appId": "1:772485094466:web:a0b928be5751a0262e61db"
+    }
+}

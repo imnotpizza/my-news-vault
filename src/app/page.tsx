@@ -1,6 +1,10 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { createArticle, getArticles } from '@/firebase';
+import styles from './page.module.css';
 
 export default function Home() {
-  return <main className={styles.main}></main>;
+  return (
+    <div>
+
+    </div>
+  );
 }
