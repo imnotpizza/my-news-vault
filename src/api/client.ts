@@ -33,14 +33,20 @@ export const fetchBingNews = async (
  */
 export const fetchScrappedList = async (userId) => {
   const path = `scrap/${userId}/scrap`;
-  const scrapList = await getDocs(collection(database, path));
-  return scrapList;
+  const res: INewsItem[] = [];
+  const snapshot = await getDocs(collection(database, path));
+  snapshot.forEach((doc) => {
+    res.push(doc.data());
+  });
+  console.log(res);
+  return res;
 };
 
 /**
  * 스크랩
  */
 export const scrapNews = async (userId, newsItem: INewsItem) => {
+  console.log('######## item', newsItem)
   await setDoc(doc(database, `scrap/${userId}/scrap`, newsItem.newsId), newsItem);
 };
 

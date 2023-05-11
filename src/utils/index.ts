@@ -9,9 +9,9 @@ export const parseToNewsItem = (raw: IRawNewsItem) => {
     newsId: raw.name,
     datePublished: raw.datePublished,
     description: raw.description,
-    providerIcon: raw.provider[0].image.thumbnail.contentUrl,
+    providerIcon: raw.provider[0].image ? raw.provider[0].image?.thumbnail.contentUrl : '',
     providerName: raw.provider[0].name,
-    thumbnail: raw.image ? raw.image.thumbnail.contentUrl : '',
+    thumbnail: raw.image ? raw.image?.thumbnail.contentUrl : '',
     title: raw.name,
   };
 

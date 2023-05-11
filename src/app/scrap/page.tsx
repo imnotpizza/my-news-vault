@@ -9,6 +9,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { flatMap } from 'lodash-es';
 import { InView, useInView } from 'react-intersection-observer';
+import useScrappedNewsList from '@/queries/useScrappedNewsList';
 
 const Container = styled.div`
   width: 100%;
@@ -50,14 +51,14 @@ const NewsScrapPage = () => {
   const [query, setQuery] = React.useState('');
   const [pageNum, setPageNum] = React.useState(1);
 
-  const queryStates = useBingNewsFetch({ query, pageNum });
-  const { data, fetchNextPage } = queryStates;
+  const queryStates = useScrappedNewsList();
+  const { data, fetchNextPage, hasNextPage } = queryStates;
 
   // TODO: 문제있을시 변경하기
   const dataList = flatMap(data?.pages, (page) => page);
 
   useEffect(() => {
-    if (inView) {
+    if (inView && hasNextPage) {
       fetchNextPage();
     }
   }, [inView]);
@@ -66,9 +67,6 @@ const NewsScrapPage = () => {
     <Container>
       <div>
         <p className="page-title">뉴스 스크랩 목록</p>
-      </div>
-      <div className="search-input">
-        <QueryInput setQuery={setQuery} />
       </div>
       <div className="news-list">
         <button
@@ -87,16 +85,16 @@ const NewsScrapPage = () => {
         >
           create
         </button>
-        {/* <QueryStateWrapper queryStates={queryStates}>
+        <QueryStateWrapper queryStates={queryStates}>
           <InView>
             <GridContainer>
               {dataList.map((item) => (
-                <NewsItemView key={item.id} item={item} />
+                <NewsItemView key={item.newsId} item={item} />
               ))}
             </GridContainer>
             <div ref={ref}>loadingview</div>
           </InView>
-        </QueryStateWrapper> */}
+        </QueryStateWrapper>
         <button
           onClick={() => {
             fetchNextPage();
