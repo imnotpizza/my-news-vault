@@ -13,6 +13,7 @@ export interface IRawNewsItem {
   datePublished: string;
   description: string;
   headline: true;
+  name: string;
   image: {
     thumbnail: {
       contentUrl: string;
@@ -48,6 +49,12 @@ export interface IBingNewsAPIRes {
 /**
  *  클라이언트에서 사용할 뉴스 객체 형식
  */
-export interface INewsItem extends IRawNewsItem {
-  id: string;
+export interface INewsItem {
+  newsId: string;
+  datePublished: string;
+  description: string;
+  providerIcon: string;
+  providerName: string;
+  thumbnail: string;
+  title: string;
 }

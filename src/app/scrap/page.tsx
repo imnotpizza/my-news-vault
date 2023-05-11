@@ -72,43 +72,21 @@ const NewsScrapPage = () => {
       </div>
       <div className="news-list">
         <button
-          onClick={() => {
+          onClick={async () => {
+            await getArticles();
             createArticle({
               datePublished: '123',
               description: '123',
               headline: 'title',
               providerIcon: 'icon',
               providerName: 'name',
-              thumbnaiil: 'thumbnail',
+              thumbnail: 'thumbnail',
               userId: 'userId',
             });
           }}
         >
           create
         </button>
-        <button
-          onClick={async () => {
-            const val = await getArticles();
-            console.log('##### val', val);
-          }}
-        >
-          get
-        </button>
-        <button onClick={async () => {
-          updateArticle('D7df7q3M6BK1mTdtTsjz', {
-            datePublished: 'updated',
-            description: 'updated',
-            headline: 'updatedtitle',
-            providerIcon: 'updatedicon',
-            providerName: 'updatedname',
-            thumbnaiil: 'updatedthumbnail',
-            userId: 'userId',
-          })
-        }}>update</button>
-        <button onClick={() => {
-          deleteArticle('D7df7q3M6BK1mTdtTsjz');
-        }}>delete</button>
-
         {/* <QueryStateWrapper queryStates={queryStates}>
           <InView>
             <GridContainer>
@@ -132,3 +110,27 @@ const NewsScrapPage = () => {
 };
 
 export default NewsScrapPage;
+
+{
+  /* // <button
+// onClick={async () => {
+//   const val = await getArticles();
+//   console.log('##### val', val);
+// }}
+// >
+// get
+// </button>
+// <button onClick={async () => {
+// updateArticle('D7df7q3M6BK1mTdtTsjz', {
+//   datePublished: 'updated',
+//   description: 'updated',
+//   headline: 'updatedtitle',
+//   providerIcon: 'updatedicon',
+//   providerName: 'updatedname',
+//   userId: 'userId',
+// })
+// }}>update</button>
+// <button onClick={() => {
+// deleteArticle('D7df7q3M6BK1mTdtTsjz');
+// }}>delete</button> */
+}

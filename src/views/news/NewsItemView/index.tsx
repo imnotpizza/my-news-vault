@@ -24,16 +24,13 @@ const Container = styled.div`
 
 const NewsItemView = ({ item }: { item: INewsItem }) => {
   const onClickVisit = () => {
-    window.open(item.url);
+    window.open(item.thumbnail);
   };
 
   return (
     <Container>
-      <p className="news-title">{item.name}</p>
-      <NewsThumbnailView
-      src={item.image?.thumbnail?.contentUrl}
-      alt={`${item.name} thumbnail`}
-      />
+      <p className="news-title">{item.title}</p>
+      <NewsThumbnailView src={item.thumbnail} alt={`${item.title} thumbnail`} />
       <p className="news-desc">{item.description}</p>
       <button onClick={onClickVisit}>방문하기</button>
     </Container>
