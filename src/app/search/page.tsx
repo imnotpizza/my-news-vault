@@ -8,6 +8,8 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { flatMap } from 'lodash-es';
 import { InView, useInView } from 'react-intersection-observer';
+import { queryClient } from '@/queries/queryClient';
+import useScrappedNewsList, { scrappedNewsListQueryKey } from '@/queries/useScrappedNewsList';
 
 const Container = styled.div`
   width: 100%;
@@ -49,11 +51,24 @@ const NewsSearchPage = () => {
   const [query, setQuery] = React.useState('');
   const [pageNum, setPageNum] = React.useState(1);
 
-  const queryStates = useBingNewsFetch({ query, pageNum });
+  // FIXME: 리팩토링, scrap 다른데로 이동
+  const { isLoading, data: scrapLists } = useScrappedNewsList();
+  const queryStates = useBingNewsFetch({ query, pageNum, enabled: !isLoading });
+
   const { data, fetchNextPage } = queryStates;
 
-  // TODO: 문제있을시 변경하기
-  const dataList = flatMap(data?.pages, (page) => page);
+  // FIXME: 리팩토링
+  const dataList = flatMap(data?.pages, (page) => {
+    return page.map((newsItem) => {
+      const isScrapped = Boolean(
+        scrapLists?.find((scrapItem) => scrapItem.newsId === newsItem.newsId),
+      );
+      return {
+        ...newsItem,
+        isScrapped,
+      };
+    });
+  });
 
   useEffect(() => {
     if (inView) {

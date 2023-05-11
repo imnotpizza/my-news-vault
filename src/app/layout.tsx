@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import AppProviders from '@/components/providers/AppProviders';
 import React from 'react';
+import useScrappedNewsList from '@/queries/useScrappedNewsList';
 
 const inter = Inter({ subsets: ['latin'] });
 

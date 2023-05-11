@@ -57,4 +57,5 @@ export interface INewsItem {
   providerName: string;
   thumbnail: string;
   title: string;
+  isScrapped: boolean;
 }

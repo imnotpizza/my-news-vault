@@ -6,7 +6,11 @@ import { queryClient } from './queryClient';
 
 export const bingNewsFetchQueryKey = 'BingNewsFetch';
 
-const useBingNewsFetch = ({ query, pageNum }: IBingNewsQuery) => {
+const useBingNewsFetch = ({
+  query,
+  pageNum,
+  enabled = true,
+}: IBingNewsQuery & { enabled: boolean }) => {
   const queryStates = useInfiniteQuery<Awaited<ReturnType<typeof fetchBingNews>>, AxiosError>(
     [bingNewsFetchQueryKey, query, pageNum],
     ({ pageParam = 1 }) => fetchBingNews(query, pageParam),
@@ -14,6 +18,7 @@ const useBingNewsFetch = ({ query, pageNum }: IBingNewsQuery) => {
       getNextPageParam: (lastPage, pages) => {
         return pages.length + 1;
       },
+      enabled,
     },
   );
   return {

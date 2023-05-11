@@ -46,6 +46,7 @@ const NewsItemView = ({ item }: { item: INewsItem }) => {
       <button onClick={onClickVisit}>방문하기</button>
       <button onClick={onClickScarp}>스크랩</button>
       <button onClick={onClickDeleteScrap}>스크랩 삭제</button>
+      <div>스크랩여부: {item.isScrapped?.toString()}</div>
     </Container>
   );
 };
