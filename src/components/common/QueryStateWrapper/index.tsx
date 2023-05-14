@@ -29,7 +29,7 @@ const QueryStateWrapper = ({
   children,
 }: IQueryStateWrapperProps) => {
   const { isLoading, isError, isEmpty } = queryStates;
-
+  console.log('##### 1111', queryStates)
   return (
     <Container>
       {isLoading && <LoadingUI />}

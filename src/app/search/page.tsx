@@ -44,6 +44,12 @@ const GridContainer = styled.div`
   background-color: blue;
 `;
 
+const EmptyQueryView = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const NewsSearchPage = () => {
   const { ref, inView, entry } = useInView({
     threshold: 0,
@@ -53,7 +59,7 @@ const NewsSearchPage = () => {
 
   // FIXME: 리팩토링, scrap 다른데로 이동
   const { isLoading, data: scrapLists } = useScrappedNewsList();
-  const queryStates = useBingNewsFetch({ query, pageNum, enabled: !isLoading });
+  const queryStates = useBingNewsFetch({ query, pageNum, enabled: !isLoading && query !== '' });
 
   const { data, fetchNextPage } = queryStates;
 
@@ -85,16 +91,20 @@ const NewsSearchPage = () => {
         <QueryInput query={query} setQuery={setQuery} />
       </div>
       <div className="news-list">
-        <QueryStateWrapper queryStates={queryStates}>
-          <InView>
-            <GridContainer>
-              {dataList.map((item) => (
-                <NewsItemView key={item.newsId} item={item} />
-              ))}
-            </GridContainer>
-            <div ref={ref}>loadingview</div>
-          </InView>
-        </QueryStateWrapper>
+        {query === '' ? (
+          <EmptyQueryView>검색어를 입력해주세요</EmptyQueryView>
+        ) : (
+          <QueryStateWrapper queryStates={queryStates}>
+            <InView>
+              <GridContainer>
+                {dataList.map((item) => (
+                  <NewsItemView key={item.newsId} item={item} />
+                ))}
+              </GridContainer>
+              <div ref={ref}>loadingview</div>
+            </InView>
+          </QueryStateWrapper>
+        )}
         <button
           onClick={() => {
             fetchNextPage();
