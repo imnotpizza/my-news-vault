@@ -1,14 +1,9 @@
 'use client';
 
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
-import QueryInput from '@/components/input/QueryInput';
-import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import NewsItemView from '@/views/news/NewsItemView';
-import { createArticle, deleteArticle, getArticles, updateArticle } from '@/firebase';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { flatMap } from 'lodash-es';
-import { InView, useInView } from 'react-intersection-observer';
 import useScrappedNewsList from '@/queries/useScrappedNewsList';
 
 const Container = styled.div`
@@ -45,23 +40,8 @@ const GridContainer = styled.div`
 `;
 
 const NewsScrapPage = () => {
-  const { ref, inView, entry } = useInView({
-    threshold: 0,
-  });
-  const [query, setQuery] = React.useState('');
-  const [pageNum, setPageNum] = React.useState(1);
-
   const queryStates = useScrappedNewsList();
-  const { data, fetchNextPage, hasNextPage } = queryStates;
-
-  // TODO: 문제있을시 변경하기
-  const dataList = flatMap(data?.pages, (page) => page);
-
-  useEffect(() => {
-    if (inView && hasNextPage) {
-      fetchNextPage();
-    }
-  }, [inView]);
+  const { data } = queryStates;
 
   return (
     <Container>
@@ -69,39 +49,11 @@ const NewsScrapPage = () => {
         <p className="page-title">뉴스 스크랩 목록</p>
       </div>
       <div className="news-list">
-        <button
-          onClick={async () => {
-            await getArticles();
-            createArticle({
-              datePublished: '123',
-              description: '123',
-              headline: 'title',
-              providerIcon: 'icon',
-              providerName: 'name',
-              thumbnail: 'thumbnail',
-              userId: 'userId',
-            });
-          }}
-        >
-          create
-        </button>
         <QueryStateWrapper queryStates={queryStates}>
-          <InView>
-            <GridContainer>
-              {dataList.map((item) => (
-                <NewsItemView key={item.newsId} item={item} />
-              ))}
-            </GridContainer>
-            <div ref={ref}>loadingview</div>
-          </InView>
+          <GridContainer>
+            {data && data.map((item) => <NewsItemView key={item.newsId} item={item} />)}
+          </GridContainer>
         </QueryStateWrapper>
-        <button
-          onClick={() => {
-            fetchNextPage();
-          }}
-        >
-          추가호출
-        </button>
       </div>
     </Container>
   );
