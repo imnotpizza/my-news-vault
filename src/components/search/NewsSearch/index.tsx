@@ -5,6 +5,10 @@ import React, { memo, useEffect } from 'react';
 import styled from 'styled-components';
 import NewsItemList from '../NewsItemList';
 
+interface INewsSearchProps {
+  category?: string;
+}
+
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -31,7 +35,7 @@ const Container = styled.div`
   }
 `;
 
-const NewsSearch = ({ category }) => {
+const NewsSearch = ({ category }: INewsSearchProps) => {
   const [query, setQuery] = React.useState('');
 
   return (

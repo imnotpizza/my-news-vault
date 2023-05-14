@@ -33,7 +33,7 @@ const NewsItemList = ({ category, query }) => {
 
   // FIXME: 리팩토링, scrap 다른데로 이동
   const { isLoading, data: scrapLists } = useScrappedNewsList();
-  const queryStates = useBingNewsFetch({ query, pageNum: 1, enabled: !isLoading && query !== '' });
+  const queryStates = useBingNewsFetch({ query, category, pageNum: 1, enabled: !isLoading && query !== '' });
 
   const { data, fetchNextPage } = queryStates;
 

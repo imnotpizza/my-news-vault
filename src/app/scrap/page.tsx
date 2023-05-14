@@ -60,27 +60,3 @@ const NewsScrapPage = () => {
 };
 
 export default NewsScrapPage;
-
-// {
-//   /* // <button
-// // onClick={async () => {
-// //   const val = await getArticles();
-// //   console.log('##### val', val);
-// // }}
-// // >
-// // get
-// // </button>
-// // <button onClick={async () => {
-// // updateArticle('D7df7q3M6BK1mTdtTsjz', {
-// //   datePublished: 'updated',
-// //   description: 'updated',
-// //   headline: 'updatedtitle',
-// //   providerIcon: 'updatedicon',
-// //   providerName: 'updatedname',
-// //   userId: 'userId',
-// // })
-// // }}>update</button>
-// // <button onClick={() => {
-// // deleteArticle('D7df7q3M6BK1mTdtTsjz');
-// // }}>delete</button> */
-// }
