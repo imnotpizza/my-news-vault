@@ -29,7 +29,7 @@ const QueryInput = ({ setQuery }) => {
   };
 
   const onClickSearch = () => {
-    if(queryForm.query === '') return;
+    if (queryForm.query === '') return;
     queryClient.invalidateQueries([bingNewsFetchQueryKey]);
     setQuery(queryForm.query);
   };
