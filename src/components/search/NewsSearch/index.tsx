@@ -8,6 +8,7 @@ import NewsItemList from '../NewsItemList';
 
 interface INewsSearchProps {
   category?: TNewsCategory;
+  query: string;
 }
 
 const Container = styled.div`
@@ -36,16 +37,14 @@ const Container = styled.div`
   }
 `;
 
-const NewsSearch = ({ category }: INewsSearchProps) => {
-  const [query, setQuery] = React.useState('');
-
+const NewsSearch = ({ category, query }: INewsSearchProps) => {
   return (
     <Container>
       <div>
         <p className="page-title">뉴스 검색</p>
       </div>
       <div className="search-input">
-        <QueryInput setQuery={setQuery} />
+        <QueryInput query={query} />
       </div>
       <div className="news-list">
         <NewsItemList category={category} query={query} />

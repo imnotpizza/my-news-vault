@@ -1,7 +1,8 @@
+'use client';
+
 import styled from 'styled-components';
-import React, { KeyboardEventHandler } from 'react';
-import { queryClient } from '@/queries/queryClient';
-import { bingNewsFetchQueryKey } from '@/queries/useBingNewsFetch';
+import React, { KeyboardEventHandler, memo } from 'react';
+import { useRouter } from 'next/navigation';
 
 /**
  * 뉴스 검색어 입력
@@ -16,9 +17,10 @@ const Input = styled.input.attrs({ type: 'text' })`
   margin-bottom: 100px;
 `;
 
-const QueryInput = ({ setQuery }) => {
+const QueryInput = ({query}) => {
+  const router = useRouter();
   const [queryForm, setQueryForm] = React.useState({
-    query: '',
+    query,
   });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,8 +32,7 @@ const QueryInput = ({ setQuery }) => {
 
   const onClickSearch = () => {
     if (queryForm.query === '') return;
-    queryClient.invalidateQueries([bingNewsFetchQueryKey]);
-    setQuery(queryForm.query);
+    router.push(`${window.location.pathname}?q=${queryForm.query}`);
   };
 
   return (
@@ -51,4 +52,4 @@ const QueryInput = ({ setQuery }) => {
   );
 };
 
-export default QueryInput;
+export default memo(QueryInput);

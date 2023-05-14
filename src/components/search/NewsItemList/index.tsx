@@ -9,13 +9,13 @@ import { flatMap } from 'lodash-es';
 import { InView, useInView } from 'react-intersection-observer';
 import useScrappedNewsList from '@/queries/useScrappedNewsList';
 import { TNewsCategory } from '@/types';
+import { useRouter } from 'next/navigation';
 
 /**
  *  News Item API Fetch 기능 컴포넌트
  */
 interface INewsItemListProps {
   category?: TNewsCategory;
-  query: string;
 }
 
 const GridContainer = styled.div`
