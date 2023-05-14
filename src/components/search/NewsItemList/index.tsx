@@ -8,10 +8,15 @@ import styled from 'styled-components';
 import { flatMap } from 'lodash-es';
 import { InView, useInView } from 'react-intersection-observer';
 import useScrappedNewsList from '@/queries/useScrappedNewsList';
+import { TNewsCategory } from '@/types';
 
 /**
  *  News Item API Fetch 기능 컴포넌트
  */
+interface INewsItemListProps {
+  category?: TNewsCategory;
+  query: string;
+}
 
 const GridContainer = styled.div`
   display: grid !important;
@@ -26,14 +31,19 @@ const EmptyQueryView = styled.div`
   align-items: center;
 `;
 
-const NewsItemList = ({ category, query }) => {
+const NewsItemList = ({ category, query }: INewsItemListProps) => {
   const { ref, inView, entry } = useInView({
     threshold: 0,
   });
 
   // FIXME: 리팩토링, scrap 다른데로 이동
   const { isLoading, data: scrapLists } = useScrappedNewsList();
-  const queryStates = useBingNewsFetch({ query, category, pageNum: 1, enabled: !isLoading && query !== '' });
+  const queryStates = useBingNewsFetch({
+    query,
+    category,
+    pageNum: 1,
+    enabled: !isLoading && query !== '',
+  });
 
   const { data, fetchNextPage } = queryStates;
 

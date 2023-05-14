@@ -14,12 +14,12 @@ const Container = styled.div`
 const Category = () => {
   return (
     <Container>
-      <Link href="/search/politics">정치</Link>
-      <Link href="/search/economy">경제</Link>
-      <Link href="/search/world">세계</Link>
-      <Link href="/search/it">IT</Link>
-      <Link href="/search/entertainment">연예</Link>
-      <Link href="/search/sports">스포츠</Link>
+      <Link href="/search">전체</Link>
+      <Link href="/search/Politics">정치</Link>
+      <Link href="/search/Business">경제</Link>
+      <Link href="/search/ScienceAndTechnology">IT/기술</Link>
+      <Link href="/search/Entertainment">연예</Link>
+      <Link href="/search/Sports">스포츠</Link>
     </Container>
   );
 };

@@ -1,6 +1,7 @@
 'use client';
 
 import NewsSearch from '@/components/search/NewsSearch';
+import { TNewsCategory } from '@/types';
 import React from 'react';
 
 /**
@@ -8,7 +9,7 @@ import React from 'react';
  */
 
 const CategoryNewsSearchPage = ({ params }) => {
-  return <NewsSearch category={params.category}/>;
+  return <NewsSearch category={params.category} />;
 };
 
 export default CategoryNewsSearchPage;

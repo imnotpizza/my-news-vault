@@ -3,10 +3,11 @@
 import QueryInput from '@/components/input/QueryInput';
 import React, { memo, useEffect } from 'react';
 import styled from 'styled-components';
+import { TNewsCategory } from '@/types';
 import NewsItemList from '../NewsItemList';
 
 interface INewsSearchProps {
-  category?: string;
+  category?: TNewsCategory;
 }
 
 const Container = styled.div`

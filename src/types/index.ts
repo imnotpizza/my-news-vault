@@ -1,9 +1,18 @@
+export type TNewsCategory =
+  | 'All'
+  | 'Politics'
+  | 'Business'
+  | 'ScienceAndTechnology'
+  | 'Entertainment'
+  | 'Sports';
+
 /**
  *  Bing News API 쿼리스트링
  */
 export interface IBingNewsQuery {
   query: string;
   pageNum: number;
+  category: TNewsCategory;
 }
 
 /**
@@ -19,17 +28,17 @@ export interface IRawNewsItem {
       contentUrl: string;
       height: string;
       width: string;
-    },
+    };
     name: string;
-  }
+  };
   provider: {
     image: {
       thumbnail: {
         contentUrl: string;
-      }
+      };
     };
     name: string;
-  }[]
+  }[];
   url: string;
 }
 
@@ -40,7 +49,7 @@ export interface IBingNewsAPIRes {
   queryContext: {
     adultIntent: boolean;
     originalQuery: string;
-  },
+  };
   readLink: string;
   totalEstimatedMatches: number;
   value: IRawNewsItem[];

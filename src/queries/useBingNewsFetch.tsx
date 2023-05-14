@@ -1,19 +1,19 @@
 import { fetchBingNews } from '@/api/client';
-import { IBingNewsQuery } from '@/types';
+import { IBingNewsQuery, TNewsCategory } from '@/types';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { queryClient } from './queryClient';
 
 export const bingNewsFetchQueryKey = 'BingNewsFetch';
 
-const useBingNewsFetch = ({
-  query,
-  pageNum,
-  enabled = true,
-}: IBingNewsQuery & { enabled: boolean; }) => {
+interface Params extends IBingNewsQuery {
+  enabled: boolean;
+}
+
+const useBingNewsFetch = ({ query, pageNum, category, enabled = true }: Params) => {
   const queryStates = useInfiniteQuery<Awaited<ReturnType<typeof fetchBingNews>>, AxiosError>(
     [bingNewsFetchQueryKey, query, pageNum],
-    ({ pageParam = 1 }) => fetchBingNews(query, pageParam),
+    ({ pageParam = 1 }) => fetchBingNews(query, pageParam, category),
     {
       getNextPageParam: (lastPage, pages) => {
         return pages.length + 1;
@@ -31,7 +31,7 @@ export const fetchBingNewsQueryData = ({ query, pageNum }: IBingNewsQuery) => {
   queryClient.invalidateQueries([bingNewsFetchQueryKey]);
   return queryClient.fetchQuery<ReturnType<typeof fetchBingNews>>(
     [bingNewsFetchQueryKey, query, pageNum],
-    () => fetchBingNews(query, pageNum),
+    () => fetchBingNews(query, pageNum, ''),
   );
 };
 
