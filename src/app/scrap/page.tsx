@@ -2,10 +2,9 @@
 
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import NewsItemView from '@/views/news/NewsItemView';
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import useScrappedNewsList from '@/queries/useScrappedNewsList';
-import { userInfoContext } from '@/utils/userInfoProvider';
 
 const Container = styled.div`
   width: 100%;
@@ -50,7 +49,10 @@ const NewsScrapPage = () => {
         <p className="page-title">뉴스 스크랩 목록</p>
       </div>
       <div className="news-list">
-        <QueryStateWrapper queryStates={queryStates}>
+        <QueryStateWrapper queryStates={{
+          ...queryStates,
+          isEmpty: !data || data.length === 0,
+        }}>
           <GridContainer>
             {data && data.map((item) => <NewsItemView key={item.newsId} item={item} />)}
           </GridContainer>

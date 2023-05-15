@@ -9,6 +9,7 @@ import NewsItemList from '../NewsItemList';
 
 interface INewsSearchProps {
   category?: TNewsCategory;
+  q: string;
 }
 
 const Container = styled.div`
@@ -38,7 +39,7 @@ const Container = styled.div`
 `;
 
 const NewsSearch = ({ category, q }: INewsSearchProps) => {
-  const { query, setQuery } = React.useContext(newsQueryContext);
+  const { setQuery } = React.useContext(newsQueryContext);
   useEffect(() => {
     if (q) {
       setQuery(q);

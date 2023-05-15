@@ -13,9 +13,9 @@ interface INewsThumbnailViewProps {
   alt?: string;
 }
 
-const NewsThumbnailView = ({ src, alt }: INewsThumbnailViewProps) => {
+const NewsThumbnailView = ({ src, alt = 'image' }: INewsThumbnailViewProps) => {
   // 없으면 디폴트이미지로 설정
-  const imageSrc = src ? src : '/images/no-image.png';
+  const imageSrc = src || '/images/no-image.png';
 
   return <ThumbnailImage width={50} height={50} src={imageSrc} alt={alt} />;
 };

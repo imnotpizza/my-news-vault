@@ -2,6 +2,7 @@
 
 import UserProfile from '@/components/user/UserProfile';
 import { auth, googleProvider, signin, signout } from '@/firebase';
+import { IUserInfo } from '@/types';
 import { newsQueryContext } from '@/utils/newsQueryContext';
 import { userInfoContext } from '@/utils/userInfoProvider';
 import Link from 'next/link';
@@ -22,7 +23,8 @@ const Category = () => {
 
   const onClickLogin = async () => {
     const userInfo = await signin();
-    setUserInfo(userInfo);
+    if (!userInfo) return;
+    setUserInfo(userInfo as IUserInfo);
   };
   return (
     <Container>

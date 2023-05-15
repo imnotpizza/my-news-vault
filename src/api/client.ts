@@ -36,8 +36,8 @@ export const fetchScrappedList = async (userId: IUserInfo['email']) => {
   const path = `scrap/${userId}/scrap`;
   const res: INewsItem[] = [];
   const snapshot = await getDocs(collection(database, path));
-  snapshot.forEach((doc) => {
-    const data = doc.data() as INewsItem;
+  snapshot.forEach((_doc) => {
+    const data = _doc.data() as INewsItem;
     data.isScrapped = true;
     res.push(data);
   });

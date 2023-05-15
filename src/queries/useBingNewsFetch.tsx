@@ -31,7 +31,7 @@ export const fetchBingNewsQueryData = ({ query, pageNum }: IBingNewsQuery) => {
   queryClient.invalidateQueries([bingNewsFetchQueryKey]);
   return queryClient.fetchQuery<ReturnType<typeof fetchBingNews>>(
     [bingNewsFetchQueryKey, query, pageNum],
-    () => fetchBingNews(query, pageNum, ''),
+    () => fetchBingNews(query, pageNum, 'All'),
   );
 };
 

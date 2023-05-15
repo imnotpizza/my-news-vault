@@ -74,3 +74,12 @@ export interface INewsItem {
   title: string;
   isScrapped: boolean;
 }
+
+export interface IPageProps {
+  params: {
+    category: IBingNewsQuery['category'];
+  };
+  searchParams: {
+    q: IBingNewsQuery['query'];
+  };
+}

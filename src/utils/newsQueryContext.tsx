@@ -5,7 +5,7 @@ const newsQueryContext = React.createContext({
   setQuery: (query: string) => {},
 });
 
-const NewsQueryProvider = ({ children }) => {
+const NewsQueryProvider = ({ children }: any) => {
   const [query, setQuery] = React.useState('');
 
   return (

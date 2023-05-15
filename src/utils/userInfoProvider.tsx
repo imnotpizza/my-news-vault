@@ -13,7 +13,7 @@ const userInfoContext = React.createContext<IUserInfoContext>({
   setUserInfo: (user) => {},
 });
 
-const UserInfoProvider = ({ children }) => {
+const UserInfoProvider = ({ children }: any) => {
   const [userInfo, setUserInfo] = React.useState<IUserInfoContext['userInfo']>(null);
 
   useEffect(() => {

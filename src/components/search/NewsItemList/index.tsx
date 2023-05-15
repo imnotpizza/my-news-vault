@@ -15,7 +15,7 @@ import { newsQueryContext } from '@/utils/newsQueryContext';
  *  News Item API Fetch 기능 컴포넌트
  */
 interface INewsItemListProps {
-  category?: TNewsCategory;
+  category: TNewsCategory;
 }
 
 const GridContainer = styled.div`
@@ -72,7 +72,9 @@ const NewsItemList = ({ category }: INewsItemListProps) => {
       {query === '' ? (
         <EmptyQueryView>검색어를 입력해주세요</EmptyQueryView>
       ) : (
-        <QueryStateWrapper queryStates={queryStates}>
+          <QueryStateWrapper
+          queryStates={queryStates as any}
+        >
           <InView>
             <GridContainer>
               {dataList.map((item) => (

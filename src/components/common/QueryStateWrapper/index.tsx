@@ -1,12 +1,14 @@
+import { INewsItem } from '@/types';
 import DefaultEmptyUI from '@/views/common/DefaultEmptyUI';
 import DefaultErrorUI from '@/views/common/DefaultErrorUI';
 import DefaultLoadingUI from '@/views/common/DefaultLoadingUI';
 import { UseQueryResult } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import React from 'react';
 import styled from 'styled-components';
 
 interface IQueryStateWrapperProps {
-  queryStates: UseQueryResult & { isEmpty: boolean };
+  queryStates: UseQueryResult<INewsItem[], AxiosError> & { isEmpty: boolean };
   LoadingUI?: () => React.ReactElement;
   ErrorUI?: () => React.ReactElement;
   EmptyUI?: () => React.ReactElement;
