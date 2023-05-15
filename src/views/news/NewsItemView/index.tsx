@@ -63,8 +63,12 @@ const NewsItemView = ({ item }: { item: INewsItem }) => {
       <NewsThumbnailView src={item.thumbnail} alt={`${item.title} thumbnail`} />
       <p className="news-desc">{item.description}</p>
       <button onClick={onClickVisit}>방문하기</button>
-      <button disabled={disabled} onClick={onClickScarp}>스크랩</button>
-      <button disabled={disabled} onClick={onClickDeleteScrap}>스크랩 삭제</button>
+      <button disabled={disabled} onClick={onClickScarp}>
+        스크랩
+      </button>
+      <button disabled={disabled} onClick={onClickDeleteScrap}>
+        스크랩 삭제
+      </button>
       <div>스크랩여부: {item.isScrapped?.toString()}</div>
     </Container>
   );

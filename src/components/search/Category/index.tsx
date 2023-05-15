@@ -34,7 +34,7 @@ const Category = () => {
       <Link href={`/search/ScienceAndTechnology${queryUrl}`}>IT/기술</Link>
       <Link href={`/search/Entertainment${queryUrl}`}>연예</Link>
       <Link href={`/search/Sports${queryUrl}`}>스포츠</Link>
-      <UserProfile/>
+      <UserProfile />
     </Container>
   );
 };
