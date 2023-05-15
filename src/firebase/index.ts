@@ -1,16 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-// import Auth from 'firebase-auth-lite';
-import {
-  getFirestore,
-  doc,
-  collection,
-  getDocs,
-  updateDoc,
-  deleteDoc,
-  addDoc,
-  getDoc,
-} from 'firebase/firestore/lite';
+import { getFirestore } from 'firebase/firestore/lite';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import firebaseJson from '../../firebase.json';
 
 // Initialize Firebase
@@ -20,37 +11,17 @@ const app = initializeApp({
 });
 // db 인스턴스 생성
 export const database = getFirestore(app);
+export const auth = getAuth(app);
+export const googleProvider = new GoogleAuthProvider();
 
-// create
-export async function createArticle(newArticle: INews) {
-  const articleCollection = collection(database, 'scrap');
-  await addDoc(articleCollection, newArticle);
-}
+export const signin = async () => {
+  const res = await signInWithPopup(auth, googleProvider);
+  const credential = GoogleAuthProvider.credentialFromResult(res);
 
-// get
-export async function getArticles() {
-  const userRef = doc(database, 'scrap', 'CQI5GWRMKYGDdL11Pbgn');
-  const target = await getDoc(userRef);
-  console.log(target.data(), target.exists());
-
-  const articleCollection = collection(database, 'scrap');
-  const articleDocs = await getDocs(articleCollection);
-  const articleList = articleDocs.docs.map((doc) => {
-    return {
-      id: doc.id,
-      ...doc.data(),
-    };
-  });
-  return articleList;
-}
-
-// update
-export async function updateArticle(id: string, newArticle: any) {
-  const articleDoc = doc(database, 'scrap', id);
-  await updateDoc(articleDoc, newArticle);
-}
-// delete
-export async function deleteArticle(id: string) {
-  const articleDoc = doc(database, 'scrap', id);
-  await deleteDoc(articleDoc);
-}
+  const { displayName, email, photoURL } = res.user;
+  return {
+    displayName,
+    email,
+    photoURL,
+  };
+};

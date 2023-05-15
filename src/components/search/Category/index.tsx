@@ -1,6 +1,8 @@
 'use client';
 
+import { auth, googleProvider, signin } from '@/firebase';
 import { newsQueryContext } from '@/utils/newsQueryContext';
+import { userInfoContext } from '@/utils/userInfoProvider';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
@@ -15,8 +17,15 @@ const Container = styled.div`
 const Category = () => {
   const { query } = React.useContext(newsQueryContext);
   const queryUrl = query ? `?q=${query}` : '';
+  const { setUserInfo } = React.useContext(userInfoContext);
+
+  const onClickLogin = async () => {
+    const userInfo = await signin();
+    setUserInfo(userInfo);
+  };
   return (
     <Container>
+      <button onClick={onClickLogin}>login</button>
       <Link href={`/search${queryUrl}`}>전체</Link>
       <Link href={`/search/Politics${queryUrl}`}>정치</Link>
       <Link href={`/search/Business${queryUrl}`}>경제</Link>
