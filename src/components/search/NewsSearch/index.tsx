@@ -4,11 +4,11 @@ import QueryInput from '@/components/input/QueryInput';
 import React, { memo, useEffect } from 'react';
 import styled from 'styled-components';
 import { TNewsCategory } from '@/types';
+import { newsQueryContext } from '@/utils/newsQueryContext';
 import NewsItemList from '../NewsItemList';
 
 interface INewsSearchProps {
   category?: TNewsCategory;
-  query: string;
 }
 
 const Container = styled.div`
@@ -37,17 +37,24 @@ const Container = styled.div`
   }
 `;
 
-const NewsSearch = ({ category, query }: INewsSearchProps) => {
+const NewsSearch = ({ category, q }: INewsSearchProps) => {
+  const { query, setQuery } = React.useContext(newsQueryContext);
+  useEffect(() => {
+    if (q) {
+      setQuery(q);
+    }
+  }, [q]);
+
   return (
     <Container>
       <div>
         <p className="page-title">뉴스 검색</p>
       </div>
       <div className="search-input">
-        <QueryInput query={query} />
+        <QueryInput query={q} />
       </div>
       <div className="news-list">
-        <NewsItemList category={category} query={query} />
+        <NewsItemList category={category} />
       </div>
     </Container>
   );

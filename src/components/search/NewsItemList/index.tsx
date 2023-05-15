@@ -10,6 +10,7 @@ import { InView, useInView } from 'react-intersection-observer';
 import useScrappedNewsList from '@/queries/useScrappedNewsList';
 import { TNewsCategory } from '@/types';
 import { useRouter } from 'next/navigation';
+import { newsQueryContext } from '@/utils/newsQueryContext';
 
 /**
  *  News Item API Fetch 기능 컴포넌트
@@ -31,7 +32,8 @@ const EmptyQueryView = styled.div`
   align-items: center;
 `;
 
-const NewsItemList = ({ category, query }: INewsItemListProps) => {
+const NewsItemList = ({ category }: INewsItemListProps) => {
+  const { query } = React.useContext(newsQueryContext);
   const { ref, inView, entry } = useInView({
     threshold: 0,
   });

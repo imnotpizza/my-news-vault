@@ -9,8 +9,8 @@ import React from 'react';
  */
 
 const CategoryNewsSearchPage = ({ params, searchParams }) => {
-  console.log(params, searchParams);
-  return <NewsSearch category={params.category} query={searchParams.q} />;
+  console.log('###################anukfioehdifawfe', searchParams)
+  return <NewsSearch category={params.category} q={searchParams.q} />;
 };
 
 export default CategoryNewsSearchPage;
