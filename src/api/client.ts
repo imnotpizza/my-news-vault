@@ -1,4 +1,4 @@
-import { IBingNewsAPIRes, IBingNewsQuery, INewsItem, IRawNewsItem } from '@/types';
+import { IBingNewsAPIRes, IBingNewsQuery, INewsItem, IRawNewsItem, IUserInfo } from '@/types';
 import { doc, getDocs, collection, addDoc, deleteDoc, setDoc } from 'firebase/firestore/lite';
 import { database } from '@/firebase';
 import { parseToNewsItem } from '@/utils';
@@ -32,7 +32,7 @@ export const fetchBingNews = async (
 /**
  * 스크랩된 데이터 호출
  */
-export const fetchScrappedList = async (userId) => {
+export const fetchScrappedList = async (userId: IUserInfo['email']) => {
   const path = `scrap/${userId}/scrap`;
   const res: INewsItem[] = [];
   const snapshot = await getDocs(collection(database, path));
@@ -47,14 +47,14 @@ export const fetchScrappedList = async (userId) => {
 /**
  * 스크랩
  */
-export const scrapNews = async (userId, newsItem: INewsItem) => {
+export const scrapNews = async (userId: IUserInfo['email'], newsItem: INewsItem) => {
   await setDoc(doc(database, `scrap/${userId}/scrap`, newsItem.newsId), newsItem);
 };
 
 /**
  * 스크랩 해제
  */
-export const unscrapNews = async (userId, newsId) => {
+export const unscrapNews = async (userId: IUserInfo['email'], newsId: string) => {
   const target = doc(database, `scrap/${userId}/scrap`, newsId);
   await deleteDoc(target);
 };

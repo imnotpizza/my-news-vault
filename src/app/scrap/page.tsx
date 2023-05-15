@@ -5,6 +5,7 @@ import NewsItemView from '@/views/news/NewsItemView';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import useScrappedNewsList from '@/queries/useScrappedNewsList';
+import { userInfoContext } from '@/utils/userInfoProvider';
 
 const Container = styled.div`
   width: 100%;

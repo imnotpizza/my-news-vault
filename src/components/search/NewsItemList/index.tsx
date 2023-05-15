@@ -9,7 +9,6 @@ import { flatMap } from 'lodash-es';
 import { InView, useInView } from 'react-intersection-observer';
 import useScrappedNewsList from '@/queries/useScrappedNewsList';
 import { TNewsCategory } from '@/types';
-import { useRouter } from 'next/navigation';
 import { newsQueryContext } from '@/utils/newsQueryContext';
 
 /**

@@ -6,6 +6,12 @@ export type TNewsCategory =
   | 'Entertainment'
   | 'Sports';
 
+export interface IUserInfo {
+  displayName: string;
+  email: string;
+  photoURL: string;
+}
+
 /**
  *  Bing News API 쿼리스트링
  */

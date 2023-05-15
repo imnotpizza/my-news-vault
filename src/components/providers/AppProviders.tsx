@@ -9,15 +9,8 @@ import GlobalStyle from '@/styles/globalStyle';
 import { queryClient } from '@/queries/queryClient';
 import { ThemeProvider } from 'styled-components';
 import Palette from '@/styles/palette';
-import useScrappedNewsList from '@/queries/useScrappedNewsList';
 import { NewsQueryProvider } from '@/utils/newsQueryContext';
 import { UserInfoProvider } from '@/utils/userInfoProvider';
-
-// TODO: scrap query 저장하려 임시추가, 더 나은벙법 찾기
-const ScrapQueryWrapper = () => {
-  const queryStates = useScrappedNewsList();
-  return null;
-};
 
 const AppProviders = ({ children }: any) => {
   return (
@@ -27,7 +20,6 @@ const AppProviders = ({ children }: any) => {
         <NewsQueryProvider>
           <QueryClientProvider client={queryClient}>
             <ReactQueryDevtools initialIsOpen={true} />
-            <ScrapQueryWrapper />
             <ThemeProvider theme={Palette}>{children}</ThemeProvider>
           </QueryClientProvider>
         </NewsQueryProvider>
