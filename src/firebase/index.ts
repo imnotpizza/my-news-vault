@@ -25,3 +25,7 @@ export const signin = async () => {
     photoURL,
   };
 };
+
+export const signout = async () => {
+  await auth.signOut();
+}

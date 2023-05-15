@@ -11,6 +11,7 @@ import { ThemeProvider } from 'styled-components';
 import Palette from '@/styles/palette';
 import useScrappedNewsList from '@/queries/useScrappedNewsList';
 import { NewsQueryProvider } from '@/utils/newsQueryContext';
+import { UserInfoProvider } from '@/utils/userInfoProvider';
 
 // TODO: scrap query 저장하려 임시추가, 더 나은벙법 찾기
 const ScrapQueryWrapper = () => {
@@ -22,13 +23,15 @@ const AppProviders = ({ children }: any) => {
   return (
     <>
       <GlobalStyle />
-      <NewsQueryProvider>
-        <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={true} />
-          <ScrapQueryWrapper />
-          <ThemeProvider theme={Palette}>{children}</ThemeProvider>
-        </QueryClientProvider>
-      </NewsQueryProvider>
+      <UserInfoProvider>
+        <NewsQueryProvider>
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools initialIsOpen={true} />
+            <ScrapQueryWrapper />
+            <ThemeProvider theme={Palette}>{children}</ThemeProvider>
+          </QueryClientProvider>
+        </NewsQueryProvider>
+      </UserInfoProvider>
     </>
   );
 };
