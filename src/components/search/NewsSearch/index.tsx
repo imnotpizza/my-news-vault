@@ -52,7 +52,7 @@ const NewsSearch = ({ category, q }: INewsSearchProps) => {
         <p className="page-title">뉴스 검색</p>
       </div>
       <div className="search-input">
-        <QueryInput query={q} />
+        <QueryInput />
       </div>
       <div className="news-list">
         <NewsItemList category={category} />
