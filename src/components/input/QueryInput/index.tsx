@@ -1,7 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
-import React, { KeyboardEventHandler, memo } from 'react';
+import React, { memo } from 'react';
 import { useRouter } from 'next/navigation';
 import { newsQueryContext } from '@/utils/newsQueryContext';
 import { IBingNewsQuery } from '@/types';
@@ -19,11 +19,10 @@ const Input = styled.input.attrs({ type: 'text' })`
   margin-bottom: 100px;
 `;
 
-const QueryInput = ({ query }: Pick<IBingNewsQuery, 'query'>) => {
+const QueryInput = () => {
   const { setQuery } = React.useContext(newsQueryContext);
-  const router = useRouter();
   const [queryForm, setQueryForm] = React.useState({
-    query,
+    query: '',
   });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +35,6 @@ const QueryInput = ({ query }: Pick<IBingNewsQuery, 'query'>) => {
   const onClickSearch = () => {
     if (queryForm.query === '') return;
     setQuery(queryForm.query);
-    router.push(`${window.location.pathname}?q=${queryForm.query}`);
   };
 
   return (

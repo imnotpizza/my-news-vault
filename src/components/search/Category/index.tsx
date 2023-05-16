@@ -17,8 +17,6 @@ const Container = styled.div`
 `;
 
 const Category = () => {
-  const { query } = React.useContext(newsQueryContext);
-  const queryUrl = query ? `?q=${query}` : '';
   const { setUserInfo } = React.useContext(userInfoContext);
 
   const onClickLogin = async () => {
@@ -30,12 +28,12 @@ const Category = () => {
     <Container>
       <button onClick={onClickLogin}>login</button>
       <button onClick={signout}>signout</button>
-      <Link href={`/search${queryUrl}`}>전체</Link>
-      <Link href={`/search/Politics${queryUrl}`}>정치</Link>
-      <Link href={`/search/Business${queryUrl}`}>경제</Link>
-      <Link href={`/search/ScienceAndTechnology${queryUrl}`}>IT/기술</Link>
-      <Link href={`/search/Entertainment${queryUrl}`}>연예</Link>
-      <Link href={`/search/Sports${queryUrl}`}>스포츠</Link>
+      <Link href={`/search`}>전체</Link>
+      <Link href={`/search/Politics`}>정치</Link>
+      <Link href={`/search/Business`}>경제</Link>
+      <Link href={`/search/ScienceAndTechnology`}>IT/기술</Link>
+      <Link href={`/search/Entertainment`}>연예</Link>
+      <Link href={`/search/Sports`}>스포츠</Link>
       <UserProfile />
     </Container>
   );
