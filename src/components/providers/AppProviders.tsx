@@ -11,6 +11,7 @@ import { ThemeProvider } from 'styled-components';
 import Palette from '@/styles/palette';
 import { NewsQueryProvider } from '@/utils/newsQueryContext';
 import { UserInfoProvider } from '@/utils/userInfoProvider';
+import StyledComponentsRegistry from '@/lib/registry';
 
 const AppProviders = ({ children }: any) => {
   return (
@@ -20,7 +21,9 @@ const AppProviders = ({ children }: any) => {
         <NewsQueryProvider>
           <QueryClientProvider client={queryClient}>
             <ReactQueryDevtools initialIsOpen={true} />
-            <ThemeProvider theme={Palette}>{children}</ThemeProvider>
+            <ThemeProvider theme={Palette}>
+              <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+            </ThemeProvider>
           </QueryClientProvider>
         </NewsQueryProvider>
       </UserInfoProvider>
