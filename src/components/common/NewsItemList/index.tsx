@@ -1,15 +1,10 @@
 'use client';
 
-import QueryStateWrapper from '@/components/common/QueryStateWrapper';
-import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import NewsItemView from '@/views/news/NewsItemView';
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
-import { flatMap } from 'lodash-es';
-import { InView, useInView } from 'react-intersection-observer';
-import useScrappedNewsList from '@/queries/useScrappedNewsList';
-import { INewsItem, TNewsCategory } from '@/types';
-import { newsQueryContext } from '@/utils/newsQueryContext';
+import { useInView } from 'react-intersection-observer';
+import { INewsItem } from '@/types';
 
 /**
  *  News Item API Fetch 기능 컴포넌트
@@ -31,69 +26,47 @@ const EmptyQueryView = styled.div`
   align-items: center;
 `;
 
-const NewsItemList = ({newsItems}: INewsItemListProps) => {
-  const { query } = React.useContext(newsQueryContext);
+const NewsItemList = ({ newsItems }: INewsItemListProps) => {
   const { ref, inView, entry } = useInView({
     threshold: 0,
   });
 
-  // FIXME: 리팩토링, scrap 다른데로 이동
-  const { isLoading, data: scrapLists } = useScrappedNewsList();
-  const queryStates = useBingNewsFetch({
-    query,
-    category,
-    pageNum: 1,
-    enabled: !isLoading && query !== '',
-  });
-
-  const { data, fetchNextPage } = queryStates;
-
-  // FIXME: 리팩토링
-  const dataList = flatMap(data?.pages, (page) => {
-    return page.map((newsItem) => {
-      const isScrapped = Boolean(
-        scrapLists?.find((scrapItem) => scrapItem.newsId === newsItem.newsId),
-      );
-      return {
-        ...newsItem,
-        isScrapped,
-      };
-    });
-  });
-
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [inView]);
+  // useEffect(() => {
+  //   if (inView) {
+  //     fetchNextPage();
+  //   }
+  // }, [inView]);
 
   return (
-    <div>
-      {query === '' ? (
-        <EmptyQueryView>검색어를 입력해주세요</EmptyQueryView>
+    <GridContainer>
+      {newsItems.length === 0 ? (
+        <EmptyQueryView>결과가 없습니다.</EmptyQueryView>
       ) : (
-          <QueryStateWrapper
-          queryStates={queryStates as any}
-        >
-          <InView>
-            <GridContainer>
-              {dataList.map((item) => (
-                <NewsItemView key={item.newsId} item={item} />
-              ))}
-            </GridContainer>
-            <div ref={ref}>loadingview</div>
-          </InView>
-        </QueryStateWrapper>
+        <>
+          {newsItems.map((item) => (
+            <NewsItemView key={item.newsId} item={item} />
+          ))}
+        </>
       )}
-      <button
-        onClick={() => {
-          fetchNextPage();
-        }}
-      >
-        추가호출
-      </button>
-    </div>
+    </GridContainer>
   );
+
+  // return (
+  //   <div>
+  //     {query === '' ? (
+  //       <EmptyQueryView>검색어를 입력해주세요</EmptyQueryView>
+  //     ) : (
+  //       <InView>
+  //         <GridContainer>
+  //           {dataList.map((item) => (
+  //             <NewsItemView key={item.newsId} item={item} />
+  //           ))}
+  //         </GridContainer>
+  //         <div ref={ref}>loadingview</div>
+  //       </InView>
+  //     )}
+  //   </div>
+  // );
 };
 
 export default memo(NewsItemList);

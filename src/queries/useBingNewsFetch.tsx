@@ -6,33 +6,29 @@ import { queryClient } from './queryClient';
 
 export const bingNewsFetchQueryKey = 'BingNewsFetch';
 
-interface Params extends IBingNewsQuery {
+interface Params {
+  query: IBingNewsQuery['query'];
+  category: TNewsCategory;
   enabled: boolean;
+  selector?: any;
 }
 
-const useBingNewsFetch = ({ query, pageNum, category, enabled = true }: Params) => {
+const useBingNewsFetch = ({ query, category, enabled = true, selector }: Params) => {
   const queryStates = useInfiniteQuery<Awaited<ReturnType<typeof fetchBingNews>>, AxiosError>(
-    [bingNewsFetchQueryKey, query, pageNum],
+    [bingNewsFetchQueryKey, query],
     ({ pageParam = 1 }) => fetchBingNews(query, pageParam, category),
     {
       getNextPageParam: (lastPage, pages) => {
         return pages.length + 1;
       },
       enabled,
+      select: selector && selector,
     },
   );
   return {
     ...queryStates,
     isEmpty: queryStates.data?.pages.length === 0,
   };
-};
-
-export const fetchBingNewsQueryData = ({ query, pageNum }: IBingNewsQuery) => {
-  queryClient.invalidateQueries([bingNewsFetchQueryKey]);
-  return queryClient.fetchQuery<ReturnType<typeof fetchBingNews>>(
-    [bingNewsFetchQueryKey, query, pageNum],
-    () => fetchBingNews(query, pageNum, 'All'),
-  );
 };
 
 export default useBingNewsFetch;
