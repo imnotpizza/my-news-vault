@@ -73,6 +73,7 @@ export interface INewsItem {
   thumbnail: string;
   title: string;
   isScrapped: boolean;
+  url: string;
 }
 
 export interface IPageProps {

@@ -14,6 +14,7 @@ export const parseToNewsItem = (raw: IRawNewsItem) => {
     thumbnail: raw.image ? raw.image?.thumbnail.contentUrl : '',
     title: raw.name,
     isScrapped: false,
+    url: raw.url,
   };
 
   return newsItem;

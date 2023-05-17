@@ -29,12 +29,10 @@ const Container = styled.div`
 `;
 
 const NewsItemCard = ({ item }: { item: INewsItem }) => {
-  const { isScrapped, title, thumbnail, description, newsId } = item;
+  const { isScrapped, title, thumbnail, description, newsId, url } = item;
   const { userInfo } = React.useContext<IUserInfoContext>(userInfoContext);
 
   const disabled = useMemo(() => !userInfo?.email, [userInfo]);
-
-
 
   const onClickScarp = async () => {
     try {
@@ -65,7 +63,7 @@ const NewsItemCard = ({ item }: { item: INewsItem }) => {
       <p className="news-title">{title}</p>
       <NewsThumbnail src={thumbnail} alt={`${title} thumbnail`} />
       <p className="news-desc">{description}</p>
-      <VisitButton url={thumbnail} />
+      <VisitButton url={url} />
       <ScrapButton
         isScrapped={isScrapped}
         disabled={disabled}
