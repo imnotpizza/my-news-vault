@@ -8,16 +8,16 @@ const ThumbnailImage = styled(Image)`
   border-radius: 5px;
 `;
 
-interface INewsThumbnailViewProps {
+interface INewsThumbnailProps {
   src: string | undefined;
   alt?: string;
 }
 
-const NewsThumbnailView = ({ src, alt = 'image' }: INewsThumbnailViewProps) => {
-  // 없으면 디폴트이미지로 설정
+// TODO: default 이미지 추가
+const NewsThumbnail = ({ src, alt = 'image' }: INewsThumbnailProps) => {
   const imageSrc = src || '/images/no-image.png';
 
   return <ThumbnailImage width={50} height={50} src={imageSrc} alt={alt} />;
 };
 
-export default NewsThumbnailView;
+export default NewsThumbnail;

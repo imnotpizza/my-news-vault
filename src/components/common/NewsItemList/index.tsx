@@ -1,7 +1,7 @@
-import NewsItemView from '@/views/news/NewsItemView';
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import { INewsItem } from '@/types';
+import NewsItemCard from '../NewsItemCard';
 
 interface INewsItemListProps {
   newsItems: INewsItem[];
@@ -28,7 +28,7 @@ const NewsItemList = ({ newsItems }: INewsItemListProps) => {
       ) : (
         <>
           {newsItems.map((item) => (
-            <NewsItemView key={item.newsId} item={item} />
+            <NewsItemCard key={item.newsId} item={item} />
           ))}
         </>
       )}

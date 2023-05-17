@@ -1,11 +1,13 @@
 import { INewsItem } from '@/types';
-import React, { useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import styled from 'styled-components';
 import { scrapNews, unscrapNews } from '@/api/client';
 import { queryClient } from '@/queries/queryClient';
 import { scrappedNewsListQueryKey } from '@/queries/useScrappedNewsList';
-import NewsThumbnailView from '@/views/news/NewsThumbnailView';
 import { IUserInfoContext, userInfoContext } from '@/utils/userInfoProvider';
+import NewsThumbnail from '@/views/newsItem/NewsThumbnail';
+import ScrapButton from '@/views/newsItem/ScrapButton';
+import VisitButton from '@/views/newsItem/VisitButton';
 
 const Container = styled.div`
   width: 300px;
@@ -26,12 +28,13 @@ const Container = styled.div`
   }
 `;
 
-const NewsItemView = ({ item }: { item: INewsItem }) => {
+const NewsItemCard = ({ item }: { item: INewsItem }) => {
+  const { isScrapped, title, thumbnail, description, newsId } = item;
   const { userInfo } = React.useContext<IUserInfoContext>(userInfoContext);
+
   const disabled = useMemo(() => !userInfo?.email, [userInfo]);
-  const onClickVisit = () => {
-    window.open(item.thumbnail);
-  };
+
+
 
   const onClickScarp = async () => {
     try {
@@ -45,11 +48,11 @@ const NewsItemView = ({ item }: { item: INewsItem }) => {
     }
   };
 
-  const onClickDeleteScrap = async () => {
+  const onClickUnscrap = async () => {
     try {
-      await unscrapNews(userInfo!.email, item.newsId);
+      await unscrapNews(userInfo!.email, newsId);
       queryClient.setQueryData([scrappedNewsListQueryKey], (oldData: any) => {
-        return oldData.filter((news: INewsItem) => news.newsId !== item.newsId);
+        return oldData.filter((news: INewsItem) => news.newsId !== newsId);
       });
       alert('success');
     } catch (e) {
@@ -59,19 +62,19 @@ const NewsItemView = ({ item }: { item: INewsItem }) => {
 
   return (
     <Container>
-      <p className="news-title">{item.title}</p>
-      <NewsThumbnailView src={item.thumbnail} alt={`${item.title} thumbnail`} />
-      <p className="news-desc">{item.description}</p>
-      <button onClick={onClickVisit}>방문하기</button>
-      <button disabled={disabled} onClick={onClickScarp}>
-        스크랩
-      </button>
-      <button disabled={disabled} onClick={onClickDeleteScrap}>
-        스크랩 삭제
-      </button>
-      <div>스크랩여부: {item.isScrapped?.toString()}</div>
+      <p className="news-title">{title}</p>
+      <NewsThumbnail src={thumbnail} alt={`${title} thumbnail`} />
+      <p className="news-desc">{description}</p>
+      <VisitButton url={thumbnail} />
+      <ScrapButton
+        isScrapped={isScrapped}
+        disabled={disabled}
+        onClickScarp={onClickScarp}
+        onClickUnscrap={onClickUnscrap}
+      />
+      <div>스크랩여부: {isScrapped?.toString()}</div>
     </Container>
   );
 };
 
-export default NewsItemView;
+export default memo(NewsItemCard);
