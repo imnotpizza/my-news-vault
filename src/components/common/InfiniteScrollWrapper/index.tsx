@@ -19,7 +19,7 @@ const Threshold = styled.div`
 
 const InfiniteScrollWrapper = ({ children, onTriggered }) => {
   const { ref, inView } = useInView({
-    threshold: 50,
+    threshold: 0.5,
   });
 
   useEffect(() => {
