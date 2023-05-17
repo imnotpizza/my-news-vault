@@ -7,6 +7,7 @@ import { newsQueryContext } from '@/utils/newsQueryContext';
 import flatMap from 'lodash-es/flatMap';
 import QueryForm from '../../input/QueryForm';
 import NewsItemList from '../../common/NewsItemList';
+import InfiniteScrollWrapper from '@/components/common/InfiniteScrollWrapper';
 
 const NewsSearchPage = ({ category }) => {
   const { query } = useContext(newsQueryContext);
@@ -34,10 +35,10 @@ const NewsSearchPage = ({ category }) => {
         <QueryForm />
       </div>
       <div>
-        <QueryStateWrapper
-          queryStates={queryStates as any}
-        >
-          <NewsItemList newsItems={flattenData} />
+        <QueryStateWrapper queryStates={queryStates as any}>
+          <InfiniteScrollWrapper onTriggered={queryStates.fetchNextPage}>
+            <NewsItemList newsItems={flattenData} />
+          </InfiniteScrollWrapper>
         </QueryStateWrapper>
       </div>
     </div>

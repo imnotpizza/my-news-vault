@@ -20,6 +20,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
 // FIXME: error-boundary 적용
