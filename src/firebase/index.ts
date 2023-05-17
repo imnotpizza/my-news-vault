@@ -2,6 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore/lite';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { IUserInfo } from '@/types';
 import firebaseJson from '../../firebase.json';
 
 // Initialize Firebase
@@ -14,7 +15,7 @@ export const database = getFirestore(app);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 
-export const signin = async () => {
+export const signin = async (): Promise<IUserInfo> => {
   const res = await signInWithPopup(auth, googleProvider);
   const credential = GoogleAuthProvider.credentialFromResult(res);
 

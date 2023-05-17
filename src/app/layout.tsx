@@ -1,7 +1,7 @@
 import { Inter } from 'next/font/google';
 import AppProviders from '@/components/providers/AppProviders';
 import React from 'react';
-import Category from '@/components/common/Category';
+import Header from '@/components/header/Header';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <AppProviders>
           <>
-            <Category />
+            <Header />
             {children}
           </>
         </AppProviders>
