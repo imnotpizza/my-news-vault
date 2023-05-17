@@ -28,12 +28,11 @@ const Category = () => {
     <Container>
       <button onClick={onClickLogin}>login</button>
       <button onClick={signout}>signout</button>
-      <Link href={`/search`}>전체</Link>
-      <Link href={`/search/Politics`}>정치</Link>
-      <Link href={`/search/Business`}>경제</Link>
-      <Link href={`/search/ScienceAndTechnology`}>IT/기술</Link>
-      <Link href={`/search/Entertainment`}>연예</Link>
-      <Link href={`/search/Sports`}>스포츠</Link>
+      <Link href={`/Politics`}>정치</Link>
+      <Link href={`/Business`}>경제</Link>
+      <Link href={`/ScienceAndTechnology`}>IT/기술</Link>
+      <Link href={`/Entertainment`}>연예</Link>
+      <Link href={`/Sports`}>스포츠</Link>
       <Link href={`/scrap`}>스크랩 록록</Link>
       <UserProfile />
     </Container>

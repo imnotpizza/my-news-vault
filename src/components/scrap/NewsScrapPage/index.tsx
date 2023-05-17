@@ -1,11 +1,11 @@
 'use client';
 
-import NewsItemList from '@/components/common/NewsItemList';
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import useScrappedNewsList from '@/queries/useScrappedNewsList';
+import NewsItemList from '@/components/common/NewsItemList';
 import React, { useContext } from 'react';
 
-const NewsScrapPage = () => {
+const NewsScrapPage = ({ userId }) => {
   const queryStates = useScrappedNewsList();
 
   return (

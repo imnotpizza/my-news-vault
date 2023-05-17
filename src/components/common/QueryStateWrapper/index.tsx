@@ -8,7 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface IQueryStateWrapperProps {
-  queryStates: UseQueryResult<INewsItem[], AxiosError> & { isEmpty: boolean };
+  queryStates: any;
   LoadingUI?: () => React.ReactElement;
   ErrorUI?: () => React.ReactElement;
   EmptyUI?: () => React.ReactElement;

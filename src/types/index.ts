@@ -79,7 +79,4 @@ export interface IPageProps {
   params: {
     category: IBingNewsQuery['category'];
   };
-  searchParams: {
-    q: IBingNewsQuery['query'];
-  };
 }

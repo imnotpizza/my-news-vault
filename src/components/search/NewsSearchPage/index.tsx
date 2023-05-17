@@ -5,8 +5,8 @@ import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import { newsQueryContext } from '@/utils/newsQueryContext';
 import flatMap from 'lodash-es/flatMap';
-import QueryForm from '../../input/QueryForm';
-import NewsItemList from '../../common/NewsItemList';
+import QueryForm from '@/components/form/QueryForm';
+import NewsItemList from '@/components/common/NewsItemList';
 import InfiniteScrollWrapper from '@/components/common/InfiniteScrollWrapper';
 
 const NewsSearchPage = ({ category }) => {

@@ -17,6 +17,14 @@ const nextConfig = {
     styledComponents: true,
     ssr: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/scrap',
+        destination: '/scrap/[userId]',
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
