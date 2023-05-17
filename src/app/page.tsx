@@ -1,5 +1,7 @@
 import NewsSearchPage from '@/components/search/NewsSearchPage';
 
-export default function Home() {
+const Home = () => {
   return <NewsSearchPage category={''} />;
 }
+
+export default Home;

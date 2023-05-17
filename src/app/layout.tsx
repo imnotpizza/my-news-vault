@@ -1,7 +1,7 @@
 import { Inter } from 'next/font/google';
 import AppProviders from '@/components/providers/AppProviders';
 import React from 'react';
-import Category from '@/components/search/Category';
+import Category from '@/components/common/Category';
 
 const inter = Inter({ subsets: ['latin'] });
 

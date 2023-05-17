@@ -1,14 +1,8 @@
-'use client';
-
 import NewsItemView from '@/views/news/NewsItemView';
 import React, { memo } from 'react';
 import styled from 'styled-components';
-import { useInView } from 'react-intersection-observer';
 import { INewsItem } from '@/types';
 
-/**
- *  News Item API Fetch 기능 컴포넌트
- */
 interface INewsItemListProps {
   newsItems: INewsItem[];
 }
@@ -27,16 +21,6 @@ const EmptyQueryView = styled.div`
 `;
 
 const NewsItemList = ({ newsItems }: INewsItemListProps) => {
-  const { ref, inView, entry } = useInView({
-    threshold: 0,
-  });
-
-  // useEffect(() => {
-  //   if (inView) {
-  //     fetchNextPage();
-  //   }
-  // }, [inView]);
-
   return (
     <GridContainer>
       {newsItems.length === 0 ? (
@@ -50,23 +34,6 @@ const NewsItemList = ({ newsItems }: INewsItemListProps) => {
       )}
     </GridContainer>
   );
-
-  // return (
-  //   <div>
-  //     {query === '' ? (
-  //       <EmptyQueryView>검색어를 입력해주세요</EmptyQueryView>
-  //     ) : (
-  //       <InView>
-  //         <GridContainer>
-  //           {dataList.map((item) => (
-  //             <NewsItemView key={item.newsId} item={item} />
-  //           ))}
-  //         </GridContainer>
-  //         <div ref={ref}>loadingview</div>
-  //       </InView>
-  //     )}
-  //   </div>
-  // );
 };
 
 export default memo(NewsItemList);
