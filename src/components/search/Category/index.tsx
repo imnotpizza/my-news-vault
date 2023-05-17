@@ -34,6 +34,7 @@ const Category = () => {
       <Link href={`/search/ScienceAndTechnology`}>IT/기술</Link>
       <Link href={`/search/Entertainment`}>연예</Link>
       <Link href={`/search/Sports`}>스포츠</Link>
+      <Link href={`/scrap`}>스크랩 록록</Link>
       <UserProfile />
     </Container>
   );
