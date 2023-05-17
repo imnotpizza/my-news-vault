@@ -5,7 +5,7 @@ import React, { memo, useEffect } from 'react';
 import styled from 'styled-components';
 import { TNewsCategory } from '@/types';
 import { newsQueryContext } from '@/utils/newsQueryContext';
-import NewsItemList from '../NewsItemList';
+import NewsItemList from '../../common/NewsItemList';
 
 interface INewsSearchProps {
   category?: TNewsCategory;
