@@ -1,6 +1,7 @@
 'use client';
 
-import React, { memo, useState } from 'react';
+import { TOAST_DURATION } from '@/constants';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import reactDom from 'react-dom';
 import { styled } from 'styled-components';
 
@@ -20,9 +21,23 @@ const Container = styled.div`
 
 const Toast = () => {
   const [show, setShow] = useState(true);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (show) {
+      timer.current = setTimeout(() => {
+        setShow(false);
+      }, TOAST_DURATION);
+    }
+
+    return () => {
+      if (timer.current) clearTimeout(timer.current);
+    };
+  }, [show]);
 
   const closeToast = () => {
     setShow(false);
+    if (timer.current) clearTimeout(timer.current);
   };
 
   if (!show) {
