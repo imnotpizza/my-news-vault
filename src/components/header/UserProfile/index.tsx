@@ -3,10 +3,12 @@
 import { signin, signout } from '@/firebase';
 import { userInfoContext } from '@/utils/userInfoProvider';
 import UserProfileImage from '@/views/header/UserProfileImage';
+import { useRouter } from 'next/navigation';
 import React, { memo } from 'react';
 
 const UserProfile = () => {
   const { setUserInfo, userInfo, isSignin } = React.useContext(userInfoContext);
+  const router = useRouter();
 
   const onClickSignin = async () => {
     try {
@@ -22,6 +24,7 @@ const UserProfile = () => {
     try {
       await signout();
       setUserInfo(null);
+      router.push('/');
     } catch (e) {
       alert('signout failed');
     }
