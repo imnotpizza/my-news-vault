@@ -6,25 +6,24 @@ export type TNewsCategory =
   | 'Entertainment'
   | 'Sports';
 
-export interface IUserInfo {
+export type TUserInfo = {
   displayName: string;
   email: string;
   photoURL: string;
-}
+};
 
 /**
  *  Bing News API 쿼리스트링
  */
-export interface IBingNewsQuery {
+export type TBingNewsQuery = {
   query: string;
-  pageNum: number;
   category: TNewsCategory;
-}
+};
 
 /**
  *  Bing News API 응답데이터
  */
-export interface IRawNewsItem {
+export type TRawNewsItem = {
   datePublished: string;
   description: string;
   headline: true;
@@ -46,38 +45,38 @@ export interface IRawNewsItem {
     name: string;
   }[];
   url: string;
-}
+};
+
+/**
+ *  클라이언트에서 사용할 뉴스 객체 형식
+ */
+export type TNewsItem = {
+  newsId: string;
+  datePublished: TRawNewsItem['datePublished'];
+  description: TRawNewsItem['description'];
+  providerIcon: TRawNewsItem['provider'][0]['image']['thumbnail']['contentUrl'];
+  providerName: TRawNewsItem['provider'][0]['name'];
+  thumbnail: TRawNewsItem['image']['thumbnail']['contentUrl'];
+  title: TRawNewsItem['name'];
+  isScrapped: boolean;
+  url: TRawNewsItem['url'];
+};
 
 /**
  *  Bing News API 응답 객체 형식
  */
-export interface IBingNewsAPIRes {
+export type TBingNewsAPIRes = {
   queryContext: {
     adultIntent: boolean;
     originalQuery: string;
   };
   readLink: string;
   totalEstimatedMatches: number;
-  value: IRawNewsItem[];
-}
+  value: TRawNewsItem[];
+};
 
-/**
- *  클라이언트에서 사용할 뉴스 객체 형식
- */
-export interface INewsItem {
-  newsId: string;
-  datePublished: string;
-  description: string;
-  providerIcon: string;
-  providerName: string;
-  thumbnail: string;
-  title: string;
-  isScrapped: boolean;
-  url: string;
-}
-
-export interface IPageProps {
+export type TPageProps = {
   params: {
-    category: IBingNewsQuery['category'];
+    category: TBingNewsQuery['category'];
   };
-}
+};

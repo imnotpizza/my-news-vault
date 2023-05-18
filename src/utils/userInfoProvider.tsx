@@ -1,11 +1,11 @@
 import { auth } from '@/firebase';
-import { IUserInfo } from '@/types';
+import { TUserInfo } from '@/types';
 import { onAuthStateChanged } from 'firebase/auth';
 import React, { useEffect } from 'react';
 
 export interface IUserInfoContext {
-  userInfo: IUserInfo | null;
-  setUserInfo: React.Dispatch<React.SetStateAction<IUserInfo | null>>;
+  userInfo: TUserInfo | null;
+  setUserInfo: React.Dispatch<React.SetStateAction<TUserInfo | null>>;
 }
 
 const userInfoContext = React.createContext<IUserInfoContext>({
@@ -23,7 +23,7 @@ const UserInfoProvider = ({ children }: any) => {
         console.log('로그인 상태:', user);
         const { displayName, email, photoURL } = user;
         setUserInfo((prev) => {
-          return { displayName, email, photoURL } as IUserInfo;
+          return { displayName, email, photoURL } as TUserInfo;
         });
       } else {
         // 로그아웃 상태

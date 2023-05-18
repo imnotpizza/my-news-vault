@@ -1,5 +1,5 @@
 import { fetchScrappedList } from '@/api/client';
-import { INewsItem, IUserInfo } from '@/types';
+import { TNewsItem, TUserInfo } from '@/types';
 import { userInfoContext } from '@/utils/userInfoProvider';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';

@@ -1,11 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
-import { IUserInfo } from '@/types';
+import { TUserInfo } from '@/types';
 import { styled } from 'styled-components';
 
 interface IUserProfileImageProps {
-  src: IUserInfo['photoURL'];
-  alt: IUserInfo['displayName'];
+  src: TUserInfo['photoURL'];
+  alt: TUserInfo['displayName'];
 }
 
 const ProfileImage = styled(Image)`

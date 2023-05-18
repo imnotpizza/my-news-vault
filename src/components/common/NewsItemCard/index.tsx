@@ -1,4 +1,4 @@
-import { INewsItem } from '@/types';
+import { TNewsItem } from '@/types';
 import React, { memo, useMemo } from 'react';
 import styled from 'styled-components';
 import { scrapNews, unscrapNews } from '@/api/client';
@@ -28,7 +28,7 @@ const Container = styled.div`
   }
 `;
 
-const NewsItemCard = ({ item }: { item: INewsItem }) => {
+const NewsItemCard = ({ item }: { item: TNewsItem }) => {
   const { isScrapped, title, thumbnail, description, newsId, url } = item;
   const { userInfo } = React.useContext<IUserInfoContext>(userInfoContext);
 
@@ -50,7 +50,7 @@ const NewsItemCard = ({ item }: { item: INewsItem }) => {
     try {
       await unscrapNews(userInfo!.email, newsId);
       queryClient.setQueryData([scrappedNewsListQueryKey], (oldData: any) => {
-        return oldData.filter((news: INewsItem) => news.newsId !== newsId);
+        return oldData.filter((news: TNewsItem) => news.newsId !== newsId);
       });
       alert('success');
     } catch (e) {

@@ -1,5 +1,5 @@
 import { fetchBingNews } from '@/api/client';
-import { IBingNewsQuery, TNewsCategory } from '@/types';
+import { TBingNewsQuery, TNewsCategory } from '@/types';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { queryClient } from './queryClient';
@@ -7,7 +7,7 @@ import { queryClient } from './queryClient';
 export const bingNewsFetchQueryKey = 'BingNewsFetch';
 
 interface Params {
-  query: IBingNewsQuery['query'];
+  query: TBingNewsQuery['query'];
   category: TNewsCategory;
   enabled: boolean;
   selector?: any;

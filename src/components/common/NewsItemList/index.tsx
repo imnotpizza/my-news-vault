@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
-import { INewsItem } from '@/types';
+import { TNewsItem } from '@/types';
 import NewsItemCard from '../NewsItemCard';
 
 interface INewsItemListProps {
-  newsItems: INewsItem[];
+  newsItems: TNewsItem[];
 }
 
 const GridContainer = styled.div`

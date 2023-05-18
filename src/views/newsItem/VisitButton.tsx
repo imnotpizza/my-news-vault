@@ -1,8 +1,8 @@
-import { INewsItem } from '@/types';
+import { TNewsItem } from '@/types';
 import React, { memo } from 'react';
 
 interface IVisitButtonProps {
-  url: INewsItem['thumbnail'];
+  url: TNewsItem['thumbnail'];
 }
 
 const VisitButton = ({ url }: IVisitButtonProps) => {

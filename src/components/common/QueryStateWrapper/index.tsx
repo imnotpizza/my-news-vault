@@ -1,4 +1,4 @@
-import { INewsItem } from '@/types';
+import { TNewsItem } from '@/types';
 import DefaultEmptyUI from '@/views/common/DefaultEmptyUI';
 import DefaultErrorUI from '@/views/common/DefaultErrorUI';
 import DefaultLoadingUI from '@/views/common/DefaultLoadingUI';
