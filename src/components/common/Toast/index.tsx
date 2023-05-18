@@ -12,14 +12,24 @@ export const Portal = ({ children }) => {
 };
 
 const Container = styled.div`
-  position: absolute;
-  top: 100px;
-  background-color: blue;
-  width: 300px;
-  height: 100px;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  opacity: 0.9;
+  z-index: 9999;
+  & > p {
+    color: white;
+    font-size: 20px;
+  }
 `;
 
-const Toast = () => {
+const Toast = ({ message }) => {
+  console.log(rootEl);
   const [show, setShow] = useState(true);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -44,9 +54,11 @@ const Toast = () => {
     return null;
   } else {
     return (
-      <Container onClick={closeToast}>
-        <div>ffefe</div>
-      </Container>
+      <Portal>
+        <Container onClick={closeToast}>
+          <p>{message}</p>
+        </Container>
+      </Portal>
     );
   }
 };
