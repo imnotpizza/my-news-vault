@@ -6,11 +6,13 @@ import React, { useEffect } from 'react';
 export interface IUserInfoContext {
   userInfo: TUserInfo | null;
   setUserInfo: React.Dispatch<React.SetStateAction<TUserInfo | null>>;
+  isSignin: boolean;
 }
 
 const userInfoContext = React.createContext<IUserInfoContext>({
   userInfo: null,
   setUserInfo: (user) => {},
+  isSignin: false,
 });
 
 const UserInfoProvider = ({ children }: any) => {
@@ -35,7 +37,7 @@ const UserInfoProvider = ({ children }: any) => {
   }, []);
 
   return (
-    <userInfoContext.Provider value={{ userInfo, setUserInfo }}>
+    <userInfoContext.Provider value={{ userInfo, setUserInfo, isSignin: Boolean(userInfo) }}>
       {children}
     </userInfoContext.Provider>
   );
