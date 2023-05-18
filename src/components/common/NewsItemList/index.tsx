@@ -11,7 +11,6 @@ const GridContainer = styled.div`
   display: grid !important;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
-  background-color: blue;
 `;
 
 const EmptyQueryView = styled.div`
