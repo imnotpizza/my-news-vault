@@ -1,33 +1,30 @@
 'use client';
 
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import { newsQueryContext } from '@/utils/newsQueryContext';
-import flatMap from 'lodash-es/flatMap';
 import QueryForm from '@/components/form/QueryForm';
 import NewsItemList from '@/components/common/NewsItemList';
 import InfiniteScrollWrapper from '@/components/common/InfiniteScrollWrapper';
+import { userInfoContext } from '@/utils/userInfoProvider';
+import { getFlattenList } from '@/utils';
 
 const NewsSearchPage = ({ category }) => {
   const { query } = useContext(newsQueryContext);
-
+  const { userInfo } = useContext(userInfoContext);
+  console.log('############# userInfo', 'bobin6972@gmail.com');
   const queryStates = useBingNewsFetch({
     query,
     category,
     enabled: true,
+    userId: userInfo?.email,
   });
 
-  // TODO: query select로 이동
-  const flattenData = flatMap(queryStates.data?.pages, (page) => {
-    return page.map((newsItem) => {
-      const isScrapped = false;
-      return {
-        ...newsItem,
-        isScrapped,
-      };
-    });
-  });
+  const flattenData = useMemo(
+    () => getFlattenList(queryStates.data?.pages),
+    [queryStates.data?.pages],
+  );
 
   return (
     <div>

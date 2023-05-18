@@ -1,4 +1,5 @@
 import { auth } from '@/firebase';
+import { fetchScrappedNewsList } from '@/queries/useScrappedNewsList';
 import { TUserInfo } from '@/types';
 import { onAuthStateChanged } from 'firebase/auth';
 import React, { useEffect } from 'react';
@@ -19,12 +20,12 @@ const UserInfoProvider = ({ children }: any) => {
   const [userInfo, setUserInfo] = React.useState<IUserInfoContext['userInfo']>(null);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
         // 로그인 상태
         console.log('로그인 상태:', user);
         const { displayName, email, photoURL } = user;
-        
+        await fetchScrappedNewsList(email);
         setUserInfo((prev) => {
           return { displayName, email, photoURL } as TUserInfo;
         });

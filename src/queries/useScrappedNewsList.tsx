@@ -1,6 +1,7 @@
 import { fetchScrappedList } from '@/api/client';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+import { TUserInfo } from '@/types';
 import { queryClient } from './queryClient';
 
 export const scrappedNewsListQueryKey = 'ScrappedNewsList';
@@ -18,11 +19,15 @@ const useScrappedNewsList = ({ userId }) => {
   return queryStates;
 };
 
-export const fetchScrappedNewsList = (userId) => {
-  return queryClient.fetchQuery({
+export const fetchScrappedNewsList = async (userId: TUserInfo['email']) => {
+  if (!userId) throw new Error('userId is required');
+
+  const res = await queryClient.fetchQuery({
     queryKey: [scrappedNewsListQueryKey],
     queryFn: () => fetchScrappedList(userId),
   });
+
+  return res;
 };
 
 export default useScrappedNewsList;

@@ -1,8 +1,9 @@
 import { TBingNewsAPIRes, TBingNewsQuery, TNewsItem, TRawNewsItem, TUserInfo } from '@/types';
 import { doc, getDocs, collection, addDoc, deleteDoc, setDoc } from 'firebase/firestore/lite';
 import { database } from '@/firebase';
-import { parseToNewsItem } from '@/utils';
+import { setIsScrapped, parseToNewsItem } from '@/utils';
 import BingAPI from '@/api/BingAPI';
+import { fetchScrappedNewsList } from '@/queries/useScrappedNewsList';
 
 // 한번에 몇개씩 호출할지 결정
 const NEWS_COUNT_NUM = 20;
@@ -15,7 +16,7 @@ const NEWS_COUNT_NUM = 20;
  */
 export const fetchBingNews = async (
   query: TBingNewsQuery['query'],
-  pageNum: TBingNewsQuery['pageNum'],
+  pageNum: number,
   category: TBingNewsQuery['category'],
 ) => {
   const offset = NEWS_COUNT_NUM * pageNum;
