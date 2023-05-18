@@ -39,6 +39,7 @@ const UserProfile = () => {
           <button onClick={onClickSignin}>sign in</button>
         )}
       </div>
+      <p>{userInfo?.email}</p>
       <div>
         {userInfo && <UserProfileImage src={userInfo.photoURL} alt={userInfo.displayName} />}
       </div>

@@ -28,12 +28,9 @@ export const parseToNewsItem = (raw: TRawNewsItem) => {
  */
 export const setIsScrapped = (newsItemList: TNewsItem[], scrappedNewsList: TNewsItem[]) => {
   return newsItemList.map((item) => {
-    console.log('############## 1111111', 12312313, scrappedNewsList)
     const isScrapped = scrappedNewsList.find((sItem) => {
-      console.log('########## 1111', sItem.newsId, item.newsId);
       return sItem.newsId === item.newsId;
     });
-    console.log('########## isScrapped', isScrapped);
     return {
       ...item,
       isScrapped: Boolean(isScrapped),

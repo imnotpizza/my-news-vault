@@ -12,8 +12,8 @@ import { getFlattenList } from '@/utils';
 
 const NewsSearchPage = ({ category }) => {
   const { query } = useContext(newsQueryContext);
-  const { userInfo } = useContext(userInfoContext);
-  console.log('############# userInfo', 'bobin6972@gmail.com');
+  const { userInfo } = React.useContext(userInfoContext);
+  console.log('############# userInfo', 'bobin6972@gmail.com', userInfo);
   const queryStates = useBingNewsFetch({
     query,
     category,
