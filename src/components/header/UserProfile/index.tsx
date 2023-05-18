@@ -6,7 +6,7 @@ import UserProfileImage from '@/views/header/UserProfileImage';
 import React, { memo } from 'react';
 
 const UserProfile = () => {
-  const { setUserInfo, userInfo } = React.useContext(userInfoContext);
+  const { setUserInfo, userInfo, isSignin } = React.useContext(userInfoContext);
 
   const onClickSignin = async () => {
     try {
@@ -14,7 +14,7 @@ const UserProfile = () => {
       if (!newUserInfo) return;
       setUserInfo(newUserInfo);
     } catch (e) {
-      alert('login failed');
+      alert('signin failed');
     }
   };
 
@@ -22,19 +22,18 @@ const UserProfile = () => {
     try {
       await signout();
       setUserInfo(null);
-      console.log('############## 111111');
     } catch (e) {
-      alert('logout failed');
+      alert('signout failed');
     }
   };
 
   return (
     <div>
       <div>
-        {userInfo ? (
-          <button onClick={onClickSignout}>logout</button>
+        {isSignin ? (
+          <button onClick={onClickSignout}>sign out</button>
         ) : (
-          <button onClick={onClickSignin}>login</button>
+          <button onClick={onClickSignin}>sign in</button>
         )}
       </div>
       <div>
