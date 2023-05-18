@@ -15,20 +15,12 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'lh3.googleusercontent.com',
         pathname: '/**',
-      }
+      },
     ],
   },
   compiler: {
     styledComponents: true,
     ssr: true,
-  },
-  async rewrites() {
-    return [
-      {
-        source: '/scrap',
-        destination: '/scrap/[userId]',
-      },
-    ];
   },
 };
 

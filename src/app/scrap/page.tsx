@@ -1,7 +1,7 @@
 import NewsScrapPage from '@/components/scrap/NewsScrapPage';
 
-const ScrapPage = ({ params }) => {
-  return <NewsScrapPage userId={params.userId} />;
+const ScrapPage = () => {
+  return <NewsScrapPage />;
 };
 
 export default ScrapPage;
