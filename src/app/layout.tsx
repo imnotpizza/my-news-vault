@@ -3,6 +3,7 @@ import AppProviders from '@/components/providers/AppProviders';
 import React from 'react';
 import Header from '@/components/header/Header';
 import '../styles/reset.css';
+import InitialLoadingCover from '@/components/common/InitialLoadingCover';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,10 +17,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={inter.className}>
         <AppProviders>
-          <>
-            <Header />
-            {children}
-          </>
+          <InitialLoadingCover>
+            <>
+              <Header />
+              {children}
+            </>
+          </InitialLoadingCover>
         </AppProviders>
       </body>
     </html>
