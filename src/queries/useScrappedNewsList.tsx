@@ -1,24 +1,28 @@
 import { fetchScrappedList } from '@/api/client';
-import { TNewsItem, TUserInfo } from '@/types';
-import { userInfoContext } from '@/utils/userInfoProvider';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import React from 'react';
+import { queryClient } from './queryClient';
 
 export const scrappedNewsListQueryKey = 'ScrappedNewsList';
 
 // firebase 연동
-const useScrappedNewsList = () => {
-  const { userInfo } = React.useContext(userInfoContext);
+const useScrappedNewsList = ({ userId }) => {
   const queryStates = useQuery<Awaited<ReturnType<typeof fetchScrappedList>>, AxiosError>(
     [scrappedNewsListQueryKey],
-    () => fetchScrappedList(userInfo!.email),
+    () => fetchScrappedList(userId),
     {
-      enabled: Boolean(userInfo),
+      enabled: Boolean(userId),
     },
   );
 
   return queryStates;
+};
+
+export const fetchScrappedNewsList = (userId) => {
+  return queryClient.fetchQuery({
+    queryKey: [scrappedNewsListQueryKey],
+    queryFn: () => fetchScrappedList(userId),
+  });
 };
 
 export default useScrappedNewsList;
