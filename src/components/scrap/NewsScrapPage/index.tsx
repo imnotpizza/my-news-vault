@@ -7,10 +7,10 @@ import React, { useContext, useEffect } from 'react';
 import { userInfoContext } from '@/utils/userInfoProvider';
 import { useRouter } from 'next/navigation';
 
-const NewsScrapPage = ({ userId }) => {
-  const { isSignin } = useContext(userInfoContext);
+const NewsScrapPage = () => {
+  const { isSignin, userInfo } = useContext(userInfoContext);
   const router = useRouter();
-  const queryStates = useScrappedNewsList();
+  const queryStates = useScrappedNewsList({ userId: userInfo?.email });
 
   useEffect(() => {
     if (!isSignin) {
