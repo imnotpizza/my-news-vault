@@ -5,7 +5,12 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import reactDom from 'react-dom';
 import { styled } from 'styled-components';
 
-const rootEl = document.getElementById('modal-root');
+let rootEl = null;
+
+if (typeof document !== 'undefined') {
+  // root element
+  rootEl = document.getElementById('modal-root');
+}
 
 export const Portal = ({ children }) => {
   return reactDom.createPortal(children, rootEl);
@@ -24,13 +29,11 @@ const Container = styled.div`
   z-index: 9999;
   & > p {
     color: white;
-    font-size: 20px;
+    font-size: 16px;
   }
 `;
 
-const Toast = ({ message }) => {
-  console.log(rootEl);
-  const [show, setShow] = useState(true);
+const Toast = ({ message, show, setShow }) => {
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -51,7 +54,7 @@ const Toast = ({ message }) => {
   };
 
   if (!show) {
-    return null;
+    return <div>hide</div>;
   } else {
     return (
       <Portal>
