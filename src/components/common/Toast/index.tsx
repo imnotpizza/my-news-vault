@@ -18,7 +18,7 @@ export const Portal = ({ children }) => {
 
 const Container = styled.div`
   position: fixed;
-  bottom: 20px;
+  top: 70px;
   left: 50%;
   transform: translateX(-50%);
   background-color: #333;
@@ -27,6 +27,7 @@ const Container = styled.div`
   border-radius: 4px;
   opacity: 0.9;
   z-index: 9999;
+  cursor: pointer;
   & > p {
     color: white;
     font-size: 16px;
