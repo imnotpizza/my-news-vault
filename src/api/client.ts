@@ -3,7 +3,6 @@ import { doc, getDocs, collection, addDoc, deleteDoc, setDoc } from 'firebase/fi
 import { database } from '@/firebase';
 import { setIsScrapped, parseToNewsItem } from '@/utils';
 import BingAPI from '@/api/BingAPI';
-import { fetchScrappedNewsList } from '@/queries/useScrappedNewsList';
 
 // 한번에 몇개씩 호출할지 결정
 const NEWS_COUNT_NUM = 20;
