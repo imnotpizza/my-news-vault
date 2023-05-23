@@ -28,7 +28,7 @@ const Meta = ({ title, description, url }: IMetaProps) => {
       <meta property="og:url" content={url || 'https://ilovenews.com'} />
       <meta property="og:image" content={'../../../public/ilovenews-og.png'} />
       <meta property="og:article:author" content="ilovenews" />
-      <meta google-site-verification="P6j1qmKWLdH1ySNcOJiN0Ia5aJpv-V2rW2DExEhpH0k" />
+      <meta name="google-site-verification" content="P6j1qmKWLdH1ySNcOJiN0Ia5aJpv-V2rW2DExEhpH0k" />
     </>
   );
 };
