@@ -5,9 +5,15 @@ import React from 'react';
  * meta tag, seo 관련 설정
  */
 
-const Meta = ({ title, description, url }) => {
+interface IMetaProps {
+  title?: string;
+  description?: string;
+  url?: string;
+}
+
+const Meta = ({ title, description, url }: IMetaProps) => {
   return (
-    <Head>
+    <>
       <title>{title || 'I Love News'}</title>
       <meta
         name="description"
@@ -23,7 +29,7 @@ const Meta = ({ title, description, url }) => {
       <meta property="og:image" content={'../../../public/ilovenews-og.png'} />
       <meta property="og:article:author" content="ilovenews" />
       <meta google-site-verification="P6j1qmKWLdH1ySNcOJiN0Ia5aJpv-V2rW2DExEhpH0k" />
-    </Head>
+    </>
   );
 };
 
