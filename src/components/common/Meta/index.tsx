@@ -20,7 +20,7 @@ const Meta = ({ title, description, url }) => {
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url || 'https://ilovenews.com'} />
       <meta property="og:image" content={'../../../public/ilovenews-og.png'} />
-      <meta property="og:article:author" content="정리습관" />
+      <meta property="og:article:author" content="ilovenews" />
     </Head>
   );
 };
