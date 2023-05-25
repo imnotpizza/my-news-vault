@@ -1,14 +1,20 @@
 import Meta from '@/components/common/Meta';
 import NewsSearchPage from '@/components/search/NewsSearchPage';
-import Head from 'next/head';
+import { random } from 'lodash-es';
+const getKeyword = () => {
+  return {
+    props: {
+      keyword: `ILoveNews-검색:${random(1, 5)}`,
+    },
+  };
+};
 
 const Home = () => {
+  const { props } = getKeyword();
+
   return (
     <>
-      <Head>
-        <title>fijeflsefjilsefesf</title>
-      </Head>
-      <Meta title='ILoveNews-검색'/>
+      <Meta title={props.keyword} />
       <NewsSearchPage category={''} />
     </>
   );
