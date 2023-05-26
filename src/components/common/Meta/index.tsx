@@ -13,7 +13,7 @@ interface IMetaProps {
 
 const Meta = ({ title, description, url }: IMetaProps) => {
   return (
-    <>
+    <Head>
       <title>{title || 'I Love News'}</title>
       <meta
         name="description"
@@ -36,7 +36,7 @@ const Meta = ({ title, description, url }: IMetaProps) => {
       <meta property="og:image" content="/ilovenews-og.png" />
       <meta property="og:article:author" content="ilovenews" />
       <meta name="google-site-verification" content="P6j1qmKWLdH1ySNcOJiN0Ia5aJpv-V2rW2DExEhpH0k" />
-    </>
+    </Head>
   );
 };
 
