@@ -1,10 +1,9 @@
-import { findByTestId, render, screen } from '@testing-library/react';
+import { findByTestId, render, screen, fireEvent } from '@testing-library/react';
 import MswSample from '.';
 import withTestProviders from '../providers/withTestProviders';
-import { fireEvent, userEvent } from '@storybook/testing-library';
+import { apiPath } from './useSampleQuery';
 import { server } from '@/msw/server';
 import { rest } from 'msw';
-import { apiPath } from './useSampleQuery';
 import { queryClient } from '@/queries/queryClient';
 
 // TODO: mock함수 추가
@@ -40,7 +39,7 @@ describe('delete 클릭시 테스트', () => {
     const cards = await screen.findAllByTestId('card');
     expect(cards).toHaveLength(3);
     const deleteBtn = screen.getAllByText('delete')[0];
-    userEvent.click(deleteBtn);
+    fireEvent.click(deleteBtn);
     // set, getQueryClient는 mock함수 사용필요
     const cardsAfterDelete = await screen.findAllByTestId('card');
     expect(cardsAfterDelete).toHaveLength(3);
