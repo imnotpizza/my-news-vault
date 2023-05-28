@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 const Container = styled.div`
   position: relative;

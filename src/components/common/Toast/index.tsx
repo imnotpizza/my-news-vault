@@ -3,7 +3,7 @@
 import { TOAST_DURATION } from '@/constants';
 import React, { memo, useEffect, useRef, useState } from 'react';
 import reactDom from 'react-dom';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 let rootEl = null;
 

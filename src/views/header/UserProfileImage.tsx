@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { TUserInfo } from '@/types';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 interface IUserProfileImageProps {
   src: TUserInfo['photoURL'];
