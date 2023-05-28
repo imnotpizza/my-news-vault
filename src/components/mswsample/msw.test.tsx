@@ -1,10 +1,10 @@
 import { findByTestId, render, screen, fireEvent } from '@testing-library/react';
-import MswSample from '.';
-import withTestProviders from '../providers/withTestProviders';
-import { apiPath } from './useSampleQuery';
 import { server } from '@/msw/server';
 import { rest } from 'msw';
 import { queryClient } from '@/queries/queryClient';
+import MswSample from '.';
+import withTestProviders from '../providers/withTestProviders';
+import { apiPath } from './useSampleQuery';
 
 // TODO: mock함수 추가
 // // setQueryData mock
