@@ -13,7 +13,6 @@ const NewsSearchWithCategory = ({ category }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { req } = context;
   const { category } = context.params;
   return {
     props: {

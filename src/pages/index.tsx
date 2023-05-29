@@ -12,12 +12,4 @@ const NewsSearch = ({ keyword }) => {
   );
 };
 
-export const getServerSideProps = async () => {
-  return {
-    props: {
-      keyword: `ILoveNews-검색:${random(1, 5)}`,
-    },
-  };
-};
-
 export default NewsSearch;
