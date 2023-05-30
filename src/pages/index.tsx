@@ -16,10 +16,10 @@ const NewsSearch = ({ keyword }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
-    const { token } = context.req.cookies;
+    const { authToken } = context.req.cookies;
 
-    if (token) {
-      const verifiedToken = await admin.auth().verifyIdToken(token);
+    if (authToken) {
+      const verifiedToken = await admin.auth().verifyIdToken(authToken);
       const { uid, email } = verifiedToken;
       return {
         props: {
