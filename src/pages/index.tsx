@@ -2,10 +2,10 @@ import Meta from '@/components/common/Meta';
 import NewsSearchPage from '@/components/search/NewsSearchPage';
 import React, { useContext, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
-import { admin } from '@/firebase/admin';
+import { getDecodedUserInfoByToken } from '@/firebase/admin';
 import { TUserInfo } from '@/types';
 import { queryClient } from '@/queries/queryClient';
-import { prefetchScrappedNewsList, scrappedNewsListQueryKey } from '@/queries/useScrappedNewsList';
+import { prefetchScrappedNewsList } from '@/queries/useScrappedNewsList';
 import { dehydrate } from '@tanstack/react-query';
 import { userInfoContext } from '@/utils/userInfoProvider';
 
@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { authToken } = context.req.cookies;
 
     if (authToken) {
-      const verifiedToken = await admin.auth().verifyIdToken(authToken);
+      const verifiedToken = await getDecodedUserInfoByToken(authToken);
       const { name, picture, email } = verifiedToken;
       const userInfo: TUserInfo = {
         displayName: name,

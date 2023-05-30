@@ -13,4 +13,11 @@ if (!admin.apps.length) {
   });
 }
 
-export { admin };
+/**
+ * 쿠키에 저장된 토큰 사용하여 유저정보 획득
+ * @param token
+ */
+export const getDecodedUserInfoByToken = async (token: string) => {
+  const data = await admin.auth().verifyIdToken(token);
+  return data;
+};
