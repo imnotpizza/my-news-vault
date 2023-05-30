@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore/lite';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { TUserInfo } from '@/types';
-import { saveToken } from '@/api/next-api';
+import { removeToken, saveToken } from '@/api/next-api';
 import firebaseJson from '../../firebase.json';
 
 // Initialize Firebase
@@ -32,6 +32,6 @@ export const signin = async (): Promise<TUserInfo> => {
 };
 
 export const signout = async () => {
-  const token = await auth.currentUser.getIdToken();
+  await removeToken();
   await auth.signOut();
 };
