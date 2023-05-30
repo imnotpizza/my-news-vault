@@ -19,15 +19,15 @@ const useBingNewsFetch = ({ query, category, enabled = true, userId }: Params) =
     [bingNewsFetchQueryKey, query],
     async ({ pageParam = 1 }) => {
       const newsItems = await fetchBingNews(query, pageParam, category);
-      const scrappedNewsList = await fetchScrappedNewsList(userId);
-      const newsItemWithScrapped = setIsScrapped(newsItems, scrappedNewsList);
-      return newsItemWithScrapped;
+      // const scrappedNewsList = await fetchScrappedNewsList(userId);
+      // const newsItemWithScrapped = setIsScrapped(newsItems, scrappedNewsList);
+      return newsItems;
     },
     {
       getNextPageParam: (lastPage, pages) => {
         return pages.length + 1;
       },
-      enabled,
+      enabled: false,
     },
   );
 

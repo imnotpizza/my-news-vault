@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const saveToken = async (authToken: string) => {
-  const apiRes = await axios.post('/api/token/save', { token: authToken });
+  const apiRes = await axios.post('/api/token/save', { authToken });
   return apiRes.data;
 };
 

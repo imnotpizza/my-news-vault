@@ -21,7 +21,7 @@ const AppProviders = ({ children, pageProps }: IAppProvidersProps) => {
       <UserInfoProvider>
         <NewsQueryProvider>
           <QueryClientProvider client={queryClient}>
-            <Hydrate state={pageProps.status}>
+            <Hydrate state={pageProps.dehydratedState}>
               <ReactQueryDevtools initialIsOpen={true} />
               <ThemeProvider theme={Palette}>{children}</ThemeProvider>
             </Hydrate>

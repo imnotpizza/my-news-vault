@@ -4,11 +4,14 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import { admin } from '@/firebase/admin';
 import { TUserInfo } from '@/types';
+import { queryClient } from '@/queries/queryClient';
+import { prefetchScrappedNewsList, scrappedNewsListQueryKey } from '@/queries/useScrappedNewsList';
+import { dehydrate } from '@tanstack/react-query';
 
-const NewsSearch = ({ keyword }) => {
+const NewsSearch = (props) => {
   return (
     <>
-      <Meta title={keyword} />
+      <Meta title={'keyword'} />
       <NewsSearchPage category={'All'} />
     </>
   );
@@ -26,9 +29,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         photoURL: picture,
         email,
       };
+
+      // prefetch scrappedNewsList
+      await prefetchScrappedNewsList(email);
       return {
         props: {
           status: true,
+          dehydratedState: dehydrate(queryClient),
           userInfo,
         },
       };
