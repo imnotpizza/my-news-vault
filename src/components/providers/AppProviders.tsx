@@ -18,16 +18,15 @@ const AppProviders = ({ children, pageProps }: IAppProvidersProps) => {
   return (
     <>
       <GlobalStyle />
-      <UserInfoProvider>
-        <NewsQueryProvider>
-          <QueryClientProvider client={queryClient}>
-            <Hydrate state={pageProps.dehydratedState}>
-              <ReactQueryDevtools initialIsOpen={true} />
-              <ThemeProvider theme={Palette}>{children}</ThemeProvider>
-            </Hydrate>
-          </QueryClientProvider>
-        </NewsQueryProvider>
-      </UserInfoProvider>
+
+      <NewsQueryProvider>
+        <QueryClientProvider client={queryClient}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <ReactQueryDevtools initialIsOpen={true} />
+            <ThemeProvider theme={Palette}>{children}</ThemeProvider>
+          </Hydrate>
+        </QueryClientProvider>
+      </NewsQueryProvider>
     </>
   );
 };

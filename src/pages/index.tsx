@@ -7,21 +7,17 @@ import { TUserInfo } from '@/types';
 import { queryClient } from '@/queries/queryClient';
 import { prefetchScrappedNewsList } from '@/queries/useScrappedNewsList';
 import { dehydrate } from '@tanstack/react-query';
-import { userInfoContext } from '@/utils/userInfoProvider';
+import { UserInfoProvider, userInfoContext } from '@/utils/userInfoProvider';
+import Layout from '@/components/layout';
 
 const NewsSearch = ({ status, userInfo }) => {
-  const { setUserInfo } = useContext(userInfoContext);
-  useEffect(() => {
-    console.log('####  ', status, userInfo);
-    if (status) {
-      setUserInfo(userInfo);
-    }
-  }, []);
   return (
-    <>
-      <Meta title={'keyword'} />
-      <NewsSearchPage category={'All'} />
-    </>
+    <UserInfoProvider initialUserInfo={userInfo || null}>
+      <Layout>
+        <Meta title={'keyword'} />
+        <NewsSearchPage category={'All'} />
+      </Layout>
+    </UserInfoProvider>
   );
 };
 
