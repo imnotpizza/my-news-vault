@@ -1,13 +1,13 @@
 import Meta from '@/components/common/Meta';
 import NewsSearchPage from '@/components/search/NewsSearchPage';
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { GetServerSideProps } from 'next';
 import { getDecodedUserInfoByToken } from '@/firebase/admin';
 import { TUserInfo } from '@/types';
 import { queryClient } from '@/queries/queryClient';
 import { prefetchScrappedNewsList } from '@/queries/useScrappedNewsList';
 import { dehydrate } from '@tanstack/react-query';
-import { UserInfoProvider, userInfoContext } from '@/utils/userInfoProvider';
+import { UserInfoProvider } from '@/utils/userInfoProvider';
 import Layout from '@/components/layout';
 
 const NewsSearch = ({ status, userInfo }) => {

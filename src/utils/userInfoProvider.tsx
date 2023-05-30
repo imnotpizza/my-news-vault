@@ -1,8 +1,5 @@
-import { auth } from '@/firebase';
-import { fetchScrappedNewsList } from '@/queries/useScrappedNewsList';
 import { TUserInfo } from '@/types';
-import { onAuthStateChanged } from 'firebase/auth';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 export interface IUserInfoContext {
   userInfo: TUserInfo | null;
