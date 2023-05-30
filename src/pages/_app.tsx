@@ -5,7 +5,7 @@ import AppProviders from '@/components/providers/AppProviders';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <AppProviders>
+    <AppProviders pageProps={pageProps}>
       <Layout>
         <Component {...pageProps} />
       </Layout>
