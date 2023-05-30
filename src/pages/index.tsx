@@ -1,14 +1,22 @@
 import Meta from '@/components/common/Meta';
 import NewsSearchPage from '@/components/search/NewsSearchPage';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import { admin } from '@/firebase/admin';
 import { TUserInfo } from '@/types';
 import { queryClient } from '@/queries/queryClient';
 import { prefetchScrappedNewsList, scrappedNewsListQueryKey } from '@/queries/useScrappedNewsList';
 import { dehydrate } from '@tanstack/react-query';
+import { userInfoContext } from '@/utils/userInfoProvider';
 
-const NewsSearch = (props) => {
+const NewsSearch = ({ status, userInfo }) => {
+  const { setUserInfo } = useContext(userInfoContext);
+  useEffect(() => {
+    console.log('####  ', status, userInfo);
+    if (status) {
+      setUserInfo(userInfo);
+    }
+  }, []);
   return (
     <>
       <Meta title={'keyword'} />
