@@ -1,9 +1,9 @@
 import Meta from '@/components/common/Meta';
 import NewsSearchPage from '@/components/search/NewsSearchPage';
 import React from 'react';
-import { random } from 'lodash-es';
 import { GetServerSideProps } from 'next';
 import { admin } from '@/firebase/admin';
+import { TUserInfo } from '@/types';
 
 const NewsSearch = ({ keyword }) => {
   return (
@@ -20,18 +20,23 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     if (authToken) {
       const verifiedToken = await admin.auth().verifyIdToken(authToken);
-      const { uid, email } = verifiedToken;
+      const { name, picture, email } = verifiedToken;
+      const userInfo: TUserInfo = {
+        displayName: name,
+        photoURL: picture,
+        email,
+      };
       return {
         props: {
           status: true,
-          uid,
-          email,
+          userInfo,
         },
       };
     } else {
       return {
         props: {
           status: false,
+          userInfo: null,
         },
       };
     }
@@ -39,6 +44,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         status: false,
+        userInfo: null,
       },
     };
   }
