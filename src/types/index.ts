@@ -1,3 +1,6 @@
+import { DehydratedState } from '@tanstack/react-query';
+import { GetServerSidePropsContext } from 'next';
+
 export type TNewsCategory =
   | 'All'
   | 'Politics'
@@ -75,8 +78,12 @@ export type TBingNewsAPIRes = {
   value: TRawNewsItem[];
 };
 
+/**
+ * ssr 메소드에서 넘어오는 return value
+ */
 export type TPageProps = {
-  params: {
-    category: TBingNewsQuery['category'];
-  };
+  status: boolean;
+  dehydratedState: DehydratedState;
+  userInfo: TUserInfo | null;
+  keyword?: string | string[];
 };
