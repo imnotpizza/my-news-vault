@@ -5,6 +5,7 @@ import { dehydrate } from '@tanstack/react-query';
 import { queryClient } from '@/queries/queryClient';
 import { prefetchScrappedNewsList } from '@/queries/useScrappedNewsList';
 
+// FIXME: 네이밍 컨벤션 찾아 함수명 수정
 export const getUserInfo = async (
   context: GetServerSidePropsContext,
   pageProps: TPageProps,

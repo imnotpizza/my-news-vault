@@ -83,7 +83,7 @@ export type TBingNewsAPIRes = {
  */
 export type TPageProps = {
   status: boolean;
-  dehydratedState: DehydratedState;
+  dehydratedState?: DehydratedState;
   userInfo: TUserInfo | null;
   keyword?: string | string[];
 };
