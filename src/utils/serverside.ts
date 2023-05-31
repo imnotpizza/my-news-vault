@@ -59,3 +59,10 @@ export const getKeyword = (
     keyword,
   };
 };
+
+export const initialPageProps: TPageProps = {
+  userInfo: null,
+  dehydratedState: null,
+  keyword: '',
+  status: false,
+};

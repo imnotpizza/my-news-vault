@@ -4,7 +4,8 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import { UserInfoProvider } from '@/utils/userInfoProvider';
 import Layout from '@/components/layout';
-import { getPrefetch, getUserInfo } from '@/utils/serverside';
+import { getPrefetch, getUserInfo, initialPageProps } from '@/utils/serverside';
+import { TPageProps } from '@/types';
 
 const NewsSearch = ({ status, userInfo }) => {
   return (
@@ -17,9 +18,10 @@ const NewsSearch = ({ status, userInfo }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps<TPageProps> = async (context) => {
   try {
-    const res1 = await getUserInfo(context, {});
+    // FIXME: 리팩토링 필요
+    const res1 = await getUserInfo(context, initialPageProps);
     const res2 = await getPrefetch(context, res1);
     return {
       props: res2,
@@ -33,7 +35,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 };
-
 
 // TODO: 나중에 삭제
 // export const getServerSideProps: GetServerSideProps = async (context) => {
