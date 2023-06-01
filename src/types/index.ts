@@ -1,13 +1,5 @@
 import { DehydratedState } from '@tanstack/react-query';
 
-export type TNewsCategory =
-  | 'All'
-  | 'Politics'
-  | 'Business'
-  | 'ScienceAndTechnology'
-  | 'Entertainment'
-  | 'Sports';
-
 export type TUserInfo = {
   displayName: string;
   email: string;
@@ -19,7 +11,6 @@ export type TUserInfo = {
  */
 export type TBingNewsQuery = {
   query: string;
-  category: TNewsCategory;
 };
 
 /**
@@ -84,5 +75,4 @@ export type TPageProps = {
   status: boolean;
   dehydratedState?: DehydratedState;
   userInfo: TUserInfo | null;
-  category?: TNewsCategory;
 };

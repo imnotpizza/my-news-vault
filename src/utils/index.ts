@@ -1,4 +1,4 @@
-import { TNewsCategory, TNewsItem, TRawNewsItem } from '@/types';
+import { TNewsItem, TRawNewsItem } from '@/types';
 import flatMap from 'lodash-es/flatMap';
 
 /**

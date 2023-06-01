@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext } from 'next';
 import { getDecodedUserInfoByToken } from '@/firebase/admin';
-import { TNewsCategory, TPageProps, TUserInfo } from '@/types';
+import { TPageProps, TUserInfo } from '@/types';
 import { dehydrate } from '@tanstack/react-query';
 import { queryClient } from '@/queries/queryClient';
 import { prefetchScrappedNewsList } from '@/queries/useScrappedNewsList';
@@ -58,28 +58,4 @@ export const getDehydratedStateInServerside = async (
       dehydratedState: null,
     };
   }
-};
-
-/**
- *
- * @param context: ssr context
- * @param pageProps: page props
- * @returns category 추가된 pageProps
- */
-export const parseCategoryInServerside = (
-  context: GetServerSidePropsContext,
-  pageProps: TPageProps,
-): TPageProps => {
-  const category = (context.query.category as TNewsCategory) || 'All';
-  return {
-    ...pageProps,
-    category,
-  };
-};
-
-export const initialPageProps: TPageProps = {
-  userInfo: null,
-  dehydratedState: null,
-  category: 'All',
-  status: false,
 };

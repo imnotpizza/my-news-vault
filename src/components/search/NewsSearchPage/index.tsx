@@ -10,13 +10,12 @@ import InfiniteScrollWrapper from '@/components/common/InfiniteScrollWrapper';
 import { userInfoContext } from '@/utils/userInfoProvider';
 import { getFlattenList } from '@/utils';
 
-const NewsSearchPage = ({ category }) => {
+const NewsSearchPage = () => {
   const { query } = useContext(newsQueryContext);
   const { userInfo } = React.useContext(userInfoContext);
 
   const queryStates = useBingNewsFetch({
     query,
-    category,
     enabled: true,
     userId: userInfo?.email,
   });

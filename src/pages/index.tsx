@@ -12,12 +12,11 @@ import {
 import { TPageProps } from '@/types';
 
 const NewsSearch = ({ userInfo }) => {
-  const metaTitle = 'category';
   return (
     <UserInfoProvider initialUserInfo={userInfo || null}>
       <Layout>
-        <Meta title={metaTitle} />
-        <NewsSearchPage category={'All'} />
+        <Meta title={'my news vault'} />
+        <NewsSearchPage />
       </Layout>
     </UserInfoProvider>
   );

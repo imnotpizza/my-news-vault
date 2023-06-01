@@ -16,10 +16,9 @@ const NEWS_COUNT_NUM = 20;
 export const fetchBingNews = async (
   query: TBingNewsQuery['query'],
   pageNum: number,
-  category: TBingNewsQuery['category'],
 ) => {
   const offset = NEWS_COUNT_NUM * pageNum;
-  const url = `news/search?mkt=en-us&q=${query}&count=${NEWS_COUNT_NUM}&offset=${offset}&category=${category}`;
+  const url = `news/search?mkt=en-us&q=${query}&count=${NEWS_COUNT_NUM}&offset=${offset}`;
   const apiRes = await BingAPI.get<TBingNewsAPIRes>(url);
 
   const newsItems: TNewsItem[] = apiRes.data.value.map((item: TRawNewsItem) => {

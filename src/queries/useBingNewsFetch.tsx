@@ -1,5 +1,5 @@
 import { fetchBingNews } from '@/api/client';
-import { TBingNewsQuery, TNewsCategory, TUserInfo } from '@/types';
+import { TBingNewsQuery, TUserInfo } from '@/types';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
@@ -7,16 +7,15 @@ export const bingNewsFetchQueryKey = 'BingNewsFetch';
 
 interface Params {
   query: TBingNewsQuery['query'];
-  category: TNewsCategory;
   enabled: boolean;
   userId: TUserInfo['email'];
 }
 
-const useBingNewsFetch = ({ query, category, enabled = true, userId }: Params) => {
+const useBingNewsFetch = ({ query, enabled = true, userId }: Params) => {
   const queryStates = useInfiniteQuery<Awaited<ReturnType<typeof fetchBingNews>>, AxiosError>(
     [bingNewsFetchQueryKey, query],
     async ({ pageParam = 1 }) => {
-      const newsItems = await fetchBingNews(query, pageParam, category);
+      const newsItems = await fetchBingNews(query, pageParam);
       // const scrappedNewsList = await fetchScrappedNewsList(userId);
       // const newsItemWithScrapped = setIsScrapped(newsItems, scrappedNewsList);
       return newsItems;
