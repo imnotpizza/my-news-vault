@@ -20,7 +20,7 @@ const ErrorPage = ({ statusCode }) => {
 };
 
 ErrorPage.getInitialProps = ({ res }) => {
-  const { statusCode } = res.statusCode;
+  const { statusCode } = res;
   return { statusCode };
 };
 

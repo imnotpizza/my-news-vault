@@ -46,7 +46,7 @@ export const getDehydratedStateInServerside = async (
   context: GetServerSidePropsContext,
   pageProps: TPageProps,
 ): Promise<TPageProps> => {
-  if (pageProps.userInfo.email) {
+  if (pageProps.userInfo) {
     await prefetchScrappedNewsList(pageProps.userInfo.email);
     return {
       ...pageProps,
