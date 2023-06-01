@@ -53,10 +53,10 @@ export const parseCategory = (
   context: GetServerSidePropsContext,
   pageProps: TPageProps,
 ): TPageProps => {
-  const { category } = context.query;
+  const category = (context.query.category as TNewsCategory) || 'All';
   return {
     ...pageProps,
-    category: category as TNewsCategory,
+    category,
   };
 };
 
