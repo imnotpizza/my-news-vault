@@ -5,8 +5,13 @@ import { dehydrate } from '@tanstack/react-query';
 import { queryClient } from '@/queries/queryClient';
 import { prefetchScrappedNewsList } from '@/queries/useScrappedNewsList';
 
-// FIXME: 네이밍 컨벤션 찾아 함수명 수정
-export const getUserInfo = async (
+/**
+ *
+ * @param context: ssr context
+ * @param pageProps: page props
+ * @returns userInfo 추가된 pageProps
+ */
+export const getUserInfoInServerside = async (
   context: GetServerSidePropsContext,
   pageProps: TPageProps,
 ): Promise<TPageProps> => {
@@ -31,7 +36,13 @@ export const getUserInfo = async (
   }
 };
 
-export const getPrefetch = async (
+/**
+ *
+ * @param context: ssr context
+ * @param pageProps: page props
+ * @returns react query dehydrate 추가된 pageProps
+ */
+export const getDehydratedStateInServerside = async (
   context: GetServerSidePropsContext,
   pageProps: TPageProps,
 ): Promise<TPageProps> => {
@@ -49,7 +60,13 @@ export const getPrefetch = async (
   }
 };
 
-export const parseCategory = (
+/**
+ *
+ * @param context: ssr context
+ * @param pageProps: page props
+ * @returns category 추가된 pageProps
+ */
+export const parseCategoryInServerside = (
   context: GetServerSidePropsContext,
   pageProps: TPageProps,
 ): TPageProps => {
