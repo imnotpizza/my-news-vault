@@ -39,45 +39,4 @@ export const getServerSideProps: GetServerSideProps<TPageProps> = async (context
   }
 };
 
-// TODO: 나중에 삭제
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   try {
-//     const { authToken } = context.req.cookies;
-
-//     if (authToken) {
-//       const verifiedToken = await getDecodedUserInfoByToken(authToken);
-//       const { name, picture, email } = verifiedToken;
-//       const userInfo: TUserInfo = {
-//         displayName: name,
-//         photoURL: picture,
-//         email,
-//       };
-
-//       // prefetch scrappedNewsList
-//       await prefetchScrappedNewsList(email);
-//       return {
-//         props: {
-//           status: true,
-//           dehydratedState: dehydrate(queryClient),
-//           userInfo,
-//         },
-//       };
-//     } else {
-//       return {
-//         props: {
-//           status: false,
-//           userInfo: null,
-//         },
-//       };
-//     }
-//   } catch (e) {
-//     return {
-//       props: {
-//         status: false,
-//         userInfo: null,
-//       },
-//     };
-//   }
-// };
-
 export default NewsSearch;
