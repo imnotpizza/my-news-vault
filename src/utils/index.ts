@@ -27,7 +27,7 @@ export const parseToNewsItem = (raw: TRawNewsItem) => {
  * @param scrappedNewsList: 스크랩 리스트
  */
 export const setIsScrapped = (newsItemList: TNewsItem[], scrappedNewsList: TNewsItem[]) => {
-  return newsItemList.map((item) => {
+  return newsItemList.map<TNewsItem>((item) => {
     const isScrapped = scrappedNewsList.find((sItem) => {
       return sItem.newsId === item.newsId;
     });
@@ -35,6 +35,19 @@ export const setIsScrapped = (newsItemList: TNewsItem[], scrappedNewsList: TNews
       ...item,
       isScrapped: Boolean(isScrapped),
     };
+  });
+};
+
+/**
+ * 중복 뉴스기사 제거
+ * @param newsItemList: 검색결과 리스트
+ * @param scrappedNewsList: 스크랩 리스트
+ */
+export const deleteDuplicatedNews = (newsItemList: TNewsItem[], scrappedNewsList: TNewsItem[]) => {
+  return newsItemList.filter((item) => {
+    return !scrappedNewsList.find((sItem) => {
+      return sItem.newsId === item.newsId;
+    });
   });
 };
 
