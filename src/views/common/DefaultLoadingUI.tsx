@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Spin } from 'antd';
 
 const Container = styled.div`
   display: flex;
@@ -12,7 +11,7 @@ const Container = styled.div`
 
 const DefaultLoadingUI = () => {
   return (
-      <Spin size="large" />
+      <div>Loading.....</div>
   );
 };
 
