@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext } from 'next';
 import { getDecodedUserInfoByToken } from '@/firebase/admin';
-import { TPageProps, TUserInfo } from '@/types';
+import { TNewsCategory, TPageProps, TUserInfo } from '@/types';
 import { dehydrate } from '@tanstack/react-query';
 import { queryClient } from '@/queries/queryClient';
 import { prefetchScrappedNewsList } from '@/queries/useScrappedNewsList';
@@ -53,17 +53,16 @@ export const parseCategory = (
   context: GetServerSidePropsContext,
   pageProps: TPageProps,
 ): TPageProps => {
-  const { keyword } = context.query;
+  const { category } = context.query;
   return {
     ...pageProps,
-    keyword,
+    category: category as TNewsCategory,
   };
 };
-
 
 export const initialPageProps: TPageProps = {
   userInfo: null,
   dehydratedState: null,
-  keyword: '',
+  category: 'All',
   status: false,
 };

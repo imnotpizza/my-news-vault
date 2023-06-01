@@ -3,9 +3,17 @@ import { getPrefetch, getUserInfo, initialPageProps } from '@/utils/serverside';
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import { TPageProps } from '@/types';
+import { UserInfoProvider } from '@/utils/userInfoProvider';
+import Layout from '@/components/layout';
 
-const NewsScrap = () => {
-  return <NewsScrapPage />;
+const NewsScrap = ({ userInfo }) => {
+  return (
+    <UserInfoProvider initialUserInfo={userInfo || null}>
+      <Layout>
+        <NewsScrapPage />
+      </Layout>
+    </UserInfoProvider>
+  );
 };
 
 // TODO: 비로그인시 스크랩페이지에 접근 못하게 처리

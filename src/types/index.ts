@@ -85,5 +85,5 @@ export type TPageProps = {
   status: boolean;
   dehydratedState?: DehydratedState;
   userInfo: TUserInfo | null;
-  keyword?: string | string[];
+  category?: TNewsCategory;
 };

@@ -4,13 +4,17 @@ import { TPageProps } from '@/types';
 import { getPrefetch, getUserInfo, initialPageProps, parseCategory } from '@/utils/serverside';
 import { GetServerSideProps } from 'next';
 import React from 'react';
+import Layout from '@/components/layout';
+import { UserInfoProvider } from '@/utils/userInfoProvider';
 
-const NewsSearchWithCategory = ({ category }) => {
+const NewsSearchWithCategory = ({ category, userInfo }) => {
   return (
-    <>
-      <Meta title={`ILoveNews-${category}`} />
-      <NewsSearchPage category={'All'} />
-    </>
+    <UserInfoProvider initialUserInfo={userInfo || null}>
+      <Layout>
+        <Meta title={`ILoveNews-${category}`} />
+        <NewsSearchPage category={category} />
+      </Layout>
+    </UserInfoProvider>
   );
 };
 
