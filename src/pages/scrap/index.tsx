@@ -5,14 +5,17 @@ import { GetServerSideProps } from 'next';
 import { TPageProps } from '@/types';
 import { UserInfoProvider } from '@/utils/userInfoProvider';
 import Layout from '@/components/layout';
+import OnlyAuthUserWrapper from '@/wrapper/OnlyAuthUserWrapper';
 
 const NewsScrap = ({ userInfo }) => {
   return (
-    <UserInfoProvider initialUserInfo={userInfo || null}>
-      <Layout>
-        <NewsScrapPage />
-      </Layout>
-    </UserInfoProvider>
+    <OnlyAuthUserWrapper isSignin={Boolean(userInfo)}>
+      <UserInfoProvider initialUserInfo={userInfo || null}>
+        <Layout>
+          <NewsScrapPage />
+        </Layout>
+      </UserInfoProvider>
+    </OnlyAuthUserWrapper>
   );
 };
 

@@ -1,23 +1,12 @@
-'use client';
-
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import useScrappedNewsList from '@/queries/useScrappedNewsList';
 import NewsItemList from '@/components/common/NewsItemList';
 import React, { useContext, useEffect } from 'react';
 import { userInfoContext } from '@/utils/userInfoProvider';
-import { useRouter } from 'next/navigation';
 
 const NewsScrapPage = () => {
-  const { isSignin, userInfo } = useContext(userInfoContext);
-  const router = useRouter();
+  const { userInfo } = useContext(userInfoContext);
   const queryStates = useScrappedNewsList({ userId: userInfo?.email });
-
-  useEffect(() => {
-    if (!isSignin) {
-      alert('로그인 후 사용해주세요');
-      router.push('/');
-    }
-  }, []);
 
   return (
     <div>
