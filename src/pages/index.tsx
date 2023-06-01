@@ -1,15 +1,17 @@
 import Meta from '@/components/common/Meta';
 import NewsSearchPage from '@/components/search/NewsSearchPage';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { GetServerSideProps } from 'next';
 import { UserInfoProvider } from '@/utils/userInfoProvider';
 import Layout from '@/components/layout';
 import { getPrefetch, getUserInfo, initialPageProps, parseCategory } from '@/utils/serverside';
 import { TPageProps } from '@/types';
 
-const NewsSearch = (pageProps: TPageProps) => {
-  const { userInfo, category } = pageProps;
-  const metaTitle = category === 'All' ? 'ILoveNews' : `ILoveNews-${category}`;
+const NewsSearch = ({ userInfo, category }) => {
+  const metaTitle = useMemo(
+    () => (category === 'All' ? 'ILoveNews' : `ILoveNews-${category}`),
+    [category],
+  );
   return (
     <UserInfoProvider initialUserInfo={userInfo || null}>
       <Layout>
