@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="https://github.com/imnotpizza/my-news-valut/assets/48155178/82f4ce06-462e-4ec0-8d9d-b5ec518d4095" width="300" height="300">
+</p>
 <h1 align="center">Welcome to MYNEWSVAULT 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
@@ -5,6 +8,8 @@
     <img alt="License: MIT License" src="https://img.shields.io/badge/License-MIT License-yellow.svg" />
   </a>
 </p>
+
+
 
 ### 🏠 [프로젝트 방문](https://ilovenews.vercel.app/)
 
