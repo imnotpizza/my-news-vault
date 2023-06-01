@@ -12,15 +12,12 @@ import {
 import { TPageProps } from '@/types';
 
 const NewsSearch = ({ userInfo, category }) => {
-  const metaTitle = useMemo(
-    () => (category === 'All' ? 'ILoveNews' : `ILoveNews-${category}`),
-    [category],
-  );
+  const metaTitle = 'category';
   return (
     <UserInfoProvider initialUserInfo={userInfo || null}>
       <Layout>
         <Meta title={metaTitle} />
-        <NewsSearchPage category={category} />
+        <NewsSearchPage category={'All'} />
       </Layout>
     </UserInfoProvider>
   );
