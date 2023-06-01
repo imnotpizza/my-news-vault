@@ -49,7 +49,7 @@ export const getPrefetch = async (
   }
 };
 
-export const getKeyword = (
+export const parseCategory = (
   context: GetServerSidePropsContext,
   pageProps: TPageProps,
 ): TPageProps => {
@@ -59,6 +59,7 @@ export const getKeyword = (
     keyword,
   };
 };
+
 
 export const initialPageProps: TPageProps = {
   userInfo: null,

@@ -7,11 +7,11 @@ import Layout from '@/components/layout';
 import { getPrefetch, getUserInfo, initialPageProps } from '@/utils/serverside';
 import { TPageProps } from '@/types';
 
-const NewsSearch = ({ status, userInfo }) => {
+const NewsSearch = ({ userInfo }) => {
   return (
     <UserInfoProvider initialUserInfo={userInfo || null}>
       <Layout>
-        <Meta title={'keyword'} />
+        <Meta />
         <NewsSearchPage category={'All'} />
       </Layout>
     </UserInfoProvider>
