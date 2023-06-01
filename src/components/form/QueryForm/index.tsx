@@ -1,12 +1,13 @@
 import ImageButton from '@/components/form/ImageButton';
 import SearchInput from '@/components/form/SearchInput';
 import { newsQueryContext } from '@/utils/newsQueryContext';
+import { useRouter } from 'next/router';
 import React from 'react';
 
-const QueryForm = () => {
-  const { setQuery } = React.useContext(newsQueryContext);
+const QueryForm = ({ query }) => {
+  const router = useRouter();
   const [queryForm, setQueryForm] = React.useState({
-    query: '',
+    query,
   });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +19,7 @@ const QueryForm = () => {
 
   const onClickSearch = () => {
     if (queryForm.query === '') return;
-    setQuery(queryForm.query);
+    router.push(`?query=${queryForm.query}`);
   };
 
   const onKeyDown = (e) => {
@@ -27,9 +28,14 @@ const QueryForm = () => {
     }
   };
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onClickSearch();
+  };
+
   return (
     <div>
-      <form>
+      <form onSubmit={onSubmit}>
         <div>
           <SearchInput name="query" value={queryForm.query} onChange={onChange} />
         </div>

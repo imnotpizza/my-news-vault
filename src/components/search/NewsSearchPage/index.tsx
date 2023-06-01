@@ -10,8 +10,7 @@ import InfiniteScrollWrapper from '@/components/common/InfiniteScrollWrapper';
 import { userInfoContext } from '@/utils/userInfoProvider';
 import { getFlattenList } from '@/utils';
 
-const NewsSearchPage = () => {
-  const { query } = useContext(newsQueryContext);
+const NewsSearchPage = ({ query }) => {
   const { userInfo } = React.useContext(userInfoContext);
 
   const queryStates = useBingNewsFetch({
@@ -28,7 +27,7 @@ const NewsSearchPage = () => {
   return (
     <div>
       <div>
-        <QueryForm />
+        <QueryForm query={query} />
       </div>
       <div>
         <QueryStateWrapper queryStates={queryStates as any}>
