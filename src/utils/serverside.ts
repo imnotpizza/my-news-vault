@@ -59,3 +59,9 @@ export const getDehydratedStateInServerside = async (
     };
   }
 };
+
+export const initialPageProps: TPageProps = {
+  userInfo: null,
+  dehydratedState: null,
+  status: false,
+};
