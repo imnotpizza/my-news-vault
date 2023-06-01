@@ -1,6 +1,5 @@
 import React from 'react';
 import Style from './Style';
-import Categories from '../Categories';
 import UserProfile from '../UserProfile';
 
 const Header = () => {
@@ -9,9 +8,6 @@ const Header = () => {
       <div>
         <div>
           <div>logo</div>
-        </div>
-        <div>
-          <Categories />
         </div>
       </div>
       <div>
