@@ -3,7 +3,6 @@
 import React, { useContext, useMemo } from 'react';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
-import { newsQueryContext } from '@/utils/newsQueryContext';
 import QueryForm from '@/components/form/QueryForm';
 import NewsItemList from '@/components/common/NewsItemList';
 import InfiniteScrollWrapper from '@/components/common/InfiniteScrollWrapper';

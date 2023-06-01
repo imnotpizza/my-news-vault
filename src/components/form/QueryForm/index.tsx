@@ -1,6 +1,5 @@
 import ImageButton from '@/components/form/ImageButton';
 import SearchInput from '@/components/form/SearchInput';
-import { newsQueryContext } from '@/utils/newsQueryContext';
 import { useRouter } from 'next/router';
 import React from 'react';
 
