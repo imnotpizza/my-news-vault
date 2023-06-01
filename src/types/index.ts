@@ -1,5 +1,4 @@
 import { DehydratedState } from '@tanstack/react-query';
-import { GetServerSidePropsContext } from 'next';
 
 export type TNewsCategory =
   | 'All'

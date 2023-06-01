@@ -1,4 +1,4 @@
-import { findByTestId, render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { server } from '@/msw/server';
 import { rest } from 'msw';
 import { queryClient } from '@/queries/queryClient';

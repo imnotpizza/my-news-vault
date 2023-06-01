@@ -9,7 +9,7 @@ export interface IUserInfoContext {
 
 const userInfoContext = React.createContext<IUserInfoContext>({
   userInfo: null,
-  setUserInfo: (user) => {},
+  setUserInfo: () => {},
   isSignin: false,
 });
 

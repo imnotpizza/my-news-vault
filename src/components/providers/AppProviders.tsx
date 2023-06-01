@@ -6,7 +6,6 @@ import { queryClient } from '@/queries/queryClient';
 import { ThemeProvider } from 'styled-components';
 import Palette from '@/styles/palette';
 import { NewsQueryProvider } from '@/utils/newsQueryContext';
-import { UserInfoProvider } from '@/utils/userInfoProvider';
 import { AppProps } from 'next/app';
 
 interface IAppProvidersProps {

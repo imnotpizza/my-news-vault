@@ -2,8 +2,6 @@ import { fetchBingNews } from '@/api/client';
 import { TBingNewsQuery, TNewsCategory, TUserInfo } from '@/types';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { setIsScrapped } from '@/utils';
-import { fetchScrappedNewsList } from './useScrappedNewsList';
 
 export const bingNewsFetchQueryKey = 'BingNewsFetch';
 

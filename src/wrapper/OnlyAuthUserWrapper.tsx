@@ -8,6 +8,7 @@ const OnlyAuthUserWrapper = ({ isSignin, children }) => {
       alert('로그인이 필요합니다.');
       router.back();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <div>{children}</div>;
 };

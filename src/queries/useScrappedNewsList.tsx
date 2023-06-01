@@ -1,5 +1,5 @@
 import { fetchScrappedList } from '@/api/client';
-import { QueryClient, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { TUserInfo } from '@/types';
 import { queryClient } from './queryClient';

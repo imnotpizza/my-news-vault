@@ -1,5 +1,5 @@
 import { TNewsItem } from '@/types';
-import React, { memo, useMemo } from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import { scrapNews, unscrapNews } from '@/api/client';
 import { queryClient } from '@/queries/queryClient';

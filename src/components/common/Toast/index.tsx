@@ -1,7 +1,5 @@
-'use client';
-
 import { TOAST_DURATION } from '@/constants';
-import React, { memo, useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import reactDom from 'react-dom';
 import styled from 'styled-components';
 

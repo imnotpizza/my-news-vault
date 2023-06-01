@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import styled from 'styled-components';
@@ -26,7 +24,7 @@ const InfiniteScrollWrapper = ({ children, onTriggered }) => {
     if (inView) {
       onTriggered();
     }
-  }, [inView]);
+  }, [inView, onTriggered]);
 
   return (
     <Container>

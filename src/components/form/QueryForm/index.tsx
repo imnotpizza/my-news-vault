@@ -1,7 +1,7 @@
 import ImageButton from '@/components/form/ImageButton';
 import SearchInput from '@/components/form/SearchInput';
 import { newsQueryContext } from '@/utils/newsQueryContext';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const QueryForm = () => {
   const { setQuery } = React.useContext(newsQueryContext);

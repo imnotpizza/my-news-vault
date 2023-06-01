@@ -1,6 +1,6 @@
 import Meta from '@/components/common/Meta';
 import NewsSearchPage from '@/components/search/NewsSearchPage';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { GetServerSideProps } from 'next';
 import { UserInfoProvider } from '@/utils/userInfoProvider';
 import Layout from '@/components/layout';
@@ -11,7 +11,7 @@ import {
 } from '@/utils/serverside';
 import { TPageProps } from '@/types';
 
-const NewsSearch = ({ userInfo, category }) => {
+const NewsSearch = ({ userInfo }) => {
   const metaTitle = 'category';
   return (
     <UserInfoProvider initialUserInfo={userInfo || null}>
