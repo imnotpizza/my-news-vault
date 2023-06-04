@@ -38,4 +38,3 @@ next-env.d.ts
 .yarn
 
 # firebase
-/firebase.admin.json
