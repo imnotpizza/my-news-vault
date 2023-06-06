@@ -53,16 +53,6 @@ export const deleteDuplicatedNews = (newsItemList: TNewsItem[], scrappedNewsList
 };
 
 /**
- * 리스트 평탄화 수행
- * @param data: 2차원 배열
- */
-export const getFlattenList = (data) => {
-  return flatMap(data, (item) => {
-    return item;
-  });
-};
-
-/**
  * 특수문자 포함되었는지 확인
  * @param str : test할 문자열
  * @returns 결과값
