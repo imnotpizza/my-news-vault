@@ -1,13 +1,16 @@
 import ImageButton from '@/components/form/ImageButton';
 import SearchInput from '@/components/form/SearchInput';
+import { hasSpecialCharacters } from '@/utils';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 const QueryForm = ({ query }) => {
   const router = useRouter();
   const [queryForm, setQueryForm] = React.useState({
     query,
   });
+
+  const isValidForm = useMemo(() => hasSpecialCharacters(queryForm.query), [queryForm.query]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQueryForm({
