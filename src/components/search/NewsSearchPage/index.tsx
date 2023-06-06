@@ -16,6 +16,7 @@ const NewsSearchPage = ({ query }) => {
     query,
     enabled: true,
     userId: userInfo?.email,
+    maxPage: 3,
   });
 
   const flattenData = useMemo(

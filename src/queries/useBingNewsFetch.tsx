@@ -11,9 +11,10 @@ export const bingNewsFetchQueryKey = 'BingNewsFetch';
 interface Params {
   query: TBingNewsQuery['query'];
   enabled: boolean;
+  maxPage: number;
 }
 
-const useBingNewsFetch = ({ query, enabled = true }: Params) => {
+const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
   const queryStates = useInfiniteQuery<Awaited<ReturnType<typeof fetchBingNews>>, AxiosError>(
     [bingNewsFetchQueryKey, query],
     async ({ pageParam = 1 }) => {
@@ -25,9 +26,10 @@ const useBingNewsFetch = ({ query, enabled = true }: Params) => {
     },
     {
       getNextPageParam: (lastPage, pages) => {
-        return pages.length + 1;
+        console.log(pages.length)
+        return pages.length === maxPage ? undefined : pages.length + 1;
       },
-      enabled: false,
+      enabled,
     },
   );
 
