@@ -11,6 +11,7 @@ const QueryForm = ({ query }) => {
   });
 
   const isValidForm = useMemo(() => hasSpecialCharacters(queryForm.query), [queryForm.query]);
+  const isQueryEmpty = useMemo(() => queryForm.query === '', [queryForm.query]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQueryForm({
@@ -42,7 +43,11 @@ const QueryForm = ({ query }) => {
           <SearchInput name="query" value={queryForm.query} onChange={onChange} />
         </div>
         <div>
-          <ImageButton onClick={onClickSearch} onKeyDown={onKeyDown} />
+          <ImageButton
+            onClick={onClickSearch}
+            onKeyDown={onKeyDown}
+            disabled={!isValidForm || isQueryEmpty}
+          />
         </div>
       </form>
     </div>
