@@ -76,4 +76,5 @@ export type TPageProps = {
   dehydratedState?: DehydratedState;
   userInfo: TUserInfo | null;
   query?: TBingNewsQuery['query'];
+  errCode?: string;
 };

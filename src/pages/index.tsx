@@ -4,14 +4,16 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import { UserInfoProvider } from '@/utils/userInfoProvider';
 import Layout from '@/components/layout';
-import {
-  getDehydratedStateInServerside,
-  getUserInfoInServerside,
-  initialPageProps,
-} from '@/utils/serverside';
+import { getDehydratedStateInServerside, getUserInfoInServerside } from '@/utils/serverside';
 import { TPageProps } from '@/types';
+import { initialPageProps } from '@/constants';
+import ErrorPage from 'next/error';
 
-const NewsSearch = ({ userInfo, query }) => {
+const NewsSearch = ({ userInfo, query, errCode }) => {
+  if (errCode) {
+    return <ErrorPage statusCode={errCode} />;
+  }
+
   return (
     <UserInfoProvider initialUserInfo={userInfo || null}>
       <Layout>
@@ -22,26 +24,17 @@ const NewsSearch = ({ userInfo, query }) => {
   );
 };
 
+// FIXME: 구조 개선 필요
 export const getServerSideProps: GetServerSideProps<TPageProps> = async (context) => {
-  try {
-    // FIXME: 리팩토링 필요
-    const res1 = await getUserInfoInServerside(context, initialPageProps);
-    const res2 = await getDehydratedStateInServerside(context, res1);
-    const query = (context.query.query as string) || '';
-    return {
-      props: {
-        ...res2,
-        query,
-      },
-    };
-  } catch (e) {
-    return {
-      props: {
-        status: false,
-        userInfo: null,
-      },
-    };
-  }
+  const res1 = await getUserInfoInServerside(context, initialPageProps);
+  const res2 = await getDehydratedStateInServerside(context, res1);
+  const query = (context.query.query as string) || '';
+  return {
+    props: {
+      ...res2,
+      query,
+    },
+  };
 };
 
 export default NewsSearch;
