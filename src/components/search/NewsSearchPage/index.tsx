@@ -6,12 +6,16 @@ import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import QueryForm from '@/components/form/QueryForm';
 import NewsItemList from '@/components/common/NewsItemList';
 import InfiniteScrollWrapper from '@/components/common/InfiniteScrollWrapper';
+import { userInfoContext } from '@/utils/userInfoProvider';
 import { getFlattenList } from '@/utils';
 
-const NewsSearchPage = ({ query }) => {\
+const NewsSearchPage = ({ query }) => {
+  const { userInfo } = React.useContext(userInfoContext);
+
   const queryStates = useBingNewsFetch({
     query,
     enabled: true,
+    userId: userInfo?.email,
     maxPage: 3,
   });
 
