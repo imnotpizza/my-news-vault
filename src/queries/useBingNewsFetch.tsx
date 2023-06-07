@@ -2,13 +2,11 @@ import { fetchBingNews } from '@/api/client';
 import { TBingNewsQuery, TNewsItem } from '@/types';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { scrappedNewsListQueryKey } from '@/queries/useScrappedNewsList';
 import { deleteDuplicatedNews, setIsScrapped } from '@/utils';
 import { queryClient } from '@/queries/queryClient';
 import { useMemo } from 'react';
 import { flatMap } from 'lodash-es';
-
-export const bingNewsFetchQueryKey = 'BingNewsFetch';
+import QUERY_KEY from './keys';
 
 interface Params {
   query: TBingNewsQuery['query'];
@@ -18,10 +16,10 @@ interface Params {
 
 const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
   const queryStates = useInfiniteQuery<Awaited<ReturnType<typeof fetchBingNews>>, AxiosError>(
-    [bingNewsFetchQueryKey, query],
+    [QUERY_KEY.BING_NEWS_SEARCH, query],
     async ({ pageParam = 1 }) => {
       const newsItems = await fetchBingNews(query, pageParam);
-      const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>([scrappedNewsListQueryKey]);
+      const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>([QUERY_KEY.SCRAP_LIST]);
       const filteredNewsItem = deleteDuplicatedNews(newsItems, scrappedNewsList);
       const newsItemWithScrapped = setIsScrapped(newsItems, filteredNewsItem);
       return newsItemWithScrapped;
