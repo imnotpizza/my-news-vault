@@ -19,8 +19,8 @@ const Desc = styled.p`
   -webkit-box-orient: vertical;
 `;
 
-const NewsCardDesc = ({ description }) => {
-  return <Desc>{description}</Desc>;
+const NewsCardDesc = ({ children }) => {
+  return <Desc>{children}</Desc>;
 };
 
 export default NewsCardDesc;

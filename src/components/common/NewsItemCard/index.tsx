@@ -3,32 +3,47 @@ import React, { memo } from 'react';
 import styled from 'styled-components';
 import { scrapNews, unscrapNews } from '@/api/client';
 import { IUserInfoContext, userInfoContext } from '@/utils/userInfoProvider';
-import NewsThumbnail from '@/views/newsItemCard/NewsThumbnail';
-import ScrapButton from '@/views/newsItemCard/ScrapButton';
-import VisitButton from '@/views/newsItemCard/VisitButton';
 import { addScrapNewsToCache, deleteScrapNewsFromCache } from '@/queries/useScrappedNewsList';
+import NewsCardThumbnail from '@/views/newsItemCard/NewsCardThumbnail';
+import NewsCardProvider from '@/views/newsItemCard/NewsCardProvider';
+import NewsCardTitle from '@/views/newsItemCard/NewsCardTitle';
+import NewsCardDesc from '@/views/newsItemCard/NewsCardDesc';
+import NewsCardPublishedDate from '@/views/newsItemCard/NewsCardPublishedDate';
+import NewsCardScrapButton from '@/views/newsItemCard/NewsCardScrapButton';
 
 const Container = styled.div`
-  width: 300px;
-  height: 500px;
-  border: 1px solid black;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  background-color: #ffffff;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  width: 14.44rem;
+  background: #ffffff;
+  box-shadow: 0rem 0rem 0.25rem 0.06rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+  border: 0.06rem solid #112ebe00;
+  &:hover {
+    border: 0.06rem solid #112ebe;
+    box-shadow: 0rem 0rem 0.5rem 0.19rem rgba(35, 78, 180, 0.15);
+  }
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
 
-  .news-title {
-    font-size: 20px;
+  & > .contents {
+    margin: 0rem 1.25rem;
   }
 
-  .news-desc {
-    font-size: 15px;
-    margin: 15px 0;
+  & > .bottom {
+    width: 11.94rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
   }
 `;
 
 const NewsItemCard = ({ item }: { item: TNewsItem }) => {
-  const { isScrapped, title, thumbnail, description, newsId, url } = item;
+  const { isScrapped, title, thumbnail, description, newsId, url, providerIcon, datePublished } =
+    item;
   const { userInfo, isSignin } = React.useContext<IUserInfoContext>(userInfoContext);
 
   const onClickScarp = async () => {
@@ -51,19 +66,28 @@ const NewsItemCard = ({ item }: { item: TNewsItem }) => {
     }
   };
 
+  const onClickNews = () => {
+    window.open(url, '_blank');
+  };
+
   return (
-    <Container>
-      <p className="news-title">{title}</p>
-      <NewsThumbnail src={thumbnail} alt={`${title} thumbnail`} />
-      <p className="news-desc">{description}</p>
-      <VisitButton url={url} />
-      <ScrapButton
-        isScrapped={isScrapped}
-        disabled={!isSignin}
-        onClickScarp={onClickScarp}
-        onClickUnscrap={onClickUnscrap}
-      />
-      <div>스크랩여부: {isScrapped?.toString()}</div>
+    <Container onClick={onClickNews}>
+      <NewsCardThumbnail src={thumbnail} alt={title} />
+      <div className="contents">
+        <NewsCardProvider src={providerIcon} alt={'provider'} />
+        <NewsCardTitle>{title}</NewsCardTitle>
+        <NewsCardDesc>{description}</NewsCardDesc>
+
+        <div className="bottom">
+          <NewsCardPublishedDate>{datePublished}</NewsCardPublishedDate>
+          <NewsCardScrapButton
+            isScrapped={isScrapped}
+            disabled={!isSignin}
+            onClickScarp={onClickScarp}
+            onClickUnscrap={onClickUnscrap}
+          />
+        </div>
+      </div>
     </Container>
   );
 };

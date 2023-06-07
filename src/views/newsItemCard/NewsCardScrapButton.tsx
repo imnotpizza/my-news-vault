@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import styled from 'styled-components';
 
 interface IScrapButtonProps {
   isScrapped: boolean;
@@ -7,19 +8,27 @@ interface IScrapButtonProps {
   onClickUnscrap: () => void;
 }
 
+const ImgButton = styled.button`
+  width: 0.63rem;
+  height: 0.88rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+`;
+
 // TODO: optimistic update로 변경
 const ScrapButton = ({ isScrapped, disabled, onClickScarp, onClickUnscrap }: IScrapButtonProps) => {
   if (isScrapped) {
     return (
-      <button disabled={disabled} onClick={onClickUnscrap}>
+      <ImgButton disabled={disabled} onClick={onClickUnscrap}>
         스크랩 삭제
-      </button>
+      </ImgButton>
     );
   } else {
     return (
-      <button disabled={disabled} onClick={onClickScarp}>
+      <ImgButton disabled={disabled} onClick={onClickScarp}>
         스크랩
-      </button>
+      </ImgButton>
     );
   }
 };

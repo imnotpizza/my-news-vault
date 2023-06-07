@@ -18,8 +18,8 @@ const Title = styled.p`
   -webkit-box-orient: vertical;
 `;
 
-const NewsCardTitle = ({ title }) => {
-  return <Title>{title}</Title>;
+const NewsCardTitle = ({ children }) => {
+  return <Title>{children}</Title>;
 };
 
 export default NewsCardTitle;

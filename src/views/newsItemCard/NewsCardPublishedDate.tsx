@@ -8,8 +8,8 @@ const Date = styled.p`
   color: #1a2254;
 `;
 
-const NewsCardPublishedDate = ({ date }) => {
-  return <Date>{date}</Date>;
+const NewsCardPublishedDate = ({ children }) => {
+  return <Date>{children}</Date>;
 };
 
 export default NewsCardPublishedDate;
