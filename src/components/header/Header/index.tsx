@@ -1,8 +1,10 @@
 import React from 'react';
-import Style from './Style';
-import UserProfile from '../UserProfile';
 import styled from 'styled-components';
 import AppLogo from '@/views/header/AppLogo';
+import { userInfoContext } from '@/utils/userInfoProvider';
+import LogoutButton from '@/views/loginStatus/LogoutButton';
+import LoginButton from '@/views/loginStatus/LoginButton';
+import UserProfile from '@/views/header/UserProfile';
 
 const MainContainer = styled.div`
   position: fixed;
@@ -40,6 +42,7 @@ const TopContainer = styled.div`
 `;
 
 const Header = () => {
+  const { isSignin } = React.useContext(userInfoContext);
   return (
     <MainContainer>
       <TopContainer>
@@ -47,7 +50,10 @@ const Header = () => {
           <AppLogo />
         </div>
         <div className="user">
-          <UserProfile />
+          <div>
+            <UserProfile />
+          </div>
+          <div>{isSignin ? <LogoutButton /> : <LoginButton />}</div>
         </div>
       </TopContainer>
     </MainContainer>

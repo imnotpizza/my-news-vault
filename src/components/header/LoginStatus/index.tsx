@@ -1,10 +1,18 @@
-'use client';
-
 import { signin, signout } from '@/firebase';
 import { userInfoContext } from '@/utils/userInfoProvider';
 import UserProfileImage from '@/views/header/UserProfileImage';
 import { useRouter } from 'next/navigation';
 import React, { memo } from 'react';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  width: 155px;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+`;
 
 const UserProfile = () => {
   const { setUserInfo, userInfo, isSignin } = React.useContext(userInfoContext);
@@ -31,7 +39,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div>
+    <Container>
       <div>
         {isSignin ? (
           <button onClick={onClickSignout}>sign out</button>
@@ -43,7 +51,7 @@ const UserProfile = () => {
       <div>
         {userInfo && <UserProfileImage src={userInfo.photoURL} alt={userInfo.displayName} />}
       </div>
-    </div>
+    </Container>
   );
 };
 
