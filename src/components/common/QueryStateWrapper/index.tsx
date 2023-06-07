@@ -14,10 +14,12 @@ interface IQueryStateWrapperProps {
 
 const Container = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  background-color: orange;
 `;
 
 // FIXME: error-boundary 적용

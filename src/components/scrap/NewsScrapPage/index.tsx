@@ -9,13 +9,9 @@ const NewsScrapPage = () => {
   const queryStates = useScrappedNewsList({ userId: userInfo?.email });
 
   return (
-    <div>
-      <div>
-        <QueryStateWrapper queryStates={queryStates}>
-          <NewsItemList newsItems={queryStates.data} />
-        </QueryStateWrapper>
-      </div>
-    </div>
+    <QueryStateWrapper queryStates={queryStates}>
+      <NewsItemList newsItems={queryStates.data} />
+    </QueryStateWrapper>
   );
 };
 
