@@ -3,9 +3,9 @@ import React, { memo } from 'react';
 import styled from 'styled-components';
 import { scrapNews, unscrapNews } from '@/api/client';
 import { IUserInfoContext, userInfoContext } from '@/utils/userInfoProvider';
-import NewsThumbnail from '@/views/newsItem/NewsThumbnail';
-import ScrapButton from '@/views/newsItem/ScrapButton';
-import VisitButton from '@/views/newsItem/VisitButton';
+import NewsThumbnail from '@/views/newsItemCard/NewsThumbnail';
+import ScrapButton from '@/views/newsItemCard/ScrapButton';
+import VisitButton from '@/views/newsItemCard/VisitButton';
 import { addScrapNewsToCache, deleteScrapNewsFromCache } from '@/queries/useScrappedNewsList';
 
 const Container = styled.div`
