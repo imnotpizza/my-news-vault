@@ -1,8 +1,29 @@
-import ImageButton from '@/components/form/ImageButton';
 import SearchInput from '@/components/form/SearchInput';
 import { hasSpecialCharacters } from '@/utils';
+import NewsSearchButton from '@/views/newsSearchForm/NewsSearchButton';
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  height: 104px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Form = styled.form`
+  width: 483px;
+  height: 40px;
+  background: #ffffff;
+  border: 1px solid #e8e9ee;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const NewsSearchForm = ({ query }) => {
   const router = useRouter();
@@ -37,20 +58,12 @@ const NewsSearchForm = ({ query }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <div>
-          <SearchInput name="query" value={queryForm.query} onChange={onChange} />
-        </div>
-        <div>
-          <ImageButton
-            onClick={onClickSearch}
-            onKeyDown={onKeyDown}
-            disabled={!isValidForm || isQueryEmpty}
-          />
-        </div>
-      </form>
-    </div>
+    <Container>
+      <Form onSubmit={onSubmit}>
+        <SearchInput name="query" value={queryForm.query} onChange={onChange} />
+        <NewsSearchButton onKeyDown={onKeyDown} disabled={!isValidForm || isQueryEmpty} />
+      </Form>
+    </Container>
   );
 };
 
