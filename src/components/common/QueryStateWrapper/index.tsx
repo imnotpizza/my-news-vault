@@ -1,6 +1,6 @@
-import DefaultEmptyUI from '@/views/common/DefaultEmptyUI';
-import DefaultErrorUI from '@/views/common/DefaultErrorUI';
-import DefaultLoadingUI from '@/views/common/DefaultLoadingUI';
+import DefaultEmptyUI from '@/views/searchStatus/DefaultEmptyUI';
+import DefaultErrorUI from '@/views/searchStatus/DefaultErrorUI';
+import DefaultLoadingUI from '@/views/searchStatus/DefaultLoadingUI';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -19,7 +19,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  background-color: orange;
 `;
 
 // FIXME: error-boundary 적용

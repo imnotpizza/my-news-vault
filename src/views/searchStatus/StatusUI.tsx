@@ -8,10 +8,9 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  background-color: green;
 `;
 
-const CircleWhite = styled.div`
+const StatusImage = styled.div`
   width: 110px;
   height: 110px;
   border-radius: 55px;
@@ -29,11 +28,13 @@ const Text = styled.p`
   margin-top: 36px;
 `;
 
-const DefaultLoadingUI = () => {
-  return <Container>
-    <CircleWhite />
-    <Text>검색 중...</Text>
-  </Container>;
+const StatusUI = ({ statusImage, text }) => {
+  return (
+    <Container>
+      <StatusImage>{statusImage}</StatusImage>
+      <Text>{text}</Text>
+    </Container>
+  );
 };
 
-export default DefaultLoadingUI;
+export default StatusUI;
