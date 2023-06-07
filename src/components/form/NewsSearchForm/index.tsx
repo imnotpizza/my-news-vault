@@ -4,7 +4,7 @@ import { hasSpecialCharacters } from '@/utils';
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
 
-const QueryForm = ({ query }) => {
+const NewsSearchForm = ({ query }) => {
   const router = useRouter();
   const [queryForm, setQueryForm] = React.useState({
     query,
@@ -54,4 +54,4 @@ const QueryForm = ({ query }) => {
   );
 };
 
-export default QueryForm;
+export default NewsSearchForm;

@@ -3,7 +3,7 @@
 import React from 'react';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
-import QueryForm from '@/components/form/QueryForm';
+import QueryForm from '@/components/form/NewsSearchForm';
 import NewsItemList from '@/components/common/NewsItemList';
 import InfiniteScrollWrapper from '@/components/common/InfiniteScrollWrapper';
 
