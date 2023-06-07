@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import { TNewsItem } from '@/types';
-import NewsItemCard from '../NewsItemCard';
+import NewsItemCard from '../NewsCard';
 
 interface INewsItemListProps {
   newsItems: TNewsItem[];

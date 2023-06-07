@@ -41,7 +41,7 @@ const Container = styled.div`
   }
 `;
 
-const NewsItemCard = ({ item }: { item: TNewsItem }) => {
+const NewsCard = ({ item }: { item: TNewsItem }) => {
   const { isScrapped, title, thumbnail, description, newsId, url, providerIcon, datePublished } =
     item;
   const { userInfo, isSignin } = React.useContext<IUserInfoContext>(userInfoContext);
@@ -92,4 +92,4 @@ const NewsItemCard = ({ item }: { item: TNewsItem }) => {
   );
 };
 
-export default memo(NewsItemCard);
+export default memo(NewsCard);
