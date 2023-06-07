@@ -27,7 +27,7 @@ export const parseToNewsItem = (raw: TRawNewsItem) => {
  * @param scrappedNewsList: 스크랩 리스트
  */
 export const setIsScrapped = (newsItemList: TNewsItem[], scrappedNewsList: TNewsItem[]) => {
-  return newsItemList.map((item) => {
+  return newsItemList.map<TNewsItem>((item) => {
     const isScrapped = scrappedNewsList.find((sItem) => {
       return sItem.newsId === item.newsId;
     });
@@ -39,11 +39,25 @@ export const setIsScrapped = (newsItemList: TNewsItem[], scrappedNewsList: TNews
 };
 
 /**
- * 리스트 평탄화 수행
- * @param data: 2차원 배열
+ * 중복 뉴스기사 제거
+ * @param newsItemList: 검색결과 리스트
+ * @param scrappedNewsList: 스크랩 리스트
  */
-export const getFlattenList = (data) => {
-  return flatMap(data, (item) => {
-    return item;
+export const deleteDuplicatedNews = (newsItemList: TNewsItem[], scrappedNewsList: TNewsItem[]) => {
+  if (!scrappedNewsList) return newsItemList;
+  return newsItemList.filter((item) => {
+    return !scrappedNewsList.find((sItem) => {
+      return sItem.newsId === item.newsId;
+    });
   });
+};
+
+/**
+ * 특수문자 포함되었는지 확인
+ * @param str : test할 문자열
+ * @returns 결과값
+ */
+export const hasSpecialCharacters = (str: string) => {
+  const regExp = /[~!@#$%^&*()_+|<>?:{}]/;
+  return !regExp.test(str);
 };

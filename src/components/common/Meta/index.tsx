@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
+import appInfo from '@/constants/appinfo';
 
 /**
  * meta tag, seo 관련 설정
@@ -14,28 +15,27 @@ interface IMetaProps {
 const Meta = ({ title, description, url }: IMetaProps) => {
   return (
     <Head>
-      <title>{title || 'I Love News'}</title>
+      <title>{title || appInfo.app_name}</title>
       <meta
         name="description"
         content={
           // prettier-ignore
-          description || '쉽고 빠른 뉴스검색은 역시 I Love News! 카테고리별로 뉴스 검색, 뉴스 스크랩을 제공합니다.'
+          description || appInfo.app_desc
         }
       />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <meta property="og:title" content={title || 'I Love News'} />
+      <meta property="og:title" content={title || appInfo.app_name} />
       <meta
         property="og:description"
         content={
           // prettier-ignore
-          description || '쉽고 빠른 뉴스검색은 역시 I Love News! 카테고리별로 뉴스 검색, 뉴스 스크랩을 제공합니다.'
+          description || appInfo.app_desc
         }
       />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={url || 'https://ilovenews.vercel.app'} />
-      <meta property="og:image" content="/ilovenews-og.png" />
-      <meta property="og:article:author" content="ilovenews" />
-      <meta name="google-site-verification" content="P6j1qmKWLdH1ySNcOJiN0Ia5aJpv-V2rW2DExEhpH0k" />
+      <meta property="og:url" content={url || appInfo.app_url} />
+      <meta property="og:image" content="/og-thumbnail.png" />
+      <meta property="og:article:author" content={appInfo.author} />
     </Head>
   );
 };

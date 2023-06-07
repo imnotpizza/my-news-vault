@@ -10,9 +10,7 @@ const Container = styled.div`
 `;
 
 const DefaultLoadingUI = () => {
-  return (
-    <div>loading...</div>
-  );
+  return <div>Loading.....</div>;
 };
 
 export default DefaultLoadingUI;

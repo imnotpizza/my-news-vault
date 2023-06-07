@@ -5,7 +5,6 @@ import GlobalStyle from '@/styles/globalStyle';
 import { queryClient } from '@/queries/queryClient';
 import { ThemeProvider } from 'styled-components';
 import Palette from '@/styles/palette';
-import { NewsQueryProvider } from '@/utils/newsQueryContext';
 import { AppProps } from 'next/app';
 
 interface IAppProvidersProps {
@@ -17,15 +16,12 @@ const AppProviders = ({ children, pageProps }: IAppProvidersProps) => {
   return (
     <>
       <GlobalStyle />
-
-      <NewsQueryProvider>
-        <QueryClientProvider client={queryClient}>
-          <Hydrate state={pageProps.dehydratedState}>
-            <ReactQueryDevtools initialIsOpen={true} />
-            <ThemeProvider theme={Palette}>{children}</ThemeProvider>
-          </Hydrate>
-        </QueryClientProvider>
-      </NewsQueryProvider>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <ReactQueryDevtools initialIsOpen={true} />
+          <ThemeProvider theme={Palette}>{children}</ThemeProvider>
+        </Hydrate>
+      </QueryClientProvider>
     </>
   );
 };

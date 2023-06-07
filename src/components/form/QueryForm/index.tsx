@@ -1,13 +1,17 @@
 import ImageButton from '@/components/form/ImageButton';
 import SearchInput from '@/components/form/SearchInput';
-import { newsQueryContext } from '@/utils/newsQueryContext';
-import React from 'react';
+import { hasSpecialCharacters } from '@/utils';
+import { useRouter } from 'next/router';
+import React, { useMemo } from 'react';
 
-const QueryForm = () => {
-  const { setQuery } = React.useContext(newsQueryContext);
+const QueryForm = ({ query }) => {
+  const router = useRouter();
   const [queryForm, setQueryForm] = React.useState({
-    query: '',
+    query,
   });
+
+  const isValidForm = useMemo(() => hasSpecialCharacters(queryForm.query), [queryForm.query]);
+  const isQueryEmpty = useMemo(() => queryForm.query === '', [queryForm.query]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQueryForm({
@@ -18,7 +22,7 @@ const QueryForm = () => {
 
   const onClickSearch = () => {
     if (queryForm.query === '') return;
-    setQuery(queryForm.query);
+    router.push(`?query=${queryForm.query}`);
   };
 
   const onKeyDown = (e) => {
@@ -27,14 +31,23 @@ const QueryForm = () => {
     }
   };
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onClickSearch();
+  };
+
   return (
     <div>
-      <form>
+      <form onSubmit={onSubmit}>
         <div>
           <SearchInput name="query" value={queryForm.query} onChange={onChange} />
         </div>
         <div>
-          <ImageButton onClick={onClickSearch} onKeyDown={onKeyDown} />
+          <ImageButton
+            onClick={onClickSearch}
+            onKeyDown={onKeyDown}
+            disabled={!isValidForm || isQueryEmpty}
+          />
         </div>
       </form>
     </div>

@@ -3,11 +3,11 @@ import React, { memo } from 'react';
 import styled from 'styled-components';
 import { scrapNews, unscrapNews } from '@/api/client';
 import { queryClient } from '@/queries/queryClient';
-import { scrappedNewsListQueryKey } from '@/queries/useScrappedNewsList';
 import { IUserInfoContext, userInfoContext } from '@/utils/userInfoProvider';
 import NewsThumbnail from '@/views/newsItem/NewsThumbnail';
 import ScrapButton from '@/views/newsItem/ScrapButton';
 import VisitButton from '@/views/newsItem/VisitButton';
+import QUERY_KEY from '@/queries/keys';
 
 const Container = styled.div`
   width: 300px;
@@ -35,7 +35,7 @@ const NewsItemCard = ({ item }: { item: TNewsItem }) => {
   const onClickScarp = async () => {
     try {
       await scrapNews(userInfo!.email, item);
-      queryClient.setQueryData([scrappedNewsListQueryKey], (oldData: any) => {
+      queryClient.setQueryData<TNewsItem[]>([QUERY_KEY.SCRAP_LIST], (oldData) => {
         return [...oldData, item];
       });
       alert('success');
@@ -47,7 +47,7 @@ const NewsItemCard = ({ item }: { item: TNewsItem }) => {
   const onClickUnscrap = async () => {
     try {
       await unscrapNews(userInfo!.email, newsId);
-      queryClient.setQueryData([scrappedNewsListQueryKey], (oldData: any) => {
+      queryClient.setQueryData<TNewsItem[]>([QUERY_KEY.SCRAP_LIST], (oldData) => {
         return oldData.filter((news: TNewsItem) => news.newsId !== newsId);
       });
       alert('success');

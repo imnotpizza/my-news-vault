@@ -1,39 +1,28 @@
 'use client';
 
-import React, { useContext, useMemo } from 'react';
+import React from 'react';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
-import { newsQueryContext } from '@/utils/newsQueryContext';
 import QueryForm from '@/components/form/QueryForm';
 import NewsItemList from '@/components/common/NewsItemList';
 import InfiniteScrollWrapper from '@/components/common/InfiniteScrollWrapper';
-import { userInfoContext } from '@/utils/userInfoProvider';
-import { getFlattenList } from '@/utils';
 
-const NewsSearchPage = () => {
-  const { query } = useContext(newsQueryContext);
-  const { userInfo } = React.useContext(userInfoContext);
-
+const NewsSearchPage = ({ query }) => {
   const queryStates = useBingNewsFetch({
     query,
-    enabled: true,
-    userId: userInfo?.email,
+    enabled: query !== '',
+    maxPage: 3,
   });
-
-  const flattenData = useMemo(
-    () => getFlattenList(queryStates.data?.pages),
-    [queryStates.data?.pages],
-  );
 
   return (
     <div>
       <div>
-        <QueryForm />
+        <QueryForm query={query} />
       </div>
       <div>
         <QueryStateWrapper queryStates={queryStates as any}>
           <InfiniteScrollWrapper onTriggered={queryStates.fetchNextPage}>
-            <NewsItemList newsItems={flattenData} />
+            <NewsItemList newsItems={queryStates.flattenData} />
           </InfiniteScrollWrapper>
         </QueryStateWrapper>
       </div>
