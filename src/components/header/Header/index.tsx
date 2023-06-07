@@ -7,11 +7,8 @@ import LoginButton from '@/views/loginStatus/LoginButton';
 import UserProfile from '@/views/header/UserProfile';
 
 const MainContainer = styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
   width: 100%;
-  height: 168px;
+  height: 72px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
 `;
@@ -22,27 +19,29 @@ const TopContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin: 0 20px;
 
-  & > .logo {
-    cursor: pointer;
-    width: 100px;
-    margin-left: 20px;
+  .logo {
     display: flex;
     justify-content: center;
   }
 
-  & > .user {
-    width: 155px;
-    margin-right: 20px;
+  .user {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
   }
+
+  .user > .profile {
+  }
+
+  .user > .login-logout {
+  }
 `;
 
 const Header = () => {
-  const { isSignin } = React.useContext(userInfoContext);
+  const { isSignin, userInfo } = React.useContext(userInfoContext);
   return (
     <MainContainer>
       <TopContainer>
@@ -50,10 +49,10 @@ const Header = () => {
           <AppLogo />
         </div>
         <div className="user">
-          <div>
-            <UserProfile />
+          <div className="profile">
+            {isSignin && <UserProfile src={userInfo.photoURL} alt={userInfo.displayName} />}
           </div>
-          <div>{isSignin ? <LogoutButton /> : <LoginButton />}</div>
+          <div className="login-logout">{isSignin ? <LogoutButton /> : <LoginButton />}</div>
         </div>
       </TopContainer>
     </MainContainer>

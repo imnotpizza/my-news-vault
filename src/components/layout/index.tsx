@@ -4,10 +4,7 @@ import styled from 'styled-components';
 const LayoutContainer = styled.div`
   width: 100%;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  min-width: 360px;
 `;
 
 const BodyContainer = styled.div`

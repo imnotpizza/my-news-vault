@@ -12,6 +12,7 @@ const Button = styled.button`
   height: 38px;
   border: 1px solid #1a2254;
   border-radius: 4px;
+  background: transparent;
 `;
 
 const LoginText = styled.p`
@@ -24,7 +25,6 @@ const LoginText = styled.p`
 const LoginButton = () => {
   return (
     <Button>
-      <div>login image</div>
       <LoginText>로그인</LoginText>
     </Button>
   );
