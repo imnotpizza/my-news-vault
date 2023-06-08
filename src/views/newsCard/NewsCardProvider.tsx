@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import Image from 'next/image';
 
 const ProviderLogo = styled(Image)`
-  height: 14px;
-  margin-top: 24px;
+  margin-right: 8px;
 `;
 
 const NewsCardProvider = ({ src, alt }) => {
-  return <ProviderLogo src={src} alt={alt} width={14} height={14} />;
+  return <ProviderLogo src={src || '/svg/newscard-default-providerlogo.svg'} alt={alt} width={25} height={25} />;
 };
 
 export default NewsCardProvider;

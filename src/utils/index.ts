@@ -8,7 +8,7 @@ import flatMap from 'lodash-es/flatMap';
 export const parseToNewsItem = (raw: TRawNewsItem) => {
   const newsItem: TNewsItem = {
     newsId: raw.name,
-    datePublished: raw.datePublished,
+    datePublished: parseDateToFormat(raw.datePublished),
     description: raw.description,
     providerIcon: raw.provider[0].image ? raw.provider[0].image?.thumbnail.contentUrl : '',
     providerName: raw.provider[0].name,
@@ -60,4 +60,19 @@ export const deleteDuplicatedNews = (newsItemList: TNewsItem[], scrappedNewsList
 export const hasSpecialCharacters = (str: string) => {
   const regExp = /[~!@#$%^&*()_+|<>?:{}]/;
   return !regExp.test(str);
+};
+
+/**
+ * YYYY-MM-DD hh:mm 형식으로 날짜 변환
+ */
+export const parseDateToFormat = (date: string) => {
+  if (!date) return '날짜 없음';
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = d.getMonth() + 1;
+  const day = d.getDate();
+  const hour = d.getHours();
+  const min = d.getMinutes();
+
+  return `${year}-${month}-${day} ${hour}:${min}`;
 };
