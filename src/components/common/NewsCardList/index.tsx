@@ -13,7 +13,6 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: blue;
 `;
 
 const GridContainer = styled.div`

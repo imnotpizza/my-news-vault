@@ -16,13 +16,14 @@ const Container = styled.div`
 const Form = styled.form`
   width: 483px;
   height: 40px;
-  background: #ffffff;
-  border: 1px solid #e8e9ee;
-  border-radius: 4px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  .search-button {
+    margin-left: .5rem;
+  }
 `;
 
 const NewsSearchForm = ({ query }) => {
@@ -61,7 +62,9 @@ const NewsSearchForm = ({ query }) => {
     <Container>
       <Form onSubmit={onSubmit}>
         <SearchInput name="query" value={queryForm.query} onChange={onChange} />
-        <NewsSearchButton onKeyDown={onKeyDown} disabled={!isValidForm || isQueryEmpty} />
+        <div className='search-button'>
+          <NewsSearchButton onKeyDown={onKeyDown} disabled={!isValidForm || isQueryEmpty} />
+        </div>
       </Form>
     </Container>
   );

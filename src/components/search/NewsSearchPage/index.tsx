@@ -20,7 +20,6 @@ const Container = styled.div`
 
   .search-results {
     width: 100%;
-    background-color: yellow;
     display: flex;
     justify-content: center;
   }
