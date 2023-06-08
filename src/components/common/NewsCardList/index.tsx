@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import { TNewsItem } from '@/types';
-import NewsItemCard from '../NewsCard';
+import NewsCard from '../NewsCard';
 
-interface INewsItemListProps {
+interface INewsCardListProps {
   newsItems: TNewsItem[];
 }
 
@@ -22,16 +22,16 @@ const GridContainer = styled.div`
   grid-gap: 36px 20px;
 `;
 
-const NewsItemList = ({ newsItems }: INewsItemListProps) => {
+const NewsCardList = ({ newsItems }: INewsCardListProps) => {
   return (
     <Container>
       <GridContainer>
         {newsItems.map((item) => (
-          <NewsItemCard key={item.newsId} item={item} />
+          <NewsCard key={item.newsId} item={item} />
         ))}
       </GridContainer>
     </Container>
   );
 };
 
-export default memo(NewsItemList);
+export default memo(NewsCardList);

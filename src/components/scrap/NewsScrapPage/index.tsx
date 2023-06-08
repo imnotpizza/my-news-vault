@@ -1,6 +1,6 @@
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import useScrappedNewsList from '@/queries/useScrappedNewsList';
-import NewsItemList from '@/components/common/NewsItemList';
+import NewsItemList from '@/components/common/NewsCardList';
 import React, { useContext } from 'react';
 import { userInfoContext } from '@/utils/userInfoProvider';
 

@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import { scrapNews, unscrapNews } from '@/api/client';
 import { IUserInfoContext, userInfoContext } from '@/utils/userInfoProvider';
 import { addScrapNewsToCache, deleteScrapNewsFromCache } from '@/queries/useScrappedNewsList';
-import NewsCardThumbnail from '@/views/newsItemCard/NewsCardThumbnail';
-import NewsCardProvider from '@/views/newsItemCard/NewsCardProvider';
-import NewsCardTitle from '@/views/newsItemCard/NewsCardTitle';
-import NewsCardDesc from '@/views/newsItemCard/NewsCardDesc';
-import NewsCardPublishedDate from '@/views/newsItemCard/NewsCardPublishedDate';
-import NewsCardScrapButton from '@/views/newsItemCard/NewsCardScrapButton';
+import NewsCardThumbnail from '@/views/newsCard/NewsCardThumbnail';
+import NewsCardProvider from '@/views/newsCard/NewsCardProvider';
+import NewsCardTitle from '@/views/newsCard/NewsCardTitle';
+import NewsCardDesc from '@/views/newsCard/NewsCardDesc';
+import NewsCardPublishedDate from '@/views/newsCard/NewsCardPublishedDate';
+import NewsCardScrapButton from '@/views/newsCard/NewsCardScrapButton';
 
 const Container = styled.div`
   width: 14.44rem;
