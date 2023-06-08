@@ -40,13 +40,12 @@ export const setIsScrapped = (newsItemList: TNewsItem[], scrappedNewsList: TNews
  * @param newsItemList: 검색결과 리스트
  * @param scrappedNewsList: 스크랩 리스트
  */
-export const deleteDuplicatedNews = (newsItemList: TNewsItem[], scrappedNewsList: TNewsItem[]) => {
-  if (!scrappedNewsList) return newsItemList;
-  return newsItemList.filter((item) => {
-    return !scrappedNewsList.find((sItem) => {
-      return sItem.newsId === item.newsId;
-    });
+export const deleteDuplicatedNews = (newsItemList: TNewsItem[]) => {
+  const map = new Map();
+  newsItemList.forEach((item) => {
+    map.set(item.newsId, item);
   });
+  return Array.from(map.values());
 };
 
 /**

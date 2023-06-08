@@ -1,5 +1,5 @@
 import { mockNewsItem, mockRawNewsItem, mockScrappedNewsItem } from './mockData';
-import { parseToNewsItem, setIsScrapped } from '.';
+import { deleteDuplicatedNews, parseToNewsItem, setIsScrapped } from '.';
 
 describe('parseToNewsItem', () => {
   it('should return parsed news item', () => {
@@ -23,5 +23,22 @@ describe('setIsScrapped', () => {
     const result = setIsScrapped(mockNewsItem, mockScrappedNewsItem);
     expect(result[0].isScrapped).toBe(true);
     expect(result[1].isScrapped).toBe(false);
+  });
+});
+
+describe('deleteDuplicatedNews', () => {
+  it('중복된 뉴스 없는경우 원본과 동일', () => {
+    const result = deleteDuplicatedNews(mockNewsItem);
+    expect(result).toBe(result);
+  });
+
+  it('중복된 뉴스 있는경우 중복된 뉴스 제거', () => {
+    const result = deleteDuplicatedNews([
+      ...mockNewsItem,
+      mockNewsItem[0],
+      mockNewsItem[0],
+      mockNewsItem[1],
+    ]);
+    expect(result).toEqual(result);
   });
 });
