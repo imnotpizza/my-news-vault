@@ -1,5 +1,11 @@
 import { mockNewsItem, mockRawNewsItem, mockScrappedNewsItem } from './mockData';
-import { deleteDuplicatedNews, hasSpecialCharacters, parseToNewsItem, setIsScrapped } from '.';
+import {
+  deleteDuplicatedNews,
+  hasSpecialCharacters,
+  parseDateToFormat,
+  parseToNewsItem,
+  setIsScrapped,
+} from '.';
 
 describe('parseToNewsItem', () => {
   it('should return parsed news item', () => {
@@ -51,5 +57,22 @@ describe('hasSpecialCharacters', () => {
   it('특수문자 포함된 경우', () => {
     const result = hasSpecialCharacters('@#$test#@');
     expect(result).toBe(false);
+  });
+});
+
+describe('parseDateToFormat', () => {
+  it('날짜 형식 변환', () => {
+    const result = parseDateToFormat('2021-08-12T10:00:00.0000000Z');
+    expect(result).toBe('2021-08-12');
+  });
+
+  it('날짜 형식 변환 실패시', () => {
+    const result = parseDateToFormat('NOTVALIDDATEFORMAT');
+    expect(result).toBe('등록된 날짜 없음');
+  });
+
+  it('날짜 없을때', () => {
+    const result = parseDateToFormat(undefined);
+    expect(result).toBe('등록된 날짜 없음');
   });
 });
