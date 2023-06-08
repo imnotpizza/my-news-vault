@@ -20,14 +20,21 @@ const Container = styled.div`
 
   .search-results {
     width: 100%;
-    margin-top: 300px;
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+  }
+
+  .infinite-scroll-box {
+    display: flex;
+    justify-content: center;
   }
 `;
 
 const NewsSearchPage = ({ query }) => {
   const queryStates = useBingNewsFetch({
     query,
-    enabled: query !== '',
+    enabled: true,
     maxPage: 3,
   });
 
@@ -37,7 +44,11 @@ const NewsSearchPage = ({ query }) => {
         <QueryForm query={query} />
       </div>
       <div className="search-results">
-        <QueryStateWrapper queryStates={queryStates}>
+        <QueryStateWrapper
+          isLoading={queryStates.isLoading}
+          isError={queryStates.isError}
+          isEmpty={queryStates.flattenData.length === 0}
+        >
           <InfiniteScrollWrapper onTriggered={queryStates.fetchNextPage}>
             <NewsItemList newsItems={queryStates.flattenData} />
           </InfiniteScrollWrapper>

@@ -7,31 +7,30 @@ interface INewsItemListProps {
   newsItems: TNewsItem[];
 }
 
-const GridContainer = styled.div`
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
-`;
-
-const EmptyQueryView = styled.div`
+const Container = styled.div`
+  width: 80%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: blue;
+`;
+
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 231px);
+  grid-gap: 36px 20px;
 `;
 
 const NewsItemList = ({ newsItems }: INewsItemListProps) => {
   return (
-    <GridContainer>
-      {newsItems.length === 0 ? (
-        <EmptyQueryView>결과가 없습니다.</EmptyQueryView>
-      ) : (
-        <>
-          {newsItems.map((item) => (
-            <NewsItemCard key={item.newsId} item={item} />
-          ))}
-        </>
-      )}
-    </GridContainer>
+    <Container>
+      <GridContainer>
+        {newsItems.map((item) => (
+          <NewsItemCard key={item.newsId} item={item} />
+        ))}
+      </GridContainer>
+    </Container>
   );
 };
 

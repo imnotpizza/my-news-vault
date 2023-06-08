@@ -5,7 +5,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface IQueryStateWrapperProps {
-  queryStates: any;
+  isLoading: boolean;
+  isError: boolean;
+  isEmpty: boolean;
   LoadingUI?: () => React.ReactElement;
   ErrorUI?: () => React.ReactElement;
   EmptyUI?: () => React.ReactElement;
@@ -23,19 +25,20 @@ const Container = styled.div`
 
 // FIXME: error-boundary 적용
 const QueryStateWrapper = ({
-  queryStates,
+  isLoading,
+  isError,
+  isEmpty,
   LoadingUI = DefaultLoadingUI,
   ErrorUI = DefaultErrorUI,
   EmptyUI = DefaultEmptyUI,
   children,
 }: IQueryStateWrapperProps) => {
-  const { isLoading, isError, isEmpty } = queryStates;
   return (
     <Container>
       {isLoading && <LoadingUI />}
       {isError && <ErrorUI />}
       {isEmpty && <EmptyUI />}
-      {isLoading || isError || isEmpty ? null : children}
+      {!isLoading && !isError && !isEmpty && children}
     </Container>
   );
 };

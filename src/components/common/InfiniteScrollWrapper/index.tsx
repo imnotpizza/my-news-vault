@@ -27,7 +27,7 @@ const InfiniteScrollWrapper = ({ children, onTriggered }) => {
   }, [inView, onTriggered]);
 
   return (
-    <Container>
+    <Container className='infinite-scroll-box'>
       {children}
       <Threshold ref={ref} />
     </Container>
