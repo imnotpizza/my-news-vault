@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import { TNewsItem } from '@/types';
+import { responsive } from '@/styles/responsive';
 import NewsCard from '../NewsCard';
 
 interface INewsCardListProps {
@@ -17,8 +18,16 @@ const Container = styled.div`
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 231px);
   grid-gap: 36px 20px;
+  grid-template-columns: repeat(4, 1fr);
+  
+
+  ${responsive.tablet} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  ${responsive.mobile} {
+    grid-template-columns: repeat(1, 1fr);
+  };
 `;
 
 const NewsCardList = ({ newsItems }: INewsCardListProps) => {

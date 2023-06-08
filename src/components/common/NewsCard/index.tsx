@@ -11,6 +11,7 @@ import NewsCardDesc from '@/views/newsCard/NewsCardDesc';
 import NewsCardPublishedDate from '@/views/newsCard/NewsCardPublishedDate';
 import NewsCardScrapButton from '@/views/newsCard/NewsCardScrapButton';
 import NewsCardLink from '@/views/newsCard/NewsCardLink';
+import { responsive } from '@/styles/responsive';
 
 const Container = styled.div`
   width: 14.44rem;
@@ -38,17 +39,68 @@ const Container = styled.div`
     margin-top: 0.5rem;
   }
 
-  .bottom {
+  .contents > .url {
+    margin-top: 0.5rem;
+  }
+
+  .bottom-space {
+    width: 82%;
+    background-color: red;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     position: absolute;
-    bottom: 1rem;
+    bottom: .6rem;
   }
 
-  .contents > .url {
-    margin-top: 0.5rem;
+  ${responsive.mobile} {
+    width: 288px;
+    height: 137px;
+    background: #ffffff;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+
+    .contents {
+      width: 80%;
+      height: 100%;
+      margin: 0;
+      margin-right: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .contents > .provider {
+      width: 100%;
+      height: 24px;
+    }
+    .contents > .title {
+      width: 100%;
+      height: 30px;
+      margin-top: 10px;
+    }
+    .contents > .desc {
+      margin-top: 5px;
+      width: 100%;
+    }
+    .contents > .url {
+      margin: 0;
+    }
+    .contents > .bottom-space {
+      width: 100%;
+      height: 30%;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
   }
 `;
 
@@ -85,13 +137,17 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
         <div className="provider">
           <NewsCardProvider src={providerIcon} alt={'provider'} />
         </div>
-        <NewsCardTitle>{title}</NewsCardTitle>
-        <NewsCardDesc>{description}</NewsCardDesc>
+        <div className="title">
+          <NewsCardTitle>{title}</NewsCardTitle>
+        </div>
+        <div className="desc">
+          <NewsCardDesc>{description}</NewsCardDesc>
+        </div>
         <div className="url">
           <NewsCardLink>{url}</NewsCardLink>
         </div>
 
-        <div className="bottom">
+        <div className="bottom-space">
           <NewsCardPublishedDate>{datePublished}</NewsCardPublishedDate>
           <NewsCardScrapButton
             isScrapped={isScrapped}

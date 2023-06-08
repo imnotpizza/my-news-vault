@@ -10,10 +10,12 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin: 0 30px;
 `;
 
 const Form = styled.form`
-  width: 483px;
+  max-width: 483px;
+  min-width: 240px;
   height: 40px;
   display: flex;
   flex-direction: row;

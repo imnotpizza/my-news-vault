@@ -37,6 +37,13 @@ export const getUserInfoInServerside = async (
       };
     }
   } catch (e) {
+    // FIXME: token refresh 로직 추가
+    if (e.code === 'auth/id-token-expired') {
+      return {
+        ...pageProps,
+        userInfo: null,
+      };
+    }
     throw new Error(ERRCODE.USER_AUTH_FAILED);
   }
 };

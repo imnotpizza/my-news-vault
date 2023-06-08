@@ -1,3 +1,4 @@
+import { responsive } from '@/styles/responsive';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -20,6 +21,10 @@ const Link = styled.p`
   cursor: pointer;
   &:hover {
     text-decoration: underline;
+  }
+
+  ${responsive.mobile} {
+    width: 80%;
   }
 `;
 

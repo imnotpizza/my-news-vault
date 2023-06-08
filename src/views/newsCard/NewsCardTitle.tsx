@@ -1,3 +1,4 @@
+import { responsive } from '@/styles/responsive';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -15,6 +16,22 @@ const Title = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+
+  ${responsive.mobile} {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1;
+    color: #1a2254;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
 `;
 
 const NewsCardTitle = ({ children }) => {

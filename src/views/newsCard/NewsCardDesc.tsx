@@ -1,3 +1,4 @@
+import { responsive } from '@/styles/responsive';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -17,6 +18,10 @@ const Desc = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+
+  ${responsive.mobile} {
+    display: none;
+  }
 `;
 
 const NewsCardDesc = ({ children }) => {
