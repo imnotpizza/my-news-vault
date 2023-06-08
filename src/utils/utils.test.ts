@@ -1,5 +1,5 @@
 import { mockNewsItem, mockRawNewsItem, mockScrappedNewsItem } from './mockData';
-import { deleteDuplicatedNews, parseToNewsItem, setIsScrapped } from '.';
+import { deleteDuplicatedNews, hasSpecialCharacters, parseToNewsItem, setIsScrapped } from '.';
 
 describe('parseToNewsItem', () => {
   it('should return parsed news item', () => {
@@ -40,5 +40,16 @@ describe('deleteDuplicatedNews', () => {
       mockNewsItem[1],
     ]);
     expect(result).toEqual(result);
+  });
+});
+
+describe('hasSpecialCharacters', () => {
+  it('특수문자 포함되지 않은 경우', () => {
+    const result = hasSpecialCharacters('test가나다123TEST');
+    expect(result).toBe(true);
+  });
+  it('특수문자 포함된 경우', () => {
+    const result = hasSpecialCharacters('@#$test#@');
+    expect(result).toBe(false);
   });
 });
