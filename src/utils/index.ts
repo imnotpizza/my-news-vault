@@ -27,9 +27,7 @@ export const parseToNewsItem = (raw: TRawNewsItem) => {
  */
 export const setIsScrapped = (newsItemList: TNewsItem[], scrappedNewsList: TNewsItem[]) => {
   return newsItemList.map<TNewsItem>((item) => {
-    const isScrapped = scrappedNewsList.find((sItem) => {
-      return sItem.newsId === item.newsId;
-    });
+    const isScrapped = scrappedNewsList.find((sItem) => sItem.newsId === item.newsId);
     return {
       ...item,
       isScrapped: Boolean(isScrapped),
@@ -72,7 +70,7 @@ export const parseDateToFormat = (date: string) => {
   const day = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate();
 
   // 날짜 형식 잘못된 경우
-  if(!year || !month || !day) return '등록된 날짜 없음';
+  if (!year || !month || !day) return '등록된 날짜 없음';
 
   return `${year}-${month}-${day}`;
 };

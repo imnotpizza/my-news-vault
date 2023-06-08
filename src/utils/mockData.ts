@@ -4,7 +4,7 @@ export const mockRawNewsItem: TRawNewsItem = {
   datePublished: '2021-08-01T00:00:00.0000000Z',
   description: 'test',
   headline: true,
-  name: 'test',
+  name: 'scrapped-newsId',
   provider: [
     {
       image: {
@@ -25,3 +25,53 @@ export const mockRawNewsItem: TRawNewsItem = {
   },
   url: 'test',
 };
+
+export const mockNewsItem = [
+  {
+    newsId: 'scrapped-newsId',
+    datePublished: '2021-08-01',
+    description: 'test',
+    providerIcon: 'test',
+    providerName: 'test',
+    thumbnail: 'test',
+    title: 'scrapped-newsId',
+    isScrapped: false,
+    url: 'test',
+  },
+  {
+    newsId: 'not-scrapped-newsId',
+    datePublished: '2021-08-01',
+    description: 'test',
+    providerIcon: 'test',
+    providerName: 'test',
+    thumbnail: 'test',
+    title: 'not-scrapped-newsId',
+    isScrapped: false,
+    url: 'test',
+  },
+];
+
+export const mockScrappedNewsItem = [
+  {
+    newsId: 'scrapped-newsId',
+    datePublished: '2021-08-01',
+    description: 'test',
+    providerIcon: 'test',
+    providerName: 'test',
+    thumbnail: 'test',
+    title: 'scrapped-newsId',
+    isScrapped: true,
+    url: 'test',
+  },
+  {
+    newsId: 'not-scrapped-newsId2',
+    datePublished: '2021-08-01',
+    description: 'test',
+    providerIcon: 'test',
+    providerName: 'test',
+    thumbnail: 'test',
+    title: 'not-scrapped-newsId2',
+    isScrapped: true,
+    url: 'test',
+  },
+];
