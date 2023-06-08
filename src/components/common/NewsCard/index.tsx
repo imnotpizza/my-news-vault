@@ -42,8 +42,8 @@ const Container = styled.div`
 `;
 
 const NewsCard = ({ item }: { item: TNewsItem }) => {
-  const { isScrapped, title, thumbnail, description, newsId, url, providerIcon, datePublished } =
-    item;
+  // eslint-disable-next-line
+  const { isScrapped, title, thumbnail, description, newsId, url, providerIcon, datePublished } = item;
   const { userInfo, isSignin } = React.useContext<IUserInfoContext>(userInfoContext);
 
   const onClickScarp = async () => {
