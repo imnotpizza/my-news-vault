@@ -25,7 +25,7 @@ const NewsCardList = ({ newsItems }: INewsCardListProps) => {
   return (
     <Container>
       <GridContainer>
-        {newsItems.map((item) => (
+        {newsItems?.map((item) => (
           <NewsCard key={item.newsId} item={item} />
         ))}
       </GridContainer>

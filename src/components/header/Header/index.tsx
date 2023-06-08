@@ -16,10 +16,8 @@ const MainContainer = styled.div`
 const TopContainer = styled.div`
   height: 64px;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  margin: 0 20px;
+  margin: 0 30px;
 
   .logo {
     display: flex;
@@ -28,12 +26,12 @@ const TopContainer = styled.div`
 
   .user {
     display: flex;
-    flex-direction: row;
     justify-content: flex-end;
     align-items: center;
   }
 
   .user > .profile {
+    margin-left: 1rem;
   }
 
   .user > .login-logout {
@@ -49,10 +47,10 @@ const Header = () => {
           <AppLogo />
         </div>
         <div className="user">
+          <div className="login-logout-button">{isSignin ? <LogoutButton /> : <LoginButton />}</div>
           <div className="profile">
-            {isSignin && <UserProfile src={userInfo.photoURL} alt={userInfo.displayName} />}
+            {isSignin && <UserProfile src={userInfo?.photoURL} alt={userInfo?.displayName} />}
           </div>
-          <div className="login-logout">{isSignin ? <LogoutButton /> : <LoginButton />}</div>
         </div>
       </TopContainer>
     </MainContainer>

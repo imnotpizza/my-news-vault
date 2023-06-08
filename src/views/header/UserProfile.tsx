@@ -9,7 +9,7 @@ const Profile = styled(Image)`
 `;
 
 const UserProfile = ({ src, alt }) => {
-  return <Profile src={src} alt={alt} width={38} height={38} />;
+  return <Profile src={src || '/img/default-user-profile.png'} alt={alt} width={38} height={38} />;
 };
 
 export default UserProfile;
