@@ -45,7 +45,6 @@ const Container = styled.div`
 
   .bottom-space {
     width: 82%;
-    background-color: red;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
