@@ -5,6 +5,6 @@ export const MOBILE_THRESHOLD = 425;
 
 export const responsive = {
   desktop: `@media screen and (min-width: ${DESKTOP_THRESHOLD}px)`,
-  tablet: `@media screen and (max-width: ${TABLET_THRESHOLD}px)`,
-  mobile: `@media screen and (max-width: ${MOBILE_THRESHOLD}px)`,
+  tablet: `@media screen and (min-width: ${TABLET_THRESHOLD}px) and (max-width: ${DESKTOP_THRESHOLD}px)`,
+  mobile: `@media screen and (min-width: ${MOBILE_THRESHOLD}px) and (max-width: ${TABLET_THRESHOLD}px)`,
 };

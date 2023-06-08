@@ -20,14 +20,13 @@ const GridContainer = styled.div`
   display: grid;
   grid-gap: 36px 20px;
   grid-template-columns: repeat(4, 1fr);
-  
 
   ${responsive.tablet} {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   ${responsive.mobile} {
     grid-template-columns: repeat(1, 1fr);
-  };
+  } ;
 `;
 
 const NewsCardList = ({ newsItems }: INewsCardListProps) => {

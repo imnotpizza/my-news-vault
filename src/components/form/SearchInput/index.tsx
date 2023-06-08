@@ -1,3 +1,4 @@
+import { responsive } from '@/styles/responsive';
 import styled from 'styled-components';
 
 const SearchInput = styled.input.attrs({ placeholder: '검색어를 입력해주세요' })`
@@ -8,6 +9,10 @@ const SearchInput = styled.input.attrs({ placeholder: '검색어를 입력해주
   font-weight: 350;
   font-size: 0.81rem;
   padding-left: 0.94rem;
+
+  ${responsive.mobile} {
+    width: 100%;
+  }
 `;
 
 export default SearchInput;

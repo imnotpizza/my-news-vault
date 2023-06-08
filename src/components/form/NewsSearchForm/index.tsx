@@ -1,4 +1,5 @@
 import SearchInput from '@/components/form/SearchInput';
+import { responsive } from '@/styles/responsive';
 import { hasSpecialCharacters } from '@/utils';
 import NewsSearchButton from '@/views/newsSearchForm/NewsSearchButton';
 import { useRouter } from 'next/router';
@@ -23,7 +24,12 @@ const Form = styled.form`
   align-items: center;
 
   .search-button {
-    margin-left: .5rem;
+    margin-left: 0.5rem;
+  }
+
+  ${responsive.mobile} {
+    width: 100%;
+    min-width: 288px;
   }
 `;
 
@@ -63,7 +69,7 @@ const NewsSearchForm = ({ query }) => {
     <Container>
       <Form onSubmit={onSubmit}>
         <SearchInput name="query" value={queryForm.query} onChange={onChange} />
-        <div className='search-button'>
+        <div className="search-button">
           <NewsSearchButton onKeyDown={onKeyDown} disabled={!isValidForm || isQueryEmpty} />
         </div>
       </Form>
