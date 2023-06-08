@@ -1,5 +1,4 @@
 import { TNewsItem, TRawNewsItem } from '@/types';
-import flatMap from 'lodash-es/flatMap';
 
 /**
  * Bing News API 응답데이터를 클라이언트에서 사용할 형식으로 변환
@@ -66,13 +65,14 @@ export const hasSpecialCharacters = (str: string) => {
  * YYYY-MM-DD hh:mm 형식으로 날짜 변환
  */
 export const parseDateToFormat = (date: string) => {
-  if (!date) return '날짜 없음';
+  if (!date) return '등록된 날짜 없음';
   const d = new Date(date);
   const year = d.getFullYear();
-  const month = d.getMonth() + 1;
-  const day = d.getDate();
-  const hour = d.getHours();
-  const min = d.getMinutes();
+  const month = d.getMonth() + 1 < 10 ? `0${d.getMonth() + 1}` : d.getMonth() + 1;
+  const day = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate();
 
-  return `${year}-${month}-${day} ${hour}:${min}`;
+  // 날짜 형식 잘못된 경우
+  if(!year || !month || !day) return '등록된 날짜 없음';
+
+  return `${year}-${month}-${day}`;
 };
