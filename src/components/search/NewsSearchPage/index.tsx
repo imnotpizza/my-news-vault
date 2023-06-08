@@ -11,22 +11,26 @@ const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;
 
   .search {
     width: 100%;
+    height: 40px;
+    margin-top: 48px;
   }
 
   .search-results {
     width: 100%;
+    margin-top: 52px;
+    min-height: 70%;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .infinite-scroll-box {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
   }
 `;
 
@@ -45,7 +49,7 @@ const NewsSearchPage = ({ query }) => {
       <div className="search-results">
         <QueryStateWrapper
           isLoading={queryStates.isLoading}
-          isError={queryStates.isError}
+          isError={true}
           isEmpty={queryStates.flattenData.length === 0}
         >
           <InfiniteScrollWrapper onTriggered={queryStates.fetchNextPage}>

@@ -38,6 +38,7 @@ const QueryStateWrapper = ({
       {isLoading && <LoadingUI />}
       {isError && <ErrorUI />}
       {isEmpty && <EmptyUI />}
+      {/* prettier-ignore */}
       {!isLoading && !isError && !isEmpty && children}
     </Container>
   );
