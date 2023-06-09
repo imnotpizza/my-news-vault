@@ -7,6 +7,7 @@ import { queryClient } from '@/queries/queryClient';
 import { useMemo } from 'react';
 import { flatMap } from 'lodash-es';
 import QUERY_KEY from './keys';
+import jsonData from '../../mockNews.json';
 
 interface Params {
   query: TBingNewsQuery['query'];
@@ -19,7 +20,7 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
     [QUERY_KEY.BING_NEWS_SEARCH, query],
     async ({ pageParam = 1 }) => {
       // const newsItems = await fetchBingNews(query, pageParam);
-      const newsItems = JSON.parse(localStorage.getItem('mock-news-items'));
+      const newsItems = jsonData;
       // 현재 뉴스목록
       const curNewsItems = queryClient.getQueryData<InfiniteData<TNewsItem[]>>([
         QUERY_KEY.BING_NEWS_SEARCH,
@@ -50,6 +51,7 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
   // 이중배열 구조 평탄화
   const flattenData = useMemo(() => {
     return flatMap(queryStates.data?.pages, (item) => {
+      console.log('########### 1111', queryStates.data, item);
       return item;
     });
   }, [queryStates.data?.pages]);

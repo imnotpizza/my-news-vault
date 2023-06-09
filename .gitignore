@@ -36,5 +36,5 @@ next-env.d.ts
 
 # yarn cache
 .yarn
-
+/mockNews.json
 # firebase
