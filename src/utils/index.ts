@@ -28,7 +28,6 @@ export const parseToNewsItem = (raw: TRawNewsItem) => {
 export const setIsScrapped = (newsItemList: TNewsItem[], scrappedNewsList: TNewsItem[]) => {
   if (!scrappedNewsList) return newsItemList;
   const scrappedNewsIdList = scrappedNewsList.map((item) => item.newsId);
-  console.log(scrappedNewsIdList);
   return newsItemList.map((item) => {
     if (scrappedNewsIdList.includes(item.newsId)) {
       return { ...item, isScrapped: true };
@@ -39,16 +38,19 @@ export const setIsScrapped = (newsItemList: TNewsItem[], scrappedNewsList: TNews
 };
 
 /**
- * 중복 뉴스기사 제거
+ * newNewsItems에서 curNewsItems에 이미 존재하는 중복요소 제거
  * @param newsItemList: 검색결과 리스트
  * @param scrappedNewsList: 스크랩 리스트
  */
-export const deleteDuplicatedNews = (newsItemList: TNewsItem[]) => {
-  const map = new Map();
-  newsItemList.forEach((item) => {
-    map.set(item.newsId, item);
+export const deleteDuplicatedNews = (curNewsItems: TNewsItem[], newNewsItems: TNewsItem[]) => {
+  if (curNewsItems.length === 0) return newNewsItems;
+  return newNewsItems.filter((item) => {
+    const isDuplicated = curNewsItems.find((curItem) => {
+      // console.log('########## 111111', curItem.newsId, '//////',item.newsId);
+      return curItem.newsId === item.newsId;
+    });
+    return !isDuplicated;
   });
-  return Array.from(map.values());
 };
 
 /**

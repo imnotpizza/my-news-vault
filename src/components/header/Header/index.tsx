@@ -20,6 +20,7 @@ const TopContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
+  padding: 0 20px;
   ${contentLayoutStyle};
   .logo {
     display: flex;
@@ -31,7 +32,6 @@ const TopContainer = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 30px;
   }
 
   .user {
@@ -41,9 +41,11 @@ const TopContainer = styled.div`
   }
 
   .user > .profile {
+    margin-left: 10px;
   }
 
   .user > .login-logout {
+    margin-left: 40px;
   }
 `;
 
@@ -57,10 +59,10 @@ const Header = () => {
         </div>
 
         <div className="user">
-        <div className='scrap-link'>
-          <HeaderLinkItem href="/scrap">스크랩 목록</HeaderLinkItem>
-        </div>
-          <div className="login-logout-button">{isSignin ? <LogoutButton /> : <LoginButton />}</div>
+          <div className="scrap-link">
+            <HeaderLinkItem href="/scrap">스크랩 목록</HeaderLinkItem>
+          </div>
+          <div className="login-logout">{isSignin ? <LogoutButton /> : <LoginButton />}</div>
           <div className="profile">
             {isSignin && <UserProfile src={userInfo?.photoURL} alt={userInfo?.displayName} />}
           </div>
