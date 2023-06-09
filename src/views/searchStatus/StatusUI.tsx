@@ -1,6 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
+export const RoundUICover = styled.div`
+  width: 6.88rem;
+  height: 6.88rem;
+  border-radius: 3.44rem;
+  background: ${(p) => p.theme.White};;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -10,15 +20,6 @@ const Container = styled.div`
   height: 100%;
 `;
 
-const StatusImage = styled.div`
-  width: 6.88rem;
-  height: 6.88rem;
-  border-radius: 3.44rem;
-  background: ${(p) => p.theme.White};;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 const Text = styled.p`
   font-weight: 300;
@@ -36,7 +37,7 @@ interface IStatusUIProps {
 const StatusUI = ({ statusImage, text }: IStatusUIProps) => {
   return (
     <Container>
-      <StatusImage>{statusImage}</StatusImage>
+      {statusImage}
       {text && <Text>{text}</Text>}
     </Container>
   );

@@ -1,12 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
-import StatusUI from './StatusUI';
+import StatusUI, { RoundUICover } from './StatusUI';
 
 const DefaultEmptyUI = () => {
   return (
     <StatusUI
       statusImage={
-        <Image src="/svg/search-none-ui.svg" width={50} height={50} alt="검색 결과가 없습니다." />
+        <RoundUICover>
+          <Image src="/svg/search-none-ui.svg" width={50} height={50} alt="검색 결과가 없습니다." />
+        </RoundUICover>
       }
       text="검색 결과가 없습니다."
     />

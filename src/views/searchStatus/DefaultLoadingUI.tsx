@@ -1,13 +1,11 @@
 import React from 'react';
-import Image from 'next/image';
+import SquareLoader from 'react-spinners/SquareLoader';
+import Palette from '@/styles/palette';
+import { styled } from 'styled-components';
 import StatusUI from './StatusUI';
 
 const DefaultLoadingUI = () => {
-  return (
-    <StatusUI
-      statusImage={<Image src="/svg/search-ui.svg" width={50} height={50} alt="로딩중" />}
-    />
-  );
+  return <StatusUI statusImage={<SquareLoader size={80} color={Palette.Navy.Default} />} />;
 };
 
 export default DefaultLoadingUI;
