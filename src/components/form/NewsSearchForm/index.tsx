@@ -12,7 +12,7 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 0 30px;
+  margin: 0 20px;
 `;
 
 const Form = styled.form`
@@ -74,7 +74,7 @@ const NewsSearchForm = ({ query }) => {
         <div className="search-button">
           <NewsSearchButton onKeyDown={onKeyDown} disabled={!isValidForm || isQueryEmpty} />
         </div>
-      <AlertText show={!isValidForm}>특수문자는 입력할 수 없습니다.</AlertText>
+        <AlertText show={!isValidForm}>특수문자는 입력할 수 없습니다.</AlertText>
       </Form>
     </Container>
   );
