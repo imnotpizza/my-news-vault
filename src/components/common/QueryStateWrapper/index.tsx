@@ -2,15 +2,15 @@ import DefaultEmptyUI from '@/views/searchStatus/DefaultEmptyUI';
 import DefaultErrorUI from '@/views/searchStatus/DefaultErrorUI';
 import DefaultLoadingUI from '@/views/searchStatus/DefaultLoadingUI';
 import React from 'react';
-import styled from 'styled-components';
+import { ErrorBoundary } from 'react-error-boundary';
 
 export interface IQueryStateWrapperProps {
   isLoading: boolean;
   isError: boolean;
   isEmpty: boolean;
-  LoadingUI?: () => React.ReactElement;
-  ErrorUI?: () => React.ReactElement;
-  EmptyUI?: () => React.ReactElement;
+  LoadingUI?: (...args: any[]) => React.ReactElement;
+  ErrorUI?: (...args: any[]) => React.ReactElement;
+  EmptyUI?: (...args: any[]) => React.ReactElement;
   children: React.ReactNode;
 }
 
@@ -35,7 +35,7 @@ const QueryStateWrapper = ({
     }
   };
 
-  return <>{getUIByState()}</>;
+  return <ErrorBoundary fallback={<DefaultErrorUI />}>{getUIByState()}</ErrorBoundary>;
 };
 
 export default QueryStateWrapper;
