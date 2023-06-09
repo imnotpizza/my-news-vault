@@ -19,7 +19,6 @@ const ImgButton = styled.button`
 const ScrapButton = ({ isScrapped, onClickScarp, onClickUnscrap }: IScrapButtonProps) => {
   return (
     <ImgButton
-      disabled={disabled}
       onClick={() => {
         if (isScrapped) {
           onClickUnscrap();
