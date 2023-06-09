@@ -21,7 +21,6 @@ const Container = styled.div`
   .search-results {
     width: 100%;
     margin-top: 52px;
-    min-height: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
