@@ -17,7 +17,6 @@ const ImgButton = styled.button`
   cursor: pointer;
 `;
 
-// TODO: optimistic update로 변경
 const ScrapButton = ({ isScrapped, disabled, onClickScarp, onClickUnscrap }: IScrapButtonProps) => {
   return (
     <ImgButton disabled={disabled} onClick={isScrapped ? onClickUnscrap : onClickScarp}>

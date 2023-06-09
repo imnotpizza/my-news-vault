@@ -30,7 +30,7 @@ const NewsScrapPage = () => {
       <QueryStateWrapper
         isLoading={queryStates.isLoading}
         isError={queryStates.isError}
-        isEmpty={queryStates.data.length === 0}
+        isEmpty={queryStates.data?.length === 0}
       >
         <NewsItemList newsItems={queryStates.data} />
       </QueryStateWrapper>

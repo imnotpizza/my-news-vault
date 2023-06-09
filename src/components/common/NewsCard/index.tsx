@@ -50,7 +50,7 @@ const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     position: absolute;
-    bottom: .6rem;
+    bottom: 0.6rem;
   }
 
   ${responsive.mobile} {
