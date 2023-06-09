@@ -4,7 +4,6 @@ import ScrapIcon from './ScrapIcon';
 
 interface IScrapButtonProps {
   isScrapped: boolean;
-  disabled: boolean;
   onClickScarp: () => void;
   onClickUnscrap: () => void;
 }
@@ -17,17 +16,18 @@ const ImgButton = styled.button`
   cursor: pointer;
 `;
 
-const ScrapButton = ({ isScrapped, disabled, onClickScarp, onClickUnscrap }: IScrapButtonProps) => {
-
-
+const ScrapButton = ({ isScrapped, onClickScarp, onClickUnscrap }: IScrapButtonProps) => {
   return (
-    <ImgButton disabled={disabled} onClick={() => {
-      if (isScrapped) {
-        onClickUnscrap();
-      } else {
-        onClickScarp();
-      }
-    }}>
+    <ImgButton
+      disabled={disabled}
+      onClick={() => {
+        if (isScrapped) {
+          onClickUnscrap();
+        } else {
+          onClickScarp();
+        }
+      }}
+    >
       <ScrapIcon clicked={isScrapped} />
     </ImgButton>
   );
