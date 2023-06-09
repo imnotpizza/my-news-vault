@@ -4,7 +4,7 @@ import DefaultLoadingUI from '@/views/searchStatus/DefaultLoadingUI';
 import React from 'react';
 import styled from 'styled-components';
 
-interface IQueryStateWrapperProps {
+export interface IQueryStateWrapperProps {
   isLoading: boolean;
   isError: boolean;
   isEmpty: boolean;
@@ -23,7 +23,6 @@ const Container = styled.div`
   position: relative;
 `;
 
-// FIXME: error-boundary 적용
 const QueryStateWrapper = ({
   isLoading,
   isError,
@@ -33,15 +32,19 @@ const QueryStateWrapper = ({
   EmptyUI = DefaultEmptyUI,
   children,
 }: IQueryStateWrapperProps) => {
-  return (
-    <Container>
-      {isLoading && <LoadingUI />}
-      {isError && <ErrorUI />}
-      {isEmpty && <EmptyUI />}
-      {/* prettier-ignore */}
-      {!isLoading && !isError && !isEmpty && children}
-    </Container>
-  );
+  const getUIByState = () => {
+    if (isLoading) {
+      return <LoadingUI />;
+    } else if (isError) {
+      return <ErrorUI />;
+    } else if (isEmpty) {
+      return <EmptyUI />;
+    } else {
+      return children;
+    }
+  };
+
+  return <Container>{getUIByState()}</Container>;
 };
 
 export default QueryStateWrapper;
