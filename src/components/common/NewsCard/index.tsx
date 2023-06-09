@@ -113,10 +113,12 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
 
   const onClickScarp = async () => {
     try {
+      console.log('########### 1111', userInfo!.email, item)
       await scrapNews(userInfo!.email, item);
       addScrapNewsToCache(item);
-      alert('success');
+      alert('scrap success');
     } catch (e) {
+      console.error(e);
       alert('failed');
     }
   };
@@ -125,8 +127,9 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
     try {
       await unscrapNews(userInfo!.email, newsId);
       deleteScrapNewsFromCache(newsId);
-      alert('success');
+      alert('unscrap success');
     } catch (e) {
+      console.error(e);
       alert('failed');
     }
   };
@@ -150,6 +153,7 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
 
         <div className="bottom-space">
           <NewsCardPublishedDate>{datePublished}</NewsCardPublishedDate>
+          {isScrapped.toString()}
           <NewsCardScrapButton
             isScrapped={isScrapped}
             disabled={!isSignin}

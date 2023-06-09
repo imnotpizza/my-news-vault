@@ -26,12 +26,14 @@ export const parseToNewsItem = (raw: TRawNewsItem) => {
  * @param scrappedNewsList: 스크랩 리스트
  */
 export const setIsScrapped = (newsItemList: TNewsItem[], scrappedNewsList: TNewsItem[]) => {
-  return newsItemList.map<TNewsItem>((item) => {
-    const isScrapped = scrappedNewsList.find((sItem) => sItem.newsId === item.newsId);
-    return {
-      ...item,
-      isScrapped: Boolean(isScrapped),
-    };
+  const scrappedNewsIdList = scrappedNewsList.map((item) => item.newsId);
+  console.log(scrappedNewsIdList);
+  return newsItemList.map((item) => {
+    if (scrappedNewsIdList.includes(item.newsId)) {
+      return { ...item, isScrapped: true };
+    } else {
+      return { ...item, isScrapped: false };
+    }
   });
 };
 

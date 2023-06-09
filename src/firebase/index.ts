@@ -4,6 +4,7 @@ import { getFirestore } from 'firebase/firestore/lite';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { TUserInfo } from '@/types';
 import { removeToken, saveToken } from '@/api/next-api';
+import { fetchScrappedListQuery, removeQueryCache } from '@/queries/useScrappedNewsList';
 import firebaseJson from '../../firebase.json';
 
 // Initialize Firebase
@@ -18,12 +19,15 @@ export const googleProvider = new GoogleAuthProvider();
 
 export const signin = async (): Promise<TUserInfo> => {
   const res = await signInWithPopup(auth, googleProvider);
+  const { displayName, email, photoURL } = res.user;
+
   // 토큰 획득
   const token = await res.user.getIdToken();
   // 쿠키에 토큰 저장
   await saveToken(token);
+  // 스크랩 데이터 호출
+  await fetchScrappedListQuery(email);
 
-  const { displayName, email, photoURL } = res.user;
   return {
     displayName,
     email,
@@ -34,4 +38,5 @@ export const signin = async (): Promise<TUserInfo> => {
 export const signout = async () => {
   await removeToken();
   await auth.signOut();
+  removeQueryCache();
 };

@@ -5,6 +5,7 @@ import { userInfoContext } from '@/utils/userInfoProvider';
 import LogoutButton from '@/views/loginStatus/LogoutButton';
 import LoginButton from '@/views/loginStatus/LoginButton';
 import UserProfile from '@/views/header/UserProfile';
+import Link from 'next/link';
 
 const MainContainer = styled.div`
   width: 100%;
@@ -47,6 +48,13 @@ const Header = () => {
           <AppLogo />
         </div>
         <div className="user">
+          <Link
+            href={{
+              pathname: '/scrap',
+            }}
+          >
+            scrap list
+          </Link>
           <div className="login-logout-button">{isSignin ? <LogoutButton /> : <LoginButton />}</div>
           <div className="profile">
             {isSignin && <UserProfile src={userInfo?.photoURL} alt={userInfo?.displayName} />}

@@ -52,9 +52,9 @@ const NewsSearchPage = ({ query }) => {
           isError={queryStates.isError}
           isEmpty={queryStates.flattenData?.length === 0}
         >
-          <InfiniteScrollWrapper onTriggered={queryStates.fetchNextPage}>
+          {/* <InfiniteScrollWrapper onTriggered={queryStates.fetchNextPage}> */}
             <NewsItemList newsItems={queryStates.flattenData} />
-          </InfiniteScrollWrapper>
+          {/* </InfiniteScrollWrapper> */}
         </QueryStateWrapper>
       </div>
     </Container>
