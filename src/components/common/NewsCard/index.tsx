@@ -1,5 +1,5 @@
 import { TNewsItem } from '@/types';
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import styled from 'styled-components';
 import { scrapNews, unscrapNews } from '@/api/client';
 import { IUserInfoContext, userInfoContext } from '@/utils/userInfoProvider';
@@ -13,6 +13,7 @@ import NewsCardScrapButton from '@/views/newsCard/NewsCardScrapButton';
 import NewsCardLink from '@/views/newsCard/NewsCardLink';
 import { responsive } from '@/styles/responsive';
 import { updateNewsSearchQuery } from '@/queries/useBingNewsFetch';
+import { useRouter } from 'next/router';
 
 const Container = styled.div`
   width: 14.44rem;
@@ -108,6 +109,9 @@ const Container = styled.div`
 `;
 
 const NewsCard = ({ item }: { item: TNewsItem }) => {
+  const router = useRouter();
+  const searchQuery = useMemo(() => router.query.query as string, [router.query.query]);
+
   // eslint-disable-next-line
   const { isScrapped, title, thumbnail, description, newsId, url, providerIcon, datePublished } =
     item;
@@ -121,7 +125,7 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
     try {
       await scrapNews(userInfo!.email, item);
       addScrapNewsToCache(item);
-      updateNewsSearchQuery(newsId, true);
+      updateNewsSearchQuery(newsId, true, searchQuery);
       alert('scrap success');
     } catch (e) {
       console.error(e);
@@ -134,7 +138,7 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
     try {
       await unscrapNews(userInfo!.email, newsId);
       deleteScrapNewsFromCache(newsId);
-      updateNewsSearchQuery(newsId, false);
+      updateNewsSearchQuery(newsId, false, searchQuery);
       alert('unscrap success');
     } catch (e) {
       console.error(e);

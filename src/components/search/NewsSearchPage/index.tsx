@@ -46,7 +46,9 @@ const NewsSearchPage = ({ query }) => {
   const { ref } = useInfiniteScroll({
     onTriggered: () => {
       // alert('triggered');
-      queryStates.fetchNextPage();
+      if (queryStates.hasNextPage) {
+        queryStates.fetchNextPage();
+      }
     },
   });
 
