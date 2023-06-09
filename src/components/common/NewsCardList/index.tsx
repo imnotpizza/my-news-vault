@@ -36,7 +36,8 @@ const GridContainer = styled.div`
   ${responsive.mobile} {
     width: 100%;
     grid-template-columns: repeat(1, 1fr);
-  } ;
+  }
+  margin-bottom: 30px;
 `;
 
 const NewsCardList = ({ newsItems }: INewsCardListProps) => {

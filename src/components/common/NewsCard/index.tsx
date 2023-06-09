@@ -143,7 +143,7 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
   };
 
   return (
-    <Container>
+    <Container className='news-card'>
       <NewsCardThumbnail src={thumbnail} alt={title} />
       <div className="contents">
         <div className="provider">

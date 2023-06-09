@@ -4,7 +4,7 @@ import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import QueryForm from '@/components/form/NewsSearchForm';
 import NewsItemList from '@/components/common/NewsCardList';
 import styled from 'styled-components';
-import { contentLayoutStyle } from '@/styles/responsive';
+import { contentLayoutStyle, responsive } from '@/styles/responsive';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 
 const Container = styled.div`
@@ -15,17 +15,25 @@ const Container = styled.div`
   .search {
     width: 100%;
     height: 40px;
-    margin-top: 48px;
+    margin-top: 28px;
+    background-color: green;
+
+    ${responsive.mobile} {
+      height: 60px;
+    }
   }
 `;
 
 const SearchResultContainer = styled.div`
   width: 100%;
-  margin-top: 60px;
+  margin-top: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  ${responsive.mobile} {
+      margin-top: 30px;
+    }
 `;
 
 const InfiniteScrollThresholdBox = styled.div`
@@ -38,15 +46,16 @@ const InfiniteScrollThresholdBox = styled.div`
 `;
 
 const NewsSearchPage = ({ query }) => {
-  const { ref } = useInfiniteScroll({
-    onTriggered: () => {
-      // alert('triggered');
-    },
-  });
   const queryStates = useBingNewsFetch({
     query,
     enabled: true,
     maxPage: 3,
+  });
+  const { ref } = useInfiniteScroll({
+    onTriggered: () => {
+      // alert('triggered');
+      queryStates.fetchNextPage();
+    },
   });
 
   return (
