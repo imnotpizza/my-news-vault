@@ -1,6 +1,7 @@
 import SearchInput from '@/components/form/SearchInput';
 import { responsive } from '@/styles/responsive';
 import { hasSpecialCharacters } from '@/utils';
+import AlertText from '@/views/newsSearchForm/AlertText';
 import NewsSearchButton from '@/views/newsSearchForm/NewsSearchButton';
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
@@ -22,6 +23,7 @@ const Form = styled.form`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 
   .search-button {
     margin-left: 0.5rem;
@@ -72,6 +74,7 @@ const NewsSearchForm = ({ query }) => {
         <div className="search-button">
           <NewsSearchButton onKeyDown={onKeyDown} disabled={!isValidForm || isQueryEmpty} />
         </div>
+      <AlertText show={!isValidForm}>특수문자는 입력할 수 없습니다.</AlertText>
       </Form>
     </Container>
   );
