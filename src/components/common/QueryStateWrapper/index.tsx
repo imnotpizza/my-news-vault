@@ -14,15 +14,6 @@ export interface IQueryStateWrapperProps {
   children: React.ReactNode;
 }
 
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-`;
-
 const QueryStateWrapper = ({
   isLoading,
   isError,
@@ -44,7 +35,7 @@ const QueryStateWrapper = ({
     }
   };
 
-  return <Container>{getUIByState()}</Container>;
+  return <>{getUIByState()}</>;
 };
 
 export default QueryStateWrapper;

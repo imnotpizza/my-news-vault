@@ -6,6 +6,7 @@ import LogoutButton from '@/views/loginStatus/LogoutButton';
 import LoginButton from '@/views/loginStatus/LoginButton';
 import UserProfile from '@/views/header/UserProfile';
 import HeaderLinkItem from '@/views/header/HeaderLinkItem';
+import { contentLayoutStyle } from '@/styles/responsive';
 
 const MainContainer = styled.div`
   width: 100%;
@@ -18,8 +19,8 @@ const TopContainer = styled.div`
   height: 64px;
   display: flex;
   justify-content: space-between;
-  margin: 0 30px;
-
+  margin: 0 auto;
+  ${contentLayoutStyle};
   .logo {
     display: flex;
     justify-content: center;

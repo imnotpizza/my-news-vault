@@ -9,16 +9,20 @@ interface INewsCardListProps {
 }
 
 const Container = styled.div`
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: blue;
+  margin: 0 20px;
 `;
 
 const GridContainer = styled.div`
   display: grid;
   grid-gap: 36px 20px;
+  width: 100%;
+  place-items: center;
   grid-template-columns: repeat(4, 1fr);
 
   ${responsive.tablet} {

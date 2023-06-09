@@ -8,3 +8,9 @@ export const responsive = {
   tablet: `@media screen and (min-width: ${TABLET_THRESHOLD}px) and (max-width: ${DESKTOP_THRESHOLD}px)`,
   mobile: `@media screen and (min-width: ${MOBILE_THRESHOLD}px) and (max-width: ${TABLET_THRESHOLD}px)`,
 };
+
+export const contentLayoutStyle = css`
+  max-width: 1200px;
+  padding: 0 20px;
+  background-color: orange;
+`;
