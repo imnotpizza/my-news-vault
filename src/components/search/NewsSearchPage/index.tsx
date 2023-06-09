@@ -5,14 +5,13 @@ import QueryForm from '@/components/form/NewsSearchForm';
 import NewsItemList from '@/components/common/NewsCardList';
 import styled from 'styled-components';
 import { contentLayoutStyle } from '@/styles/responsive';
+import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 
 const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  ${contentLayoutStyle};
-
   .search {
     width: 100%;
     height: 40px;
@@ -39,6 +38,11 @@ const InfiniteScrollThresholdBox = styled.div`
 `;
 
 const NewsSearchPage = ({ query }) => {
+  const { ref } = useInfiniteScroll({
+    onTriggered: () => {
+      // alert('triggered');
+    },
+  });
   const queryStates = useBingNewsFetch({
     query,
     enabled: true,
@@ -56,9 +60,8 @@ const NewsSearchPage = ({ query }) => {
           isError={queryStates.isError}
           isEmpty={queryStates.flattenData?.length === 0}
         >
-          {/* <InfiniteScrollWrapper onTriggered={queryStates.fetchNextPage}> */}
           <NewsItemList newsItems={queryStates.flattenData} />
-          <InfiniteScrollThresholdBox />
+          <InfiniteScrollThresholdBox ref={ref} />
         </QueryStateWrapper>
       </SearchResultContainer>
     </Container>

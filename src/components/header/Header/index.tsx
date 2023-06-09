@@ -41,7 +41,6 @@ const TopContainer = styled.div`
   }
 
   .user > .profile {
-    margin-left: 1rem;
   }
 
   .user > .login-logout {

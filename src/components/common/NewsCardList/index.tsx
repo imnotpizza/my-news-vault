@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import { TNewsItem } from '@/types';
-import { responsive } from '@/styles/responsive';
+import { contentLayoutStyle, responsive } from '@/styles/responsive';
 import NewsCard from '../NewsCard';
 
 interface INewsCardListProps {
@@ -15,20 +15,26 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   background-color: blue;
-  margin: 0 20px;
+  ${responsive.mobile} {
+    width: 100%;
+    margin: 0 20px;
+  }
 `;
 
 const GridContainer = styled.div`
   display: grid;
-  grid-gap: 36px 20px;
-  width: 100%;
+  grid-gap: 20px;
+  width: 1050px;
   place-items: center;
   grid-template-columns: repeat(4, 1fr);
-
+  margin: 0 20px;
+  background-color: green;
   ${responsive.tablet} {
     grid-template-columns: repeat(3, 1fr);
+    width: 750px;
   }
   ${responsive.mobile} {
+    width: 100%;
     grid-template-columns: repeat(1, 1fr);
   } ;
 `;

@@ -31,6 +31,7 @@ const Container = styled.div`
   padding-top: 0.5rem;
   padding-bottom: 1.5rem;
   position: relative;
+  z-index: 100;
 
   .contents {
     margin: 0 1.25rem;
@@ -114,6 +115,9 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
 
   // TODO: useCallback 추가
   const onClickScarp = async () => {
+    if (!isSignin) {
+      alert('스크랩 기능은 로그인 후 사용해주세요.');
+    }
     try {
       await scrapNews(userInfo!.email, item);
       addScrapNewsToCache(item);
@@ -159,7 +163,6 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
           <NewsCardPublishedDate>{datePublished}</NewsCardPublishedDate>
           <NewsCardScrapButton
             isScrapped={isScrapped}
-            disabled={!isSignin}
             onClickScarp={onClickScarp}
             onClickUnscrap={onClickUnscrap}
           />
