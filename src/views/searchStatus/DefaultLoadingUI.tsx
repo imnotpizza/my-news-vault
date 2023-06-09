@@ -6,7 +6,6 @@ const DefaultLoadingUI = () => {
   return (
     <StatusUI
       statusImage={<Image src="/svg/search-ui.svg" width={50} height={50} alt="로딩중" />}
-      text="로딩중..."
     />
   );
 };

@@ -11,9 +11,9 @@ const Container = styled.div`
 `;
 
 const StatusImage = styled.div`
-  width: 110px;
-  height: 110px;
-  border-radius: 55px;
+  width: 6.88rem;
+  height: 6.88rem;
+  border-radius: 3.44rem;
   background: #ffffff;
   display: flex;
   justify-content: center;
@@ -22,17 +22,22 @@ const StatusImage = styled.div`
 
 const Text = styled.p`
   font-weight: 300;
-  font-size: 28px;
-  line-height: 41px;
+  font-size: 1.25rem;
+  line-height: 2.56rem;
   color: #1a2254;
-  margin-top: 36px;
+  margin-top: 2.25rem;
 `;
 
-const StatusUI = ({ statusImage, text }) => {
+interface IStatusUIProps {
+  statusImage: React.ReactNode;
+  text?: string;
+}
+
+const StatusUI = ({ statusImage, text }: IStatusUIProps) => {
   return (
     <Container>
       <StatusImage>{statusImage}</StatusImage>
-      <Text>{text}</Text>
+      {text && <Text>{text}</Text>}
     </Container>
   );
 };

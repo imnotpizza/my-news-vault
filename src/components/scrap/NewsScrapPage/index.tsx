@@ -4,6 +4,7 @@ import NewsItemList from '@/components/common/NewsCardList';
 import React, { useContext } from 'react';
 import { userInfoContext } from '@/utils/userInfoProvider';
 import styled from 'styled-components';
+import EmptyScrapUI from '@/views/searchStatus/EmptyScrapUI';
 
 const Container = styled.div`
   width: 100%;
@@ -14,9 +15,11 @@ const Container = styled.div`
 
   .scrap-results {
     width: 100%;
+    margin-top: 52px;
+    min-height: 70%;
     display: flex;
     justify-content: center;
-    margin-top: 52px;
+    align-items: center;
   }
 `;
 
@@ -26,14 +29,15 @@ const NewsScrapPage = () => {
 
   return (
     <Container>
-      <div className='scrap-results'>
-      <QueryStateWrapper
-        isLoading={queryStates.isLoading}
-        isError={queryStates.isError}
-        isEmpty={queryStates.data?.length === 0}
-      >
-        <NewsItemList newsItems={queryStates.data} />
-      </QueryStateWrapper>
+      <div className="scrap-results">
+        <QueryStateWrapper
+          isLoading={queryStates.isLoading}
+          isError={queryStates.isError}
+          isEmpty={queryStates.data?.length === 0}
+          EmptyUI={EmptyScrapUI}
+        >
+          <NewsItemList newsItems={queryStates.data} />
+        </QueryStateWrapper>
       </div>
     </Container>
   );
