@@ -5,6 +5,7 @@ import React, { useContext } from 'react';
 import { userInfoContext } from '@/utils/userInfoProvider';
 import styled from 'styled-components';
 import EmptyScrapUI from '@/views/searchStatus/EmptyScrapUI';
+import ScrapCountView from '@/views/newsScrap/ScrapCountView';
 
 const Container = styled.div`
   width: 100%;
@@ -12,6 +13,12 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .search {
+    width: 100%;
+    height: 40px;
+    margin-top: 48px;
+  }
 
   .scrap-results {
     width: 100%;
@@ -28,6 +35,9 @@ const NewsScrapPage = () => {
 
   return (
     <Container>
+      <div className="search">
+        <ScrapCountView>{queryStates?.data?.length}</ScrapCountView>
+      </div>
       <div className="scrap-results">
         <QueryStateWrapper
           isLoading={queryStates.isLoading}
@@ -35,7 +45,7 @@ const NewsScrapPage = () => {
           isEmpty={queryStates.data?.length === 0}
           EmptyUI={EmptyScrapUI}
         >
-          <NewsItemList newsItems={queryStates.data} />
+          <NewsItemList newsItems={queryStates?.data} />
         </QueryStateWrapper>
       </div>
     </Container>
