@@ -1,6 +1,6 @@
 import { fetchBingNews } from '@/api/client';
 import { TBingNewsQuery, TNewsItem } from '@/types';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { InfiniteData, useInfiniteQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { deleteDuplicatedNews, setIsScrapped } from '@/utils';
 import { queryClient } from '@/queries/queryClient';
@@ -16,13 +16,13 @@ interface Params {
 
 const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
   const queryStates = useInfiniteQuery<Awaited<ReturnType<typeof fetchBingNews>>, AxiosError>(
-    [QUERY_KEY.BING_NEWS_SEARCH, query],
+    [QUERY_KEY.BING_NEWS_SEARCH],
     async ({ pageParam = 1 }) => {
       // const newsItems = await fetchBingNews(query, pageParam);
       const newsItems = JSON.parse(localStorage.getItem('mock-news-items')).slice(0, 10);
       const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>([QUERY_KEY.SCRAP_LIST]);
       const filteredNewsItem = deleteDuplicatedNews(newsItems);
-      console.log('##### ', scrappedNewsList, filteredNewsItem, newsItems)
+      console.log('##### ', scrappedNewsList, filteredNewsItem, newsItems);
       const newsItemWithScrapped = setIsScrapped(filteredNewsItem, scrappedNewsList);
       console.log(newsItemWithScrapped);
       return newsItemWithScrapped;
@@ -47,6 +47,33 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
     isEmpty: queryStates.data?.pages.length === 0,
     flattenData,
   };
+};
+
+export const updateNewsSearchQuery = (
+  targetNewsId: TNewsItem['newsId'],
+  isScrapped: TNewsItem['isScrapped'],
+) => {
+  queryClient.setQueryData<InfiniteData<TNewsItem[]>>(
+    [QUERY_KEY.BING_NEWS_SEARCH],
+    (oldPagesArray) => {
+      const newPageArray = oldPagesArray.pages.map((page) => {
+        return page.map((item) => {
+          if (item.newsId === targetNewsId) {
+            return {
+              ...item,
+              isScrapped,
+            };
+          }
+          return item;
+        });
+      });
+
+      return {
+        pages: newPageArray,
+        pageParams: oldPagesArray.pageParams,
+      };
+    },
+  );
 };
 
 export default useBingNewsFetch;

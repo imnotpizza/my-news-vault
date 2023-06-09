@@ -12,6 +12,7 @@ import NewsCardPublishedDate from '@/views/newsCard/NewsCardPublishedDate';
 import NewsCardScrapButton from '@/views/newsCard/NewsCardScrapButton';
 import NewsCardLink from '@/views/newsCard/NewsCardLink';
 import { responsive } from '@/styles/responsive';
+import { updateNewsSearchQuery } from '@/queries/useBingNewsFetch';
 
 const Container = styled.div`
   width: 14.44rem;
@@ -111,11 +112,12 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
     item;
   const { userInfo, isSignin } = React.useContext<IUserInfoContext>(userInfoContext);
 
+  // TODO: useCallback 추가
   const onClickScarp = async () => {
     try {
-      console.log('########### 1111', userInfo!.email, item)
       await scrapNews(userInfo!.email, item);
       addScrapNewsToCache(item);
+      updateNewsSearchQuery(newsId, true);
       alert('scrap success');
     } catch (e) {
       console.error(e);
@@ -123,10 +125,12 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
     }
   };
 
+  // TODO: useCallback 추가
   const onClickUnscrap = async () => {
     try {
       await unscrapNews(userInfo!.email, newsId);
       deleteScrapNewsFromCache(newsId);
+      updateNewsSearchQuery(newsId, false);
       alert('unscrap success');
     } catch (e) {
       console.error(e);
@@ -153,7 +157,6 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
 
         <div className="bottom-space">
           <NewsCardPublishedDate>{datePublished}</NewsCardPublishedDate>
-          {isScrapped.toString()}
           <NewsCardScrapButton
             isScrapped={isScrapped}
             disabled={!isSignin}

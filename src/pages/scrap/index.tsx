@@ -8,6 +8,7 @@ import Layout from '@/components/layout';
 import OnlyAuthUserWrapper from '@/wrapper/OnlyAuthUserWrapper';
 import { initialPageProps } from '@/constants';
 import ErrorPage from 'next/error';
+import { queryClient } from '@/queries/queryClient';
 
 const NewsScrap = ({ userInfo, errCode }) => {
   if (errCode) {
@@ -25,6 +26,7 @@ const NewsScrap = ({ userInfo, errCode }) => {
 };
 // FIXME: 구조 개선 필요
 export const getServerSideProps: GetServerSideProps<TPageProps> = async (context) => {
+  queryClient.clear();
   const res1 = await getUserInfoInServerside(context, initialPageProps);
   const res2 = await getDehydratedStateInServerside(context, res1);
 
