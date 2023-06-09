@@ -23,7 +23,7 @@ const LogoutText = styled.p`
   font-weight: 700;
   font-size: 13px;
   line-height: 19px;
-  color: ${(p) => p.theme.Navy.Default};;
+  color: ${(p) => p.theme.Navy.Default};
 `;
 
 const LogoutButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {

@@ -6,7 +6,7 @@ const Desc = styled.p`
   font-weight: 350;
   font-size: 14px;
   line-height: 21px;
-  color: ${(p) => p.theme.Navy.Navy_80};;
+  color: ${(p) => p.theme.Navy.Navy_80};
   margin-top: 20px;
   height: 63px;
   word-break: break-all;

@@ -6,13 +6,13 @@ const Date = styled.p`
   font-weight: 350;
   font-size: 0.75rem;
   line-height: 1.13rem;
-  color: ${(p) => p.theme.Navy.Default};;
+  color: ${(p) => p.theme.Navy.Default};
 
   ${responsive.mobile} {
     font-weight: 350;
     font-size: 12px;
     line-height: 1;
-    color: ${(p) => p.theme.Navy.Default};;
+    color: ${(p) => p.theme.Navy.Default};
   }
 `;
 

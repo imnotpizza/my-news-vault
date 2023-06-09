@@ -6,7 +6,7 @@ const Button = styled.button`
   cursor: pointer;
   width: 2.5rem;
   height: 2.5rem;
-  background: ${(p) => p.theme.White};;
+  background: ${(p) => p.theme.White};
   border: 1px solid #e8e9ee;
   border-radius: 4px;
   display: flex;

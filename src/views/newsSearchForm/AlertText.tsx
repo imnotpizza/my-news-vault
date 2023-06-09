@@ -6,7 +6,7 @@ const Text = styled.p`
   bottom: -1.67rem;
   left: 0rem;
   font-size: 0.8rem;
-  color: ${(p) => p.theme.Error.Default};;
+  color: ${(p) => p.theme.Error.Default};
 `;
 
 const AlertText = ({ show = false, children }) => {
