@@ -6,7 +6,7 @@ const Title = styled.p`
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.25rem;
-  color: #1a2254;
+  color: ${(p) => p.theme.Navy.Default};;
 
   word-break: break-all;
   overflow: hidden;
@@ -21,7 +21,7 @@ const Title = styled.p`
     font-weight: 500;
     font-size: 14px;
     line-height: 1;
-    color: #1a2254;
+    color: ${(p) => p.theme.Navy.Default};;
     word-break: break-all;
     overflow: hidden;
     text-overflow: ellipsis;

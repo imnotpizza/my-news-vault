@@ -14,7 +14,7 @@ const StatusImage = styled.div`
   width: 6.88rem;
   height: 6.88rem;
   border-radius: 3.44rem;
-  background: #ffffff;
+  background: ${(p) => p.theme.White};;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +24,7 @@ const Text = styled.p`
   font-weight: 300;
   font-size: 1.25rem;
   line-height: 2.56rem;
-  color: #1a2254;
+  color: ${(p) => p.theme.Navy.Default};;
   margin-top: 2.25rem;
 `;
 

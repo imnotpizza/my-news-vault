@@ -6,7 +6,7 @@ const LinkItem = styled(Link)`
   font-weight: 500;
   font-size: 17px;
   line-height: 25px;
-  color: #1a2254;
+  color: ${(p) => p.theme.Navy.Default};;
   text-decoration: none;
 `;
 

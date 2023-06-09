@@ -10,7 +10,7 @@ import HeaderLinkItem from '@/views/header/HeaderLinkItem';
 const MainContainer = styled.div`
   width: 100%;
   height: 72px;
-  background: #ffffff;
+  background: ${(p) => p.theme.White};;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
 `;
 

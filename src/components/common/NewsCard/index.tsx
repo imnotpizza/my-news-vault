@@ -17,7 +17,7 @@ import { updateNewsSearchQuery } from '@/queries/useBingNewsFetch';
 const Container = styled.div`
   width: 14.44rem;
   height: 23.38rem;
-  background: #ffffff;
+  background: ${(p) => p.theme.White};;
   box-shadow: 0rem 0rem 0.25rem 0.06rem rgba(0, 0, 0, 0.1);
   border-radius: 0.25rem;
   border: 0.06rem solid #112ebe00;
@@ -58,7 +58,7 @@ const Container = styled.div`
     min-width: 288px;
     width: 100%;
     height: 137px;
-    background: #ffffff;
+    background: ${(p) => p.theme.White};;
     box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     display: flex;

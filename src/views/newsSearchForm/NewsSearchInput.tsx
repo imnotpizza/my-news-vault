@@ -9,7 +9,7 @@ const Input = styled.input`
   font-weight: 350;
   font-size: 13px;
   line-height: 19px;
-  color: #1a2254;
+  color: ${(p) => p.theme.Navy.Default};;
 `;
 
 const NewsSearchInput = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
