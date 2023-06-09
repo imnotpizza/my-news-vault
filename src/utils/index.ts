@@ -1,6 +1,22 @@
 import { TNewsItem, TRawNewsItem } from '@/types';
 
 /**
+ * YYYY-MM-DD hh:mm 형식으로 날짜 변환
+ */
+export const parseDateToFormat = (date: string) => {
+  if (!date) return '등록된 날짜 없음';
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = d.getMonth() + 1 < 10 ? `0${d.getMonth() + 1}` : d.getMonth() + 1;
+  const day = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate();
+
+  // 날짜 형식 잘못된 경우
+  if (!year || !month || !day) return '등록된 날짜 없음';
+
+  return `${year}-${month}-${day}`;
+};
+
+/**
  * Bing News API 응답데이터를 클라이언트에서 사용할 형식으로 변환
  * @param raw: Bing News API 원본 데이터
  */
@@ -61,20 +77,4 @@ export const deleteDuplicatedNews = (curNewsItems: TNewsItem[], newNewsItems: TN
 export const hasSpecialCharacters = (str: string) => {
   const regExp = /[~!@#$%^&*()_+|<>?:{}]/;
   return !regExp.test(str);
-};
-
-/**
- * YYYY-MM-DD hh:mm 형식으로 날짜 변환
- */
-export const parseDateToFormat = (date: string) => {
-  if (!date) return '등록된 날짜 없음';
-  const d = new Date(date);
-  const year = d.getFullYear();
-  const month = d.getMonth() + 1 < 10 ? `0${d.getMonth() + 1}` : d.getMonth() + 1;
-  const day = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate();
-
-  // 날짜 형식 잘못된 경우
-  if (!year || !month || !day) return '등록된 날짜 없음';
-
-  return `${year}-${month}-${day}`;
 };

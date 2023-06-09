@@ -4,7 +4,7 @@ import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import QueryForm from '@/components/form/NewsSearchForm';
 import NewsItemList from '@/components/common/NewsCardList';
 import styled from 'styled-components';
-import { contentLayoutStyle, responsive } from '@/styles/responsive';
+import { responsive } from '@/styles/responsive';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import InfiniteScrollThresholdBox from '@/views/common/InfiniteScrollThresholdBox';
 

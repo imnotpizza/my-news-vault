@@ -45,7 +45,7 @@ const Toast = ({ message, show, setShow }) => {
     return () => {
       if (timer.current) clearTimeout(timer.current);
     };
-  }, [show]);
+  }, [show, setShow]);
 
   const closeToast = () => {
     setShow(false);

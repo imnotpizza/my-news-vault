@@ -1,4 +1,3 @@
-
 import Meta from '@/components/common/Meta';
 import NewsSearchPage from '@/components/search/NewsSearchPage';
 import React from 'react';

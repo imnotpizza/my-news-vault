@@ -1,7 +1,6 @@
 import React from 'react';
 import SquareLoader from 'react-spinners/SquareLoader';
 import Palette from '@/styles/palette';
-import { styled } from 'styled-components';
 import StatusUI from './StatusUI';
 
 const DefaultLoadingUI = () => {

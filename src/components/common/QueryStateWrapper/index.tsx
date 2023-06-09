@@ -8,8 +8,11 @@ export interface IQueryStateWrapperProps {
   isLoading: boolean;
   isError: boolean;
   isEmpty: boolean;
+  // eslint-disable-next-line
   LoadingUI?: (...args: any[]) => React.ReactElement;
+  // eslint-disable-next-line
   ErrorUI?: (...args: any[]) => React.ReactElement;
+  // eslint-disable-next-line
   EmptyUI?: (...args: any[]) => React.ReactElement;
   children: React.ReactNode;
 }

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import { TNewsItem } from '@/types';
-import { contentLayoutStyle, responsive } from '@/styles/responsive';
+import { responsive } from '@/styles/responsive';
 import NewsCard from '../NewsCard';
 
 interface INewsCardListProps {

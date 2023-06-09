@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 interface UseInfiniteScrollProps {
-  onTriggered: (...args: any) => any;
-  options?: IntersectionObserverInit;
+  onTriggered: () => any;
 }
 
-const useInfiniteScroll = ({ onTriggered, options = {} }: UseInfiniteScrollProps) => {
+const useInfiniteScroll = ({ onTriggered }: UseInfiniteScrollProps) => {
   const observer = useRef<IntersectionObserver>();
 
   const callbackRef = useCallback((node: HTMLElement) => {
@@ -16,10 +15,10 @@ const useInfiniteScroll = ({ onTriggered, options = {} }: UseInfiniteScrollProps
           onTriggered();
         }
       });
-    }, options);
+    });
 
     if (node) observer.current.observe(node);
-  }, []);
+  }, [onTriggered]);
 
   return {
     ref: callbackRef,
