@@ -16,8 +16,12 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  background-color: yellow;
+  width: 100vw;
+  height: 80vh;
+  top: 0;
+  z-index: 500;
 `;
 
 const Text = styled.p`

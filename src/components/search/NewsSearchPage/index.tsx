@@ -32,8 +32,8 @@ const SearchResultContainer = styled.div`
   align-items: center;
   position: relative;
   ${responsive.mobile} {
-      margin-top: 30px;
-    }
+    margin-top: 30px;
+  }
 `;
 
 const InfiniteScrollThresholdBox = styled.div`
