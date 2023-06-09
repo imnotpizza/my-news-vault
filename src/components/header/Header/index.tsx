@@ -5,7 +5,7 @@ import { userInfoContext } from '@/utils/userInfoProvider';
 import LogoutButton from '@/views/loginStatus/LogoutButton';
 import LoginButton from '@/views/loginStatus/LoginButton';
 import UserProfile from '@/views/header/UserProfile';
-import Link from 'next/link';
+import HeaderLinkItem from '@/views/header/HeaderLinkItem';
 
 const MainContainer = styled.div`
   width: 100%;
@@ -23,6 +23,14 @@ const TopContainer = styled.div`
   .logo {
     display: flex;
     justify-content: center;
+  }
+
+  .scrap-link {
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 30px;
   }
 
   .user {
@@ -47,14 +55,11 @@ const Header = () => {
         <div className="logo">
           <AppLogo />
         </div>
+
         <div className="user">
-          <Link
-            href={{
-              pathname: '/scrap',
-            }}
-          >
-            scrap list
-          </Link>
+        <div className='scrap-link'>
+          <HeaderLinkItem href="/scrap">스크랩 목록</HeaderLinkItem>
+        </div>
           <div className="login-logout-button">{isSignin ? <LogoutButton /> : <LoginButton />}</div>
           <div className="profile">
             {isSignin && <UserProfile src={userInfo?.photoURL} alt={userInfo?.displayName} />}

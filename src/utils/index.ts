@@ -26,6 +26,7 @@ export const parseToNewsItem = (raw: TRawNewsItem) => {
  * @param scrappedNewsList: 스크랩 리스트
  */
 export const setIsScrapped = (newsItemList: TNewsItem[], scrappedNewsList: TNewsItem[]) => {
+  if (!scrappedNewsList) return newsItemList;
   const scrappedNewsIdList = scrappedNewsList.map((item) => item.newsId);
   console.log(scrappedNewsIdList);
   return newsItemList.map((item) => {

@@ -22,7 +22,6 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
       const newsItems = JSON.parse(localStorage.getItem('mock-news-items')).slice(0, 10);
       const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>([QUERY_KEY.SCRAP_LIST]);
       const filteredNewsItem = deleteDuplicatedNews(newsItems);
-      console.log('##### ', scrappedNewsList, filteredNewsItem, newsItems);
       const newsItemWithScrapped = setIsScrapped(filteredNewsItem, scrappedNewsList);
       console.log(newsItemWithScrapped);
       return newsItemWithScrapped;
