@@ -123,9 +123,9 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
       alert('스크랩 기능은 로그인 후 사용해주세요.');
     }
     try {
+      updateNewsSearchQuery(newsId, true, searchQuery);
       await scrapNews(userInfo!.email, item);
       addScrapNewsToCache(item);
-      updateNewsSearchQuery(newsId, true, searchQuery);
       alert('scrap success');
     } catch (e) {
       console.error(e);
@@ -136,9 +136,9 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
   // TODO: useCallback 추가
   const onClickUnscrap = async () => {
     try {
+      updateNewsSearchQuery(newsId, false, searchQuery);
       await unscrapNews(userInfo!.email, newsId);
       deleteScrapNewsFromCache(newsId);
-      updateNewsSearchQuery(newsId, false, searchQuery);
       alert('unscrap success');
     } catch (e) {
       console.error(e);
