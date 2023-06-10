@@ -12,5 +12,4 @@ export const responsive = {
 export const contentLayoutStyle = css`
   max-width: 1000px;
   min-width: 320px;
-  background-color: orange;
 `;

@@ -14,7 +14,6 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: blue;
   ${responsive.mobile} {
     width: 100%;
     margin: 0 20px;
@@ -28,7 +27,6 @@ const GridContainer = styled.div`
   place-items: center;
   grid-template-columns: repeat(4, 1fr);
   margin: 0 20px;
-  background-color: green;
   ${responsive.tablet} {
     grid-template-columns: repeat(3, 1fr);
     width: 750px;

@@ -17,8 +17,6 @@ const Container = styled.div`
     width: 100%;
     height: 40px;
     margin-top: 28px;
-    background-color: green;
-
     ${responsive.mobile} {
       height: 60px;
     }
@@ -60,7 +58,7 @@ const NewsSearchPage = ({ query }) => {
       </div>
       <SearchResultContainer>
         <QueryStateWrapper
-          isLoading={true}
+          isLoading={queryStates.isLoading}
           isError={queryStates.isError}
           isEmpty={queryStates.flattenData?.length === 0}
         >

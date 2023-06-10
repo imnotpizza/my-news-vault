@@ -6,7 +6,6 @@ const Container = styled.div`
   justify-content: space-evenly;
   width: 100%;
   height: 50px;
-  background-color: orange;
 `;
 
 const Style = ({ children }) => {
