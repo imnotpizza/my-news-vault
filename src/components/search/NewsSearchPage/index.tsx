@@ -11,8 +11,6 @@ import InfiniteScrollThresholdBox from '@/views/common/InfiniteScrollThresholdBo
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
   .search {
     width: 100%;
     height: 40px;
@@ -27,9 +25,6 @@ const SearchResultContainer = styled.div`
   width: 100%;
   height: auto;
   margin-top: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
   ${responsive.mobile} {
     margin-top: 30px;
@@ -52,11 +47,11 @@ const NewsSearchPage = ({ query }) => {
   });
 
   return (
-    <Container>
+    <Container className='flex-column'>
       <div className="search">
         <QueryForm query={query} />
       </div>
-      <SearchResultContainer>
+      <SearchResultContainer className='flex-center'>
         <QueryStateWrapper
           isLoading={queryStates.isLoading}
           isError={queryStates.isError}

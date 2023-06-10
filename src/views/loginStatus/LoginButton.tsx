@@ -7,10 +7,6 @@ import { userInfoContext } from '@/utils/userInfoProvider';
 
 const Button = styled.button`
   cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   gap: 0.81rem;
   width: 6.13rem;
   height: 2.38rem;
@@ -42,7 +38,7 @@ const LoginButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   };
 
   return (
-    <Button {...props} onClick={onClickSignin}>
+    <Button {...props} onClick={onClickSignin} className='flex-center'>
       <Image src="/svg/login-button-icon.svg" alt="로그인 버튼" width={12.5} height={12.5} />
       <LoginText>로그인</LoginText>
     </Button>

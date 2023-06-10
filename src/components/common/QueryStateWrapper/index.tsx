@@ -20,9 +20,6 @@ export interface IQueryStateWrapperProps {
 
 const StatusContainer = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-top: 75vh;
   position: absolute;
 `;
@@ -39,19 +36,19 @@ const QueryStateWrapper = ({
   const getUIByState = () => {
     if (isLoading) {
       return (
-        <StatusContainer>
+        <StatusContainer className="flex-center">
           <LoadingUI />
         </StatusContainer>
       );
     } else if (isError) {
       return (
-        <StatusContainer>
+        <StatusContainer className="flex-center">
           <ErrorUI />
         </StatusContainer>
       );
     } else if (isEmpty) {
       return (
-        <StatusContainer>
+        <StatusContainer className="flex-center">
           <EmptyUI />
         </StatusContainer>
       );

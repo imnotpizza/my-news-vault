@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app';
 import '@/styles/reset.css';
+import '@/styles/flex.css';
 import AppProviders from '@/components/providers/AppProviders';
 import { TPageProps } from '@/types';
 import font from '@/styles/font';

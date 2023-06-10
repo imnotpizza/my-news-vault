@@ -26,9 +26,6 @@ const Container = styled.div`
     border: 0.06rem solid #112ebe;
     box-shadow: 0rem 0rem 0.5rem 0.19rem rgba(35, 78, 180, 0.15);
   }
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   padding-top: 0.5rem;
   padding-bottom: 1.5rem;
   position: relative;
@@ -48,24 +45,21 @@ const Container = styled.div`
 
   .bottom-space {
     width: 82%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     position: absolute;
     bottom: 0.6rem;
   }
-
+  
   ${responsive.mobile} {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     min-width: 288px;
     width: 100%;
     height: 137px;
     background: ${(p) => p.theme.White};
     box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     padding: 0;
     margin: 0 auto;
 
@@ -147,7 +141,7 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
   };
 
   return (
-    <Container className="news-card">
+    <Container className="news-card flex-column align-start">
       <NewsCardThumbnail src={thumbnail} alt={title} />
       <div className="contents">
         <div className="provider">
@@ -163,7 +157,7 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
           <NewsCardLink>{url}</NewsCardLink>
         </div>
 
-        <div className="bottom-space">
+        <div className="bottom-space flex-row justify-between">
           <NewsCardPublishedDate>{datePublished}</NewsCardPublishedDate>
           <NewsCardScrapButton
             isScrapped={isScrapped}

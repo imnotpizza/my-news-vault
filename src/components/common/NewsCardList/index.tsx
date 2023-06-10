@@ -10,9 +10,6 @@ interface INewsCardListProps {
 
 const Container = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   ${responsive.mobile} {
     width: 100%;
@@ -40,7 +37,7 @@ const GridContainer = styled.div`
 
 const NewsCardList = ({ newsItems }: INewsCardListProps) => {
   return (
-    <Container>
+    <Container className='flex-column justify-center'>
       <GridContainer>
         {newsItems?.map((item) => (
           <NewsCard key={item.newsId} item={item} />

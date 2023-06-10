@@ -8,10 +8,6 @@ import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   margin: 0 20px;
 `;
 
@@ -19,12 +15,7 @@ const Form = styled.form`
   max-width: 483px;
   min-width: 240px;
   height: 40px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   position: relative;
-
   .search-button {
     margin-left: 0.5rem;
   }
@@ -68,8 +59,8 @@ const NewsSearchForm = ({ query }) => {
   };
 
   return (
-    <Container>
-      <Form onSubmit={onSubmit}>
+    <Container className="flex-center">
+      <Form onSubmit={onSubmit} className="flex-center">
         <SearchInput name="query" value={queryForm.query} onChange={onChange} />
         <div className="search-button">
           <NewsSearchButton onKeyDown={onKeyDown} disabled={!isValidForm || isQueryEmpty} />

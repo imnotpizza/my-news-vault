@@ -17,27 +17,17 @@ const MainContainer = styled.div`
 
 const TopContainer = styled.div`
   height: 64px;
-  display: flex;
-  justify-content: space-between;
   margin: 0 auto;
   padding: 0 20px;
   ${contentLayoutStyle};
   .logo {
-    display: flex;
-    justify-content: center;
   }
 
   .scrap-link {
     height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
   }
 
   .user {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
   }
 
   .user > .profile {
@@ -53,13 +43,13 @@ const Header = () => {
   const { isSignin, userInfo } = React.useContext(userInfoContext);
   return (
     <MainContainer>
-      <TopContainer>
-        <div className="logo">
+      <TopContainer className="flex-row justify-space-between">
+        <div className="logo flex-row justify-center">
           <AppLogo />
         </div>
 
-        <div className="user">
-          <div className="scrap-link">
+        <div className="user flex-row justify-end align-center">
+          <div className="scrap-link flex-row justify-end align-center">
             <HeaderLinkItem href="/scrap">스크랩 목록</HeaderLinkItem>
           </div>
           <div className="login-logout">{isSignin ? <LogoutButton /> : <LoginButton />}</div>

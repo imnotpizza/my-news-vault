@@ -7,10 +7,6 @@ import { useRouter } from 'next/navigation';
 
 const Button = styled.button`
   cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   gap: 0.81rem;
   width: 6.13rem;
   height: 2.38rem;
@@ -41,7 +37,7 @@ const LogoutButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   };
 
   return (
-    <Button {...props} onClick={onClickSignout}>
+    <Button {...props} onClick={onClickSignout} className='flex-center'>
       <Image src="/svg/logout-button-icon.svg" alt="로그아웃 버튼" width={12.5} height={12.5} />
       <LogoutText>로그아웃</LogoutText>
     </Button>

@@ -9,13 +9,10 @@ const Box = styled.div`
   position: absolute;
   bottom: -70px;
   z-index: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const InfiniteScrollThresholdBox = ({ isLoading }, ref) => {
-  return <Box ref={ref}>{isLoading && <BeatLoader size={23} color={Palette.Navy.Default} />}</Box>;
+  return <Box className="flex-center" ref={ref}>{isLoading && <BeatLoader size={23} color={Palette.Navy.Default} />}</Box>;
 };
 
 export default forwardRef(InfiniteScrollThresholdBox);

@@ -10,9 +10,6 @@ import ScrapCountView from '@/views/newsScrap/ScrapCountView';
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
   .search {
     width: 100%;
@@ -23,9 +20,6 @@ const Container = styled.div`
   .scrap-results {
     width: 100%;
     margin-top: 52px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 `;
 
@@ -34,11 +28,11 @@ const NewsScrapPage = () => {
   const queryStates = useScrappedNewsList({ userId: userInfo?.email });
 
   return (
-    <Container>
+    <Container className="flex-column align-center">
       <div className="search">
         <ScrapCountView>{queryStates?.data?.length}</ScrapCountView>
       </div>
-      <div className="scrap-results">
+      <div className="scrap-results className='flex-column align-center'">
         <QueryStateWrapper
           isLoading={queryStates.isLoading}
           isError={queryStates.isError}

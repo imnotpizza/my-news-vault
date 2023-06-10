@@ -25,15 +25,13 @@ const ErrorUIBox = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
 `;
 
 const ErrorPage = ({ statusCode }) => {
   return (
     <Layout>
       <Container>
-        <ErrorUIBox>
+        <ErrorUIBox className='flex-center'>
           <DefaultErrorUI errText={getTextByStatusCode(statusCode)} />
         </ErrorUIBox>
       </Container>
