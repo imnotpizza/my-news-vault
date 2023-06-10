@@ -17,9 +17,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  background-color: yellow;
-  width: 100vw;
-  height: 80vh;
   top: 0;
   z-index: 500;
 `;

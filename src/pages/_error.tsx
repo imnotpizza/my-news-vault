@@ -1,4 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
+import Layout from '@/components/layout';
+import DefaultErrorUI from '@/views/searchStatus/DefaultErrorUI';
 
 const getTextByStatusCode = (statusCode) => {
   switch (statusCode) {
@@ -9,12 +12,32 @@ const getTextByStatusCode = (statusCode) => {
   }
 };
 
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
+const ErrorUIBox = styled.div`
+  width: 100%;
+  height: 180px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+`;
+
 const ErrorPage = ({ statusCode }) => {
   return (
-    <div>
-      <div>error</div>
-      <div>{getTextByStatusCode(statusCode)}</div>
-    </div>
+    <Layout>
+      <Container>
+        <ErrorUIBox>
+          <DefaultErrorUI errText={getTextByStatusCode(statusCode)} />
+        </ErrorUIBox>
+      </Container>
+    </Layout>
   );
 };
 

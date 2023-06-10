@@ -27,6 +27,7 @@ const Container = styled.div`
 
 const SearchResultContainer = styled.div`
   width: 100%;
+  height: auto;
   margin-top: 48px;
   display: flex;
   justify-content: center;
@@ -59,7 +60,7 @@ const NewsSearchPage = ({ query }) => {
       </div>
       <SearchResultContainer>
         <QueryStateWrapper
-          isLoading={queryStates.isLoading}
+          isLoading={true}
           isError={queryStates.isError}
           isEmpty={queryStates.flattenData?.length === 0}
         >

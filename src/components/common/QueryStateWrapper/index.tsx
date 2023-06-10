@@ -3,6 +3,7 @@ import DefaultErrorUI from '@/views/searchStatus/DefaultErrorUI';
 import DefaultLoadingUI from '@/views/searchStatus/DefaultLoadingUI';
 import React from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+import styled from 'styled-components';
 
 export interface IQueryStateWrapperProps {
   isLoading: boolean;
@@ -17,6 +18,15 @@ export interface IQueryStateWrapperProps {
   children: React.ReactNode;
 }
 
+const StatusContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 75vh;
+  position: absolute;
+`;
+
 const QueryStateWrapper = ({
   isLoading,
   isError,
@@ -28,11 +38,23 @@ const QueryStateWrapper = ({
 }: IQueryStateWrapperProps) => {
   const getUIByState = () => {
     if (isLoading) {
-      return <LoadingUI />;
+      return (
+        <StatusContainer>
+          <LoadingUI />
+        </StatusContainer>
+      );
     } else if (isError) {
-      return <ErrorUI />;
+      return (
+        <StatusContainer>
+          <ErrorUI />
+        </StatusContainer>
+      );
     } else if (isEmpty) {
-      return <EmptyUI />;
+      return (
+        <StatusContainer>
+          <EmptyUI />
+        </StatusContainer>
+      );
     } else {
       return children;
     }
