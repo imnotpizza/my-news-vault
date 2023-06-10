@@ -19,15 +19,9 @@ const Container = styled.div`
       height: 60px;
     }
   }
-`;
 
-const SearchResultContainer = styled.div`
-  width: 100%;
-  height: auto;
-  margin-top: 48px;
-  position: relative;
-  ${responsive.mobile} {
-    margin-top: 30px;
+  .news-results {
+    margin-top: 48px;
   }
 `;
 
@@ -47,11 +41,11 @@ const NewsSearchPage = ({ query }) => {
   });
 
   return (
-    <Container className='flex-column'>
+    <Container className="flex-column">
       <div className="search">
         <QueryForm query={query} />
       </div>
-      <SearchResultContainer className='flex-center'>
+      <div className="news-results flex-center">
         <QueryStateWrapper
           isLoading={queryStates.isLoading}
           isError={queryStates.isError}
@@ -60,7 +54,7 @@ const NewsSearchPage = ({ query }) => {
           <NewsItemList newsItems={queryStates.flattenData} />
           <InfiniteScrollThresholdBox ref={ref} isLoading={queryStates.isLoading} />
         </QueryStateWrapper>
-      </SearchResultContainer>
+      </div>
     </Container>
   );
 };

@@ -6,20 +6,20 @@ import { userInfoContext } from '@/utils/userInfoProvider';
 import styled from 'styled-components';
 import EmptyScrapUI from '@/views/searchStatus/EmptyScrapUI';
 import ScrapCountView from '@/views/newsScrap/ScrapCountView';
+import { responsive } from '@/styles/responsive';
 
 const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  .search {
+  .scrap-count {
     width: 100%;
     height: 40px;
-    margin-top: 48px;
+    margin-top: 28px;
   }
 
   .scrap-results {
-    width: 100%;
-    margin-top: 52px;
+    margin-top: 48px;
   }
 `;
 
@@ -28,11 +28,8 @@ const NewsScrapPage = () => {
   const queryStates = useScrappedNewsList({ userId: userInfo?.email });
 
   return (
-    <Container className="flex-column align-center">
-      <div className="search">
-        <ScrapCountView>{queryStates?.data?.length}</ScrapCountView>
-      </div>
-      <div className="scrap-results className='flex-column align-center'">
+    <Container className="flex-column">
+      <div className="scrap-results flex-center">
         <QueryStateWrapper
           isLoading={queryStates.isLoading}
           isError={queryStates.isError}
