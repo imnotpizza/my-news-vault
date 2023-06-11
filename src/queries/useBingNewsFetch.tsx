@@ -15,6 +15,13 @@ interface Params {
   maxPage: number;
 }
 
+/**
+ * 뉴스 검색 쿼리
+ * @param query: 검색어
+ * @param enabled: 쿼리 활성화 여부
+ * @param maxPage: 호출할 최대 페이지
+ * @returns queryStates
+ */
 const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
   const queryStates = useInfiniteQuery<Awaited<ReturnType<typeof fetchBingNews>>, AxiosError>(
     [QUERY_KEY.BING_NEWS_SEARCH, query],
@@ -66,7 +73,6 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
  * @param isScrapped: true: 추가, false: 삭제
  * @param query: 뉴스 검색 쿼리 (queryKey)
  */
-
 export const updateNewsSearchQuery = (
   targetNewsId: TNewsItem['newsId'],
   isScrapped: TNewsItem['isScrapped'],

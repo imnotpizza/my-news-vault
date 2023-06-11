@@ -4,7 +4,7 @@ import { getFirestore } from 'firebase/firestore/lite';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { TUserInfo } from '@/types';
 import { removeToken, saveToken } from '@/api/next-api';
-import { fetchScrappedListQuery, removeQueryCache } from '@/queries/useScrappedNewsList';
+import { fetchScrappedNewsList, removeQueryCache } from '@/queries/useScrappedNewsList';
 import firebaseJson from '../../firebase.json';
 
 // Initialize Firebase
@@ -26,7 +26,7 @@ export const signin = async (): Promise<TUserInfo> => {
   // 쿠키에 토큰 저장
   await saveToken(token);
   // 스크랩 데이터 호출
-  await fetchScrappedListQuery(email);
+  await fetchScrappedNewsList(email);
 
   return {
     displayName,
