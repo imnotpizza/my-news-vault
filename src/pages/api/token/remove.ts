@@ -1,5 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
+/**
+ * 토큰 쿠키 제거
+ */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     // authToken 쿠키 제거
