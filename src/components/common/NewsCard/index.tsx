@@ -21,9 +21,8 @@ const Container = styled.div`
   background: ${(p) => p.theme.White};
   box-shadow: 0rem 0rem 0.25rem 0.06rem rgba(0, 0, 0, 0.1);
   border-radius: 0.25rem;
-  border: 0.06rem solid #112ebe00;
   &:hover {
-    border: 0.06rem solid #112ebe;
+    border: 0.06rem solid ${(p) => p.theme.Blue.Default};
     box-shadow: 0rem 0rem 0.5rem 0.19rem rgba(35, 78, 180, 0.15);
   }
   padding-top: 0.5rem;
@@ -49,7 +48,7 @@ const Container = styled.div`
     position: absolute;
     bottom: 0.6rem;
   }
-  
+
   ${responsive.mobile} {
     display: flex;
     flex-direction: row;
