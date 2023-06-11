@@ -29,11 +29,9 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
       const flattenCurNewsItems = flatMap(curNewsItems?.pages, (item) => {
         return item;
       });
-      // console.log('scrappedNewsList', flattenCurNewsItems, newsItems);
 
       // 중복요소 제거된 뉴스목록
       const filteredNewsItem = deleteDuplicatedNews(flattenCurNewsItems, newsItems);
-      // console.log('filteredNewsItem', flattenCurNewsItems, filteredNewsItem);
 
       // 스크랩 목록
       const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>([QUERY_KEY.SCRAP_LIST]);
@@ -51,7 +49,6 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
   // 이중배열 구조 평탄화
   const flattenData = useMemo(() => {
     return flatMap(queryStates.data?.pages, (item) => {
-      console.log('########### 1111', queryStates.data, item);
       return item;
     });
   }, [queryStates.data?.pages]);

@@ -62,7 +62,6 @@ export const deleteDuplicatedNews = (curNewsItems: TNewsItem[], newNewsItems: TN
   if (curNewsItems.length === 0) return newNewsItems;
   return newNewsItems.filter((item) => {
     const isDuplicated = curNewsItems.find((curItem) => {
-      // console.log('########## 111111', curItem.newsId, '//////',item.newsId);
       return curItem.newsId === item.newsId;
     });
     return !isDuplicated;

@@ -6,7 +6,6 @@ import useSampleQuery, { TUser } from './useSampleQuery';
 
 const MswSample = () => {
   const queryStates = useSampleQuery({});
-  console.log('######### queryStates', queryStates.isSuccess, queryStates.data);
   return (
     <div>
       <h1>sample</h1>
