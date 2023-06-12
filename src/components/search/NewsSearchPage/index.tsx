@@ -10,7 +10,8 @@ import InfiniteScrollThresholdBox from '@/views/common/InfiniteScrollThresholdBo
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
+  position: relative;
   .search {
     width: 100%;
     height: 40px;
@@ -19,7 +20,6 @@ const Container = styled.div`
       height: 60px;
     }
   }
-
   .news-results {
     margin-top: 48px;
   }

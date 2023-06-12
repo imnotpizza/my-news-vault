@@ -7,14 +7,14 @@ import { TBingNewsQuery, TNewsItem, TUserInfo } from '@/types';
 interface MutateParams {
   newsItem: TNewsItem;
   isScrapped: boolean;
-  searchQuery: TBingNewsQuery['query'];
+  query: TBingNewsQuery['query'];
   userId: TUserInfo['email'];
 }
 
 export const useScrapNews = () => {
   const queryStates = useMutation<void, Error, MutateParams>(
-    async ({ newsItem, isScrapped, searchQuery, userId }: MutateParams) => {
-      updateNewsSearchQuery(newsItem.newsId, isScrapped, searchQuery);
+    async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
+      updateNewsSearchQuery(newsItem.newsId, isScrapped, query);
       await scrapNews(userId, newsItem);
       addScrapNewsToCache(newsItem);
     },
@@ -34,8 +34,8 @@ export const useScrapNews = () => {
 
 export const useUnscrapNews = () => {
   const queryStates = useMutation(
-    async ({ newsItem, isScrapped, searchQuery, userId }: MutateParams) => {
-      updateNewsSearchQuery(newsItem.newsId, isScrapped, searchQuery);
+    async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
+      updateNewsSearchQuery(newsItem.newsId, isScrapped, query);
       await unscrapNews(userId, newsItem.newsId);
       deleteScrapNewsFromCache(newsItem.newsId);
     },

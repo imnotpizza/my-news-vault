@@ -116,7 +116,7 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
     scrapNews({
       newsItem: item,
       isScrapped: true,
-      searchQuery,
+      query: searchQuery,
       userId: userInfo!.email,
     });
 
@@ -136,7 +136,7 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
     unscrapNews({
       newsItem: item,
       isScrapped: false,
-      searchQuery,
+      query: searchQuery,
       userId: userInfo!.email,
     });
     // try {
