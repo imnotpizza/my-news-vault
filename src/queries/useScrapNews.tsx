@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { scrapNews, unscrapNews } from '@/api/client';
+import { TBingNewsQuery, TNewsItem, TUserInfo } from '@/types';
 import { updateNewsSearchQuery } from './useBingNewsFetch';
 import { addScrapNewsToCache, deleteScrapNewsFromCache } from './useScrappedNewsList';
-import { TBingNewsQuery, TNewsItem, TUserInfo } from '@/types';
 
 interface MutateParams {
   newsItem: TNewsItem;
