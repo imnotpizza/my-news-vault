@@ -9,9 +9,11 @@ export interface IQueryStateWrapperProps {
   isLoading: boolean;
   isError: boolean;
   isEmpty: boolean;
+  isDisabled?: boolean;
   LoadingUI?: (...args: any[]) => React.ReactElement;
   ErrorUI?: (...args: any[]) => React.ReactElement;
   EmptyUI?: (...args: any[]) => React.ReactElement;
+  DisabledUI?: (...args: any[]) => React.ReactElement;
   children: React.ReactNode;
 }
 
@@ -25,9 +27,11 @@ const QueryStateWrapper = ({
   isLoading,
   isError,
   isEmpty,
+  isDisabled = false,
   LoadingUI = DefaultLoadingUI,
   ErrorUI = DefaultErrorUI,
   EmptyUI = DefaultEmptyUI,
+  DisabledUI = DefaultEmptyUI,
   children,
 }: IQueryStateWrapperProps) => {
   const getUIByState = () => {
@@ -35,6 +39,12 @@ const QueryStateWrapper = ({
       return (
         <StatusContainer className="flex-center">
           <LoadingUI />
+        </StatusContainer>
+      );
+    } else if (isDisabled) {
+      return (
+        <StatusContainer className="flex-center">
+          <DisabledUI />
         </StatusContainer>
       );
     } else if (isError) {

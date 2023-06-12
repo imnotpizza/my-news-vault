@@ -50,7 +50,7 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
       getNextPageParam: (lastPage, pages) => {
         return pages.length === maxPage ? undefined : pages.length + 1;
       },
-      enabled: false,
+      enabled,
     },
   );
   // 이중배열 구조 평탄화
@@ -63,6 +63,7 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
   return {
     ...queryStates,
     isEmpty: queryStates.data?.pages.length === 0,
+    isFetching: queryStates.isFetching && enabled,
     flattenData,
   };
 };

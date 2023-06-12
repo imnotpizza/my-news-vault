@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import QueryForm from '@/components/form/NewsSearchForm';
@@ -7,6 +7,8 @@ import styled from 'styled-components';
 import { responsive } from '@/styles/responsive';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import InfiniteScrollThresholdBox from '@/views/common/InfiniteScrollThresholdBox';
+import { TBingNewsQuery } from '@/types';
+import NewsQueryEmptyUI from '@/views/searchStatus/NewsQueryEmptyUI';
 
 const Container = styled.div`
   width: 100%;
@@ -25,10 +27,15 @@ const Container = styled.div`
   }
 `;
 
-const NewsSearchPage = ({ query }) => {
+interface INewsSearchPageProps {
+  query: TBingNewsQuery['query'];
+}
+
+const NewsSearchPage = ({ query }: INewsSearchPageProps) => {
+  const isQueryEmpty = useMemo(() => query === '', [query]);
   const queryStates = useBingNewsFetch({
     query,
-    enabled: true,
+    enabled: !isQueryEmpty,
     maxPage: 3,
   });
   const { ref, unobserve } = useInfiniteScroll({
@@ -49,9 +56,11 @@ const NewsSearchPage = ({ query }) => {
       </div>
       <div className="news-results flex-center">
         <QueryStateWrapper
-          isLoading={queryStates.isLoading}
+          isLoading={queryStates.isFetching}
           isError={queryStates.isError}
           isEmpty={queryStates.flattenData?.length === 0}
+          isDisabled={isQueryEmpty}
+          DisabledUI={NewsQueryEmptyUI}
         >
           <NewsItemList newsItems={queryStates.flattenData} />
           <InfiniteScrollThresholdBox ref={ref} isLoading={queryStates.isLoading} />
