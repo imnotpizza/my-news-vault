@@ -1,12 +1,11 @@
 import * as admin from 'firebase-admin';
-import firebaseAdminConfig from '../../firebase.admin.json';
 
 const config = {
-  privateKey: firebaseAdminConfig.private_key,
-  clientEmail: firebaseAdminConfig.client_email,
-  projectId: firebaseAdminConfig.project_id,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  privateKey: process.env.NEXT_PUBLIC_FIREBASE_ADMIN_PRIVATE_KEY,
+  clientEmail: process.env.NEXT_PUBLIC_FIREBASE_ADMIN_CLIENT_EMAIL,
 };
-
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert(config),
