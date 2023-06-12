@@ -1,10 +1,9 @@
 import React from 'react';
-import SquareLoader from 'react-spinners/SquareLoader';
+import HashLoader from 'react-spinners/HashLoader';
 import Palette from '@/styles/palette';
-import StatusUI from './StatusUI';
 
 const DefaultLoadingUI = () => {
-  return <StatusUI statusImage={<SquareLoader size={80} color={Palette.Navy.Default} />} />;
+  return <HashLoader size={80} color={Palette.Blue.Blue_M} />;
 };
 
 export default DefaultLoadingUI;
