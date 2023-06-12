@@ -104,8 +104,8 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
     item;
   const { userInfo, isSignin } = React.useContext<IUserInfoContext>(userInfoContext);
 
-  const { mutate: scrapNews } = useScrapNews();
-  const { mutate: unscrapNews } = useUnscrapNews();
+  const { mutate: scrapNews, isLoading: isScrappingNews } = useScrapNews();
+  const { mutate: unscrapNews, isLoading: isUnscrappingNews } = useUnscrapNews();
 
   // TODO: useCallback 추가
   const onClickScarp = async () => {
@@ -119,16 +119,6 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
       query: searchQuery || '',
       userId: userInfo!.email,
     });
-
-    // try {
-    //   updateNewsSearchQuery(newsId, true, searchQuery);
-    //   await scrapNews(userInfo!.email, item);
-    //   addScrapNewsToCache(item);
-    //   alert('scrap success');
-    // } catch (e) {
-    //   console.error(e);
-    //   alert('failed');
-    // }
   };
 
   // TODO: useCallback 추가
@@ -139,15 +129,6 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
       query: searchQuery || '',
       userId: userInfo!.email,
     });
-    // try {
-    //   updateNewsSearchQuery(newsId, false, searchQuery);
-    //   await unscrapNews(userInfo!.email, newsId);
-    //   deleteScrapNewsFromCache(newsId);
-    //   alert('unscrap success');
-    // } catch (e) {
-    //   console.error(e);
-    //   alert('failed');
-    // }
   };
 
   return (
@@ -170,6 +151,7 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
         <div className="bottom-space flex-row justify-space-between">
           <NewsCardPublishedDate>{datePublished}</NewsCardPublishedDate>
           <NewsCardScrapButton
+            disabled={isScrappingNews || isUnscrappingNews}
             isScrapped={isScrapped}
             onClickScarp={onClickScarp}
             onClickUnscrap={onClickUnscrap}

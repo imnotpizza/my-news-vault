@@ -6,6 +6,7 @@ interface IScrapButtonProps {
   isScrapped: boolean;
   onClickScarp: () => void;
   onClickUnscrap: () => void;
+  disabled: boolean;
 }
 
 const ImgButton = styled.button`
@@ -16,9 +17,10 @@ const ImgButton = styled.button`
   cursor: pointer;
 `;
 
-const ScrapButton = ({ isScrapped, onClickScarp, onClickUnscrap }: IScrapButtonProps) => {
+const ScrapButton = ({ isScrapped, onClickScarp, onClickUnscrap, disabled }: IScrapButtonProps) => {
   return (
     <ImgButton
+      disabled={disabled}
       onClick={() => {
         if (isScrapped) {
           onClickUnscrap();

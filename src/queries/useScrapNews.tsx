@@ -6,11 +6,15 @@ import { addScrapNewsToCache, deleteScrapNewsFromCache } from './useScrappedNews
 
 interface MutateParams {
   newsItem: TNewsItem;
-  isScrapped: boolean;
+  isScrapped: TNewsItem['isScrapped'];
   query: TBingNewsQuery['query'];
   userId: TUserInfo['email'];
 }
 
+/**
+ * 스트랩 추가 mutation
+ * @returns
+ */
 export const useScrapNews = () => {
   const queryStates = useMutation<void, Error, MutateParams>(
     async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
@@ -32,6 +36,10 @@ export const useScrapNews = () => {
   return queryStates;
 };
 
+/**
+ * 스크랩 삭제 mutation
+ * @returns
+ */
 export const useUnscrapNews = () => {
   const queryStates = useMutation(
     async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
