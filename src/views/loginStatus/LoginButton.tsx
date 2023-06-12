@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { signin } from '@/firebase';
 import ERRCODE from '@/constants/errCode';
 import { userInfoContext } from '@/utils/userInfoProvider';
+import { signinWithFirebaseAuth } from '@/api/auth';
 
 const Button = styled.button`
   cursor: pointer;
@@ -27,7 +27,7 @@ const LoginButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
 
   const onClickSignin = useCallback(async () => {
     try {
-      const newUserInfo = await signin();
+      const newUserInfo = await signinWithFirebaseAuth();
       if (!newUserInfo) {
         throw new Error(ERRCODE.USER_AUTH_FAILED);
       }

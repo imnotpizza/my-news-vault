@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { signout } from '@/firebase';
 import { userInfoContext } from '@/utils/userInfoProvider';
+import { signoutWithFirebaseAuth } from '@/api/auth';
 
 const Button = styled.button`
   cursor: pointer;
@@ -24,15 +24,15 @@ const LogoutText = styled.p`
 const LogoutButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   const { setUserInfo } = React.useContext(userInfoContext);
 
-  const onClickSignout = async () => {
+  const onClickSignout = useCallback(async () => {
     try {
-      await signout();
+      await signoutWithFirebaseAuth();
       setUserInfo(null);
       window.location.href = '/';
     } catch (e) {
       alert('로그아웃 도중 문제가 발생하였습니다.');
     }
-  };
+  }, [setUserInfo]);
 
   return (
     <Button {...props} onClick={onClickSignout} className="flex-center">
