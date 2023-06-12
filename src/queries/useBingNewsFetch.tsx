@@ -7,7 +7,7 @@ import { queryClient } from '@/queries/queryClient';
 import { useMemo } from 'react';
 import { flatMap } from 'lodash-es';
 import QUERY_KEY from './keys';
-import jsonData from '../../mockNews.json';
+// import jsonData from '../../mockNews.json';
 
 interface Params {
   query: TBingNewsQuery['query'];
@@ -26,8 +26,8 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
   const queryStates = useInfiniteQuery<Awaited<ReturnType<typeof fetchBingNews>>, AxiosError>(
     [QUERY_KEY.BING_NEWS_SEARCH, query],
     async ({ pageParam = 1 }) => {
-      // const newsItems = await fetchBingNews(query, pageParam);
-      const newsItems = jsonData;
+      const newsItems = await fetchBingNews(query, pageParam);
+      // const newsItems = jsonData;
       // 현재 뉴스목록
       const curNewsItems = queryClient.getQueryData<InfiniteData<TNewsItem[]>>([
         QUERY_KEY.BING_NEWS_SEARCH,
