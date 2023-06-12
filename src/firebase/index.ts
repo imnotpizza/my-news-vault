@@ -4,7 +4,6 @@ import { getFirestore } from 'firebase/firestore/lite';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { TUserInfo } from '@/types';
 import { removeToken, saveToken } from '@/api/next-api';
-import { fetchScrappedNewsList, removeQueryCache } from '@/queries/useScrappedNewsList';
 import firebaseJson from '../../firebase.json';
 
 // Initialize Firebase
@@ -25,8 +24,6 @@ export const signin = async (): Promise<TUserInfo> => {
   const token = await res.user.getIdToken();
   // 쿠키에 토큰 저장
   await saveToken(token);
-  // 스크랩 데이터 호출
-  await fetchScrappedNewsList(email);
 
   return {
     displayName,
@@ -38,5 +35,4 @@ export const signin = async (): Promise<TUserInfo> => {
 export const signout = async () => {
   await removeToken();
   await auth.signOut();
-  removeQueryCache();
 };

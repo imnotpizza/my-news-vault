@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { signin } from '@/firebase';
@@ -25,20 +25,21 @@ const LoginText = styled.p`
 const LoginButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   const { setUserInfo } = React.useContext(userInfoContext);
 
-  const onClickSignin = async () => {
+  const onClickSignin = useCallback(async () => {
     try {
       const newUserInfo = await signin();
       if (!newUserInfo) {
         throw new Error(ERRCODE.USER_AUTH_FAILED);
       }
       setUserInfo(newUserInfo);
+      window.location.href = '/';
     } catch (e) {
       alert('로그인 도중 문제가 발생하였습니다.');
     }
-  };
+  }, [setUserInfo]);
 
   return (
-    <Button {...props} onClick={onClickSignin} className='flex-center'>
+    <Button {...props} onClick={onClickSignin} className="flex-center">
       <Image src="/svg/login-button-icon.svg" alt="로그인 버튼" width={12.5} height={12.5} />
       <LoginText>로그인</LoginText>
     </Button>
