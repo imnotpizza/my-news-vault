@@ -33,7 +33,6 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
         QUERY_KEY.BING_NEWS_SEARCH,
         query,
       ]);
-      console.log('########### 123213');
       const flattenCurNewsItems = flatMap(curNewsItems?.pages, (item) => {
         return item;
       });

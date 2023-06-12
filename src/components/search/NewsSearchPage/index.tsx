@@ -31,11 +31,13 @@ const NewsSearchPage = ({ query }) => {
     enabled: true,
     maxPage: 3,
   });
-  const { ref } = useInfiniteScroll({
+  const { ref, unobserve } = useInfiniteScroll({
     onTriggered: () => {
-      // alert('triggered');
+      // 다음 페이지 있는 경우 계속 호출, 없으면 observer 해제
       if (queryStates.hasNextPage) {
         queryStates.fetchNextPage();
+      } else {
+        unobserve();
       }
     },
   });
