@@ -25,19 +25,19 @@ const NewsSearch = ({ userInfo, query, errCode }) => {
   );
 };
 
-// // FIXME: 구조 개선 필요
-// export const getServerSideProps: GetServerSideProps<TPageProps> = async (context) => {
-//   // query남아있는 경우 query prefetch 작동 안함
-//   queryClient.clear();
-//   const res1 = await getUserInfoInServerside(context, initialPageProps);
-//   const res2 = await getDehydratedStateInServerside(context, res1);
-//   const query = (context.query.query as string) || '';
-//   return {
-//     props: {
-//       ...res2,
-//       query,
-//     },
-//   };
-// };
+// FIXME: 구조 개선 필요
+export const getServerSideProps: GetServerSideProps<TPageProps> = async (context) => {
+  // query남아있는 경우 query prefetch 작동 안함
+  queryClient.clear();
+  const res1 = await getUserInfoInServerside(context, initialPageProps);
+  const res2 = await getDehydratedStateInServerside(context, res1);
+  const query = (context.query.query as string) || '';
+  return {
+    props: {
+      ...res2,
+      query,
+    },
+  };
+};
 
 export default NewsSearch;
