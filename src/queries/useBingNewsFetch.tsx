@@ -79,28 +79,30 @@ export const updateNewsSearchQuery = (
   isScrapped: TNewsItem['isScrapped'],
   query: TBingNewsQuery['query'],
 ) => {
-  const queryKey = query ? [QUERY_KEY.BING_NEWS_SEARCH, query] : [QUERY_KEY.BING_NEWS_SEARCH];
-  queryClient.setQueryData<InfiniteData<TNewsItem[]>>(queryKey, (oldPagesArray) => {
-    if (oldPagesArray) {
-      // 캐시 데이터 존재하는 경우: 캐시 업데이트
-      const newPageArray = oldPagesArray.pages.map((page) => {
-        return page.map((item) => {
-          if (item.newsId === targetNewsId) {
-            return {
-              ...item,
-              isScrapped,
-            };
-          }
-          return item;
+  queryClient.setQueryData<InfiniteData<TNewsItem[]>>(
+    [QUERY_KEY.BING_NEWS_SEARCH, query],
+    (oldPagesArray) => {
+      if (oldPagesArray) {
+        // 캐시 데이터 존재하는 경우: 캐시 업데이트
+        const newPageArray = oldPagesArray.pages.map((page) => {
+          return page.map((item) => {
+            if (item.newsId === targetNewsId) {
+              return {
+                ...item,
+                isScrapped,
+              };
+            }
+            return item;
+          });
         });
-      });
 
-      return {
-        pages: newPageArray,
-        pageParams: oldPagesArray.pageParams,
-      };
-    }
-  });
+        return {
+          pages: newPageArray,
+          pageParams: oldPagesArray.pageParams,
+        };
+      }
+    },
+  );
 };
 
 export default useBingNewsFetch;
