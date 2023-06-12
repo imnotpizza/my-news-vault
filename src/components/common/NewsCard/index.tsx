@@ -1,7 +1,6 @@
 import { TNewsItem } from '@/types';
 import React, { memo, useMemo } from 'react';
 import styled from 'styled-components';
-import { scrapNews, unscrapNews } from '@/api/client';
 import { IUserInfoContext, userInfoContext } from '@/utils/userInfoProvider';
 import { addScrapNewsToCache, deleteScrapNewsFromCache } from '@/queries/useScrappedNewsList';
 import NewsCardThumbnail from '@/views/newsCard/NewsCardThumbnail';
@@ -14,6 +13,7 @@ import NewsCardLink from '@/views/newsCard/NewsCardLink';
 import { responsive } from '@/styles/responsive';
 import { updateNewsSearchQuery } from '@/queries/useBingNewsFetch';
 import { useRouter } from 'next/router';
+import { useScrapNews, useUnscrapNews } from '@/queries/useScrapNews';
 
 const Container = styled.div`
   width: 14.44rem;
@@ -22,8 +22,7 @@ const Container = styled.div`
   box-shadow: 0rem 0rem 0.25rem 0.06rem rgba(0, 0, 0, 0.1);
   border-radius: 0.25rem;
   &:hover {
-    border: 0.06rem solid ${(p) => p.theme.Blue.Default};
-    box-shadow: 0rem 0rem 0.5rem 0.19rem rgba(35, 78, 180, 0.15);
+    box-shadow: 0rem 0rem 0.5rem 0.2rem rgba(35, 78, 180, 0.15);
   }
   padding-top: 0.5rem;
   padding-bottom: 1.5rem;
@@ -63,7 +62,7 @@ const Container = styled.div`
     margin: 0 auto;
 
     .contents {
-      width: 80%;
+      width: 100%;
       height: 100%;
       margin: 0;
       margin-right: 10px;
@@ -92,10 +91,6 @@ const Container = styled.div`
       width: 100%;
       height: 30%;
       margin-top: 20px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
       position: relative;
     }
   }
@@ -104,39 +99,55 @@ const Container = styled.div`
 const NewsCard = ({ item }: { item: TNewsItem }) => {
   const router = useRouter();
   const searchQuery = useMemo(() => router.query.query as string, [router.query.query]);
-
   // eslint-disable-next-line
   const { isScrapped, title, thumbnail, description, newsId, url, providerIcon, datePublished } =
     item;
   const { userInfo, isSignin } = React.useContext<IUserInfoContext>(userInfoContext);
 
+  const { mutate: scrapNews } = useScrapNews();
+  const { mutate: unscrapNews } = useUnscrapNews();
+
   // TODO: useCallback 추가
   const onClickScarp = async () => {
     if (!isSignin) {
       alert('스크랩 기능은 로그인 후 사용해주세요.');
+      return;
     }
-    try {
-      updateNewsSearchQuery(newsId, true, searchQuery);
-      await scrapNews(userInfo!.email, item);
-      addScrapNewsToCache(item);
-      alert('scrap success');
-    } catch (e) {
-      console.error(e);
-      alert('failed');
-    }
+    scrapNews({
+      newsItem: item,
+      isScrapped: true,
+      searchQuery,
+      userId: userInfo!.email,
+    });
+
+    // try {
+    //   updateNewsSearchQuery(newsId, true, searchQuery);
+    //   await scrapNews(userInfo!.email, item);
+    //   addScrapNewsToCache(item);
+    //   alert('scrap success');
+    // } catch (e) {
+    //   console.error(e);
+    //   alert('failed');
+    // }
   };
 
   // TODO: useCallback 추가
   const onClickUnscrap = async () => {
-    try {
-      updateNewsSearchQuery(newsId, false, searchQuery);
-      await unscrapNews(userInfo!.email, newsId);
-      deleteScrapNewsFromCache(newsId);
-      alert('unscrap success');
-    } catch (e) {
-      console.error(e);
-      alert('failed');
-    }
+    unscrapNews({
+      newsItem: item,
+      isScrapped: false,
+      searchQuery,
+      userId: userInfo!.email,
+    });
+    // try {
+    //   updateNewsSearchQuery(newsId, false, searchQuery);
+    //   await unscrapNews(userInfo!.email, newsId);
+    //   deleteScrapNewsFromCache(newsId);
+    //   alert('unscrap success');
+    // } catch (e) {
+    //   console.error(e);
+    //   alert('failed');
+    // }
   };
 
   return (
@@ -156,7 +167,7 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
           <NewsCardLink>{url}</NewsCardLink>
         </div>
 
-        <div className="bottom-space flex-row justify-between">
+        <div className="bottom-space flex-row justify-space-between">
           <NewsCardPublishedDate>{datePublished}</NewsCardPublishedDate>
           <NewsCardScrapButton
             isScrapped={isScrapped}

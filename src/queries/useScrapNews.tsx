@@ -11,17 +11,19 @@ interface MutateParams {
   userId: TUserInfo['email'];
 }
 
-const useScrapNews = () => {
-  const queryStates = useMutation<any, any, any>(
+export const useScrapNews = () => {
+  const queryStates = useMutation<void, Error, MutateParams>(
     async ({ newsItem, isScrapped, searchQuery, userId }: MutateParams) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, searchQuery);
       await scrapNews(userId, newsItem);
       addScrapNewsToCache(newsItem);
     },
     {
-      onSuccess: () => {},
+      onSuccess: () => {
+        console.log('### scrap success');
+      },
       onError: (e) => {
-        alert('스크랩 도중 문제가 발생하였습니다.');
+        alert('스크랩 추가 도중 문제가 발생하였습니다.');
       },
       onSettled: () => {},
     },
@@ -30,7 +32,7 @@ const useScrapNews = () => {
   return queryStates;
 };
 
-const useUnscrapNews = () => {
+export const useUnscrapNews = () => {
   const queryStates = useMutation(
     async ({ newsItem, isScrapped, searchQuery, userId }: MutateParams) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, searchQuery);
@@ -38,9 +40,11 @@ const useUnscrapNews = () => {
       deleteScrapNewsFromCache(newsItem.newsId);
     },
     {
-      onSuccess: () => {},
+      onSuccess: () => {
+        console.log('### unscrap success');
+      },
       onError: (e) => {
-        alert('스크랩 도중 문제가 발생하였습니다.');
+        alert('스크랩 삭제 도중 문제가 발생하였습니다.');
       },
       onSettled: () => {},
     },
@@ -48,5 +52,3 @@ const useUnscrapNews = () => {
 
   return queryStates;
 };
-
-export default useScrapNews;
