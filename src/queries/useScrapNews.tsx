@@ -13,7 +13,7 @@ interface MutateParams {
 
 /**
  * 스트랩 추가 mutation
- * @returns
+ * @returns mutation states
  */
 export const useScrapNews = () => {
   const queryStates = useMutation<void, Error, MutateParams>(
@@ -38,10 +38,10 @@ export const useScrapNews = () => {
 
 /**
  * 스크랩 삭제 mutation
- * @returns
+ * @returns mutation states
  */
 export const useUnscrapNews = () => {
-  const queryStates = useMutation(
+  const queryStates = useMutation<void, Error, MutateParams>(
     async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, query);
       await unscrapNews(userId, newsItem.newsId);
