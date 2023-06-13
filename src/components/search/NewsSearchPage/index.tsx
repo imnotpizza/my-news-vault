@@ -20,6 +20,7 @@ const Container = styled.div`
   }
   .news-results {
     margin-top: 3rem;
+    position: relative;
   }
 `;
 
