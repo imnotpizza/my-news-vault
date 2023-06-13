@@ -63,7 +63,6 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
   return {
     ...queryStates,
     isEmpty: queryStates.data?.pages.length === 0,
-    isFetching: queryStates.isFetching && enabled,
     flattenData,
   };
 };

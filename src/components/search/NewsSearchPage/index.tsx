@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import QueryForm from '@/components/form/NewsSearchForm';
@@ -34,19 +34,20 @@ const NewsSearchPage = ({ query }: INewsSearchPageProps) => {
   const isQueryEmpty = useMemo(() => query === '', [query]);
   const queryStates = useBingNewsFetch({
     query,
-    enabled: true,
+    enabled: !isQueryEmpty,
     maxPage: 3,
   });
-  const { ref, unobserve } = useInfiniteScroll({
-    onTriggered: () => {
-      // 다음 페이지 있는 경우 계속 호출, 없으면 observer 해제
-      if (queryStates.hasNextPage) {
-        queryStates.fetchNextPage();
-      } else {
-        unobserve();
-      }
-    },
-  });
+  const { ref, unobserve, isIntersecting } = useInfiniteScroll({});
+
+  useEffect(() => {
+    if (queryStates.hasNextPage && isIntersecting) {
+      queryStates.fetchNextPage();
+    } else if (!queryStates.hasNextPage && isIntersecting) {
+      unobserve();
+    }
+  }, [isIntersecting, queryStates.hasNextPage]);
+
+  console.log(queryStates.isLoading,  !isQueryEmpty)
 
   return (
     <Container className="flex-column">
@@ -55,7 +56,8 @@ const NewsSearchPage = ({ query }: INewsSearchPageProps) => {
       </div>
       <div className="news-results flex-center">
         <QueryStateWrapper
-          isLoading={queryStates.isFetching}
+          // 검색어 입력되지 않은경우도 
+          isLoading={queryStates.isLoading && !isQueryEmpty}
           isError={queryStates.isError}
           isEmpty={queryStates.flattenData?.length === 0}
           isDisabled={isQueryEmpty}

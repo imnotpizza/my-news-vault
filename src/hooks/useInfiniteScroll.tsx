@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface UseInfiniteScrollProps {
   onTriggered: () => any;
@@ -7,6 +7,7 @@ interface UseInfiniteScrollProps {
 const useInfiniteScroll = ({ onTriggered }: UseInfiniteScrollProps) => {
   const observer = useRef<IntersectionObserver>();
   const targetElement = useRef<Element>();
+  const [isIntersecting, setIsIntersecting] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -20,7 +21,9 @@ const useInfiniteScroll = ({ onTriggered }: UseInfiniteScrollProps) => {
     observer.current = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          onTriggered();
+          setIsIntersecting(true);
+        } else {
+          setIsIntersecting(false);
         }
       });
     });
@@ -40,6 +43,7 @@ const useInfiniteScroll = ({ onTriggered }: UseInfiniteScrollProps) => {
   return {
     ref: callbackRef,
     unobserve,
+    isIntersecting
   };
 };
 
