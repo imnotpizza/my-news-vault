@@ -22,7 +22,7 @@ export const fetchBingNews = async (
   const apiRes = await BingAPI.get<TBingNewsAPIRes>(url);
 
   const newsItems: TNewsItem[] = apiRes.data.value.map((item: TRawNewsItem) => {
-    return parseToNewsItem(item);
+    return parseToNewsItem(item, query);
   });
 
   return newsItems;

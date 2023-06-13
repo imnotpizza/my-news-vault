@@ -1,4 +1,4 @@
-import { TNewsItem, TRawNewsItem } from '@/types';
+import { TBingNewsQuery, TNewsItem, TRawNewsItem } from '@/types';
 
 /**
  * YYYY-MM-DD hh:mm 형식으로 날짜 변환
@@ -19,8 +19,10 @@ export const parseDateToFormat = (date: string) => {
 /**
  * Bing News API 응답데이터를 클라이언트에서 사용할 형식으로 변환
  * @param raw: Bing News API 원본 데이터
+ *
+ * @returns TNewsItem
  */
-export const parseToNewsItem = (raw: TRawNewsItem) => {
+export const parseToNewsItem = (raw: TRawNewsItem, searchQuery: TBingNewsQuery['query']) => {
   const newsItem: TNewsItem = {
     newsId: raw.name,
     datePublished: parseDateToFormat(raw.datePublished),
@@ -30,6 +32,7 @@ export const parseToNewsItem = (raw: TRawNewsItem) => {
     thumbnail: raw.image ? raw.image?.thumbnail.contentUrl : '',
     title: raw.name,
     isScrapped: false,
+    searchQuery,
     url: raw.url,
   };
 
