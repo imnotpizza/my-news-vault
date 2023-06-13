@@ -1,8 +1,7 @@
 import { TNewsItem } from '@/types';
-import React, { memo, useMemo } from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import { IUserInfoContext, userInfoContext } from '@/utils/userInfoProvider';
-import { addScrapNewsToCache, deleteScrapNewsFromCache } from '@/queries/useScrappedNewsList';
 import NewsCardThumbnail from '@/views/newsCard/NewsCardThumbnail';
 import NewsCardProvider from '@/views/newsCard/NewsCardProvider';
 import NewsCardTitle from '@/views/newsCard/NewsCardTitle';
@@ -11,8 +10,6 @@ import NewsCardPublishedDate from '@/views/newsCard/NewsCardPublishedDate';
 import NewsCardScrapButton from '@/views/newsCard/NewsCardScrapButton';
 import NewsCardLink from '@/views/newsCard/NewsCardLink';
 import { responsive } from '@/styles/responsive';
-import { updateNewsSearchQuery } from '@/queries/useBingNewsFetch';
-import { useRouter } from 'next/router';
 import { useScrapNews, useUnscrapNews } from '@/queries/useScrapNews';
 
 const Container = styled.div`
@@ -97,7 +94,6 @@ const Container = styled.div`
 `;
 
 const NewsCard = ({ item }: { item: TNewsItem }) => {
-  const router = useRouter();
   // eslint-disable-next-line
   const { isScrapped, title, thumbnail, description, newsId, url, providerIcon, datePublished } =
     item;
