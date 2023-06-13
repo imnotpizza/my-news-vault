@@ -77,10 +77,10 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
 export const updateNewsSearchQuery = (
   targetNewsId: TNewsItem['newsId'],
   isScrapped: TNewsItem['isScrapped'],
-  query: TBingNewsQuery['query'],
+  searchQuery: TBingNewsQuery['query'],
 ) => {
   queryClient.setQueryData<InfiniteData<TNewsItem[]>>(
-    [QUERY_KEY.BING_NEWS_SEARCH, query],
+    [QUERY_KEY.BING_NEWS_SEARCH, searchQuery],
     (oldPagesArray) => {
       if (oldPagesArray) {
         // 캐시 데이터 존재하는 경우: 캐시 업데이트

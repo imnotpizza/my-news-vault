@@ -98,7 +98,6 @@ const Container = styled.div`
 
 const NewsCard = ({ item }: { item: TNewsItem }) => {
   const router = useRouter();
-  const searchQuery = useMemo(() => router.query.query as string, [router.query.query]);
   // eslint-disable-next-line
   const { isScrapped, title, thumbnail, description, newsId, url, providerIcon, datePublished } =
     item;
@@ -116,7 +115,7 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
     scrapNews({
       newsItem: item,
       isScrapped: true,
-      query: searchQuery || '',
+      query: item.searchQuery,
       userId: userInfo!.email,
     });
   };
@@ -126,7 +125,7 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
     unscrapNews({
       newsItem: item,
       isScrapped: false,
-      query: searchQuery || '',
+      query: item.searchQuery,
       userId: userInfo!.email,
     });
   };
