@@ -7,7 +7,7 @@ const DefaultEmptyUI = () => {
     <StatusUI
       statusImage={
         <RoundUICover>
-          <Image src="/svg/search-none-ui.svg" width={50} height={50} alt="검색 결과가 없습니다." />
+          <Image data-testid="empty-ui" src="/svg/search-none-ui.svg" width={50} height={50} alt="검색 결과가 없습니다." />
         </RoundUICover>
       }
       text="검색 결과가 없습니다."

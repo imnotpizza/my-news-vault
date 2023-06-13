@@ -9,7 +9,7 @@ const DefaultErrorUI = ({ errText = ERR_TEXT }) => {
     <StatusUI
       statusImage={
         <RoundUICover>
-          <Image src="/svg/search-error-ui.svg" width={50} height={50} alt={errText} />
+          <Image data-testid="error-ui" src="/svg/search-error-ui.svg" width={50} height={50} alt={errText} />
         </RoundUICover>
       }
       text={errText}
