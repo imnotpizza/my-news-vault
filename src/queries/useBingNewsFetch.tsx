@@ -7,7 +7,6 @@ import { queryClient } from '@/queries/queryClient';
 import { useMemo } from 'react';
 import { flatMap } from 'lodash-es';
 import QUERY_KEY from './keys';
-import jsonData from '../../mockNews.json';
 
 interface Params {
   query: TBingNewsQuery['query'];

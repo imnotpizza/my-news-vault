@@ -1,10 +1,10 @@
 import React, { useCallback, useContext } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { responsive } from '@/styles/responsive';
 import { userInfoContext } from '@/utils/userInfoProvider';
 import { useSignin } from '@/queries/useUserAuth';
 import DefaultSpinner from '../searchStatus/DefaultSpinner';
-import { responsive } from '@/styles/responsive';
 
 const Button = styled.button<{ disabled: boolean }>`
   gap: 0.81rem;

@@ -4,13 +4,10 @@ import QueryStateWrapper from '@/components/common/QueryStateWrapper';
 import QueryForm from '@/components/form/NewsSearchForm';
 import NewsItemList from '@/components/common/NewsCardList';
 import styled from 'styled-components';
-import { responsive } from '@/styles/responsive';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import InfiniteScrollThresholdBox from '@/views/common/InfiniteScrollThresholdBox';
 import { TBingNewsQuery } from '@/types';
 import NewsQueryEmptyUI from '@/views/searchStatus/NewsQueryEmptyUI';
-import DefaultLoadingUI from '@/views/searchStatus/DefaultLoadingUI';
-import DefaultErrorUI from '@/views/searchStatus/DefaultErrorUI';
 
 const Container = styled.div`
   width: 100%;
@@ -37,7 +34,7 @@ const NewsSearchPage = ({ query }: INewsSearchPageProps) => {
     enabled: !isQueryEmpty,
     maxPage: 3,
   });
-  const { ref, unobserve, isIntersecting } = useInfiniteScroll({});
+  const { ref, unobserve, isIntersecting } = useInfiniteScroll();
 
   useEffect(() => {
     if (queryStates.hasNextPage && isIntersecting) {
@@ -47,8 +44,6 @@ const NewsSearchPage = ({ query }: INewsSearchPageProps) => {
     }
   }, [isIntersecting, queryStates.hasNextPage]);
 
-  console.log(queryStates.isLoading,  !isQueryEmpty)
-
   return (
     <Container className="flex-column">
       <div className="search">
@@ -56,7 +51,7 @@ const NewsSearchPage = ({ query }: INewsSearchPageProps) => {
       </div>
       <div className="news-results flex-center">
         <QueryStateWrapper
-          // 검색어 입력되지 않은경우도 
+          // 검색어 입력되지 않은경우도 false로 처리
           isLoading={queryStates.isLoading && !isQueryEmpty}
           isError={queryStates.isError}
           isEmpty={queryStates.flattenData?.length === 0}

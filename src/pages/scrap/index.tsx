@@ -9,7 +9,6 @@ import OnlyAuthUserWrapper from '@/wrapper/OnlyAuthUserWrapper';
 import { APP_NAME, initialPageProps } from '@/constants';
 import ErrorPage from 'next/error';
 import { queryClient } from '@/queries/queryClient';
-import Head from 'next/head';
 import Meta from '@/components/common/Meta';
 
 const NewsScrap = ({ userInfo, errCode }) => {

@@ -5,8 +5,6 @@ import React, { useContext } from 'react';
 import { userInfoContext } from '@/utils/userInfoProvider';
 import styled from 'styled-components';
 import EmptyScrapUI from '@/views/searchStatus/EmptyScrapUI';
-import ScrapCountView from '@/views/newsScrap/ScrapCountView';
-import { responsive } from '@/styles/responsive';
 
 const Container = styled.div`
   width: 100%;
