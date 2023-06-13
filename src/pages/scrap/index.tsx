@@ -10,6 +10,7 @@ import { APP_NAME, initialPageProps } from '@/constants';
 import ErrorPage from 'next/error';
 import { queryClient } from '@/queries/queryClient';
 import Head from 'next/head';
+import Meta from '@/components/common/Meta';
 
 const NewsScrap = ({ userInfo, errCode }) => {
   if (errCode) {
@@ -19,9 +20,7 @@ const NewsScrap = ({ userInfo, errCode }) => {
     <OnlyAuthUserWrapper isSignin={Boolean(userInfo)}>
       <UserInfoProvider initialUserInfo={userInfo || null}>
         <Layout>
-          <Head>
-            <title>{APP_NAME}: 스크랩 목록</title>
-          </Head>
+          <Meta title={`${APP_NAME}: 스크랩 목록`} />
           <NewsScrapPage />
         </Layout>
       </UserInfoProvider>
