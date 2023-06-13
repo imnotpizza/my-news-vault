@@ -19,10 +19,9 @@ export interface IQueryStateWrapperProps {
 
 const StatusContainer = styled.div`
   width: 100%;
-  margin-top: 75vh;
-  position: absolute;
+  height: calc(100vh - 12rem);
+  min-height: 18.75rem;
 `;
-
 const QueryStateWrapper = ({
   isLoading,
   isError,
@@ -60,7 +59,7 @@ const QueryStateWrapper = ({
         </StatusContainer>
       );
     } else {
-      return children;
+      return <>{children}</>;
     }
   };
 

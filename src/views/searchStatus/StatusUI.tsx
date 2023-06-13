@@ -11,12 +11,6 @@ export const RoundUICover = styled.div`
   align-items: center;
 `;
 
-const Container = styled.div`
-  position: absolute;
-  top: 0;
-  z-index: 500;
-`;
-
 const Text = styled.p`
   font-weight: 300;
   font-size: 1.25rem;
@@ -32,10 +26,10 @@ interface IStatusUIProps {
 
 const StatusUI = ({ statusImage, text }: IStatusUIProps) => {
   return (
-    <Container className='flex-center flex-column'>
+    <div className="flex-center flex-column">
       {statusImage}
       {text && <Text>{text}</Text>}
-    </Container>
+    </div>
   );
 };
 

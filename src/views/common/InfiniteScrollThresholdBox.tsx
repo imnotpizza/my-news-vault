@@ -9,6 +9,7 @@ const Box = styled.div`
   position: absolute;
   bottom: 0;
   z-index: 0;
+  background-color: red;
 `;
 
 const InfiniteScrollThresholdBox = ({ isLoading }, ref) => {

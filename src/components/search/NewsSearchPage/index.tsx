@@ -9,6 +9,8 @@ import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import InfiniteScrollThresholdBox from '@/views/common/InfiniteScrollThresholdBox';
 import { TBingNewsQuery } from '@/types';
 import NewsQueryEmptyUI from '@/views/searchStatus/NewsQueryEmptyUI';
+import DefaultLoadingUI from '@/views/searchStatus/DefaultLoadingUI';
+import DefaultErrorUI from '@/views/searchStatus/DefaultErrorUI';
 
 const Container = styled.div`
   width: 100%;
@@ -18,9 +20,6 @@ const Container = styled.div`
     width: 100%;
     height: 2.5rem;
     margin-top: 1.75rem;
-    ${responsive.mobile} {
-      height: 3.75rem;
-    }
   }
   .news-results {
     margin-top: 3rem;
@@ -35,7 +34,7 @@ const NewsSearchPage = ({ query }: INewsSearchPageProps) => {
   const isQueryEmpty = useMemo(() => query === '', [query]);
   const queryStates = useBingNewsFetch({
     query,
-    enabled: !isQueryEmpty,
+    enabled: true,
     maxPage: 3,
   });
   const { ref, unobserve } = useInfiniteScroll({
