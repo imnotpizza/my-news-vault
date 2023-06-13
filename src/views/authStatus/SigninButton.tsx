@@ -27,8 +27,8 @@ const Button = styled.button<{ disabled: boolean }>`
 
 const SigninText = styled.p`
   font-weight: 700;
-  font-size: 13px;
-  line-height: 19px;
+  font-size: 0.81rem;
+  line-height: 1.19rem;
   color: ${(p) => p.theme.Navy.Default};
   ${responsive.mobile} {
     display: none;

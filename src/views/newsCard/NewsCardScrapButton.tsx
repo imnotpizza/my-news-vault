@@ -10,8 +10,8 @@ interface IScrapButtonProps {
 }
 
 const ImgButton = styled.button`
-  width: 26px;
-  height: 26px;
+  width: 1.63rem;
+  height: 1.63rem;
   background: none;
   border: none;
   cursor: pointer;

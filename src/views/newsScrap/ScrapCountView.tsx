@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Text = styled.p`
   font-weight: 500;
-  font-size: 17px;
+  font-size: 1.06rem;
 `;
 
 const ScrapCountView = ({ children }: { children: number }) => {

@@ -13,26 +13,26 @@ const Container = styled.div`
   align-items: center;
   ${responsive.mobile} {
     width: 100%;
-    margin: 0 20px;
+    margin: 0 1.25rem;
   }
 `;
 
 const GridContainer = styled.div`
   display: grid;
-  grid-gap: 20px;
-  width: 1050px;
+  grid-gap: 1.25rem;
+  width: 65.63rem;
   place-items: center;
   grid-template-columns: repeat(4, 1fr);
-  margin: 0 20px;
+  margin: 0 1.25rem;
   ${responsive.tablet} {
     grid-template-columns: repeat(3, 1fr);
-    width: 750px;
+    width: 46.88rem;
   }
   ${responsive.mobile} {
     width: 100%;
     grid-template-columns: repeat(1, 1fr);
   }
-  margin-bottom: 30px;
+  margin-bottom: 1.88rem;
 `;
 
 const NewsCardList = ({ newsItems }: INewsCardListProps) => {

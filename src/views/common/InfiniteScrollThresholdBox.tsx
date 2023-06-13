@@ -5,7 +5,7 @@ import Palette from '@/styles/palette';
 
 const Box = styled.div`
   width: 100%;
-  height: 100px;
+  height: 6.25rem;
   position: absolute;
   bottom: 0;
   z-index: 0;

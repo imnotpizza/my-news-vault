@@ -9,13 +9,13 @@ import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  margin: 0 20px;
+  margin: 0 1.25rem;
 `;
 
 const Form = styled.form`
-  max-width: 483px;
-  min-width: 240px;
-  height: 40px;
+  max-width: 30.19rem;
+  min-width: 15rem;
+  height: 2.5rem;
   position: relative;
   .search-button {
     margin-left: 0.5rem;
@@ -23,7 +23,7 @@ const Form = styled.form`
 
   ${responsive.mobile} {
     width: 100%;
-    min-width: 288px;
+    min-width: 18rem;
   }
 `;
 // input 최대 길이

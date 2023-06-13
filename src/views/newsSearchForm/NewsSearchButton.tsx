@@ -7,15 +7,15 @@ const Button = styled.button`
   width: 2.5rem;
   height: 2.5rem;
   background: ${(p) => p.theme.White};
-  border: 1px solid ${(p) => p.theme.Navy.Navy_10};
-  border-radius: 4px;
+  border: 0.06rem solid ${(p) => p.theme.Navy.Navy_10};
+  border-radius: 0.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
 
   &:hover {
     background: ${(p) => p.theme.Navy.Navy_10};
-    box-shadow: 0px 0px 0.25rem 0.06rem ${(p) => p.theme.Blue.Blue_L};
+    box-shadow: 0rem 0rem 0.25rem 0.06rem ${(p) => p.theme.Blue.Blue_L};
   }
   &:disabled {
     opacity: 0.5;

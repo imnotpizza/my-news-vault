@@ -10,21 +10,21 @@ import { contentLayoutStyle, responsive } from '@/styles/responsive';
 
 const MainContainer = styled.div`
   width: 100%;
-  height: 72px;
+  height: 4.5rem;
   background: ${(p) => p.theme.White};
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+  box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.07);
   ${responsive.mobile} {
-    height: 50px;
+    height: 3.13rem;
   }
 `;
 
 const TopContainer = styled.div`
-  height: 64px;
+  height: 4rem;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 1.25rem;
   ${contentLayoutStyle};
   ${responsive.mobile} {
-    height: 50px;
+    height: 3.13rem;
   }
   .logo {
   }
@@ -36,13 +36,13 @@ const TopContainer = styled.div`
   }
 
   .user > .profile {
-    margin-left: 10px;
+    margin-left: 0.63rem;
   }
 
   .user > .login-logout {
-    margin-left: 40px;
+    margin-left: 2.5rem;
     ${responsive.mobile} {
-      margin-left: 20px;
+      margin-left: 1.25rem;
     }
   }
 `;

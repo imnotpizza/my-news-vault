@@ -10,7 +10,7 @@ const Date = styled.p`
 
   ${responsive.mobile} {
     font-weight: 350;
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 1;
     color: ${(p) => p.theme.Navy.Default};
   }

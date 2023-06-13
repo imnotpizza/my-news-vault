@@ -20,7 +20,7 @@ const Container = styled.div`
 
 const ErrorUIBox = styled.div`
   width: 100%;
-  height: 180px;
+  height: 11.25rem;
   position: absolute;
   top: 50%;
   left: 50%;

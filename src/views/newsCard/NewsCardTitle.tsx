@@ -19,7 +19,7 @@ const Title = styled.p`
 
   ${responsive.mobile} {
     font-weight: 500;
-    font-size: 14px;
+    font-size: 0.88rem;
     line-height: 1;
     color: ${(p) => p.theme.Navy.Default};
     word-break: break-all;

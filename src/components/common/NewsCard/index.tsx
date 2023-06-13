@@ -49,12 +49,12 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    min-width: 288px;
+    min-width: 18rem;
     width: 100%;
-    height: 137px;
+    height: 8.56rem;
     background: ${(p) => p.theme.White};
-    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
+    box-shadow: 0rem 0rem 0.25rem 0.06rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
     padding: 0;
     margin: 0 auto;
 
@@ -62,7 +62,7 @@ const Container = styled.div`
       width: 100%;
       height: 100%;
       margin: 0;
-      margin-right: 10px;
+      margin-right: 0.63rem;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -70,15 +70,15 @@ const Container = styled.div`
 
     .contents > .provider {
       width: 100%;
-      height: 24px;
+      height: 1.5rem;
     }
     .contents > .title {
       width: 100%;
-      height: 30px;
-      margin-top: 10px;
+      height: 1.88rem;
+      margin-top: 0.63rem;
     }
     .contents > .desc {
-      margin-top: 5px;
+      margin-top: 0.31rem;
       width: 100%;
     }
     .contents > .url {
@@ -87,7 +87,7 @@ const Container = styled.div`
     .contents > .bottom-space {
       width: 100%;
       height: 30%;
-      margin-top: 20px;
+      margin-top: 1.25rem;
       position: relative;
     }
   }

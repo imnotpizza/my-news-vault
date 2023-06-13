@@ -4,11 +4,11 @@ import styled from 'styled-components';
 
 const Desc = styled.p`
   font-weight: 350;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 0.88rem;
+  line-height: 1.31rem;
   color: ${(p) => p.theme.Navy.Navy_80};
-  margin-top: 20px;
-  height: 63px;
+  margin-top: 1.25rem;
+  height: 3.94rem;
   word-break: break-all;
   overflow: hidden;
   text-overflow: ellipsis;

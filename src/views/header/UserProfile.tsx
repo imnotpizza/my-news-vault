@@ -4,12 +4,12 @@ import Image from 'next/image';
 import { responsive } from '@/styles/responsive';
 
 const Profile = styled(Image)`
-  width: 38px;
-  height: 38px;
-  border-radius: 19px;
+  width: 2.38rem;
+  height: 2.38rem;
+  border-radius: 1.19rem;
   ${responsive.mobile} {
-    width: 30px;
-    height: 30px;
+    width: 1.88rem;
+    height: 1.88rem;
   }
 `;
 

@@ -3,13 +3,13 @@ import { TNewsItem } from '@/types';
 import { styled } from 'styled-components';
 
 const Container = styled.div`
-  width: 12px;
-  height: 12px;
+  width: 0.75rem;
+  height: 0.75rem;
   position: relative;
   z-index: 100;
   .circle {
-    width: 30px;
-    height: 30px;
+    width: 1.88rem;
+    height: 1.88rem;
     position: absolute;
     opacity: 0;
     border-radius: 50%;

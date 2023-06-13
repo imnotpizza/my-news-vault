@@ -16,19 +16,19 @@ export const Portal = ({ children }) => {
 
 const Container = styled.div`
   position: fixed;
-  top: 70px;
+  top: 4.38rem;
   left: 50%;
   transform: translateX(-50%);
   background-color: #333;
   color: #fff;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: 0.63rem 1.25rem;
+  border-radius: 0.25rem;
   opacity: 0.9;
   z-index: 9999;
   cursor: pointer;
   & > p {
     color: white;
-    font-size: 16px;
+    font-size: 1rem;
   }
 `;
 

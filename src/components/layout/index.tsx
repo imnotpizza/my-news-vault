@@ -4,12 +4,12 @@ import styled from 'styled-components';
 const LayoutContainer = styled.div`
   width: 100%;
   height: 100vh;
-  min-width: 360px;
+  min-width: 22.5rem;
 `;
 
 const BodyContainer = styled.div`
   width: 100%;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 4.5rem);
 `;
 
 const RootLayout = ({ children }) => {

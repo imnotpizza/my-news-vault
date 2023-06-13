@@ -3,9 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ThumbnailImage = styled(Image)`
-  width: 50px;
-  height: 50px;
-  border-radius: 5px;
+  width: 3.13rem;
+  height: 3.13rem;
+  border-radius: 0.31rem;
 `;
 
 interface INewsThumbnailProps {

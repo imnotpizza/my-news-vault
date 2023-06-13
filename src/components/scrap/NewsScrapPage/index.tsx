@@ -14,12 +14,12 @@ const Container = styled.div`
 
   .scrap-count {
     width: 100%;
-    height: 40px;
-    margin-top: 28px;
+    height: 2.5rem;
+    margin-top: 1.75rem;
   }
 
   .scrap-results {
-    margin-top: 48px;
+    margin-top: 3rem;
   }
 `;
 

@@ -4,9 +4,9 @@ import styled from 'styled-components';
 
 const Link = styled.p`
   font-weight: 350;
-  font-size: 13px;
-  line-height: 19px;
-  height: 20px;
+  font-size: 0.81rem;
+  line-height: 1.19rem;
+  height: 1.25rem;
   width: 100%;
 
   word-break: break-all;

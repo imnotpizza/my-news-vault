@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 
 const ProviderLogo = styled(Image)`
-  margin-right: 8px;
+  margin-right: 0.5rem;
 `;
 
 const NewsCardProvider = ({ src, alt }) => {
