@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+const withBundleAnalyzer = require('@next/bundle-analyzer');
 const nextConfig = {
   env: {
     NEXT_PUBLIC_BING_API_BASEURL: process.env.NEXT_PUBLIC_BING_API_BASEURL,
@@ -32,4 +32,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);
