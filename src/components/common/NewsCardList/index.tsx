@@ -2,7 +2,9 @@ import React, { memo } from 'react';
 import styled from 'styled-components';
 import { TNewsItem } from '@/types';
 import { responsive } from '@/styles/responsive';
-import NewsCard from '../NewsCard';
+import dynamic from 'next/dynamic';
+
+const NewsCard = dynamic(() => import('@/components/common/NewsCard'), { ssr: false });
 
 interface INewsCardListProps {
   newsItems: TNewsItem[];
@@ -37,7 +39,7 @@ const GridContainer = styled.div`
 
 const NewsCardList = ({ newsItems }: INewsCardListProps) => {
   return (
-    <Container className='flex-column justify-center'>
+    <Container className="flex-column justify-center">
       <GridContainer>
         {newsItems?.map((item) => (
           <NewsCard key={item.newsId} item={item} />
