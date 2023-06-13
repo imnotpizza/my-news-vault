@@ -12,6 +12,19 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    background: ${(p) => p.theme.Navy.Navy_10};
+    box-shadow: 0px 0px 0.25rem 0.06rem ${(p) => p.theme.Blue.Blue_L};
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+    &:hover {
+      background: ${(p) => p.theme.White};
+      box-shadow: none;
+    }
+  }
 `;
 
 const NewsSearchButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {

@@ -5,7 +5,7 @@ const Text = styled.p`
   position: absolute;
   bottom: -1.67rem;
   left: 0rem;
-  font-size: 0.8rem;
+  font-size: 0.77rem;
   color: ${(p) => p.theme.Error.Default};
 `;
 
