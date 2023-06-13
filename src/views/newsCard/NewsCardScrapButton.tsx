@@ -20,7 +20,7 @@ const ImgButton = styled.button`
 const ScrapButton = ({ isScrapped, onClickScarp, onClickUnscrap, disabled }: IScrapButtonProps) => {
   return (
     <ImgButton
-      aria-label={isScrapped ? '스크랩 헤제 버튼' : '스크랩 추가 버튼F'}
+      aria-label={isScrapped ? '스크랩 헤제 버튼' : '스크랩 추가 버튼'}
       disabled={disabled}
       onClick={() => {
         if (isScrapped) {
