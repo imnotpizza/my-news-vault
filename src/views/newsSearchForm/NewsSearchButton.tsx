@@ -7,7 +7,7 @@ const Button = styled.button`
   width: 2.5rem;
   height: 2.5rem;
   background: ${(p) => p.theme.White};
-  border: 1px solid #e8e9ee;
+  border: 1px solid ${(p) => p.theme.Navy.Navy_10};
   border-radius: 4px;
   display: flex;
   justify-content: center;

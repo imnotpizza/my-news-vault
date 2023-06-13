@@ -9,11 +9,15 @@ const Button = styled.button<{ disabled: boolean }>`
   gap: 0.81rem;
   width: 6.13rem;
   height: 2.38rem;
-  border: 0.06rem solid #1a2254;
+  border: 0.06rem solid ${(p) => p.theme.Navy.Default};
   border-radius: 0.25rem;
   background: transparent;
   opacity: ${(p) => (p.disabled ? 0.5 : 1)};
   cursor: ${(p) => (p.disabled ? 'default' : 'pointer')};
+  &:hover {
+    background-color: ${(p) => p.theme.Blue.Blue_L};
+    border: 0.06rem solid ${(p) => p.theme.Blue.Default};
+  }
 `;
 
 const SigninText = styled.p`

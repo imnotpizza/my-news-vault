@@ -14,6 +14,10 @@ const Button = styled.button<{ disabled: boolean }>`
   background: transparent;
   opacity: ${(p) => (p.disabled ? 0.5 : 1)};
   cursor: ${(p) => (p.disabled ? 'default' : 'pointer')};
+    &:hover {
+    background-color: ${(p) => p.theme.Blue.Blue_L};
+    border: 0.06rem solid ${(p) => p.theme.Blue.Default};
+  }
 `;
 
 const SignoutText = styled.p`
