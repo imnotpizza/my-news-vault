@@ -20,6 +20,7 @@ const Container = styled.div`
   }
   .news-results {
     margin-top: 3rem;
+    padding-bottom: 5rem;
     position: relative;
   }
 `;
@@ -38,7 +39,7 @@ const NewsSearchPage = ({ query }: INewsSearchPageProps) => {
   const { ref, unobserve, isIntersecting } = useInfiniteScroll();
 
   useEffect(() => {
-    if (queryStates.hasNextPage && isIntersecting) {
+    if (queryStates.hasNextPage && isIntersecting && queryStates.data) {
       queryStates.fetchNextPage();
     } else if (!queryStates.hasNextPage && isIntersecting) {
       unobserve();

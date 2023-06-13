@@ -5,16 +5,17 @@ import Palette from '@/styles/palette';
 
 const Box = styled.div`
   width: 100%;
-  height: 6.25rem;
+  height: 13.25rem;
   position: absolute;
   bottom: 0;
   z-index: 0;
   background-color: red;
+  padding: 2rem;
 `;
 
 const InfiniteScrollThresholdBox = ({ isLoading }, ref) => {
   return (
-    <Box className="flex-center" ref={ref}>
+    <Box className="flex-center align-end" ref={ref}>
       {isLoading && <BeatLoader size={23} color={Palette.Navy.Default} />}
     </Box>
   );
