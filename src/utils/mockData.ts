@@ -1,4 +1,4 @@
-import { TRawNewsItem } from '@/types';
+import { TNewsItem, TRawNewsItem } from '@/types';
 
 export const mockRawNewsItem: TRawNewsItem = {
   datePublished: '2021-08-01T00:00:00.0000000Z',
@@ -26,7 +26,7 @@ export const mockRawNewsItem: TRawNewsItem = {
   url: 'test',
 };
 
-export const mockNewsItem = [
+export const mockNewsItem: TNewsItem[] = [
   {
     newsId: 'scrapped-newsId',
     datePublished: '2021-08-01',
@@ -37,6 +37,7 @@ export const mockNewsItem = [
     title: 'scrapped-newsId',
     isScrapped: false,
     url: 'test',
+    searchQuery: 'test-query',
   },
   {
     newsId: 'not-scrapped-newsId',
@@ -48,10 +49,11 @@ export const mockNewsItem = [
     title: 'not-scrapped-newsId',
     isScrapped: false,
     url: 'test',
+    searchQuery: 'test-query',
   },
 ];
 
-export const mockScrappedNewsItem = [
+export const mockScrappedNewsItem: TNewsItem[] = [
   {
     newsId: 'scrapped-newsId',
     datePublished: '2021-08-01',
@@ -62,6 +64,7 @@ export const mockScrappedNewsItem = [
     title: 'scrapped-newsId',
     isScrapped: true,
     url: 'test',
+    searchQuery: 'test-query',
   },
   {
     newsId: 'not-scrapped-newsId2',
@@ -73,5 +76,6 @@ export const mockScrappedNewsItem = [
     title: 'not-scrapped-newsId2',
     isScrapped: true,
     url: 'test',
+    searchQuery: 'test-query',
   },
 ];

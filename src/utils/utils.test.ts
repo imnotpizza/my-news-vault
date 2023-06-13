@@ -8,18 +8,21 @@ import {
 } from '.';
 
 describe('parseToNewsItem', () => {
-  it('should return parsed news item', () => {
-    const newsItem = parseToNewsItem(mockRawNewsItem);
+  it('parse된 데이터 반환', () => {
+    const newsItem = parseToNewsItem(mockRawNewsItem, 'test-query');
     expect(newsItem).toEqual(mockNewsItem[0]);
   });
 
   it('publishedDate 파싱 실패시', () => {
-    const newsItem = parseToNewsItem({ ...mockRawNewsItem, datePublished: undefined });
+    const newsItem = parseToNewsItem({ ...mockRawNewsItem, datePublished: undefined }, 'test-query');
     expect(newsItem.datePublished).toBe('등록된 날짜 없음');
   });
 
   it('publishedDate 형식 잘못되었을 때', () => {
-    const newsItem = parseToNewsItem({ ...mockRawNewsItem, datePublished: 'NOTVALIDDATEFORMAT' });
+    const newsItem = parseToNewsItem(
+      { ...mockRawNewsItem, datePublished: 'NOTVALIDDATEFORMAT' },
+      'query',
+    );
     expect(newsItem.datePublished).toBe('등록된 날짜 없음');
   });
 });
@@ -34,12 +37,12 @@ describe('setIsScrapped', () => {
 
 describe('deleteDuplicatedNews', () => {
   it('중복된 뉴스 없는경우 원본과 동일', () => {
-    const result = deleteDuplicatedNews(mockNewsItem);
+    const result = deleteDuplicatedNews(mockNewsItem, mockNewsItem);
     expect(result).toBe(result);
   });
 
   it('중복된 뉴스 있는경우 중복된 뉴스 제거', () => {
-    const result = deleteDuplicatedNews([
+    const result = deleteDuplicatedNews(mockNewsItem, [
       ...mockNewsItem,
       mockNewsItem[0],
       mockNewsItem[0],
