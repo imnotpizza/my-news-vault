@@ -29,7 +29,7 @@ const ScrapButton = ({ isScrapped, onClickScarp, onClickUnscrap, disabled }: ISc
         }
       }}
     >
-      <ScrapIcon clicked={isScrapped} />
+      <ScrapIcon isScrapped={isScrapped} />
     </ImgButton>
   );
 };
