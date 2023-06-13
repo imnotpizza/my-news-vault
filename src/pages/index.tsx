@@ -6,7 +6,7 @@ import { UserInfoProvider } from '@/utils/userInfoProvider';
 import Layout from '@/components/layout';
 import { getDehydratedStateInServerside, getUserInfoInServerside } from '@/utils/serverside';
 import { TPageProps } from '@/types';
-import { initialPageProps } from '@/constants';
+import { APP_NAME, initialPageProps } from '@/constants';
 import ErrorPage from 'next/error';
 import { queryClient } from '@/queries/queryClient';
 
@@ -18,7 +18,7 @@ const NewsSearch = ({ userInfo, query, errCode }) => {
   return (
     <UserInfoProvider initialUserInfo={userInfo || null}>
       <Layout>
-        <Meta title={'my news vault'} />
+        <Meta title={APP_NAME} />
         <NewsSearchPage query={query} />
       </Layout>
     </UserInfoProvider>

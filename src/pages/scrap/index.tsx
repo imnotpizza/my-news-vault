@@ -6,9 +6,10 @@ import { TPageProps } from '@/types';
 import { UserInfoProvider } from '@/utils/userInfoProvider';
 import Layout from '@/components/layout';
 import OnlyAuthUserWrapper from '@/wrapper/OnlyAuthUserWrapper';
-import { initialPageProps } from '@/constants';
+import { APP_NAME, initialPageProps } from '@/constants';
 import ErrorPage from 'next/error';
 import { queryClient } from '@/queries/queryClient';
+import Head from 'next/head';
 
 const NewsScrap = ({ userInfo, errCode }) => {
   if (errCode) {
@@ -18,6 +19,9 @@ const NewsScrap = ({ userInfo, errCode }) => {
     <OnlyAuthUserWrapper isSignin={Boolean(userInfo)}>
       <UserInfoProvider initialUserInfo={userInfo || null}>
         <Layout>
+          <Head>
+            <title>{APP_NAME}: 스크랩 목록</title>
+          </Head>
           <NewsScrapPage />
         </Layout>
       </UserInfoProvider>
