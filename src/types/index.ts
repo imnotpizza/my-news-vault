@@ -7,7 +7,7 @@ export type TUserInfo = {
 };
 
 /**
- *  Bing News API 쿼리스트링
+ *  Bing News API 검색 요소들
  */
 export type TBingNewsQuery = {
   query: string;
@@ -53,6 +53,7 @@ export type TNewsItem = {
   title: TRawNewsItem['name'];
   isScrapped: boolean;
   url: TRawNewsItem['url'];
+  searchQuery: TBingNewsQuery['query'];
 };
 
 /**
