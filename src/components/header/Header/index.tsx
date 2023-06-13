@@ -6,13 +6,16 @@ import LogoutButton from '@/views/authStatus/SignoutButton';
 import LoginButton from '@/views/authStatus/SigninButton';
 import UserProfile from '@/views/header/UserProfile';
 import HeaderLinkItem from '@/views/header/HeaderLinkItem';
-import { contentLayoutStyle } from '@/styles/responsive';
+import { contentLayoutStyle, responsive } from '@/styles/responsive';
 
 const MainContainer = styled.div`
   width: 100%;
   height: 72px;
   background: ${(p) => p.theme.White};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+  ${responsive.mobile} {
+    height: 50px;
+  }
 `;
 
 const TopContainer = styled.div`
@@ -20,11 +23,13 @@ const TopContainer = styled.div`
   margin: 0 auto;
   padding: 0 20px;
   ${contentLayoutStyle};
+  ${responsive.mobile} {
+    height: 50px;
+  }
   .logo {
   }
 
   .scrap-link {
-    height: 100%;
   }
 
   .user {
@@ -36,6 +41,9 @@ const TopContainer = styled.div`
 
   .user > .login-logout {
     margin-left: 40px;
+    ${responsive.mobile} {
+      margin-left: 20px;
+    }
   }
 `;
 
@@ -44,7 +52,7 @@ const Header = () => {
   return (
     <MainContainer>
       <TopContainer className="flex-row justify-space-between">
-        <div className="logo flex-row justify-center">
+        <div className="logo flex-center">
           <AppLogo />
         </div>
 

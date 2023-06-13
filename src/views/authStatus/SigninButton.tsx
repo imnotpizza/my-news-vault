@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { userInfoContext } from '@/utils/userInfoProvider';
 import { useSignin } from '@/queries/useUserAuth';
 import DefaultSpinner from '../searchStatus/DefaultSpinner';
+import { responsive } from '@/styles/responsive';
 
 const Button = styled.button<{ disabled: boolean }>`
   gap: 0.81rem;
@@ -18,6 +19,10 @@ const Button = styled.button<{ disabled: boolean }>`
     background-color: ${(p) => p.theme.Blue.Blue_L};
     border: 0.06rem solid ${(p) => p.theme.Blue.Default};
   }
+  ${responsive.mobile} {
+    width: 1.82rem;
+    height: 1.82rem;
+  }
 `;
 
 const SigninText = styled.p`
@@ -25,6 +30,9 @@ const SigninText = styled.p`
   font-size: 13px;
   line-height: 19px;
   color: ${(p) => p.theme.Navy.Default};
+  ${responsive.mobile} {
+    display: none;
+  }
 `;
 
 const SigninButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
