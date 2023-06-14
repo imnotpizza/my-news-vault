@@ -36,15 +36,10 @@ const NewsSearchPage = ({ query }: INewsSearchPageProps) => {
     enabled: !isQueryEmpty,
     maxPage: 3,
   });
-  const { ref, unobserve, isIntersecting } = useInfiniteScroll();
-
-  useEffect(() => {
-    if (queryStates.hasNextPage && isIntersecting && queryStates.data) {
-      queryStates.fetchNextPage();
-    } else if (!queryStates.hasNextPage && isIntersecting) {
-      unobserve();
-    }
-  }, [isIntersecting, queryStates.hasNextPage]);
+  const { ref } = useInfiniteScroll({
+    onTriggered: queryStates.fetchNextPage,
+    maxPage: 3,
+  });
 
   return (
     <Container className="flex-column">
@@ -61,7 +56,7 @@ const NewsSearchPage = ({ query }: INewsSearchPageProps) => {
           DisabledUI={NewsQueryEmptyUI}
         >
           <NewsItemList newsItems={queryStates.flattenData} />
-          <InfiniteScrollThresholdBox ref={ref} isLoading={queryStates.isLoading} />
+          <InfiniteScrollThresholdBox ref={ref} isLoading={queryStates.isFetching} />
         </QueryStateWrapper>
       </div>
     </Container>

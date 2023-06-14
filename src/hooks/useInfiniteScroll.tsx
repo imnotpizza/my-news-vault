@@ -1,9 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-const useInfiniteScroll = () => {
+interface IUseInfiniteScrollParams {
+  onTriggered: () => void;
+  maxPage?: number;
+}
+
+const useInfiniteScroll = ({ onTriggered, maxPage = 1 }: IUseInfiniteScrollParams) => {
   const observer = useRef<IntersectionObserver>();
   const targetElement = useRef<Element>();
-  const [isIntersecting, setIsIntersecting] = useState(false);
+  const [curPage, setCurPage] = useState<number>(1);
 
   useEffect(() => {
     return () => {
@@ -17,9 +22,14 @@ const useInfiniteScroll = () => {
     observer.current = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setIsIntersecting(true);
-        } else {
-          setIsIntersecting(false);
+          setCurPage((prevCurPage) => {
+            if (prevCurPage < maxPage) {
+              onTriggered();
+            } else {
+              observer.current?.unobserve(targetElement.current);
+            }
+            return prevCurPage + 1;
+          });
         }
       });
     });
@@ -30,16 +40,8 @@ const useInfiniteScroll = () => {
     }
   }, []);
 
-  const unobserve = () => {
-    if (targetElement.current) {
-      observer.current?.unobserve(targetElement.current);
-    }
-  };
-
   return {
     ref: callbackRef,
-    unobserve,
-    isIntersecting,
   };
 };
 
