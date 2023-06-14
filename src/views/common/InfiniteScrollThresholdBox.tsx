@@ -5,12 +5,12 @@ import Palette from '@/styles/palette';
 
 const Box = styled.div`
   width: 100%;
-  height: 13.25rem;
+  height: 5.25rem;
   position: absolute;
   bottom: 0;
   z-index: 0;
-  background-color: red;
-  padding: 2rem;
+  /* background-color: red; */
+  padding-top: 2rem;
 `;
 
 const InfiniteScrollThresholdBox = ({ isLoading }, ref) => {
