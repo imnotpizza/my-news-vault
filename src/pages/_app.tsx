@@ -4,8 +4,11 @@ import '@/styles/flex.css';
 import AppProviders from '@/components/providers/AppProviders';
 import { TPageProps } from '@/types';
 import font from '@/styles/font';
+import printVersion from '@/utils/printVersion';
 
-// TODO: AppProps 제네릭 추가
+// print version
+printVersion();
+
 export default function App({ Component, pageProps }: AppProps<TPageProps>) {
   return (
     <main className={font.className}>
