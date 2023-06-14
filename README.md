@@ -11,7 +11,7 @@
 
 
 
-### 🏠 [프로젝트 방문](https://ilovenews.vercel.app/)
+### 🏠 [사이트 방문](https://www.mynwsvault.com/)
 
 > 신속한 뉴스 검색과 편리한 스크랩 기능을 갖춘 앱으로 최신 뉴스를 손쉽게 관리하세요.
 
@@ -33,8 +33,26 @@ Bing News Search API 를 사용한 뉴스검색, 스크랩 기능을 담고있�
   <img src="https://img.shields.io/badge/Firebase-white?style=flat-square&logo=firebase&logoColor=yellow"/>
 </span>
 
-## Author
+## 칸반 보드
+[프로젝트 방문](https://github.com/users/imnotpizza/projects/1)
+## 주요 기능
 
+## 프로젝트 구조
+
+
+
+## 주안점
+1. 선언형 프로그래밍으로 가독성 최대화
+   - 각 기능들은 [추가작성]
+
+2. custom hooks의 사용
+   - 주요 기능들을 custom hooks로 추상화하여 의존성 분리, 재사용성을 고려하였습니다.
+
+3. react-query를 데이터 캐시 기능을 사용하여 불필요한 api호출 방지를 최소화하였습니다.
+   - 검색페이지→스크랩페이지→이전페이지로 이동시 이전데이터를 그대로 유지하게 하였습니다.
+   - 스크랩데이터의 경우 페이지 진입시 prefetch하여 초기화, 스크랩 추가/삭제시 캐시를 갱신하는 방식으로 단 한번만 호출하게 하였습니다.
+
+## Author
 👤 **imnotpizza**
 
 * Website: https://github.com/imnotpizza
