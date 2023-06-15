@@ -5,7 +5,7 @@ import {
   parseDateToFormat,
   parseToNewsItem,
   setIsScrapped,
-} from '.';
+} from './newsItem';
 
 describe('parseToNewsItem', () => {
   it('parse된 데이터 반환', () => {

@@ -2,7 +2,7 @@ import { fetchBingNews } from '@/api/client';
 import { TBingNewsQuery, TNewsItem } from '@/types';
 import { InfiniteData, useInfiniteQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { deleteDuplicatedNews, setIsScrapped } from '@/utils';
+import { deleteDuplicatedNews, setIsScrapped } from '@/utils/newsItem';
 import { queryClient } from '@/queries/queryClient';
 import { useMemo } from 'react';
 import { flatMap } from 'lodash-es';
