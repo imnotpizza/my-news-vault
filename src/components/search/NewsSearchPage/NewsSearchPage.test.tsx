@@ -1,5 +1,5 @@
 import withTestProviders from '@/components/providers/withTestProviders';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import NewsSearchPage from '.';
 import { TBingNewsQuery, TUserInfo } from '@/types';
 import { IUserInfoContext } from '@/utils/userInfoProvider';
@@ -102,5 +102,24 @@ describe('검색 중 문제 발생시', () => {
     // 뉴스 카드 없어야 함
     const newsCard = screen.queryByTestId('news-card-ui');
     expect(newsCard).not.toBeInTheDocument();
+  });
+});
+
+describe('스크랩 기능', () => {
+  beforeEach(() => {
+    render(withTestProviders(NewsSearchPage, { ...mockProps, query: 'mock' }));
+  });
+  afterEach(() => {
+    queryClient.clear();
+    cleanup();
+  });
+
+  it('스크랩 버튼 클릭시 스크랩 추가', async () => {
+    const newsCards = await screen.findAllByTestId('news-card-ui');
+    const scrapButton = within(newsCards[0]).getByLabelText('스크랩 추가 버튼');
+    fireEvent.click(scrapButton);
+  });
+  it('스크랩 버튼 클릭시 스크랩 삭제', async () => {
+    
   });
 });
