@@ -83,3 +83,23 @@ describe('검색어 입력시', () => {
     expect(newsCard).toHaveLength(20);
   });
 });
+
+describe('검색 중 문제 발생시', () => {
+  afterEach(() => {
+    queryClient.clear();
+    cleanup();
+  });
+  it('에러 UI 표시', async () => {
+    server.use(
+      rest.get(`/news/search?mkt=en-us&q=mock2&count=20&offset=20`, (req, res, ctx) => {
+        return res(ctx.status(500), ctx.json({ message: 'error' }));
+      }),
+    );
+    render(withTestProviders(NewsSearchPage, { ...mockProps, query: 'mock' }));
+    const errorUi = await screen.findByTestId('error-ui');
+    expect(errorUi).toBeInTheDocument();
+    // 뉴스 카드 없어야 함
+    const newsCard = screen.queryByTestId('news-card-ui');
+    expect(newsCard).not.toBeInTheDocument();
+  });
+});
