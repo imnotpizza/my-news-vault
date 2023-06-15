@@ -6,6 +6,7 @@ import { IUserInfoContext } from '@/utils/userInfoProvider';
 import { server } from '@/msw/server';
 import { rest } from 'msw';
 import { queryClient } from '@/queries/queryClient';
+import { getMswRestHandler } from '@/msw/handlers';
 
 jest.mock('../../../firebase', () => {
   return {
@@ -91,7 +92,7 @@ describe('검색 중 문제 발생시', () => {
   });
   it('에러 UI 표시', async () => {
     server.use(
-      rest.get(`/news/search?mkt=en-us&q=mock2&count=20&offset=20`, (req, res, ctx) => {
+      getMswRestHandler((req, res, ctx) => {
         return res(ctx.status(500), ctx.json({ message: 'error' }));
       }),
     );
