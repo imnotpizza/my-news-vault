@@ -3,6 +3,9 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import NewsSearchPage from '.';
 import { TBingNewsQuery, TUserInfo } from '@/types';
 import { IUserInfoContext } from '@/utils/userInfoProvider';
+import { server } from '@/msw/server';
+import { rest } from 'msw';
+import { queryClient } from '@/queries/queryClient';
 
 jest.mock('../../../firebase', () => {
   return {
@@ -18,6 +21,13 @@ jest.mock('next/router', () => ({
       query: '테스트검색',
     },
   }),
+}));
+
+// @ts-ignore
+window.IntersectionObserver = jest.fn(() => ({
+  observe: () => {},
+  unobserve: () => {},
+  disconnect: () => {},
 }));
 
 const mockProps: {
@@ -52,5 +62,24 @@ describe('로그인, 비로그인 공통', () => {
       const newsCard = screen.queryByTestId('news-card-ui');
       expect(newsCard).not.toBeInTheDocument();
     });
+  });
+});
+
+describe('검색어 입력시', () => {
+  beforeEach(() => {
+    render(withTestProviders(NewsSearchPage, { ...mockProps, query: 'mock' }));
+  });
+  afterEach(() => {
+    queryClient.clear();
+    cleanup();
+  });
+
+  it('검색시 결과값 제대로 나오는지 확인', async () => {
+    // loading ui 표시 확인
+    const loadingUi = screen.getByTestId('loading-ui');
+    expect(loadingUi).toBeInTheDocument();
+    // 뉴스 카드 20개 표시 확인
+    const newsCard = await screen.findAllByTestId('news-card-ui');
+    expect(newsCard).toHaveLength(20);
   });
 });
