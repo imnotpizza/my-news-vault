@@ -1,4 +1,4 @@
-<p align="center">
+![구조 스크랜샷](https://github.com/imnotpizza/my-news-vault/assets/48155178/b19b5cd1-67e4-4434-b5f0-63a425966277)<p align="center">
   <img src="https://github.com/imnotpizza/my-news-valut/assets/48155178/82f4ce06-462e-4ec0-8d9d-b5ec518d4095" width="300" height="300">
 </p>
 <h1 align="center">Welcome to MYNEWSVAULT 👋</h1>
@@ -8,7 +8,6 @@
     <img alt="License: MIT License" src="https://img.shields.io/badge/License-MIT License-yellow.svg" />
   </a>
 </p>
-
 
 
 ### 🏠 [사이트 방문](https://www.mynwsvault.com/)
@@ -34,16 +33,16 @@ Bing News Search API 를 사용한 뉴스검색, 스크랩 기능을 담고있�
 </span>
 
 ## 칸반 보드
-[프로젝트 방문](https://github.com/users/imnotpizza/projects/1)
+[칸반 보드](https://github.com/users/imnotpizza/projects/1)
 ## 주요 기능
 
-## 프로젝트 구조
-
+## 컴포넌트 구조
+![구조 스크랜샷](https://github.com/imnotpizza/my-news-vault/assets/48155178/0e4949b8-2f6f-4eb6-91cd-9e00ebfacb50)
 
 
 ## 주안점
-1. 선언형 프로그래밍으로 가독성 최대화
-   - 각 기능들은 [추가작성]
+1. 클린 아키텍처 적용
+   - 컴포넌트들은 최대한 선언형으로 작성하여 가독성을 향상시켰습니다.
 
 2. custom hooks의 사용
    - 주요 기능들을 custom hooks로 추상화하여 의존성 분리, 재사용성을 고려하였습니다.
