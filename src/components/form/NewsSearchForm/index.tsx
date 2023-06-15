@@ -62,7 +62,7 @@ const NewsSearchForm = ({ query }) => {
   return (
     <Container className="flex-center">
       <Form onSubmit={onSubmit} className="flex-center">
-        <SearchInput name="query" value={inputText} onChange={onChange} />
+        <SearchInput data-testid="search-input" value={inputText} onChange={onChange} />
         <div className="search-button">
           <NewsSearchButton onKeyDown={onKeyDown} disabled={!isValidForm || isQueryEmpty} />
         </div>
