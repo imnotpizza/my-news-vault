@@ -6,27 +6,45 @@ import {
   parseDateToFormat,
   convertToNewsItem,
   setIsScrapped,
+  getProviderIcon,
+  getProviderName,
 } from './newsItem';
+
+describe('getProviderIcon', () => {
+  it('providerIcon 리턴', () => {
+    const providerIcon = getProviderIcon(mockRawNewsItem.provider);
+    expect(providerIcon).toBe(mockRawNewsItem.provider[0].image.thumbnail.contentUrl);
+  });
+  it('providerIcon 없을 경우 null 리턴', () => {
+    const providerIcon = getProviderIcon(undefined);
+    expect(providerIcon).toBe(null);
+  });
+});
+
+describe('getProviderName', () => {
+  it('providerName 리턴', () => {
+    const providerName = getProviderName(mockRawNewsItem.provider);
+    expect(providerName).toBe(mockRawNewsItem.provider[0].name);
+  });
+  it('providerName 없을 경우 null 리턴', () => {
+    const providerName = getProviderName(undefined);
+    expect(providerName).toBe(null);
+  });
+});
 
 describe('parseToNewsItem', () => {
   it('초기화 값 제대로 들어가는지 확인', () => {
-    const newsItem = convertToNewsItem(mockRawNewsItem, '2023.01.01', 'test-query', false);
-    expect(newsItem.datePublished).toBe('2023.01.01');
+    const newsItem = convertToNewsItem(mockRawNewsItem, '2023-01-01', 'test-query', false);
+    expect(newsItem.datePublished).toBe('2023-01-01');
     expect(newsItem.searchQuery).toBe('test-query');
     expect(newsItem.isScrapped).toBe(false);
   });
 
   it('원본 데이터 누락시', () => {
-    const newsItem = convertToNewsItem({
-      ...mockRawNewsItem,
-      name: undefined,
-      url: undefined,
-      provider: undefined,
-      image: undefined,
-    }, '2023.01.01', 'test-query', false);
+    const newsItem = convertToNewsItem(undefined, '2023-01-01', 'test-query', false);
 
     expect(newsItem.newsId).toBe(defaultNewsItem.newsId);
-    expect(newsItem.datePublished).toBe('2023.01.01');
+    expect(newsItem.datePublished).toBe('2023-01-01');
     expect(newsItem.description).toBe(defaultNewsItem.description);
     expect(newsItem.providerName).toBe(defaultNewsItem.providerName);
     expect(newsItem.providerIcon).toBe(defaultNewsItem.providerIcon);

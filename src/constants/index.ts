@@ -21,12 +21,12 @@ export const COOKIE_CONFIG = {
 
 export const defaultNewsItem: TNewsItem = {
   newsId: '',
-  datePublished: '등록된 날짜 없음',
-  description: '설명 없음',
+  datePublished: '',
+  description: '',
   providerIcon: '',
   providerName: '',
   thumbnail: '',
-  title: '제목 없음',
+  title: '',
   isScrapped: false,
   searchQuery: '',
   url: '',
