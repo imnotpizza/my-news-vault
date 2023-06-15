@@ -59,17 +59,19 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
       // 현재 뉴스데이터
       const curNewsItems = getSearchQueryCache(query);
       // newsItem형식으로 변환
-      // eslint-disable-next-line array-callback-return
       const newsItems = fetchResult.value.map((item) => {
         const isScrapped = setIsScrapped(item.name, scrappedNewsList);
         const datePublished = parseDateToFormat(item.datePublished);
         const isDuplicated = isDuplicatedNews(item.name, curNewsItems);
         if (!isDuplicated) {
           return convertToNewsItem(item, datePublished, query, isScrapped);
+        } else {
+          return undefined;
         }
       });
 
-      return newsItems;
+      const filteredNewsItems = newsItems.filter((item) => item !== undefined);
+      return filteredNewsItems;
     },
     {
       getNextPageParam: (lastPage, pages) => {
