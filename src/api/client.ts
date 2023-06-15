@@ -1,7 +1,6 @@
-import { TBingNewsAPIRes, TBingNewsQuery, TNewsItem, TRawNewsItem, TUserInfo } from '@/types';
+import { TBingNewsAPIRes, TBingNewsQuery, TNewsItem, TUserInfo } from '@/types';
 import { doc, getDocs, collection, deleteDoc, setDoc } from 'firebase/firestore/lite';
 import { database } from '@/firebase';
-import { parseToNewsItem } from '@/utils/newsItem';
 import BingAPI from '@/api/BingAPI';
 
 // 한번에 몇개씩 호출할지 결정
