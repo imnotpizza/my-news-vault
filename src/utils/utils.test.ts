@@ -1,37 +1,51 @@
+import { defaultNewsItem } from '@/constants';
 import { mockNewsItem, mockRawNewsItem, mockScrappedNewsItem } from './mockData';
 import {
   deleteDuplicatedNews,
   hasSpecialCharacters,
   parseDateToFormat,
-  parseToNewsItem,
+  convertToNewsItem,
   setIsScrapped,
 } from './newsItem';
 
 describe('parseToNewsItem', () => {
-  it('parse된 데이터 반환', () => {
-    const newsItem = parseToNewsItem(mockRawNewsItem, 'test-query');
-    expect(newsItem).toEqual(mockNewsItem[0]);
+  it('초기화 값 제대로 들어가는지 확인', () => {
+    const newsItem = convertToNewsItem(mockRawNewsItem, '2023.01.01', 'test-query', false);
+    expect(newsItem.datePublished).toBe('2023.01.01');
+    expect(newsItem.searchQuery).toBe('test-query');
+    expect(newsItem.isScrapped).toBe(false);
   });
 
-  it('publishedDate 파싱 실패시', () => {
-    const newsItem = parseToNewsItem({ ...mockRawNewsItem, datePublished: undefined }, 'test-query');
-    expect(newsItem.datePublished).toBe('등록된 날짜 없음');
-  });
+  it('원본 데이터 누락시', () => {
+    const newsItem = convertToNewsItem({
+      ...mockRawNewsItem,
+      name: undefined,
+      url: undefined,
+      provider: undefined,
+      image: undefined,
+    }, '2023.01.01', 'test-query', false);
 
-  it('publishedDate 형식 잘못되었을 때', () => {
-    const newsItem = parseToNewsItem(
-      { ...mockRawNewsItem, datePublished: 'NOTVALIDDATEFORMAT' },
-      'query',
-    );
-    expect(newsItem.datePublished).toBe('등록된 날짜 없음');
+    expect(newsItem.newsId).toBe(defaultNewsItem.newsId);
+    expect(newsItem.datePublished).toBe('2023.01.01');
+    expect(newsItem.description).toBe(defaultNewsItem.description);
+    expect(newsItem.providerName).toBe(defaultNewsItem.providerName);
+    expect(newsItem.providerIcon).toBe(defaultNewsItem.providerIcon);
+    expect(newsItem.thumbnail).toBe(defaultNewsItem.thumbnail);
+    expect(newsItem.title).toBe(defaultNewsItem.title);
+    expect(newsItem.isScrapped).toBe(false);
+    expect(newsItem.searchQuery).toBe('test-query');
+    expect(newsItem.url).toBe(defaultNewsItem.url);
   });
 });
 
 describe('setIsScrapped', () => {
-  it('스크랩 여부 판별', () => {
-    const result = setIsScrapped(mockNewsItem, mockScrappedNewsItem);
-    expect(result[0].isScrapped).toBe(true);
-    expect(result[1].isScrapped).toBe(false);
+  it('스크랩된 뉴스 있는경우 true 반환', () => {
+    const result = setIsScrapped(mockNewsItem[0].newsId, mockScrappedNewsItem);
+    expect(result).toBe(true);
+  });
+  it('스크랩 안된 뉴스 있는경우 false 반환', () => {
+    const result = setIsScrapped(mockNewsItem[1].newsId, mockScrappedNewsItem);
+    expect(result).toBe(false);
   });
 });
 
@@ -52,6 +66,7 @@ describe('deleteDuplicatedNews', () => {
   });
 });
 
+// TODO: 다른곳으로 이동
 describe('hasSpecialCharacters', () => {
   it('특수문자 포함되지 않은 경우', () => {
     const result = hasSpecialCharacters('test가나다123TEST');
