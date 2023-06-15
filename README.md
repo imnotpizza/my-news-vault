@@ -1,4 +1,4 @@
-![구조 스크랜샷](https://github.com/imnotpizza/my-news-vault/assets/48155178/b19b5cd1-67e4-4434-b5f0-63a425966277)<p align="center">
+<p align="center">
   <img src="https://github.com/imnotpizza/my-news-valut/assets/48155178/82f4ce06-462e-4ec0-8d9d-b5ec518d4095" width="300" height="300">
 </p>
 <h1 align="center">Welcome to MYNEWSVAULT 👋</h1>
