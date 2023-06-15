@@ -1,7 +1,7 @@
 import { defaultNewsItem } from '@/constants';
 import { mockNewsItem, mockRawNewsItem, mockScrappedNewsItem } from './mockData';
 import {
-  deleteDuplicatedNews,
+  isDuplicatedNews,
   hasSpecialCharacters,
   parseDateToFormat,
   convertToNewsItem,
@@ -67,20 +67,20 @@ describe('setIsScrapped', () => {
   });
 });
 
-describe('deleteDuplicatedNews', () => {
-  it('중복된 뉴스 없는경우 원본과 동일', () => {
-    const result = deleteDuplicatedNews(mockNewsItem, mockNewsItem);
-    expect(result).toBe(result);
+describe('isDuplicatedNews', () => {
+  it('중복된 경우 true리턴', () => {
+    const result = isDuplicatedNews(mockNewsItem[0].newsId, mockNewsItem);
+    expect(result).toBe(true);
   });
 
-  it('중복된 뉴스 있는경우 중복된 뉴스 제거', () => {
-    const result = deleteDuplicatedNews(mockNewsItem, [
-      ...mockNewsItem,
-      mockNewsItem[0],
-      mockNewsItem[0],
-      mockNewsItem[1],
+  it('중복되지 않은 경우 false리턴', () => {
+    const result = isDuplicatedNews(mockNewsItem[0].newsId, [
+      {
+        ...mockNewsItem[0],
+        newsId: 'different-news-id',
+      },
     ]);
-    expect(result).toEqual(result);
+    expect(result).toEqual(false);
   });
 });
 
