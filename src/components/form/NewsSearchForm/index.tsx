@@ -1,7 +1,7 @@
 import SearchInput from '@/components/form/SearchInput';
 import { responsive } from '@/styles/responsive';
 import { TBingNewsQuery } from '@/types';
-import { hasSpecialCharacters } from '@/utils';
+import { hasSpecialCharacters } from '@/utils/newsItem';
 import AlertText from '@/views/newsSearchForm/AlertText';
 import NewsSearchButton from '@/views/newsSearchForm/NewsSearchButton';
 import { useRouter } from 'next/router';
