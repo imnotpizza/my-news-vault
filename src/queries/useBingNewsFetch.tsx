@@ -2,7 +2,13 @@ import { fetchBingNews } from '@/api/client';
 import { TBingNewsQuery, TNewsItem } from '@/types';
 import { InfiniteData, useInfiniteQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { deleteDuplicatedNews, setIsScrapped } from '@/utils/newsItem';
+import {
+  convertToNewsItem,
+  deleteDuplicatedNews,
+  isDuplicatedNews,
+  parseDateToFormat,
+  setIsScrapped,
+} from '@/utils/newsItem';
 import { queryClient } from '@/queries/queryClient';
 import { useMemo } from 'react';
 import { flatMap } from 'lodash-es';
@@ -15,35 +21,55 @@ interface Params {
 }
 
 /**
+ * 뉴스 검색 쿼리 캐시 데이터 조회
+ * @param searchQuery: 뉴스 검색 쿼리 (queryKey)
+ * @returns 캐시 데이터
+ */
+export const getSearchQueryCache = (searchQuery: TBingNewsQuery['query']) => {
+  const res = queryClient.getQueryData<InfiniteData<TNewsItem[]>>([
+    QUERY_KEY.BING_NEWS_SEARCH,
+    searchQuery,
+  ]);
+
+  return flatMap(res?.pages, (item) => {
+    return item;
+  });
+};
+
+/**
  * 뉴스 검색 쿼리
  * @param query: 검색어
  * @param enabled: 쿼리 활성화 여부
  * @param maxPage: 호출할 최대 페이지
  * @returns queryStates
+ *
+ * 1. api 호출
+ * 2. 결과 데이터 map으로 돌리면서
+ * 2. 1. 중복요소 걸러냄
+ * 3. 2. isScrapped초기화
+ * 4. 2. dateformat 변경
  */
 const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
-  const queryStates = useInfiniteQuery<Awaited<ReturnType<typeof fetchBingNews>>, AxiosError>(
+  const queryStates = useInfiniteQuery<TNewsItem[], AxiosError>(
     [QUERY_KEY.BING_NEWS_SEARCH, query],
     async ({ pageParam = 1 }) => {
-      const newsItems = await fetchBingNews(query, pageParam);
-      // const newsItems = jsonData;
-      // 현재 뉴스목록
-      const curNewsItems = queryClient.getQueryData<InfiniteData<TNewsItem[]>>([
-        QUERY_KEY.BING_NEWS_SEARCH,
-        query,
-      ]);
-      const flattenCurNewsItems = flatMap(curNewsItems?.pages, (item) => {
-        return item;
-      });
-
-      // 중복요소 제거된 뉴스목록
-      const filteredNewsItem = deleteDuplicatedNews(flattenCurNewsItems, newsItems);
-
+      // api 호출
+      const fetchResult = await fetchBingNews(query, pageParam);
       // 스크랩 목록
       const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>([QUERY_KEY.SCRAP_LIST]);
-      // 스크랩된 뉴스는 isScrapped true로 설정
-      const newsItemWithScrapped = setIsScrapped(filteredNewsItem, scrappedNewsList);
-      return newsItemWithScrapped;
+      // 현재 뉴스데이터
+      const curNewsItems = getSearchQueryCache(query);
+      // newsItem형식으로 변환
+      const newsItems = fetchResult.value.map((item) => {
+        const isScrapped = setIsScrapped(item.name, scrappedNewsList);
+        const datePublished = parseDateToFormat(item.datePublished);
+        const isDuplicated = isDuplicatedNews(item.name, curNewsItems);
+        if (!isDuplicated) {
+          return convertToNewsItem(item, datePublished, query, isScrapped);
+        }
+      });
+
+      return newsItems;
     },
     {
       getNextPageParam: (lastPage, pages) => {
@@ -70,7 +96,7 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
  * 스크랩/언스크랩 시, 뉴스 캐시 데이터 업데이트 수행
  * @param targetNewsId: 스크랩시추가/삭제 대상 뉴스 아이디
  * @param isScrapped: true: 추가, false: 삭제
- * @param query: 뉴스 검색 쿼리 (queryKey)
+ * @param query: queryKey = 검색어
  */
 export const updateNewsSearchQuery = (
   targetNewsId: TNewsItem['newsId'],
