@@ -13,7 +13,7 @@ const Container = styled.div`
   height: 100%;
 
   .scrap-count {
-    height: 2.5rem;
+    height: 2rem;
     width: 64.63rem;
     margin: 0 auto;
     margin-top: 1.75rem !important;

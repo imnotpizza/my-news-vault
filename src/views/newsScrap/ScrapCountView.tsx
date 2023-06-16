@@ -1,9 +1,13 @@
+import { responsive } from '@/styles/responsive';
 import React from 'react';
 import styled from 'styled-components';
 
 const Text = styled.p`
   font-weight: 500;
-  font-size: 1.06rem;
+  font-size: 1.32rem;
+  ${responsive.mobile} {
+    font-size: 1.06rem;
+  }
 `;
 
 const ScrapCountView = ({ children }: { children: number }) => {
