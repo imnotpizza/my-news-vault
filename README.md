@@ -34,15 +34,24 @@ Bing News Search API 를 사용한 뉴스검색, 스크랩 기능을 담고있�
 
 ## 칸반 보드
 [칸반 보드](https://github.com/users/imnotpizza/projects/1)
+
 ## 주요 기능
+1. 뉴스기사 검색결과
+2. 뉴스기사 스크랩, 스크랩 목록에서 열람
+3. 스크롤 시 데이터 추가 로드
+4. SEO 관련 작업
+  - Google Console에 등록하여 검색결과에 노출되도록 하였습니다.
+  - 오픈그래프를 적용하여 링크 전달시 컨텐츠가 나오도록 하였습니다.
 
 ## 컴포넌트 구조
 ![구조 스크랜샷](https://github.com/imnotpizza/my-news-vault/assets/48155178/0e4949b8-2f6f-4eb6-91cd-9e00ebfacb50)
 
 
 ## 주안점
-1. 클린 아키텍처 적용
-   - 컴포넌트들은 최대한 선언형으로 작성하여 가독성을 향상시켰습니다.
+1. 코드 품질 [고민 필요]
+   - 선언형 작성
+   - 단일책임원칙, 순수함수 사용 등
+   - presesnter-viewer 패턴 사용
 
 2. custom hooks의 사용
    - 주요 기능들을 custom hooks로 추상화하여 의존성 분리, 재사용성을 고려하였습니다.
