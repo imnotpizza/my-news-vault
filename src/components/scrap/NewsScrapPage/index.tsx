@@ -10,14 +10,13 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  .scrap-count {
-    width: 100%;
-    height: 2.5rem;
-    margin-top: 1.75rem;
-  }
-
   .scrap-results {
-    margin-top: 3rem;
+    margin-top: 7rem;
+    padding-bottom: 5rem;
+    position: relative;
+    & > div {
+      min-height: 100%;
+    }
   }
 `;
 
