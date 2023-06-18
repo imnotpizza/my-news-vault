@@ -1,7 +1,7 @@
 import { QueryClient } from '@tanstack/react-query';
 
 // query 캐시 유지기간: 10분
-const QUERY_CACHE_TIME = 1000 * 60 * 10;
+const QUERY_CACHE_TIME = Infinity;
 
 // react query 공통 옵션
 export const queryClient = new QueryClient();
