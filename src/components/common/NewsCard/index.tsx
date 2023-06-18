@@ -94,9 +94,15 @@ const Container = styled.div`
 `;
 
 const NewsCard = ({ item }: { item: TNewsItem }) => {
-  // eslint-disable-next-line
-  const { isScrapped, title, thumbnail, description, newsId, url, providerIcon, datePublished } =
-    item;
+  const {
+    isScrapped,
+    title,
+    thumbnail,
+    description,
+    url,
+    providerIcon,
+    datePublished,
+  } = item;
   const { userInfo, isSignin } = React.useContext<IUserInfoContext>(userInfoContext);
 
   const { mutate: scrapNews, isLoading: isScrappingNews } = useScrapNews();
