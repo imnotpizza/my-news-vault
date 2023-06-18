@@ -35,4 +35,4 @@ const ScrapButton = ({ isScrapped, onClickScarp, onClickUnscrap, disabled }: ISc
   );
 };
 
-export default memo(ScrapButton);
+export default ScrapButton;

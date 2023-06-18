@@ -1,6 +1,6 @@
 import { TNewsItem } from '@/types';
 import React, { memo } from 'react';
-
+// 삭제
 interface IVisitButtonProps {
   url: TNewsItem['thumbnail'];
 }

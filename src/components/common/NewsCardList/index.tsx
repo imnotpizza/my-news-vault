@@ -50,4 +50,4 @@ const NewsCardList = ({ newsItems }: INewsCardListProps) => {
   );
 };
 
-export default memo(NewsCardList);
+export default NewsCardList;
