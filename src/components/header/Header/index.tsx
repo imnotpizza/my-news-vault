@@ -5,7 +5,7 @@ import { userInfoContext } from '@/utils/userInfoProvider';
 import LogoutButton from '@/views/authStatus/SignoutButton';
 import LoginButton from '@/views/authStatus/SigninButton';
 import UserProfile from '@/views/header/UserProfile';
-import HeaderLinkItem from '@/views/header/HeaderLinkItem';
+import ToScrapPageButton from '@/views/header/ToScrapPageButton';
 import { contentLayoutStyle, responsive } from '@/styles/responsive';
 
 const MainContainer = styled.div`
@@ -58,7 +58,7 @@ const Header = () => {
 
         <div className="user flex-row justify-end align-center">
           <div className="scrap-link flex-row justify-end align-center">
-            <HeaderLinkItem href="/scrap">스크랩 목록</HeaderLinkItem>
+            <ToScrapPageButton />
           </div>
           <div className="login-logout">{isSignin ? <LogoutButton /> : <LoginButton />}</div>
           <div className="profile">

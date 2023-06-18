@@ -1,7 +1,6 @@
-import { TBingNewsAPIRes, TBingNewsQuery, TNewsItem, TRawNewsItem, TUserInfo } from '@/types';
+import { TBingNewsAPIRes, TBingNewsQuery, TNewsItem, TUserInfo } from '@/types';
 import { doc, getDocs, collection, deleteDoc, setDoc } from 'firebase/firestore/lite';
 import { database } from '@/firebase';
-import { parseToNewsItem } from '@/utils';
 import BingAPI from '@/api/BingAPI';
 
 // 한번에 몇개씩 호출할지 결정
@@ -20,12 +19,7 @@ export const fetchBingNews = async (
   const offset = NEWS_COUNT_NUM * pageNum;
   const url = `news/search?mkt=en-us&q=${query}&count=${NEWS_COUNT_NUM}&offset=${offset}`;
   const apiRes = await BingAPI.get<TBingNewsAPIRes>(url);
-
-  const newsItems: TNewsItem[] = apiRes.data.value.map((item: TRawNewsItem) => {
-    return parseToNewsItem(item, query);
-  });
-
-  return newsItems;
+  return apiRes.data;
 };
 
 /**

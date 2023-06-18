@@ -28,7 +28,6 @@ const NewsScrap = ({ userInfo, errCode }) => {
 };
 // FIXME: 구조 개선 필요
 export const getServerSideProps: GetServerSideProps<TPageProps> = async (context) => {
-  queryClient.clear();
   const res1 = await getUserInfoInServerside(context, initialPageProps);
   const res2 = await getDehydratedStateInServerside(context, res1);
 
