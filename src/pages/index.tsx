@@ -29,17 +29,18 @@ const Container = styled.div`
         margin-bottom: 300px;
       }
     }
+    & > div:last-child {
+      margin-bottom: 150px;
+      ${responsive.mobile} {
+        margin-bottom: 100px;
+      }
+    }
   }
-`;
-
-const Bottom = styled.div`
-  width: 100%;
-  height: 300px;
 `;
 
 const FirstContent = styled.div`
   width: 100%;
-  height: 80%;
+  height: 600px;
   .logo {
     margin-bottom: 50px;
     width: 500px;
@@ -60,6 +61,11 @@ const FirstContent = styled.div`
   }
   .to-search-button {
   }
+`;
+
+const Footer = styled.div`
+  width: 100%;
+  height: 1px;
 `;
 
 const LandingPage = () => {
@@ -112,7 +118,7 @@ const LandingPage = () => {
             imgUrl="/gif/landing-page-svg3.gif"
           />
         </div>
-        <Bottom />
+        <Footer />
       </Container>
     </RootLayout>
   );
