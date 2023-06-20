@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="https://github.com/imnotpizza/my-news-valut/assets/48155178/82f4ce06-462e-4ec0-8d9d-b5ec518d4095" width="300" height="300">
+  
+  <img src="https://github.com/imnotpizza/my-news-vault/blob/feature/readme-update/public/img/applogo.png" width="200" height="200">
 </p>
 <h1 align="center">Welcome to MYNEWSVAULT 👋</h1>
 <p>
