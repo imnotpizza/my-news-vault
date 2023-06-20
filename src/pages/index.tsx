@@ -1,6 +1,6 @@
 import RootLayout from '@/components/layout';
 import { APP_NAME } from '@/constants';
-import { contentLayoutStyle } from '@/styles/responsive';
+import { contentLayoutStyle, responsive } from '@/styles/responsive';
 import LandingContents from '@/views/landing/LandingContents';
 import LandingItem from '@/views/landing/LandingItem';
 import LandingTitle from '@/views/landing/LandingTitle';
@@ -22,6 +22,17 @@ const FirstContent = styled.div`
   height: 50%;
   .logo {
     margin-bottom: 50px;
+    width: 500px;
+    height: 130px;
+    ${responsive.mobile} {
+      width: 380px;
+      height: 100px;
+    }
+    background-color: pink;
+    & > img {
+      width: 100%;
+      height: 100%;
+    }
   }
   .title {
     margin-bottom: 50px;
@@ -37,10 +48,14 @@ const LandingPage = () => {
   return (
     <RootLayout>
       <Container>
-        {/* fefe */}
         <FirstContent className="flex-center flex-column">
           <div className="logo">
-            <Image src="/svg/landing-icon.svg" alt="my news vault" width={500} height={100} />
+            <Image
+              width={500}
+              height={200}
+              src="/svg/landing-icon.svg"
+              alt="my news vault"
+            />
           </div>
           <div className="contents">
             <LandingContents>스크랩한 뉴스를 통해 나만의 뉴스를 만들어보세요.</LandingContents>
@@ -49,7 +64,6 @@ const LandingPage = () => {
             <ToSearchPageButton />
           </div>
         </FirstContent>
-        {/* fefe */}
         <LandingItem
           title="편리한 검색 기능"
           contents={
@@ -61,7 +75,6 @@ const LandingPage = () => {
           }
           imgUrl="/gif/landing-page-svg1.gif"
         />
-        {/* fefe */}
         <LandingItem
           title="좋아하는 뉴스 스크랩"
           contents={

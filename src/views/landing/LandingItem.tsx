@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import LandingTitle from './LandingTitle';
 import LandingContents from './LandingContents';
 import LandingImage from './LandingImage';
+import { responsive } from '@/styles/responsive';
 
 const Container = styled.div`
   height: 800px;
@@ -10,7 +11,7 @@ const Container = styled.div`
   background-color: green;
   margin-bottom: 15rem;
   .contents-box {
-    width: 60%;
+    width: 100%;
     height: 100%;
     background-color: pink;
     .title {
@@ -26,7 +27,7 @@ const Container = styled.div`
     }
   }
   .image-box {
-    width: 60%;
+    width: 100%;
     height: 100%;
     background-color: purple;
     .image {

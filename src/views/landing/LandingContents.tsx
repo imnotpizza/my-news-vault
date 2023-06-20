@@ -1,8 +1,12 @@
+import { responsive } from '@/styles/responsive';
 import React from 'react';
 import styled from 'styled-components';
 
 const Text = styled.div`
   font-size: 28px;
+  ${responsive.mobile}{
+    font-size: 18px;
+  }
 `;
 
 const LandingContents = ({ children }) => {
