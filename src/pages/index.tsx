@@ -58,7 +58,7 @@ const LandingPage = () => {
               사이트입니다.
             </p>
           }
-          imgUrl="/images/landing/landing1.png"
+          imgUrl="/gif/landing-page-svg1.gif"
         />
         {/* fefe */}
         <LandingItem
@@ -70,7 +70,7 @@ const LandingPage = () => {
               소중한 뉴스를 저장하고 언제든지 다시 확인해보세요.
             </p>
           }
-          imgUrl="/images/landing/landing1.png"
+          imgUrl="/gif/landing-page-svg2.gif"
         />
         <LandingItem
           title="스크랩 목록 한번에 확인"
@@ -81,7 +81,7 @@ const LandingPage = () => {
               <br /> 소중한 정보를 쉽게 찾아보세요.
             </p>
           }
-          imgUrl="/images/landing/landing1.png"
+          imgUrl="/gif/landing-page-svg3.gif"
         />
       </Container>
     </RootLayout>

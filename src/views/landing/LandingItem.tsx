@@ -49,7 +49,10 @@ const LandingItem = ({
           <LandingContents>{contents}</LandingContents>
         </div>
       </div>
-      <div className="image-box flex-center">{/* <LandingImage/> */}</div>
+      <div className="image-box flex-center"><LandingImage
+        title={title}
+        imgUrl={imgUrl}
+      /></div>
     </Container>
   );
 };
