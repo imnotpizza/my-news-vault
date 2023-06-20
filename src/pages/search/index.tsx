@@ -8,7 +8,6 @@ import { getDehydratedStateInServerside, getUserInfoInServerside } from '@/utils
 import { TPageProps } from '@/types';
 import { APP_NAME, initialPageProps } from '@/constants';
 import ErrorPage from 'next/error';
-import { queryClient } from '@/queries/queryClient';
 
 const NewsSearch = ({ userInfo, query, errCode }) => {
   if (errCode) {

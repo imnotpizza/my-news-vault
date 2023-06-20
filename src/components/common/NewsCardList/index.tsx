@@ -1,4 +1,3 @@
-import React, { memo } from 'react';
 import styled from 'styled-components';
 import { TNewsItem } from '@/types';
 import { responsive } from '@/styles/responsive';

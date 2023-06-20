@@ -1,4 +1,3 @@
-import RootLayout from '@/components/layout';
 import { APP_NAME } from '@/constants';
 import { contentLayoutStyle, responsive } from '@/styles/responsive';
 import LandingContents from '@/views/landing/LandingContents';
