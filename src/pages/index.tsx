@@ -13,16 +13,15 @@ const Container = styled.div`
   width: 100%;
   ${contentLayoutStyle};
   margin: 0 auto;
+  ${responsive.tablet} {
+    min-height: 800px;
+    width: 90%;
+  }
   ${responsive.mobile} {
     min-height: 800px;
+    width: 90%;
   }
   .landing-items {
-    & > div:first-child {
-      margin-top: 200px;
-      ${responsive.mobile} {
-        margin-top: 300px;
-      }
-    }
     & > div {
       margin-bottom: 500px;
       ${responsive.mobile} {
@@ -40,7 +39,7 @@ const Container = styled.div`
 
 const FirstContent = styled.div`
   width: 100%;
-  height: 600px;
+  height: 900px;
   .logo {
     margin-bottom: 50px;
     width: 500px;
