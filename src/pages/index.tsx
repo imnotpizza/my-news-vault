@@ -18,7 +18,7 @@ const Container = styled.div`
 
 const FirstContent = styled.div`
   width: 100%;
-  height: 700px;
+  height: 50%;
   .logo {
     margin-bottom: 50px;
   }

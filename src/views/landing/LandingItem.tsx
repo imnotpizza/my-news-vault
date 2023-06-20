@@ -7,17 +7,20 @@ import LandingImage from './LandingImage';
 const Container = styled.div`
   height: 800px;
   background-color: green;
+  margin-bottom: 15rem;
   .contents-box {
     width: 50%;
     height: 100%;
     background-color: pink;
     .title {
-      height: 30%;
+      height: 20%;
       background-color: orange;
     }
 
     .contents {
-      height: 70%;
+      height: 80%;
+      box-sizing: border-box;
+      padding-top: 20%;
       background-color: brown;
     }
   }
@@ -42,7 +45,7 @@ const LandingItem = ({
   return (
     <Container className="flex-center">
       <div className="contents-box flex-column">
-        <div className="title">
+        <div className="title flex-row align-center">
           <LandingTitle>{title}</LandingTitle>
         </div>
         <div className="contents">
