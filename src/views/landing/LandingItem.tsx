@@ -5,7 +5,6 @@ import LandingContents from './LandingContents';
 import LandingImage from './LandingImage';
 
 const Container = styled.div`
-  width: 100%;
   height: 800px;
   background-color: green;
   .contents-box {
@@ -23,15 +22,12 @@ const Container = styled.div`
     }
   }
   .image-box {
-    width: 50%; 
+    width: 50%;
     height: 100%;
     background-color: purple;
     .image {
-
     }
   }
-
-
 `;
 
 const LandingItem = ({
@@ -53,9 +49,7 @@ const LandingItem = ({
           <LandingContents>{contents}</LandingContents>
         </div>
       </div>
-      <div className="image-box flex-center">
-        {/* <LandingImage/> */}
-      </div>
+      <div className="image-box flex-center">{/* <LandingImage/> */}</div>
     </Container>
   );
 };

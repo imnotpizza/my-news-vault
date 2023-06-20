@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Text = styled.p`
-  font-size: 30px;
+const Text = styled.div`
+  & > p {
+    font-size: 28px;
+  }
 `;
 
 const LandingContents = ({ children }) => {
