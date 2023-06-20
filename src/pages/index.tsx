@@ -38,8 +38,8 @@ const LandingPage = () => {
       <Container>
         {/* fefe */}
         <FirstContent className="flex-center flex-column">
-          <div className="title">
-            <LandingTitle>{APP_NAME}</LandingTitle>
+          <div className='logo'>
+            <img src="/svg/landing-icon.svg" alt="my news vault" width={500} height={100} />
           </div>
           <div className="contents">
             <LandingContents>스크랩한 뉴스를 통해 나만의 뉴스를 만들어보세요.</LandingContents>
