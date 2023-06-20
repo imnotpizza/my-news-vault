@@ -20,12 +20,12 @@ const animation = css`
   animation: ${fadeIn} 1s ease-in-out;
 `;
 
-const Container = styled.div<{ isDetected: boolean }>`
+const Container = styled.div<{ detected: 1 | 0 }>`
   height: 800px;
   width: 100%;
   background-color: green;
   margin-bottom: 15rem;
-  ${(p) => p.isDetected && animation};
+  ${(p) => (p.detected ? animation : undefined)};
   .contents-box {
     width: 100%;
     height: 100%;
@@ -60,11 +60,11 @@ const LandingItem = ({
   contents: React.ReactElement | string;
   imgUrl: string;
 }) => {
-  const [isDetected, setIsDetected] = useState(false);
-  const { ref } = useFadeUIEffect(() => setIsDetected(true));
+  const [detected, setDetected] = useState(false);
+  const { ref } = useFadeUIEffect(() => setDetected(true));
 
   return (
-    <Container className="flex-column flex-center" ref={ref} isDetected={isDetected}>
+    <Container className="flex-column flex-center" ref={ref} detected={detected ? 1 : 0}>
       <div className="contents-box">
         <div className="title flex-center">
           <LandingTitle>{title}</LandingTitle>
