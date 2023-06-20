@@ -24,12 +24,17 @@ const Container = styled.div`
       }
     }
     & > div {
-      margin-bottom: 200px;
+      margin-bottom: 500px;
       ${responsive.mobile} {
         margin-bottom: 300px;
       }
     }
   }
+`;
+
+const Bottom = styled.div`
+  width: 100%;
+  height: 300px;
 `;
 
 const FirstContent = styled.div`
@@ -107,6 +112,7 @@ const LandingPage = () => {
             imgUrl="/gif/landing-page-svg3.gif"
           />
         </div>
+        <Bottom />
       </Container>
     </RootLayout>
   );

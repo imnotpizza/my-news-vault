@@ -24,7 +24,6 @@ const animation = css`
 const Container = styled.div<{ detected: 1 | 0 }>`
   height: 800px;
   width: 100%;
-  background-color: green;
   ${responsive.mobile} {
     height: 650px;
   }
@@ -32,23 +31,19 @@ const Container = styled.div<{ detected: 1 | 0 }>`
   .contents-box {
     width: 100%;
     height: 100%;
-    background-color: pink;
     .title {
       height: 30%;
-      background-color: orange;
     }
 
     .contents {
       height: 70%;
       box-sizing: border-box;
       text-align: center;
-      background-color: brown;
     }
   }
   .image-box {
     width: 100%;
     height: 100%;
-    background-color: purple;
     .image {
     }
   }
