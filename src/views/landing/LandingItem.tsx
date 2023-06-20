@@ -6,26 +6,27 @@ import LandingImage from './LandingImage';
 
 const Container = styled.div`
   height: 800px;
+  width: 100%;
   background-color: green;
   margin-bottom: 15rem;
   .contents-box {
-    width: 50%;
+    width: 60%;
     height: 100%;
     background-color: pink;
     .title {
-      height: 20%;
+      height: 30%;
       background-color: orange;
     }
 
     .contents {
-      height: 80%;
+      height: 70%;
       box-sizing: border-box;
-      padding-top: 20%;
+      text-align: center;
       background-color: brown;
     }
   }
   .image-box {
-    width: 50%;
+    width: 60%;
     height: 100%;
     background-color: purple;
     .image {
@@ -43,12 +44,12 @@ const LandingItem = ({
   imgUrl: string;
 }) => {
   return (
-    <Container className="flex-center">
-      <div className="contents-box flex-column">
-        <div className="title flex-row align-center">
+    <Container className="flex-column flex-center">
+      <div className="contents-box">
+        <div className="title flex-center">
           <LandingTitle>{title}</LandingTitle>
         </div>
-        <div className="contents">
+        <div className="contents flex-center">
           <LandingContents>{contents}</LandingContents>
         </div>
       </div>
