@@ -5,7 +5,7 @@ import { styled } from 'styled-components';
 const Text = styled.p`
   font-size: 56px;
   ${responsive.mobile}{
-    font-size: 32px;
+    font-size: 28px;
   }
 `;
 

@@ -5,6 +5,8 @@ import Image from 'next/image';
 const ImageBox = styled.div`
   border: 7px solid black;
   border-radius: 1rem;
+  width: 300px;
+  height: 450px;
   & > img {
     border-radius: 0.5rem;
   }

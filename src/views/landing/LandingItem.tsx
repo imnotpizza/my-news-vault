@@ -4,6 +4,7 @@ import { css, keyframes, styled } from 'styled-components';
 import LandingTitle from './LandingTitle';
 import LandingContents from './LandingContents';
 import LandingImage from './LandingImage';
+import { responsive } from '@/styles/responsive';
 
 const fadeIn = keyframes`
   0% {
@@ -24,7 +25,9 @@ const Container = styled.div<{ detected: 1 | 0 }>`
   height: 800px;
   width: 100%;
   background-color: green;
-  margin-bottom: 15rem;
+  ${responsive.mobile} {
+    height: 650px;
+  }
   ${(p) => (p.detected ? animation : undefined)};
   .contents-box {
     width: 100%;
