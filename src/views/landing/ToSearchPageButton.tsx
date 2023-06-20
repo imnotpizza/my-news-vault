@@ -1,3 +1,4 @@
+import { responsive } from '@/styles/responsive';
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
@@ -9,6 +10,11 @@ const Button = styled.button`
   cursor: pointer;
   border: none;
   font-size: 23px;
+  ${responsive.mobile} {
+    width: 150px;
+    height: 50px;
+    font-size: 16px;
+  }
 `;
 
 const ToSearchPageButton = () => {
