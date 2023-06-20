@@ -22,6 +22,11 @@ const animation = css`
 `;
 
 const Container = styled.div<{ detected: 1 | 0 }>`
+  background-color: ${(p) => p.theme.White};
+  border: 1px solid ${(p) => p.theme.Blue.Blue_M};
+  border-radius: 40px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+  padding: 60px 0;
   height: 800px;
   width: 100%;
   ${responsive.mobile} {

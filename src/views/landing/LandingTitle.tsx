@@ -3,6 +3,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 const Text = styled.p`
+  color: ${(p) => p.theme.Navy.Navy_80};
   font-size: 56px;
   ${responsive.mobile}{
     font-size: 28px;

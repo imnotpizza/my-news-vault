@@ -10,10 +10,16 @@ const Button = styled.button`
   cursor: pointer;
   border: none;
   font-size: 23px;
+  background-color: ${(p) => p.theme.Blue.Blue_L};
   ${responsive.mobile} {
     width: 150px;
     height: 50px;
     font-size: 16px;
+  }
+  &:hover {
+    background-color: ${(p) => p.theme.Blue.Blue_M};
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    color: ${(p) => p.theme.White};
   }
 `;
 
