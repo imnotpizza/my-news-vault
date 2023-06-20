@@ -3,8 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
-  width: 100px;
-  height: 30px;
+  width: 300px;
+  height: 60px;
+  border-radius: 100px;
+  cursor: pointer;
+  border: none;
+  font-size: 23px;
 `;
 
 const ToSearchPageButton = () => {
@@ -14,7 +18,7 @@ const ToSearchPageButton = () => {
     router.push('/search');
   };
 
-  return <Button onClick={onClick} />;
+  return <Button onClick={onClick}>지금 검색하기</Button>;
 };
 
 export default ToSearchPageButton;
