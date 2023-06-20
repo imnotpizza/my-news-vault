@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import useFadeUIEffect from '@/hooks/useFadeUIEffect';
+import { responsive } from '@/styles/responsive';
 import { css, keyframes, styled } from 'styled-components';
 import LandingTitle from './LandingTitle';
 import LandingContents from './LandingContents';
 import LandingImage from './LandingImage';
-import { responsive } from '@/styles/responsive';
 
 const fadeIn = keyframes`
   0% {
