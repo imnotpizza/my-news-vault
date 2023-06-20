@@ -35,16 +35,13 @@ const Container = styled.div`
 const FirstContent = styled.div`
   width: 100%;
   height: 80%;
-  background-color: blue;
   .logo {
     margin-bottom: 50px;
     width: 500px;
     height: 130px;
     ${responsive.mobile} {
-      width: 380px;
-      height: 100px;
+      width: 80%;
     }
-    background-color: pink;
     & > img {
       width: 100%;
       height: 100%;
