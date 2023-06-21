@@ -40,13 +40,13 @@ const SigninButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   const { mutate, isLoading } = useSignin({
     onSuccess: (newUserInfo) => {
       setUserInfo(() => newUserInfo);
-      window.location.href = '/';
+      window.location.reload();
     },
   });
 
-  const onClickSignin = useCallback(() => {
+  const onClickSignin = () => {
     mutate();
-  }, [mutate]);
+  };
 
   return (
     <Button {...props} onClick={onClickSignin} className="flex-center" disabled={isLoading}>

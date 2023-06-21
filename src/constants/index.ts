@@ -16,7 +16,7 @@ export const COOKIE_CONFIG = {
   path: '/',
   httpOnly: true,
   secure: process.env.NODE_ENV === 'production',
-  maxAge: 60 * 60 * 24, // 1 day
+  maxAge: 60 * 60 * 24 * 7, // 7 days
 };
 
 export const defaultNewsItem: TNewsItem = {
