@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { responsive } from '@/styles/responsive';
 import { userInfoContext } from '@/utils/userInfoProvider';
+import { queryClient } from '@/queries/queryClient';
 import { useSignout } from '@/queries/useUserAuth';
 import DefaultSpinner from '../searchStatus/DefaultSpinner';
 
@@ -40,6 +41,7 @@ const SignoutButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => 
   const { mutate, isLoading } = useSignout({
     onSuccess: () => {
       setUserInfo(() => null);
+      queryClient.clear();
       window.location.href = '/';
     },
     onError: () => {
