@@ -11,7 +11,6 @@ import { responsive } from '@/styles/responsive';
 const Container = styled.div`
   width: 100%;
   height: 100%;
-
   .scrap-count {
     height: 2rem;
     width: 64.63rem;
@@ -23,7 +22,7 @@ const Container = styled.div`
       margin: 0 auto;
     }
     ${responsive.mobile} {
-      width: 100%;
+      width: 90%;
       height: 1rem;
       box-sizing: border-box;
       margin: 0 1.25rem;
