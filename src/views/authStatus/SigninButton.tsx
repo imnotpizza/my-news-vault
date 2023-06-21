@@ -44,9 +44,9 @@ const SigninButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
     },
   });
 
-  const onClickSignin = useCallback(() => {
+  const onClickSignin = () => {
     mutate();
-  }, [mutate]);
+  };
 
   return (
     <Button {...props} onClick={onClickSignin} className="flex-center" disabled={isLoading}>

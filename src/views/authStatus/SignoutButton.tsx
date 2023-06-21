@@ -49,9 +49,9 @@ const SignoutButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => 
     },
   });
 
-  const onClickSignout = useCallback(() => {
+  const onClickSignout = () => {
     mutate();
-  }, [mutate]);
+  };
 
   return (
     <Button {...props} onClick={onClickSignout} className="flex-center" disabled={isLoading}>
