@@ -1,0 +1,8 @@
+/node_modules
+/.next
+/.__mocks__
+/.vercel
+/.vscode
+/.yarn
+/.gitignore
+/docs
