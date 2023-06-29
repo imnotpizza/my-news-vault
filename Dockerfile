@@ -15,10 +15,15 @@ COPY --from=deps /app/node_modules .
 COPY . .
 RUN yarn build
 
-# step3: build final image
+
 FROM base AS runner
 WORKDIR /app
-COPY --from=builder /app/public ./public
+
+COPY --from=builder /app ./
+
+ENV NODE_ENV=production
 
 EXPOSE 3000
+ENV PORT 3000
+
 CMD ["yarn", "start"]
