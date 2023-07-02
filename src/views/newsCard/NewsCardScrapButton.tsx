@@ -1,4 +1,3 @@
-import React, { memo } from 'react';
 import styled from 'styled-components';
 import ScrapIcon from './ScrapIcon';
 
@@ -35,4 +34,4 @@ const ScrapButton = ({ isScrapped, onClickScarp, onClickUnscrap, disabled }: ISc
   );
 };
 
-export default memo(ScrapButton);
+export default ScrapButton;

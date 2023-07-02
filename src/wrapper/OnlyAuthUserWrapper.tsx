@@ -6,11 +6,13 @@ const OnlyAuthUserWrapper = ({ isSignin, children }) => {
   useEffect(() => {
     if (!isSignin) {
       alert('로그인이 필요합니다.');
-      router.back();
+      router.push('/');
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return <div>{children}</div>;
+
+  if (isSignin) {
+    return <>{children}</>;
+  }
 };
 
 export default OnlyAuthUserWrapper;

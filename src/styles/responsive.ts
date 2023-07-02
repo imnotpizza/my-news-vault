@@ -10,6 +10,5 @@ export const responsive = {
 };
 
 export const contentLayoutStyle = css`
-  max-width: 62.5rem;
-  min-width: 20rem;
+  max-width: 65.5rem;
 `;

@@ -20,7 +20,7 @@ export const useScrapNews = () => {
     async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, query);
       await scrapNews(userId, newsItem);
-      addScrapNewsToCache(newsItem);
+      addScrapNewsToCache({ ...newsItem, isScrapped });
     },
     {
       onSuccess: () => {

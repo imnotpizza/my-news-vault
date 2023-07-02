@@ -1,4 +1,3 @@
-import React, { memo } from 'react';
 import styled from 'styled-components';
 import { TNewsItem } from '@/types';
 import { responsive } from '@/styles/responsive';
@@ -50,4 +49,4 @@ const NewsCardList = ({ newsItems }: INewsCardListProps) => {
   );
 };
 
-export default memo(NewsCardList);
+export default NewsCardList;

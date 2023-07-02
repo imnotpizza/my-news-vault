@@ -9,14 +9,13 @@ const Box = styled.div`
   position: absolute;
   bottom: 0;
   z-index: 0;
-  /* background-color: red; */
   padding-top: 2rem;
 `;
 
 const InfiniteScrollThresholdBox = ({ isLoading }, ref) => {
   return (
-    <Box className="flex-center align-end" ref={ref}>
-      {isLoading && <BeatLoader size={23} color={Palette.Navy.Default} />}
+    <Box className="flex-center" ref={ref}>
+      {isLoading && <BeatLoader size={14} color={Palette.Navy.Default} />}
     </Box>
   );
 };
