@@ -5,7 +5,7 @@ env:
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - develop
 jobs:
   Deploy-Preview:
     runs-on: ubuntu-latest
