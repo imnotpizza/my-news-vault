@@ -9,7 +9,9 @@
     "lint": "next lint",
     "test": "jest --watchAll",
     "build:analyze": "ANALYZE=true yarn build",
-    "vercel-build": "next build"
+    "vercel-build": "next build",
+    "docker:build": "docker build -t my-news-vault .",
+    "docker:run": "docker run -p 3000:3000 my-news-vault"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.29.5",
