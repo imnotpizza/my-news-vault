@@ -1,9 +1,9 @@
-import SearchInput from '@/components/form/SearchInput';
 import { responsive } from '@/styles/responsive';
 import { TBingNewsQuery } from '@/types';
 import { hasSpecialCharacters } from '@/utils/newsItem';
 import AlertText from '@/views/newsSearchForm/AlertText';
 import NewsSearchButton from '@/views/newsSearchForm/NewsSearchButton';
+import NewsSearchInput from '@/views/newsSearchForm/NewsSearchInput';
 import { useRouter } from 'next/router';
 import React, { memo, useMemo, useState } from 'react';
 import styled from 'styled-components';
@@ -62,7 +62,7 @@ const NewsSearchForm = ({ query }) => {
   return (
     <Container className="flex-center">
       <Form onSubmit={onSubmit} className="flex-center">
-        <SearchInput data-testid="search-input" value={inputText} onChange={onChange} />
+        <NewsSearchInput data-testid="search-input" value={inputText} onChange={onChange}/>
         <div className="search-button">
           <NewsSearchButton onKeyDown={onKeyDown} disabled={!isValidForm || isQueryEmpty} />
         </div>

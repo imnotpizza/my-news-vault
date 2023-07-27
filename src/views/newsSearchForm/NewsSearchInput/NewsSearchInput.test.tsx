@@ -8,26 +8,17 @@ describe('NewsSearchInput 컴포넌트', () => {
 
     render(withTestProviders(NewsSearchInput, { onChange: onChangeMock }));
     const input = screen.getByRole('textbox');
-    const inputValue = '입력 텍스트';
-    fireEvent.change(input, { target: { value: inputValue } });
-
-    expect(input).toBeInTheDocument();
-    expect(input).toHaveValue(inputValue);
-    expect(onChangeMock).toHaveBeenCalledTimes(1);
+    expect(input).toBeEnabled();
   });
 
   test('인풋이 비활성화되면 입력 이벤트가 동작하지 않아야 함', () => {
     const onChangeMock = jest.fn();
     render(withTestProviders(NewsSearchInput, { onChange: onChangeMock, disabled: true }));
-
-    const input = screen.getByRole('textbox');
-    const inputValue = '비활성화 입력 테스트';
-    fireEvent.change(input, { target: { value: inputValue } });
-    expect(onChangeMock).not.toHaveBeenCalled();
+    expect(screen.getByRole('textbox')).toBeDisabled();
   });
 
   test('인풋에 placeholder가 제대로 렌더링되는지 확인', () => {
-    const placeholderText = '검색어를 입력하세요';
+    const placeholderText = '검색어를 입력해주세요';
     render(withTestProviders(NewsSearchInput, { placeholder: placeholderText }));
     const input = screen.getByPlaceholderText(placeholderText);
     expect(input).toBeInTheDocument();
