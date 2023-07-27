@@ -18,8 +18,7 @@ describe('NewsSearchButton 컴포넌트', () => {
     fireEvent.click(screen.getByAltText('뉴스 검색 버튼'));
     expect(onClickMock).not.toHaveBeenCalled();
   });
-
-  // FIXME: toHaveStyle 적용안되는문제 수정
+  // FIXME: toHaveStyle로 스타일 체크 못하는 문제 수정
   test('버튼이 비활성화되면 스타일이 변경되어야 함', () => {
     render(withTestProviders(NewsSearchButton, { disabled: true }));
     const button = screen.getByAltText('뉴스 검색 버튼');
