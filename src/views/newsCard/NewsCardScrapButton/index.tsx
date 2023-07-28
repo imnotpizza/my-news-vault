@@ -16,10 +16,15 @@ const ImgButton = styled.button`
   cursor: pointer;
 `;
 
-const ScrapButton = ({ isScrapped, onClickScarp, onClickUnscrap, disabled }: IScrapButtonProps) => {
+const NewsCardScrapButton = ({
+  isScrapped,
+  onClickScarp,
+  onClickUnscrap,
+  disabled,
+}: IScrapButtonProps) => {
   return (
     <ImgButton
-      aria-label={isScrapped ? '스크랩 헤제 버튼' : '스크랩 추가 버튼'}
+      aria-label={isScrapped ? '스크랩 해제 버튼' : '스크랩 추가 버튼'}
       disabled={disabled}
       onClick={() => {
         if (isScrapped) {
@@ -34,4 +39,4 @@ const ScrapButton = ({ isScrapped, onClickScarp, onClickUnscrap, disabled }: ISc
   );
 };
 
-export default ScrapButton;
+export default NewsCardScrapButton;
