@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import withTestProviders from '@/components/providers/withTestProviders';
 import NewsCardDesc from '.';
 
+// TODO: 이미지 관련 컴포넌트 분리 후 테스트 통합
 const providerImg = '/img/mock-news-provider.png';
 const providerTitle = 'News Provider';
 
