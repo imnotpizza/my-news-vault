@@ -12,6 +12,15 @@ const customJestConfig = {
     '^@/(.*)$': '<rootDir>/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
+  collectCoverageFrom: ['./src/**/*.[jt]sx', '!**/*.stories.[jt]s?(x)'],
+  coverageThreshold: {
+    './src/': {
+      statements: 70,
+      branches: 70,
+      functions: 70,
+      lines: 70,
+    },
+  },
 };
 
 module.exports = createJestConfig(customJestConfig);
