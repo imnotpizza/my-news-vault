@@ -10,7 +10,7 @@ describe('뉴스 내용 텍스트', () => {
     expect(screen.getByText(description)).toBeInTheDocument();
   });
 
-  test('내용 없으면 확인', async () => {
+  test('내용 없으면 내용 출력하지 않음', async () => {
     render(withTestProviders(NewsCardDesc, { children: undefined }));
     expect(await screen.queryByText(description)).not.toBeInTheDocument();
   });
