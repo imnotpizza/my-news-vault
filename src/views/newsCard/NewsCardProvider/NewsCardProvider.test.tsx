@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import withTestProviders from '@/components/providers/withTestProviders';
 import NewsCardDesc from '.';
 
-const providerImg = '/path/to/mock-news-provider.png';
+const providerImg = '/img/mock-news-provider.png';
 const providerTitle = 'News Provider';
 
 describe('뉴스 내용 텍스트', () => {
@@ -12,7 +12,7 @@ describe('뉴스 내용 텍스트', () => {
     expect(providerIcon).toHaveAttribute('alt', providerTitle);
     expect(providerIcon).toHaveAttribute(
       'src',
-      '/_next/image?url=%2Fpath%2Fto%2Fmock-news-provider.png&w=64&q=75',
+      expect.stringContaining('mock-news-provider.png'),
     );
   });
 
@@ -20,6 +20,9 @@ describe('뉴스 내용 텍스트', () => {
     render(withTestProviders(NewsCardDesc, { src: undefined, alt: providerTitle }));
     const providerIcon = screen.getByRole('img');
     expect(providerIcon).toHaveAttribute('alt', providerTitle);
-    expect(providerIcon).toHaveAttribute('src');
+    expect(providerIcon).toHaveAttribute(
+      'src',
+      expect.stringContaining('newscard-default-providerlogo.svg'),
+    );
   });
 });
