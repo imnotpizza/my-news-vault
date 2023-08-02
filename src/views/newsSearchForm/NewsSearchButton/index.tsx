@@ -30,7 +30,12 @@ const Button = styled.button`
 const NewsSearchButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
     <Button {...props}>
-      <Image src="/svg/news-search-button-icon.svg" alt="뉴스 검색 버튼" width={14} height={14} />
+      <Image
+        src="/svg/news-search-button-icon.svg"
+        alt="뉴스 검색 버튼"
+        width={14}
+        height={14}
+      />
     </Button>
   );
 };

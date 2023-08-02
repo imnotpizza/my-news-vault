@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watchAll",
+    "test:coverage": "jest --coverage",
     "build:analyze": "ANALYZE=true yarn build",
     "vercel-build": "next build",
     "docker:build": "docker build -t my-news-vault .",

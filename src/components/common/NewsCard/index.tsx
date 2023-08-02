@@ -133,7 +133,7 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
   };
 
   return (
-    <Container className="news-card flex-column align-start">
+    <Container className="news-card flex-column align-start" data-testid="news-card-ui">
       <NewsCardThumbnail src={thumbnail} alt={title} />
       <div className="contents">
         <div className="provider">

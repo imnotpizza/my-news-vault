@@ -17,7 +17,7 @@ const Date = styled.p`
 `;
 
 const NewsCardPublishedDate = ({ children }) => {
-  return <Date>{children}</Date>;
+  return <Date>{children || '입력된 날짜 없음'}</Date>;
 };
 
 export default NewsCardPublishedDate;
