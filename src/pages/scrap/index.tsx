@@ -1,9 +1,5 @@
 import NewsScrapPage from '@/components/scrap/NewsScrapPage';
-import {
-  getDehydratedStateInServerside,
-  getUserInfoFromFirebaseAdmin,
-  getUserInfoInServerside,
-} from '@/utils/serverside';
+import { getUserInfoFromFirebaseAdmin } from '@/utils/serverside';
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import { TPageProps } from '@/types';
