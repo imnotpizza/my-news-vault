@@ -32,22 +32,31 @@ const NewsScrap = ({ userInfo, errCode }) => {
     </OnlyAuthUserWrapper>
   );
 };
-// FIXME: 구조 개선 필요
-export const getServerSideProps: GetServerSideProps<TPageProps> = async (context) => {
-  // 유저 정보
-  const { authToken } = context.req.cookies;
-  const userInfo = await getUserInfoFromFirebaseAdmin(authToken);
-  // 스크랩 정보 초기화
-  if (userInfo) {
-    await prefetchScrappedNewsList(userInfo.email);
-  }
 
-  return {
-    props: {
-      userInfo,
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
+export const getServerSideProps: GetServerSideProps<TPageProps> = async (context) => {
+  try {
+    // 유저 정보
+    const { authToken } = context.req.cookies;
+    const userInfo = await getUserInfoFromFirebaseAdmin(authToken);
+    // 스크랩 정보 초기화
+    if (userInfo) {
+      await prefetchScrappedNewsList(userInfo.email);
+    }
+
+    return {
+      props: {
+        userInfo,
+        dehydratedState: dehydrate(queryClient),
+      },
+    };
+  } catch (e) {
+    return {
+      props: {
+        ...initialPageProps,
+        errCode: e.status,
+      },
+    };
+  }
 };
 
 export default NewsScrap;
