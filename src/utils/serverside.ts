@@ -1,3 +1,4 @@
+import ERRCODE from '@/constants/errCode';
 import { getDecodedUserInfoByToken } from '@/firebase/admin';
 import { TUserInfo } from '@/types';
 
@@ -6,15 +7,19 @@ import { TUserInfo } from '@/types';
  * @param authToken: cookie에 저장된 authToken
  */
 export const getUserInfoFromFirebaseAdmin = async (authToken): Promise<TUserInfo | null> => {
-  if (authToken) {
-    const verifiedToken = await getDecodedUserInfoByToken(authToken);
-    const { name, picture, email } = verifiedToken;
-    return {
-      displayName: name,
-      photoURL: picture,
-      email,
-    } as TUserInfo;
-  } else {
-    return null;
+  try {
+    if (authToken) {
+      const verifiedToken = await getDecodedUserInfoByToken(authToken);
+      const { name, picture, email } = verifiedToken;
+      return {
+        displayName: name,
+        photoURL: picture,
+        email,
+      } as TUserInfo;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    throw new Error(ERRCODE.USER_AUTH_FAILED);
   }
 };
