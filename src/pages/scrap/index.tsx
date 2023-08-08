@@ -1,5 +1,9 @@
 import NewsScrapPage from '@/components/scrap/NewsScrapPage';
-import { getDehydratedStateInServerside, getUserInfoInServerside } from '@/utils/serverside';
+import {
+  getDehydratedStateInServerside,
+  getUserInfoFromFirebaseAdmin,
+  getUserInfoInServerside,
+} from '@/utils/serverside';
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import { TPageProps } from '@/types';
@@ -9,6 +13,9 @@ import OnlyAuthUserWrapper from '@/wrapper/OnlyAuthUserWrapper';
 import { APP_NAME, initialPageProps } from '@/constants';
 import ErrorPage from 'next/error';
 import Meta from '@/components/common/Meta';
+import { prefetchScrappedNewsList } from '@/queries/useScrappedNewsList';
+import { dehydrate } from '@tanstack/react-query';
+import { queryClient } from '@/queries/queryClient';
 
 const NewsScrap = ({ userInfo, errCode }) => {
   if (errCode) {
@@ -27,11 +34,19 @@ const NewsScrap = ({ userInfo, errCode }) => {
 };
 // FIXME: 구조 개선 필요
 export const getServerSideProps: GetServerSideProps<TPageProps> = async (context) => {
-  const res1 = await getUserInfoInServerside(context, initialPageProps);
-  const res2 = await getDehydratedStateInServerside(context, res1);
+  // 유저 정보
+  const { authToken } = context.req.cookies;
+  const userInfo = await getUserInfoFromFirebaseAdmin(authToken);
+  // 스크랩 정보 초기화
+  if (userInfo) {
+    await prefetchScrappedNewsList(userInfo.email);
+  }
 
   return {
-    props: res2,
+    props: {
+      userInfo,
+      dehydratedState: dehydrate(queryClient),
+    },
   };
 };
 

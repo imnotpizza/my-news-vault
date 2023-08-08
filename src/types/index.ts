@@ -73,7 +73,6 @@ export type TBingNewsAPIRes = {
  * ssr 메소드에서 넘어오는 return value
  */
 export type TPageProps = {
-  status: boolean;
   dehydratedState?: DehydratedState;
   userInfo: TUserInfo | null;
   query?: TBingNewsQuery['query'];
