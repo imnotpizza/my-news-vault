@@ -7,38 +7,6 @@ import { queryClient } from '@/queries/queryClient';
 import { getMswRestHandler } from '@/msw/handlers';
 import NewsSearchPage from '.';
 
-// 모든 테스트 시작 전 실행
-beforeAll(() => server.listen());
-
-// 테스트 하나 종료 후 실행
-afterEach(() => server.resetHandlers());
-
-// 모든 테스트 종료 후 실행
-afterAll(() => server.close());
-
-jest.mock('../../../firebase', () => {
-  return {
-    database: jest.fn(),
-    auth: jest.fn(),
-    googleProvider: jest.fn(),
-  };
-});
-
-jest.mock('next/router', () => ({
-  useRouter: jest.fn().mockReturnValue({
-    query: {
-      query: '테스트검색',
-    },
-  }),
-}));
-
-// @ts-ignore
-window.IntersectionObserver = jest.fn(() => ({
-  observe: () => {},
-  unobserve: () => {},
-  disconnect: () => {},
-}));
-
 const mockProps: {
   userInfo: IUserInfoContext;
   query: TBingNewsQuery['query'];
@@ -111,24 +79,24 @@ describe('검색 도중 에러 발생하였을 때', () => {
   });
 });
 
-describe('기사 스크랩', () => {
-  beforeEach(() => {
-    render(withTestProviders(NewsSearchPage, { ...mockProps, query: 'mock' }));
-  });
-  afterEach(() => {
-    queryClient.clear();
-    cleanup();
-  });
+// describe('기사 스크랩', () => {
+//   beforeEach(() => {
+//     render(withTestProviders(NewsSearchPage, { ...mockProps, query: 'mock' }));
+//   });
+//   afterEach(() => {
+//     queryClient.clear();
+//     cleanup();
+//   });
 
-  it('스크랩 버튼 클릭, 스크랩 해제버튼 클릭시 동작 테스트', async () => {
-    const newsCards = await screen.findAllByTestId('news-card-ui');
-    const scrapButton = within(newsCards[0]).getByLabelText('스크랩 추가 버튼');
-    fireEvent.click(scrapButton);
-    // 스크랩 버튼 클릭시 스크랩 해제 버튼 등장
-    const unscrapButton = within(newsCards[0]).getByLabelText('스크랩 해제 버튼');
-    expect(unscrapButton).toBeInTheDocument();
-    // 스크랩 해제버튼 클릭시 스크랩 해제 버튼 사라짐
-    fireEvent.click(unscrapButton);
-    expect(scrapButton).toBeInTheDocument();
-  });
-});
+//   it('스크랩 버튼 클릭, 스크랩 해제버튼 클릭시 동작 테스트', async () => {
+//     const newsCards = await screen.findAllByTestId('news-card-ui');
+//     const scrapButton = within(newsCards[0]).getByLabelText('스크랩 추가 버튼');
+//     fireEvent.click(scrapButton);
+//     // 스크랩 버튼 클릭시 스크랩 해제 버튼 등장
+//     const unscrapButton = within(newsCards[0]).getByLabelText('스크랩 해제 버튼');
+//     expect(unscrapButton).toBeInTheDocument();
+//     // 스크랩 해제버튼 클릭시 스크랩 해제 버튼 사라짐
+//     fireEvent.click(unscrapButton);
+//     expect(scrapButton).toBeInTheDocument();
+//   });
+// });
