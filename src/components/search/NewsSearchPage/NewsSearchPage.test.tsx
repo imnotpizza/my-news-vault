@@ -4,7 +4,7 @@ import { TBingNewsQuery, TUserInfo } from '@/types';
 import { IUserInfoContext } from '@/utils/userInfoProvider';
 import { server } from '@/msw/server';
 import { queryClient } from '@/queries/queryClient';
-import { getMswRestHandler } from '@/msw/handlers';
+import { DEFAULT_MOCK_QUERY, getMswRestHandler } from '@/msw/handlers';
 import NewsSearchPage from '.';
 
 const mockProps: {
@@ -67,7 +67,7 @@ describe('검색 도중 에러 발생하였을 때', () => {
   });
   it('기본 에러 UI 보여주기', async () => {
     server.use(
-      getMswRestHandler((req, res, ctx) => {
+      getMswRestHandler(DEFAULT_MOCK_QUERY, (req, res, ctx) => {
         return res(ctx.status(500), ctx.json({ message: 'error' }));
       }),
     );
