@@ -9,3 +9,21 @@ afterEach(() => server.resetHandlers());
 
 // 모든 테스트 종료 후 실행
 afterAll(() => server.close());
+
+// firebase mock
+jest.mock('./src/firebase', () => {
+  return {
+    database: jest.fn(),
+    auth: jest.fn(),
+    googleProvider: jest.fn(),
+  };
+});
+
+// next/router mock
+jest.mock('next/router', () => ({
+  useRouter: jest.fn().mockReturnValue({
+    query: {
+      query: '테스트검색',
+    },
+  }),
+}));

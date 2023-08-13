@@ -7,29 +7,6 @@ import { queryClient } from '@/queries/queryClient';
 import { getMswRestHandler } from '@/msw/handlers';
 import NewsSearchPage from '.';
 
-jest.mock('../../../firebase', () => {
-  return {
-    database: jest.fn(),
-    auth: jest.fn(),
-    googleProvider: jest.fn(),
-  };
-});
-
-jest.mock('next/router', () => ({
-  useRouter: jest.fn().mockReturnValue({
-    query: {
-      query: '테스트검색',
-    },
-  }),
-}));
-
-// @ts-ignore
-window.IntersectionObserver = jest.fn(() => ({
-  observe: () => {},
-  unobserve: () => {},
-  disconnect: () => {},
-}));
-
 const mockProps: {
   userInfo: IUserInfoContext;
   query: TBingNewsQuery['query'];
