@@ -1,25 +1,16 @@
 import withTestProviders from '@/components/providers/withTestProviders';
-import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
-import { TBingNewsQuery, TUserInfo } from '@/types';
-import { IUserInfoContext } from '@/utils/userInfoProvider';
+import { cleanup, render, screen } from '@testing-library/react';
+import { mockPageProps } from '@/utils/mockData';
 import { server } from '@/msw/server';
 import { queryClient } from '@/queries/queryClient';
 import { DEFAULT_MOCK_QUERY, getMswRestHandler } from '@/msw/handlers';
 import NewsSearchPage from '.';
 
-const mockProps: {
-  userInfo: IUserInfoContext;
-  query: TBingNewsQuery['query'];
-} = {
-  query: '',
-  userInfo: {
-    setUserInfo: jest.fn(),
-    isSignin: false,
-    userInfo: null,
-  },
-};
-
 describe('검색어가 없을 경우 (로그인, 비로그인 공통)', () => {
+  const mockProps = {
+    ...mockPageProps,
+    query: '',
+  };
   beforeEach(() => {
     render(withTestProviders(NewsSearchPage, mockProps));
   });
@@ -43,7 +34,7 @@ describe('검색어가 없을 경우 (로그인, 비로그인 공통)', () => {
 
 describe('검색어 입력한 경우', () => {
   beforeEach(() => {
-    render(withTestProviders(NewsSearchPage, { ...mockProps, query: 'mock' }));
+    render(withTestProviders(NewsSearchPage, mockPageProps));
   });
   afterEach(() => {
     queryClient.clear();
@@ -71,7 +62,7 @@ describe('검색 도중 에러 발생하였을 때', () => {
         return res(ctx.status(500), ctx.json({ message: 'error' }));
       }),
     );
-    render(withTestProviders(NewsSearchPage, { ...mockProps, query: 'mock' }));
+    render(withTestProviders(NewsSearchPage, mockPageProps));
     const errorUi = await screen.findByTestId('error-ui');
     expect(errorUi).toBeInTheDocument();
     const newsCard = screen.queryByTestId('news-card-ui');

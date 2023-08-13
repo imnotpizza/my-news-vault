@@ -1,3 +1,4 @@
+import { DEFAULT_MOCK_QUERY } from '@/msw/handlers';
 import { TNewsItem, TRawNewsItem } from '@/types';
 
 export const mockRawNewsItem: TRawNewsItem = {
@@ -79,3 +80,12 @@ export const mockScrappedNewsItem: TNewsItem[] = [
     searchQuery: 'test-query',
   },
 ];
+
+export const mockPageProps = {
+  query: DEFAULT_MOCK_QUERY,
+  userInfo: {
+    setUserInfo: () => {},
+    isSignin: false,
+    userInfo: null,
+  },
+};
