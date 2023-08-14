@@ -13,7 +13,7 @@ import { useMemo } from 'react';
 import { flatMap } from 'lodash-es';
 import QUERY_KEY from '@/queries/keys';
 
-interface Params {
+export interface IUseBingNewsFetchParams {
   query: TBingNewsQuery['query'];
   enabled: boolean;
   maxPage: number;
@@ -48,7 +48,7 @@ export const getSearchQueryCache = (searchQuery: TBingNewsQuery['query']) => {
  * 3. 2. isScrapped초기화
  * 4. 2. dateformat 변경
  */
-const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
+const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: IUseBingNewsFetchParams) => {
   const queryStates = useInfiniteQuery<TNewsItem[], AxiosError>(
     [QUERY_KEY.BING_NEWS_SEARCH, query],
     async ({ pageParam = 1 }) => {
