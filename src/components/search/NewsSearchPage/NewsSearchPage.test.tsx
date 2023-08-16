@@ -1,6 +1,6 @@
 import withTestProviders from '@/components/providers/withTestProviders';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
-import { TBingNewsQuery, TUserInfo } from '@/types';
+import { TBingNewsQuery } from '@/types';
 import { IUserInfoContext } from '@/utils/userInfoProvider';
 import { server } from '@/msw/server';
 import { queryClient } from '@/queries/queryClient';
