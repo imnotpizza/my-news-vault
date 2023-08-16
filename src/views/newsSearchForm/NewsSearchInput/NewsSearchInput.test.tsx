@@ -1,5 +1,5 @@
 import withTestProviders from '@/components/providers/withTestProviders';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import NewsSearchInput from '.';
 
 describe('NewsSearchInput 컴포넌트', () => {
