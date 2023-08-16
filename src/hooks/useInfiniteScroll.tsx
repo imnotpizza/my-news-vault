@@ -8,7 +8,7 @@ interface IUseInfiniteScrollParams {
 const useInfiniteScroll = ({ onTriggered, maxPage = 1 }: IUseInfiniteScrollParams) => {
   const observer = useRef<IntersectionObserver>();
   const targetElement = useRef<Element>();
-  const [curPage, setCurPage] = useState<number>(1);
+  const [, setCurPage] = useState<number>(1);
 
   useEffect(() => {
     return () => {

@@ -19,25 +19,29 @@ export type TBingNewsQuery = {
 export type TRawNewsItem = {
   datePublished: string;
   description: string;
-  headline: true;
+  headline?: true;
   name: string;
-  image: {
+  image?: {
     thumbnail: {
       contentUrl: string;
-      height: string;
-      width: string;
+      height: number;
+      width: number;
     };
-    name: string;
+    name?: string;
   };
   provider: {
-    image: {
-      thumbnail: {
-        contentUrl: string;
+    _type?: string;
+    image?: {
+      thumbnail?: {
+        contentUrl?: string;
+        width?: number;
+        height?: number;
       };
     };
-    name: string;
+    name?: string;
   }[];
   url: string;
+  category?: string;
 };
 
 /**
@@ -73,7 +77,6 @@ export type TBingNewsAPIRes = {
  * ssr 메소드에서 넘어오는 return value
  */
 export type TPageProps = {
-  status: boolean;
   dehydratedState?: DehydratedState;
   userInfo: TUserInfo | null;
   query?: TBingNewsQuery['query'];

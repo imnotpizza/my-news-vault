@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { scrapNews, unscrapNews } from '@/api/client';
 import { TBingNewsQuery, TNewsItem, TUserInfo } from '@/types';
-import { updateNewsSearchQuery } from './useBingNewsFetch';
-import { addScrapNewsToCache, deleteScrapNewsFromCache } from './useScrappedNewsList';
+import { updateNewsSearchQuery } from '../useBingNewsFetch';
+import { addScrapNewsToCache, deleteScrapNewsFromCache } from '../useScrappedNewsList';
 
 interface MutateParams {
   newsItem: TNewsItem;
@@ -26,7 +26,7 @@ export const useScrapNews = () => {
       onSuccess: () => {
         console.log('### scrap success');
       },
-      onError: (e) => {
+      onError: () => {
         alert('스크랩 추가 도중 문제가 발생하였습니다.');
       },
       onSettled: () => {},
@@ -51,7 +51,7 @@ export const useUnscrapNews = () => {
       onSuccess: () => {
         console.log('### unscrap success');
       },
-      onError: (e) => {
+      onError: () => {
         alert('스크랩 삭제 도중 문제가 발생하였습니다.');
       },
       onSettled: () => {},

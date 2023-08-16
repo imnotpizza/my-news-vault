@@ -8,7 +8,6 @@ export const APP_NAME = 'My News Vault';
 export const initialPageProps: TPageProps = {
   userInfo: null,
   dehydratedState: null,
-  status: false,
 };
 
 // 쿠키 설정
