@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/imnotpizza/my-news-vault/blob/feature/readme-update/public/img/applogo.png" width="200" height="200">
+  <img src="https://github.com/imnotpizza/my-news-vault/blob/develop/public/img/applogo.png" width="200" height="200">
 </p>
 <h1 align="center">Welcome to MYNEWSVAULT 👋</h1>
 <p>
