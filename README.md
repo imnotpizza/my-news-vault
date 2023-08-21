@@ -46,7 +46,7 @@ todo 리스트, 작업 현황, 트러블슈팅 및 히스토리 문서화는 전
 
 ## 컴포넌트 구조
 <p align="center">
-  <img src="https://github.com/imnotpizza/my-news-vault/blob/feature/readme-update/docs/%EA%B5%AC%EC%A1%B0%20%EC%8A%A4%ED%81%AC%EB%9E%9C%EC%83%B7.png">
+  <img src="https://github.com/imnotpizza/my-news-vault/blob/develop/docs/%EA%B5%AC%EC%A1%B0%20%EC%8A%A4%ED%81%AC%EB%9E%9C%EC%83%B7.png">
 </p>
 
 ## 주안점
