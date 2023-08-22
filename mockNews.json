@@ -1,0 +1,450 @@
+[
+  {
+    "name": "뉴욕증시, 실적부진·금리인상 전망에 혼조...나스닥 0.22%↓ 애플 0.62%↓",
+    "url": "http://news.tf.co.kr/read/economy/2032252.htm",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.5MtS9_aY9Nwjb3t8SxDK-y&pid=News",
+        "width": 600,
+        "height": 395
+      }
+    },
+    "description": "21일 (미 동부시간) 뉴욕증권거래소 (NYSE)에서 다우존스30산업평균지수는 전날에 비해 0.01% (2.51포인트) 오른 3만5227.69로 거래를 마쳤다. 대형주 위주의 스탠더드앤드푸어스 (S&P)500지수는 전거래일에 비해 0.03% (1.47포인트) 상승한 4536.34로 장을 마감했다. 기술주 중심의 나스닥지수는 0.22% (30.50포인트) 하락한 1만4032.81로 거래를 끝냈다.",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "더팩트",
+        "image": {
+          "thumbnail": {
+            "contentUrl": "https://www.bing.com/th?id=ODF.0aFFTCC-aE0_7EhaVyb_5w&pid=news"
+          }
+        }
+      }
+    ],
+    "datePublished": "2023-07-22T00:35:00.0000000Z",
+    "category": "Business"
+  },
+  {
+    "name": "[속보] 대형기술주 기대? 뉴욕증시 일제히 상승 마감...나스닥 0.61%↑",
+    "url": "https://www.msn.com/ko-kr/news/other/%EC%86%8D%EB%B3%B4-%EB%8C%80%ED%98%95%EA%B8%B0%EC%88%A0%EC%A3%BC-%EA%B8%B0%EB%8C%80-%EB%89%B4%EC%9A%95%EC%A6%9D%EC%8B%9C-%EC%9D%BC%EC%A0%9C%ED%9E%88-%EC%83%81%EC%8A%B9-%EB%A7%88%EA%B0%90%EB%82%98%EC%8A%A4%EB%8B%A5-061/ar-AA1eltrZ",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.BjgNWjvhyceCD6KZbfd-9C&pid=News",
+        "width": 518,
+        "height": 344
+      }
+    },
+    "description": "미국 연방공개시장위원회(FOMC)의 7월 기준금리 결정과 대형기술주들의 실적 발표를 앞두고 뉴욕증시가 상승세를 보이며 퇴장했다. 25일(현지시간) 뉴욕증권거래소(NYSE)에서 다우존스30산업평균지수는 전장보다 26.69포인트(0.08%) 오른 35,437.93으로 장을 마쳤다. 스탠더드앤드푸어스(S&P)500지수는",
+    "mentions": [
+      {
+        "name": "Federal Open Market Committee"
+      }
+    ],
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "아주경제 on MSN.com",
+        "image": {
+          "thumbnail": {
+            "contentUrl": "https://www.bing.com/th?id=ODF.WztSLvCyM03Gm6Si5JbZrg&pid=news"
+          }
+        }
+      }
+    ],
+    "datePublished": "2023-07-25T20:27:12.0000000Z"
+  },
+  {
+    "name": "'특별 리밸런싱' 앞둔 나스닥100…\"빅테크 강세 흐름 지속된다\"",
+    "url": "https://biz.newdaily.co.kr/site/data/html/2023/07/20/2023072000157.html",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.E89MMi69ebZklsdV7ETnRy&pid=News",
+        "width": 639,
+        "height": 426
+      }
+    },
+    "description": "나스닥100 지수 특별 리밸런싱 결정으로 시총 상위 테크 종목들의 비중이 낮아진다. 업계에선 그럼에도 대형 테크 중심 강세 흐름이 꺾이지는 않을 거란 전망이 나온다. 여전히 경기 둔화가 이어지고 있고 상반기 대형주들을 끌었던 AI 기대감도 아직 유효하다는 진단이다. 지난 2011년 같은 이유로 나스닥은 애플의 지수 비중이 낮췄지만 일시적인 하락 이후 다시",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "뉴데일리",
+        "image": {
+          "thumbnail": {
+            "contentUrl": "https://www.bing.com/th?id=ODF.CoGoqmRUbakyQfO20JEIZw&pid=news"
+          }
+        }
+      }
+    ],
+    "datePublished": "2023-07-20T20:59:00.0000000Z",
+    "category": "Business"
+  },
+  {
+    "name": "나스닥100 빅테크 비중 줄었다",
+    "url": "https://www.mk.co.kr/news/stock/10793028",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.SbFPVtfzLAVq940spLsx0C&pid=News",
+        "width": 400,
+        "height": 400
+      }
+    },
+    "description": "25년 만에 비중이 특별 조정된 나스닥100지수에서 시가총액 상위 기업 7개(애플·마이크로소프트·알파벳·아마존·엔비디아·메타·테슬라)의 비중 총합이 56%에서 44%로 감소했다. 다만 비중이 크게 줄어든 종목이나 늘어난 종목의 주가 변동이 크지는 않았다. 24일(현지시간) 마켓워치는 데이비드 코스틴 골드만삭스 연구원이 이 같은 결과를 발표했다고 보도했다.",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "매일경제",
+        "image": {
+          "thumbnail": {
+            "contentUrl": "https://www.bing.com/th?id=ODF.FR6AHgXcyghjVT8l4kSebw&pid=news"
+          }
+        }
+      }
+    ],
+    "datePublished": "2023-07-25T08:15:00.0000000Z",
+    "category": "Business"
+  },
+  {
+    "name": "[속보] 뉴욕증시 혼조 마감···다우 0.24%↑·나스닥 0.12%↓",
+    "url": "https://www.seoulfn.com/news/articleView.html?idxno=491419",
+    "description": "[서울파이낸스 박조아 기자] 뉴욕증시가 연준이 연방 기준금리를 0.25%P 인상한 가운데 지수별로 등락이 엇갈리는 혼조세로 장을 마감했다,26일(현지시간) 뉴욕증시에서 다우존스30산업평균지수는 전장보다 0.24% 올랐다. 다우지수는 13거래일 연속 상승했다.반면 대형주 중심의 S&P500지수는 0.01%, 기술주 중심의 나스닥지수는 0.12% 하락했다.",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "서울파이낸스",
+        "image": {
+          "thumbnail": {
+            "contentUrl": "https://www.bing.com/th?id=ODF.kn38oT7CGWvhp5uvHnCn4Q&pid=news"
+          }
+        }
+      }
+    ],
+    "datePublished": "2023-07-26T20:13:00.0000000Z"
+  },
+  {
+    "name": "나스닥 하락했지만 다우 10일 연속 상승, 2017년 이후 처음(상보)",
+    "url": "https://www.msn.com/ko-kr/news/world/%EB%82%98%EC%8A%A4%EB%8B%A5-%ED%95%98%EB%9D%BD%ED%96%88%EC%A7%80%EB%A7%8C-%EB%8B%A4%EC%9A%B0-10%EC%9D%BC-%EC%97%B0%EC%86%8D-%EC%83%81%EC%8A%B9-2017%EB%85%84-%EC%9D%B4%ED%9B%84-%EC%B2%98%EC%9D%8C%EC%83%81%EB%B3%B4/ar-AA1ebp1K",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.Qb0g6AbDURjKSpYIoSjdsy&pid=News",
+        "width": 700,
+        "height": 467
+      }
+    },
+    "description": "(서울=뉴스1) 박형기 기자 = 실적 장세로 미증시가 혼조 마감했다. 그러나 다우는 소폭 상승해 10일 연속 랠리를 이어갔다. 21일(현지시간) 뉴욕증시에서 나스닥은 0.22% 하락했다. 그러나 S&P500은 0.03%, 다우는 0.01% 각각 상승했다. 이로써 다우는 10일 연속 상승세를 이어갔다. 이는 2017년",
+    "mentions": [
+      {
+        "name": "Federal Open Market Committee"
+      }
+    ],
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "뉴스1 on MSN.com",
+        "image": {
+          "thumbnail": {
+            "contentUrl": "https://www.bing.com/th?id=ODF.ZXPYCS-ZQaAlItB2-c7F-g&pid=news"
+          }
+        }
+      }
+    ],
+    "datePublished": "2023-07-21T20:33:21.0000000Z",
+    "category": "Business"
+  },
+  {
+    "name": "[마켓PRO] 테슬라 사는 초고수들…나스닥 상승 베팅",
+    "url": "https://www.hankyung.com/finance/article/202307247255i",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.64IEw8DMGEPnqCOGRu9ePS&pid=News",
+        "width": 700,
+        "height": 411
+      }
+    },
+    "description": "현대자동차와 기아가 올해 상반기 미국 순수전기차 (BEV) 판매 10위권에 나란히 이름을 올렸다. 1년 전 발효된 미국 인플레이션 감축법 (IRA)으로 전기차 보조금이 막힌 상황에서 거둔 성과다.23일 한국자동차모빌리티산업협회 (KAMA)에 따르면 올해 상반기 미국 전기차 시장에서 현대차 아이오닉 5는 판매량 기준 7위 (1만3641대), 기아 EV6는 1",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "한경닷컴",
+        "image": {
+          "thumbnail": {
+            "contentUrl": "https://www.bing.com/th?id=ODF.JHmJE4rxohObkWE0SV2bkA&pid=news"
+          }
+        }
+      }
+    ],
+    "datePublished": "2023-07-24T14:07:00.0000000Z"
+  },
+  {
+    "name": "글람, 3분기 나스닥 입성…\"美 JGGC와 합병 결의안 승인\"",
+    "url": "https://www.msn.com/ko-kr/news/other/%EA%B8%80%EB%9E%8C-3%EB%B6%84%EA%B8%B0-%EB%82%98%EC%8A%A4%EB%8B%A5-%EC%9E%85%EC%84%B1-%E7%BE%8E-jggc%EC%99%80-%ED%95%A9%EB%B3%91-%EA%B2%B0%EC%9D%98%EC%95%88-%EC%8A%B9%EC%9D%B8/ar-AA1efnJu",
+    "description": "글람은 임시주주총회에서 나스닥에 상장한 ‘재규어 글로벌 그로스(JGGC)’와 합병 결의안을 승인했다고 24일 밝혔다.글람은 나스닥 상장 절차 마무리 단계에 돌입한 만큼 올해 3분기 내 나스닥 상장이 완료될 예정이다. 국내 미디어파사드 전문기업으로는 나스닥에 진입하는 첫 사례가 될 것으로 기대된다.글람은 JGGC의 해외부동산 개발 전문성을 기반으로 북미 초대",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "아시아경제 on MSN.com",
+        "image": {
+          "thumbnail": {
+            "contentUrl": "https://www.bing.com/th?id=ODF.vgVtDJsttGxxBcmNMXxMvw&pid=news"
+          }
+        }
+      }
+    ],
+    "datePublished": "2023-07-24T00:23:07.0000000Z",
+    "category": "Business"
+  },
+  {
+    "name": "[속보]FOMC결과 앞두고 뉴욕증시 상승 마감…나스닥 0.61%↑",
+    "url": "https://www.msn.com/ko-kr/news/other/%EC%86%8D%EB%B3%B4-fomc%EA%B2%B0%EA%B3%BC-%EC%95%9E%EB%91%90%EA%B3%A0-%EB%89%B4%EC%9A%95%EC%A6%9D%EC%8B%9C-%EC%83%81%EC%8A%B9-%EB%A7%88%EA%B0%90-%EB%82%98%EC%8A%A4%EB%8B%A5-061/ar-AA1elAat",
+    "description": "다우지수는 12거래일 연속 상승했다. 대형주 중심의 S&P500지수는 0.28%, 기술주 중심의 나스닥지수는 0.61% 상승 마감했다. 뉴욕=조슬기나 특파원 seul@asiae.co.kr ⓒ경제를 보는 눈, 세계를 보는 창 ...",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "MSN"
+      }
+    ],
+    "datePublished": "2023-07-25T20:01:00.0000000Z"
+  },
+  {
+    "name": "\"FOMC에 나스닥100 리밸런싱…美 증시 향방은?\"",
+    "url": "https://www.edaily.co.kr/news/read?newsId=01262806635677800",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.TVGKt_EGnnUMbaXo0hpejS&pid=News",
+        "width": 670,
+        "height": 286
+      }
+    },
+    "description": "미국 증시가 단기 조정에도 상승장을 이어가고 있다. 이번주 미국 빅테크 실적, 7월 연방공개시장위원회(FOMC), 나스닥100 리밸런싱 이후 증시 흐름이 주목된다. 대신증권은 24일 연초 이후 3대 지수(나스닥, S&P500, 다우) 수익률은 지난 21일 기준 각각",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "이데일리",
+        "image": {
+          "thumbnail": {
+            "contentUrl": "https://www.bing.com/th?id=ODF.nrA8hWWAhTgYcSgKV66Ebg&pid=news"
+          }
+        }
+      }
+    ],
+    "datePublished": "2023-07-23T22:41:00.0000000Z",
+    "category": "Business"
+  },
+  {
+    "name": "알파벳 실적 호조에도 지수선물 일제 하락, 나스닥 0.22%↓",
+    "url": "https://www.msn.com/ko-kr/news/world/%EC%95%8C%ED%8C%8C%EB%B2%B3-%EC%8B%A4%EC%A0%81-%ED%98%B8%EC%A1%B0%EC%97%90%EB%8F%84-%EC%A7%80%EC%88%98%EC%84%A0%EB%AC%BC-%EC%9D%BC%EC%A0%9C-%ED%95%98%EB%9D%BD-%EB%82%98%EC%8A%A4%EB%8B%A5-022/ar-AA1elPD7",
+    "description": "특히 나스닥이 가장 큰 낙폭을 보이고 있다. 25일 오후 6시30분 현재(현지시간) 다우 선물은 0.13%, S&P500 선물은 0.04%, 나스닥 선물은 0.22% ...",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "MSN"
+      }
+    ],
+    "datePublished": "2023-07-25T22:44:00.0000000Z"
+  },
+  {
+    "name": "다우 10거래일 연속 상승 vs. 나스닥 리밸런싱에 0.2% 하락[뉴욕마감]",
+    "url": "https://www.msn.com/ko-kr/news/world/%EB%8B%A4%EC%9A%B0-10%EA%B1%B0%EB%9E%98%EC%9D%BC-%EC%97%B0%EC%86%8D-%EC%83%81%EC%8A%B9-vs-%EB%82%98%EC%8A%A4%EB%8B%A5-%EB%A6%AC%EB%B0%B8%EB%9F%B0%EC%8B%B1%EC%97%90-02-%ED%95%98%EB%9D%BD-%EB%89%B4%EC%9A%95%EB%A7%88%EA%B0%90/ar-AA1ebydo",
+    "description": "반면 나스닥은 0.22% 내려 1만4032.81로 체결됐다. 한 주 동안 S&P 500 지수는 0.7%, 나스닥 지수는 0.6%, 다우 지수는 2.1% 상승했다. 롱보우자산운용의 제이크 달러하이드 최고경영자(CEO)는 로이터에 ...",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "MSN"
+      }
+    ],
+    "datePublished": "2023-07-21T21:25:00.0000000Z"
+  },
+  {
+    "name": "[박정식의 국내 주식시황] 국제적 빅 이벤트 FOMC, 나스닥100 래밸런싱 등 앞두고 혼조 지속 가능성",
+    "url": "https://www.newsquest.co.kr/news/articleView.html?idxno=208912",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.ecXt6ChNti1e_zrewBfRFi&pid=News",
+        "width": 300,
+        "height": 214
+      }
+    },
+    "description": "【뉴스퀘스트=박정식 주식디자인연구소 대표 】 지금까지 발표된 S&P500에 포함된 기업들의 75%가 예상치를 웃도는 실적을 발표했지만 영업이익은 지난해 4분기부터 현재 2분기까지 3분기 연속 감소하는 추이를 보이고 있다. 또 FOMC 정례회의와 나스닥100지수 특별 리밸런싱을 앞두고 있는 상황으로 기술주들의 변동성이 커지고 있다. 국내증시도 2차전지 주들의",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "뉴스퀘스트"
+      }
+    ],
+    "datePublished": "2023-07-23T23:53:00.0000000Z"
+  },
+  {
+    "name": "코스피, 0.4% 하락 출발…美 FOMC·나스닥 리벌랜싱 주시",
+    "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4274657",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.jbhRkAVakosmNkha28LD5y&pid=News",
+        "width": 488,
+        "height": 291
+      }
+    },
+    "description": "코스피는 이번 주 예정된 미 기준금리 결정과 나스닥100 리벌랜싱(가중치 재조정)에 따른 시장 변동성 확대 등을 주시하며 하락 출발했다.24일 연합인포맥스 신주식종합(화면번호 3536)에 따르면 오전 9시 12분 기준 코스피는 전 거래일보다 11.68포인트(0.45%) 하락한 2,598.08에 거래되고 있다.투자자들은 27일(현지시각 25~26일) 예정된",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "연합인포맥스",
+        "image": {
+          "thumbnail": {
+            "contentUrl": "https://www.bing.com/th?id=ODF.W2fOiDM6HFse3-jW1-nOIw&pid=news"
+          }
+        }
+      }
+    ],
+    "datePublished": "2023-07-24T14:07:00.0000000Z",
+    "category": "Business"
+  },
+  {
+    "name": "[속보]테슬라·넷플릭스 주가 돌연 폭락…나스닥 2.1%↓",
+    "url": "https://tv.edaily.co.kr/News/NewsRead?NewsId=01174246635676816&Kind=257",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.kjY-B4rgt2dtzH14o0t8Si&pid=News",
+        "width": 647,
+        "height": 432
+      }
+    },
+    "description": "[뉴욕=이데일리 김정남 특파원] 미국 뉴욕 증시의 상승장이 한풀 꺾였다. 다우존스 30 산업평균지수는 9거래일 연속 오름세를 이어갔지만, 테슬라와 넷플릭스 주가가 폭락하면서 나스닥 지수는 큰 폭 떨어졌다.",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "이데일리",
+        "image": {
+          "thumbnail": {
+            "contentUrl": "https://www.bing.com/th?id=ODF.nu1qX54jC1v5R8qCMUpuzg&pid=news"
+          }
+        }
+      }
+    ],
+    "datePublished": "2023-07-20T21:02:00.0000000Z",
+    "category": "Business"
+  },
+  {
+    "name": "[뉴욕증시] 美 소비자심리지수·경제성장률 상승 견인…나스닥 0.61%↑",
+    "url": "https://shinailbo.co.kr/news/articleView.html?idxno=1737374",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.6xQ-e41tv-T1BAo-dCDItC&pid=News",
+        "width": 300,
+        "height": 199
+      }
+    },
+    "description": "미국 증시는 소비자심리지수 개선과 국제통화기금(IMF)의 경제 성장률 상향 조정 영향에 강보합권에 거래를 종료했다.25일(현지시각) 뉴욕증권거래소(NYSE)에 따르면, 다우존스30산업평균지수는 전장보다 26.83포인트(p, 0.08%) 상승한 3만5438.07에 거래를 마쳤다.스탠더드앤드푸어스(S&P)500지수는 전날보다 12.82p(0.28%) 오른 45",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "신아일보"
+      }
+    ],
+    "datePublished": "2023-07-26T00:00:00.0000000Z",
+    "category": "Business"
+  },
+  {
+    "name": "[뉴욕증시 마감] 넷플릭스·테슬라 급락…나스닥 2% 넘게 하락",
+    "url": "https://www.ajunews.com/view/20230721063004170",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.uCLdiI8XX-T8764kbQ4-dS&pid=News",
+        "width": 640,
+        "height": 426
+      }
+    },
+    "description": "일론 머스크 테슬라 최고경영자(CEO) [사진=AFP·연합뉴스]테슬라와 넷플릭스의 2분기 실적에 투자자들이 실망하며 나스닥지수가 큰 폭으로 하락했다.20일(미 동부시간) 뉴욕증권거래소(NYSE)에서 다우존스30산업평균지수는 전장보다",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "아주경제",
+        "image": {
+          "thumbnail": {
+            "contentUrl": "https://www.bing.com/th?id=ODF.WztSLvCyM03Gm6Si5JbZrg&pid=news"
+          }
+        }
+      }
+    ],
+    "datePublished": "2023-07-20T21:36:00.0000000Z"
+  },
+  {
+    "name": "일본 블록체인 개발업체 얼리웍스 나스닥 상장",
+    "url": "https://www.tokenpost.kr/article-140462",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.PzLMlaKffuECPLVfxEdXUS&pid=News",
+        "width": 700,
+        "height": 350
+      }
+    },
+    "description": "일본 블록체인 개발업체 얼리웍스(Earlyworks)가 25일(현지시간) 나스닥에 티커 ELWS로 상장 완료했다. 공모가 5달러에 120만주 미국예탁주식(ADS)을 발행했다. 25일 기준 3.6달러로 마감했다.",
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "토큰포스트"
+      }
+    ],
+    "datePublished": "2023-07-26T01:35:00.0000000Z"
+  },
+  {
+    "name": "[N2 모닝 경제 브리핑-7월 21일] 美 증시, 기술주 급락에 혼조세…다우 상승, S&P·나스닥 하락",
+    "url": "https://www.news2day.co.kr/article/20230721500005",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.XiFM6R2vc-mfof1Lr5B6LC&pid=News",
+        "width": 700,
+        "height": 494
+      }
+    },
+    "description": "[뉴스투데이=임종우 기자] ■ 뉴욕 금융시장 요약 뉴욕증권거래소(NYSE)에서 20일(현지시각) 다우존스30산업평균지수는 전장보다 163.97포인트(0.47%) 상승한 35,225.18로 거래를 마쳤다. 반면 스탠더드앤드푸어스(S&P)500지수는 전 거래일보다 30.8",
+    "about": [
+      {
+        "readLink": "https://api.bing.microsoft.com/api/v7/entities/57d17e50-a359-44c3-bb81-c6cc4477652e",
+        "name": "N2"
+      }
+    ],
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "뉴스투데이",
+        "image": {
+          "thumbnail": {
+            "contentUrl": "https://www.bing.com/th?id=ODF.9lLAM0FrlXM8Inn_blKOkw&pid=news"
+          }
+        }
+      }
+    ],
+    "datePublished": "2023-07-21T14:07:00.0000000Z",
+    "category": "Business"
+  },
+  {
+    "name": "Test Article",
+    "url": "https://www.news2day.co.kr/article/20230721500005",
+    "image": {
+      "thumbnail": {
+        "contentUrl": "https://www.bing.com/th?id=OVFT.XiFM6R2vc-mfof1Lr5B6LC&pid=News",
+        "width": 700,
+        "height": 494
+      }
+    },
+    "description": "[뉴스투데이=임종우 기자] ■ 뉴욕 금융시장 요약 뉴욕증권거래소(NYSE)에서 20일(현지시각) 다우존스30산업평균지수는 전장보다 163.97포인트(0.47%) 상승한 35,225.18로 거래를 마쳤다. 반면 스탠더드앤드푸어스(S&P)500지수는 전 거래일보다 30.8",
+    "about": [
+      {
+        "readLink": "https://api.bing.microsoft.com/api/v7/entities/57d17e50-a359-44c3-bb81-c6cc4477652e",
+        "name": "N2"
+      }
+    ],
+    "provider": [
+      {
+        "_type": "Organization",
+        "name": "뉴스투데이",
+        "image": {
+          "thumbnail": {
+            "contentUrl": "https://www.bing.com/th?id=ODF.9lLAM0FrlXM8Inn_blKOkw&pid=news"
+          }
+        }
+      }
+    ],
+    "datePublished": "2023-07-21T14:07:00.0000000Z",
+    "category": "Business"
+  }
+]
