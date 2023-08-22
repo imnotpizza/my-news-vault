@@ -89,7 +89,7 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: IUseBingNewsFe
 
   return {
     ...queryStates,
-    isEmpty: queryStates.data?.pages.length === 0,
+    isEmpty: flattenData.length === 0,
     flattenData,
   };
 };
