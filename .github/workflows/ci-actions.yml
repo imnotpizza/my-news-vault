@@ -2,7 +2,7 @@ name: MyNewsVault CI Actions
 
 on: 
   pull_request:
-    branches: [master, develop]
+    branches: [develop]
 jobs:
   ci-actions:
     runs-on: ubuntu-latest
