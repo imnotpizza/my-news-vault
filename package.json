@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watchAll --transformIgnorePatterns '/node_modules/(?!firebase)/'",
+    "test": "jest --transformIgnorePatterns '/node_modules/(?!firebase)/'",
     "test:coverage": "jest --coverage",
     "build:analyze": "ANALYZE=true yarn build",
     "vercel-build": "next build",
