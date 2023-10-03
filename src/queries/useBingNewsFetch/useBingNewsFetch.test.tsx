@@ -1,4 +1,8 @@
-import { DEFAULT_MOCK_QUERY, EMPTY_RES_MOCK_QUERY, getMswRestHandler } from '@/msw/handlers';
+import {
+  DEFAULT_MOCK_QUERY,
+  EMPTY_RES_MOCK_QUERY,
+  getBingNewsSearchMswHandler,
+} from '@/msw/handlers/bingNewsSearch';
 import { server } from '@/msw/server';
 import { mockPageProps } from '@/utils/mockData';
 import { IUserInfoContext, UserInfoProvider } from '@/utils/userInfoProvider';
@@ -67,7 +71,7 @@ describe('useBingNewsFetch', () => {
     });
     it('에러 발생 시, queryStates.isError true', async () => {
       server.use(
-        getMswRestHandler(DEFAULT_MOCK_QUERY, (req, res, ctx) => {
+        getBingNewsSearchMswHandler(DEFAULT_MOCK_QUERY, (req, res, ctx) => {
           return res(ctx.status(500), ctx.json({ message: 'error' }));
         }),
       );
