@@ -1,4 +1,4 @@
-import { DEFAULT_MOCK_QUERY } from '@/msw/handlers';
+import { DEFAULT_MOCK_QUERY } from '@/msw/handlers/bingNewsSearch';
 import { TNewsItem, TRawNewsItem } from '@/types';
 
 export const mockRawNewsItem: TRawNewsItem = {

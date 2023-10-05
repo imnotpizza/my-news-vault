@@ -30,7 +30,7 @@
         "devDependencies": [
           "**/*.test.tsx",
           "**/*.stories.ts",
-          "**/msw/*",
+          "/src/msw/**",
           "jest.*.js",
           "next.config.js"
         ]

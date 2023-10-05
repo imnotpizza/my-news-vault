@@ -5,7 +5,7 @@ import {
 } from '@/msw/handlers/bingNewsSearch';
 import { server } from '@/msw/server';
 import { mockPageProps } from '@/utils/mockData';
-import { IUserInfoContext, UserInfoProvider } from '@/utils/userInfoProvider';
+import { UserInfoProvider } from '@/utils/userInfoProvider';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import useBingNewsFetch, { IUseBingNewsFetchParams } from '.';
