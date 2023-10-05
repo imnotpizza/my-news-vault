@@ -11,12 +11,14 @@ import { renderHook, waitFor } from '@testing-library/react';
 import useBingNewsFetch, { IUseBingNewsFetchParams } from '.';
 import { queryClient } from '../queryClient';
 
+// TODO: 정리
 const TestProvider = ({ children, props }) => (
   <QueryClientProvider client={queryClient}>
     <UserInfoProvider {...props.userInfo}>{children}</UserInfoProvider>
   </QueryClientProvider>
 );
 
+// TODO: 정리
 const getRenderHookResult = (params: IUseBingNewsFetchParams) => {
   return renderHook(
     () => {
