@@ -3,7 +3,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import { mockPageProps } from '@/utils/mockData';
 import { server } from '@/msw/server';
 import { queryClient } from '@/queries/queryClient';
-import { DEFAULT_MOCK_QUERY, getBingNewsSearchMswHandler } from '@/msw/handlers/bingNewsSearch';
+import { DEFAULT_MOCK_QUERY, getBingNewsSearchMswHandler } from '@/msw/handlers/bingNewsSearchHandlers';
 import NewsSearchPage from '.';
 
 describe('검색어가 없을 경우 (로그인, 비로그인 공통)', () => {
