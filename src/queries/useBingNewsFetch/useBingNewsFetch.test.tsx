@@ -2,7 +2,7 @@ import {
   DEFAULT_MOCK_QUERY,
   EMPTY_RES_MOCK_QUERY,
   getBingNewsSearchMswHandler,
-} from '@/msw/handlers/bingNewsSearch';
+} from '@/msw/handlers/bingNewsSearchHandlers';
 import { server } from '@/msw/server';
 import { mockPageProps } from '@/utils/mockData';
 import { UserInfoProvider } from '@/utils/userInfoProvider';
