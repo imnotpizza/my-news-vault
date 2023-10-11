@@ -1,18 +1,24 @@
-import { DEFAULT_MOCK_QUERY, EMPTY_RES_MOCK_QUERY, getMswRestHandler } from '@/msw/handlers';
+import {
+  DEFAULT_MOCK_QUERY,
+  EMPTY_RES_MOCK_QUERY,
+  getBingNewsSearchMswHandler,
+} from '@/msw/handlers/bingNewsSearch';
 import { server } from '@/msw/server';
 import { mockPageProps } from '@/utils/mockData';
-import { IUserInfoContext, UserInfoProvider } from '@/utils/userInfoProvider';
+import { UserInfoProvider } from '@/utils/userInfoProvider';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import useBingNewsFetch, { IUseBingNewsFetchParams } from '.';
 import { queryClient } from '../queryClient';
 
+// TODO: 정리
 const TestProvider = ({ children, props }) => (
   <QueryClientProvider client={queryClient}>
     <UserInfoProvider {...props.userInfo}>{children}</UserInfoProvider>
   </QueryClientProvider>
 );
 
+// TODO: 정리
 const getRenderHookResult = (params: IUseBingNewsFetchParams) => {
   return renderHook(
     () => {
@@ -67,7 +73,7 @@ describe('useBingNewsFetch', () => {
     });
     it('에러 발생 시, queryStates.isError true', async () => {
       server.use(
-        getMswRestHandler(DEFAULT_MOCK_QUERY, (req, res, ctx) => {
+        getBingNewsSearchMswHandler(DEFAULT_MOCK_QUERY, (req, res, ctx) => {
           return res(ctx.status(500), ctx.json({ message: 'error' }));
         }),
       );

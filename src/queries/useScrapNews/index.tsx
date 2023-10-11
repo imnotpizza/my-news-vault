@@ -4,6 +4,8 @@ import { TBingNewsQuery, TNewsItem, TUserInfo } from '@/types';
 import { updateNewsSearchQuery } from '../useBingNewsFetch';
 import { addScrapNewsToCache, deleteScrapNewsFromCache } from '../useScrappedNewsList';
 
+// TODO: firebase -> aws로 대체
+
 interface MutateParams {
   newsItem: TNewsItem;
   isScrapped: TNewsItem['isScrapped'];
