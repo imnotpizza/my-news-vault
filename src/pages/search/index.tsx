@@ -50,7 +50,7 @@ export const getServerSideProps: GetServerSideProps<TPageProps> = async (context
     return {
       props: {
         ...initialPageProps,
-        errCode: e.status,
+        // errCode: e.status,
       },
     };
   }

@@ -77,7 +77,7 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: IUseBingNewsFe
       getNextPageParam: (lastPage, pages) => {
         return pages.length === maxPage ? undefined : pages.length + 1;
       },
-      enabled,
+      enabled: false,
     },
   );
   // 이중배열 구조 평탄화
