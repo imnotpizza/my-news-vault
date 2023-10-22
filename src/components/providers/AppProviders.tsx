@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClientProvider, Hydrate } from '@tanstack/react-query';
@@ -17,7 +19,7 @@ const AppProviders = ({ children, pageProps }: IAppProvidersProps) => {
     <>
       <GlobalStyle />
       <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
+        <Hydrate state={pageProps}>
           <ReactQueryDevtools initialIsOpen={true} />
           <ThemeProvider theme={Palette}>{children}</ThemeProvider>
         </Hydrate>

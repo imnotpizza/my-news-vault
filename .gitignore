@@ -35,3 +35,4 @@ next-env.d.ts
 
 # yarn cache
 .yarn
+__pages
