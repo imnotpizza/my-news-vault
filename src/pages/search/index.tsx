@@ -32,9 +32,10 @@ export const getServerSideProps: GetServerSideProps<TPageProps> = async (context
     // 유저 정보
     const { authToken } = context.req.cookies;
     const userInfo = await getUserInfoFromFirebaseAdmin(authToken);
+
     // 스크랩 정보 초기화
-    if (userInfo.email) {
-      await prefetchScrappedNewsList(userInfo.email);
+    if (userInfo?.email) {
+      await prefetchScrappedNewsList(userInfo?.email);
     }
     const query = (context.query.query as string) || '';
 
@@ -46,7 +47,7 @@ export const getServerSideProps: GetServerSideProps<TPageProps> = async (context
         dehydratedState: dehydrate(queryClient),
       },
     };
-  } catch (e) {
+  } catch (e: any) {
     return {
       props: {
         ...initialPageProps,

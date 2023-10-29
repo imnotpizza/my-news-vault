@@ -45,11 +45,11 @@ export const getServerSideProps: GetServerSideProps<TPageProps> = async (context
         dehydratedState: dehydrate(queryClient),
       },
     };
-  } catch (e) {
+  } catch (e: any) {
     return {
       props: {
         ...initialPageProps,
-        errCode: e.status,
+        errCode: e?.status || 'unknown error',
       },
     };
   }
