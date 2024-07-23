@@ -24,6 +24,7 @@ const Meta = ({ title, description, url }: IMetaProps) => {
         }
       />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta name="keyword" content="스크랩, 뉴스, MyNewsVault, scrap, news" />
       <meta property="og:title" content={title || appInfo.app_name} />
       <meta
         property="og:description"
