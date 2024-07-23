@@ -6,7 +6,7 @@ import { userInfoContext } from '@/utils/userInfoProvider';
 import { queryClient } from '@/queries/queryClient';
 import { useSignout } from '@/queries/useUserAuth';
 import DefaultSpinner from '../searchStatus/DefaultSpinner';
-// add
+// add 1
 const Button = styled.button<{ disabled: boolean }>`
   gap: 0.81rem;
   width: 6.13rem;
