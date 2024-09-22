@@ -27,33 +27,29 @@ const NewsSearch = ({ userInfo, query, errCode }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<TPageProps> = async (context) => {
-  try {
-    // 유저 정보
-    const { authToken } = context.req.cookies;
-    const userInfo = await getUserInfoFromFirebaseAdmin(authToken);
-    // 스크랩 정보 초기화
-    if (userInfo.email) {
-      await prefetchScrappedNewsList(userInfo.email);
-    }
-    const query = (context.query.query as string) || '';
+// export const getServerSideProps: GetServerSideProps<TPageProps> = async (context) => {
+//   try {
+//     // 유저 정보
+//     // const { authToken } = context.req.cookies;
+//     // const userInfo = await getUserInfoFromFirebaseAdmin(authToken);
+//     // // 스크랩 정보 초기화
+//     // if (userInfo.email) {
+//     //   await prefetchScrappedNewsList(userInfo.email);
+//     // }
+//     // const query = (context.query.query as string) || '';
 
-    return {
-      props: {
-        ...initialPageProps,
-        userInfo,
-        query,
-        dehydratedState: dehydrate(queryClient),
-      },
-    };
-  } catch (e) {
-    return {
-      props: {
-        ...initialPageProps,
-        errCode: e.status,
-      },
-    };
-  }
-};
+//     // return {
+//     //   props: {
+//     //     ...initialPageProps,
+//     //     userInfo,
+//     //     query,
+//     //     dehydratedState: dehydrate(queryClient),
+//     //   },
+//     // };
+//     return {
+//       query: '',
+//     };
+//   } catch (e) {}
+// };
 
 export default NewsSearch;
