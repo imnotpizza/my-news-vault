@@ -15,8 +15,7 @@
     "docker:run": "docker run -p 3000:3000 my-news-vault"
   },
   "dependencies": {
-    "@tanstack/react-query": "^4.29.5",
-    "@tanstack/react-query-devtools": "^4.29.6",
+    "@tanstack/react-query": "^5.56.2",
     "axios": "^1.4.0",
     "firebase": "^9.21.0",
     "firebase-admin": "^11.8.0",
@@ -30,6 +29,7 @@
     "styled-components": "6.0.0-rc.1"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.56.2",
     "@next/bundle-analyzer": "^13.4.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
