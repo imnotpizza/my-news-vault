@@ -1,9 +1,27 @@
+import appinfo from '@/constants/appinfo';
 import { Metadata, ResolvingMetadata } from 'next';
 
 export const createMetadataObj = (meta?: Metadata): Metadata => {
   return {
-    title: 'My News Vault',
-    description: 'news scrap',
+    title: appinfo.app_name,
+    description: appinfo.app_desc,
+    viewport: 'initial-scale=1.0, width=device-width',
+    openGraph: {
+      title: appinfo.app_name,
+      description: appinfo.app_desc,
+      type: 'website',
+      url: appinfo.app_url,
+      images: [
+        {
+          url: '/og-thumbnail.png',
+          width: 800,
+          height: 600,
+        },
+      ],
+    },
+    icons: {
+      icon: '/favicon.ico',
+    },
     ...meta,
   };
 };
