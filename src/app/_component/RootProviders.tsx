@@ -6,7 +6,7 @@ import '@/styles/flex.css';
 import { queryClient } from '@/queries/queryClient';
 import { ThemeProvider } from 'styled-components';
 import Palette from '@/styles/palette';
-import { Hydrate, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 export default function RootProviders({ children }) {
@@ -14,10 +14,8 @@ export default function RootProviders({ children }) {
     <div>
       <p>providers</p>
       <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <ReactQueryDevtools initialIsOpen={true} />
-          <ThemeProvider theme={Palette}>{children}</ThemeProvider>
-        </Hydrate>
+        <ThemeProvider theme={Palette}>{children}</ThemeProvider>
+        <ReactQueryDevtools initialIsOpen={true} />
       </QueryClientProvider>
     </div>
   );
