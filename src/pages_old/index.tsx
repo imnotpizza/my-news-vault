@@ -67,7 +67,7 @@ const Footer = styled.div`
   height: 1px;
 `;
 
-const LandingPage = () => {
+const MainPage = () => {
   return (
     <>
       <Meta title={APP_NAME} />
@@ -124,4 +124,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default MainPage;

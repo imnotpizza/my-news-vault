@@ -29,8 +29,8 @@
     "styled-components": "6.0.0-rc.1"
   },
   "devDependencies": {
-    "@tanstack/react-query-devtools": "^5.56.2",
     "@next/bundle-analyzer": "^13.4.5",
+    "@tanstack/react-query-devtools": "^5.56.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.1",
