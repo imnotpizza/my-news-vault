@@ -15,9 +15,7 @@ const useScrappedNewsList = ({ userId }) => {
   const queryStates = useQuery<Awaited<ReturnType<typeof fetchScrappedList>>, AxiosError>(
     [QUERY_KEY.SCRAP_LIST],
     () => fetchScrappedList(userId),
-    {
-      enabled: Boolean(userId),
-    },
+
   );
 
   return queryStates;
