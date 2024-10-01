@@ -45,7 +45,8 @@ const NewsSearchPage = ({ query }: INewsSearchPageProps) => {
 
   return (
     <Container className="flex-column">
-      <div className="search">
+      {JSON.stringify(queryStates.data)}
+      {/* <div className="search">
         <QueryForm query={query} />
       </div>
       <div className="news-results flex-center">
@@ -60,7 +61,7 @@ const NewsSearchPage = ({ query }: INewsSearchPageProps) => {
           <NewsItemList newsItems={queryStates.flattenData} />
           <InfiniteScrollThresholdBox ref={ref} isLoading={queryStates.isFetching} />
         </QueryStateWrapper>
-      </div>
+      </div> */}
     </Container>
   );
 };
