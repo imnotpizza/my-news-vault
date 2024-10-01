@@ -6,22 +6,23 @@ import { fetchScrappedList } from '../../../api/client';
 import { fetchBingNews } from '../../../api/client';
 import { createMetadataObj } from '../../_lib/metadata';
 import NewsSearchPage from '@/components/search/NewsSearchPage';
+import { queryClient } from '@/queries/queryClient';
 
 interface IProps {
   query: string;
 }
 
-export default async function SearchPage({ query }: IProps) {
-  // const queryClient = new QueryClient();
-  // await prefetchScrappedNewsList('email');
-  // const dehydratedState = dehydrate(queryClient);
+export default async function SearchPage(props: IProps) {
+  // TODO: prefetchQuery or getQueryData 호출
+  await prefetchScrappedNewsList('email');
+  const dehydratedState = dehydrate(queryClient);
 
-  return <NewsSearchPage query={query} />;
-  // return (
-  //   <HydrationBoundary state={dehydratedState}>
-  //     {/* TODO: search 컴포넌트 작성 */}
-  //   </HydrationBoundary>
-  // )
+  return (
+    <HydrationBoundary state={dehydratedState}>
+      {/* TODO: search 컴포넌트 작성 */}
+      <NewsSearchPage query={props.query} />;
+    </HydrationBoundary>
+  );
 }
 
 type Props = {
@@ -29,7 +30,8 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {  
+  // FIXME: fetchQuery 호출
   const res = await fetchBingNews('', 0);
   const seoVals = res.value.map((item) => {
     return {
