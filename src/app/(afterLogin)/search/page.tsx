@@ -14,7 +14,7 @@ interface IProps {
 
 export default async function SearchPage(props: IProps) {
   // TODO: prefetchQuery or getQueryData 호출
-  await prefetchScrappedNewsList('email');
+  
   const dehydratedState = dehydrate(queryClient);
 
   return (

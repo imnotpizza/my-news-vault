@@ -53,5 +53,6 @@
     "jest-environment-jsdom": "^29.5.0",
     "msw": "^1.2.1",
     "typescript": "5.0.4"
-  }
+  },
+  "packageManager": "yarn@1.22.19"
 }
