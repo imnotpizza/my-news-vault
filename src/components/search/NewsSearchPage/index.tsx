@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useMemo } from 'react';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';

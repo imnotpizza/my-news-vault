@@ -4,7 +4,7 @@ import { hasSpecialCharacters } from '@/utils/newsItem';
 import AlertText from '@/views/newsSearchForm/AlertText';
 import NewsSearchButton from '@/views/newsSearchForm/NewsSearchButton';
 import NewsSearchInput from '@/views/newsSearchForm/NewsSearchInput';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React, { memo, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
