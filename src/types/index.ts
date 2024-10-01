@@ -15,6 +15,7 @@ export type TBingNewsQuery = {
 
 /**
  *  Bing News API 응답데이터
+ *  FIXME: any 타입들 전부 수정
  */
 export type TRawNewsItem = {
   datePublished: string;
@@ -42,6 +43,9 @@ export type TRawNewsItem = {
   }[];
   url: string;
   category?: string;
+  about?: any;
+  mentions?: any;
+  video?: any;
 };
 
 /**
@@ -71,6 +75,7 @@ export type TBingNewsAPIRes = {
   readLink: string;
   totalEstimatedMatches: number;
   value: TRawNewsItem[];
+  sort?: any;
 };
 
 /**
