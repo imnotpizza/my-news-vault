@@ -1,11 +1,11 @@
 'use client';
 
-import QUERY_KEY from '@/queries/keys';
-import { queryClient } from '@/queries/queryClient';
-import useBingNewsFetch, { queryFn, useFetchBingNewsList } from '@/queries/useBingNewsFetch';
+import { queryFn, useFetchBingNewsList } from '@/queries/useBingNewsFetch';
+import QueryForm from '@/components/form/NewsSearchForm';
 import { TBingNewsQuery } from '@/types';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
+import NewsCardList14 from './NewsCardList14';
 
 interface IProps {
   query: TBingNewsQuery['query'];
@@ -27,21 +27,20 @@ const Container = styled.div`
   }
 `;
 
-/** 최대 호출 가능한 페이지 수 */
-const MAX_PAGE = 3;
-
 /**
  * 뉴스 리스트 출력 컴포넌트
  */
 export default function NewsSearchPage14({ query }: IProps) {
   const [page, setPage] = useState(1);
-  const { flattenData } = useFetchBingNewsList({ query, curPage: page, maxPage: MAX_PAGE });
 
   return (
-    <div>
-      {flattenData.map((item) => (
-        <div key={item.name}>{item.name}</div>
-      ))}
-    </div>
+    <Container className="flex-column">
+      <div className="search">
+        <QueryForm query={query} />
+      </div>
+      <Suspense fallback={<div>loading...</div>}>
+        <NewsCardList14 query={query} page={page} />
+      </Suspense>
+    </Container>
   );
 }
