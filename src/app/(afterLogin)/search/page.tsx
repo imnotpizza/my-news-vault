@@ -10,15 +10,18 @@ interface IProps {
   query: string;
 }
 
+// 2
 export default async function SearchPage(props: IProps) {
   // TODO: prefetchQuery or getQueryData 호출
   await prefetchScrappedNewsList('email');
   const dehydratedState = dehydrate(queryClient);
+  console.log('111111', dehydratedState);
   return (
+    <div>12313</div>
     // @ts-ignore
-    <HydrationBoundary queryClient={queryClient} state={dehydratedState}>
-      <NewsSearchPage query={props.query} />
-    </HydrationBoundary>
+    // <HydrationBoundary queryClient={queryClient} state={dehydratedState}>
+    //   <div></div>
+    // </HydrationBoundary>
   );
 }
 
@@ -27,9 +30,12 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {  
+// 1
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+  console.log('222222');
+  const query = (searchParams.query ?? '') as string;
   // FIXME: fetchQuery 호출
-  const res = await fetchBingNews('', 0);
+  const res = await fetchBingNews(query, 1);
   const seoVals = res.value.map((item) => {
     return {
       name: item.name,
