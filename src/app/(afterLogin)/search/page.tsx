@@ -1,11 +1,11 @@
 import React from 'react';
-import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-import type { Metadata, ResolvingMetadata } from 'next';
-import { fetchBingNews } from '../../../api/client';
-import { createMetadataObj } from '../../_lib/metadata';
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
+import type { Metadata } from 'next';
 import { queryClient } from '@/queries/queryClient';
-import { prefetchBingNewsFetch, getBingNewsQueryData } from '@/queries/useBingNewsFetch';
-import NewsSearchPage from '@/components/search/NewsSearchPage';
+import { prefetchBingNewsFetch } from '@/queries/useBingNewsFetch';
+import { fetchBingNews } from '@/api/client';
+import { createMetadataObj } from '@/app/_lib/metadata';
+import NewsSearchPage14 from '@/components/search/NewsSearchPage14';
 interface IProps {
   query: string;
 }
@@ -16,10 +16,9 @@ export default async function SearchPage(props: IProps) {
   // TODO: prefetchQuery or getQueryData 호출
   await prefetchBingNewsFetch(query);
   const dehydratedState = dehydrate(queryClient);
-  console.log('#### 111111', dehydratedState, query);
   return (
     <HydrationBoundary state={dehydratedState}>
-      <NewsSearchPage query={query}/>
+      <NewsSearchPage14 />
     </HydrationBoundary>
   );
 }
@@ -40,8 +39,6 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     };
   });
   const first = seoVals[0];
-  // 제목, 내용, 썸내일
-  console.log('####22222', seoVals);
   // TODO 여기에 seo 데이터 초기화
   return createMetadataObj({
     title: first.name,

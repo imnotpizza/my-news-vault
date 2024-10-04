@@ -91,9 +91,9 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: IUseBingNewsFe
         query,
         pageParam: 1,
       }),
-      // getNextPageParam: (lastPage, pages) => {
-      //   return lastPage?.value?.length === 0 ? undefined : pages?.length;
-      // },
+    // getNextPageParam: (lastPage, pages) => {
+    //   return lastPage?.value?.length === 0 ? undefined : pages?.length;
+    // },
     // initialPageParam: 1,
   });
   // 이중배열 구조 평탄화
