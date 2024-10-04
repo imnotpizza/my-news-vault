@@ -1,6 +1,11 @@
 import { fetchBingNews } from '@/api/client';
 import { TBingNewsQuery, TNewsItem } from '@/types';
-import { InfiniteData, useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import {
+  InfiniteData,
+  useInfiniteQuery,
+  useQuery,
+  useSuspenseInfiniteQuery,
+} from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import {
   convertToNewsItem,
@@ -107,6 +112,36 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: IUseBingNewsFe
     ...queryStates,
     isEmpty: false,
     // flattenData,
+  };
+};
+
+/**
+ * 뉴스 결과 리스트 호출 query hook
+ */
+export const useFetchBingNewsList = ({ query, curPage, maxPage }) => {
+  const queryStates = useSuspenseInfiniteQuery({
+    queryKey: [QUERY_KEY.BING_NEWS_SEARCH, query],
+    queryFn: ({ pageParam = curPage }) => {
+      return queryFn({ query, pageParam });
+    },
+    getNextPageParam: (lastPage, allPages) => {
+      if (lastPage.value.length < maxPage) {
+        return undefined;
+      }
+      return allPages.length + 1;
+    },
+    initialPageParam: 1,
+  });
+
+  const flattenData = useMemo(() => {
+    return flatMap(queryStates.data?.pages, (item) => {
+      return item;
+    });
+  }, [queryStates.data?.pages]);
+
+  return {
+    ...queryStates,
+    flattenData,
   };
 };
 
