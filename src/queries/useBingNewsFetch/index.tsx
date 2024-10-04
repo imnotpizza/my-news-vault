@@ -24,9 +24,9 @@ export interface IUseBingNewsFetchParams {
   maxPage: number;
 }
 
-const queryFn = async ({ query, pageParam = 1 }) => {
+export const queryFn = async ({ query, pageParam = 1 }) => {
   // api 호출
-  const fetchResult = await fetchBingNews(query, pageParam);
+  const fetchResult = await fetchBingNews(query, 0);
   // // 스크랩 목록
   // const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>([QUERY_KEY.SCRAP_LIST]);
   // // 현재 뉴스데이터
@@ -45,7 +45,8 @@ const queryFn = async ({ query, pageParam = 1 }) => {
 
   // const filteredNewsItems = newsItems.filter((item) => item !== undefined);
   // return filteredNewsItems;
-  return fetchResult;
+  console.log('fetchResult', fetchResult);
+  return fetchResult.value;
 };
 
 /**
@@ -65,13 +66,14 @@ export const getBingNewsQueryData = (searchQuery: TBingNewsQuery['query']) => {
 };
 
 export const prefetchBingNewsFetch = async (query) => {
-  await queryClient.prefetchQuery({
+  await queryClient.prefetchInfiniteQuery({
     queryKey: [QUERY_KEY.BING_NEWS_SEARCH, query],
     queryFn: () =>
       queryFn({
         query,
         pageParam: 1,
       }),
+    initialPageParam: 1,
   });
 };
 
@@ -121,11 +123,12 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: IUseBingNewsFe
 export const useFetchBingNewsList = ({ query, curPage, maxPage }) => {
   const queryStates = useSuspenseInfiniteQuery({
     queryKey: [QUERY_KEY.BING_NEWS_SEARCH, query],
-    queryFn: ({ pageParam = curPage }) => {
-      return queryFn({ query, pageParam });
+    queryFn: async ({ pageParam = curPage }) => {
+      const r = await queryFn({ query, pageParam });
+      return r;
     },
     getNextPageParam: (lastPage, allPages) => {
-      if (lastPage.value.length < maxPage) {
+      if (lastPage.length < maxPage) {
         return undefined;
       }
       return allPages.length + 1;
