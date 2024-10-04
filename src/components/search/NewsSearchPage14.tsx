@@ -32,7 +32,7 @@ const Container = styled.div`
  */
 export default function NewsSearchPage14({ query }: IProps) {
   const [page, setPage] = useState(1);
-
+  console.log('############!1111', query);
   return (
     <Container className="flex-column">
       <div className="search">

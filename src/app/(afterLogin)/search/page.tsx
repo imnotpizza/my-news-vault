@@ -6,19 +6,25 @@ import { prefetchBingNewsFetch } from '@/queries/useBingNewsFetch';
 import { fetchBingNews } from '@/api/client';
 import { createMetadataObj } from '@/app/_lib/metadata';
 import NewsSearchPage14 from '@/components/search/NewsSearchPage14';
-interface IProps {
-  query: string;
+import axios from 'axios';
+
+const fetchValues = async () => {
+  const res = await axios.get('http://localhost:3000/api/cache-test');
+  console.log('### res', res.data);
+  return res.data;
 }
 
 // 2
-export default async function SearchPage(props: IProps) {
+export default async function SearchPage(props) {
   const { query } = props;
   // TODO: prefetchQuery or getQueryData 호출
   await prefetchBingNewsFetch(query);
   const dehydratedState = dehydrate(queryClient);
+  const apiRes = await fetchValues();
+  console.log('### props', apiRes);
   return (
     <HydrationBoundary state={dehydratedState}>
-      <NewsSearchPage14 />
+      {/* <NewsSearchPage14 query={props.searchParams.query} /> */}
     </HydrationBoundary>
   );
 }
