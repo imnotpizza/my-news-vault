@@ -41,11 +41,11 @@ const Container = styled.div`
 
 const NewsScrapPage = () => {
   const { userInfo } = useContext(userInfoContext);
-  const queryStates = useScrappedNewsList({ userId: userInfo?.email });
+  // const queryStates = useScrappedNewsList({ userId: userInfo?.email });
 
   return (
     <Container className="flex-column">
-      <div className="scrap-count flex-justify-start">
+      {/* <div className="scrap-count flex-justify-start">
         <ScrapCountView>{queryStates.data?.length}</ScrapCountView>
       </div>
       <div className="scrap-results flex-center">
@@ -57,7 +57,7 @@ const NewsScrapPage = () => {
         >
           <NewsItemList newsItems={queryStates?.data} />
         </QueryStateWrapper>
-      </div>
+      </div> */}
     </Container>
   );
 };
