@@ -1,6 +1,5 @@
 import { TBingNewsAPIRes, TBingNewsQuery, TNewsItem, TUserInfo } from '@/types';
 import { doc, getDocs, collection, deleteDoc, setDoc } from 'firebase/firestore/lite';
-import { database } from '@/firebase';
 import BingAPI from '@/api/BingAPI';
 import { mockBingNewsRes } from '@/mock';
 
@@ -31,26 +30,26 @@ export const fetchBingNews = async (
 export const fetchScrappedList = async (userId: TUserInfo['email']) => {
   const path = `scrap/${userId}/scrap`;
   const res: TNewsItem[] = [];
-  const snapshot = await getDocs(collection(database, path));
-  snapshot.forEach((_doc) => {
-    const data = _doc.data() as TNewsItem;
-    data.isScrapped = true;
-    res.push(data);
-  });
-  return res;
+  // const snapshot = await getDocs(collection(database, path));
+  // snapshot.forEach((_doc) => {
+  //   const data = _doc.data() as TNewsItem;
+  //   data.isScrapped = true;
+  //   res.push(data);
+  // });
+  return [];
 };
 
 /**
  * 스크랩
  */
 export const scrapNews = async (userId: TUserInfo['email'], newsItem: TNewsItem) => {
-  await setDoc(doc(database, `scrap/${userId}/scrap`, newsItem.newsId), newsItem);
+  // await setDoc(doc(database, `scrap/${userId}/scrap`, newsItem.newsId), newsItem);
 };
 
 /**
  * 스크랩 해제
  */
 export const unscrapNews = async (userId: TUserInfo['email'], newsId: string) => {
-  const target = doc(database, `scrap/${userId}/scrap`, newsId);
-  await deleteDoc(target);
+  // const target = doc(database, `scrap/${userId}/scrap`, newsId);
+  // await deleteDoc(target);
 };

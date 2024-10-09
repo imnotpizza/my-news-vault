@@ -12,7 +12,7 @@ const fetchValues = async () => {
   const res = await axios.get('http://localhost:3000/api/cache-test');
   console.log('### res', res.data);
   return res.data;
-}
+};
 
 // 2
 export default async function SearchPage(props) {

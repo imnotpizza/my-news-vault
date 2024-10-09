@@ -35,3 +35,6 @@ next-env.d.ts
 
 # yarn cache
 .yarn
+
+/src/pages_old
+/src/pages_old2

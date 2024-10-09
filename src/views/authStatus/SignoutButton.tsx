@@ -38,6 +38,7 @@ const SignoutText = styled.p`
 
 const SignoutButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   const { setUserInfo } = React.useContext(userInfoContext);
+  // @ts-ignore
   const { mutate, isLoading } = useSignout({
     onSuccess: () => {
       setUserInfo(() => null);

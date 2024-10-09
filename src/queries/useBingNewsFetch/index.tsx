@@ -68,11 +68,12 @@ export const getBingNewsQueryData = (searchQuery: TBingNewsQuery['query']) => {
 export const prefetchBingNewsFetch = async (query) => {
   await queryClient.prefetchInfiniteQuery({
     queryKey: [QUERY_KEY.BING_NEWS_SEARCH, query],
-    queryFn: () =>
+    queryFn: () => {
       queryFn({
         query,
         pageParam: 1,
-      }),
+      });
+    },
     initialPageParam: 1,
   });
 };
@@ -93,11 +94,12 @@ export const prefetchBingNewsFetch = async (query) => {
 const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: IUseBingNewsFetchParams) => {
   const queryStates = useQuery({
     queryKey: [QUERY_KEY.BING_NEWS_SEARCH, query],
-    queryFn: () =>
+    queryFn: () => {
       queryFn({
         query,
         pageParam: 1,
-      }),
+      });
+    },
     // getNextPageParam: (lastPage, pages) => {
     //   return lastPage?.value?.length === 0 ? undefined : pages?.length;
     // },
