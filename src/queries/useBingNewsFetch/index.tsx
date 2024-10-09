@@ -1,6 +1,11 @@
 import { fetchBingNews } from '@/api/client';
 import { TBingNewsQuery, TNewsItem } from '@/types';
-import { InfiniteData, useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import {
+  InfiniteData,
+  useInfiniteQuery,
+  useQuery,
+  useSuspenseInfiniteQuery,
+} from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import {
   convertToNewsItem,
@@ -19,9 +24,9 @@ export interface IUseBingNewsFetchParams {
   maxPage: number;
 }
 
-const queryFn = async ({ query, pageParam = 1 }) => {
+export const queryFn = async ({ query, pageParam = 1 }) => {
   // api 호출
-  const fetchResult = await fetchBingNews(query, pageParam);
+  const fetchResult = await fetchBingNews(query, 0);
   // // 스크랩 목록
   // const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>([QUERY_KEY.SCRAP_LIST]);
   // // 현재 뉴스데이터
@@ -40,7 +45,8 @@ const queryFn = async ({ query, pageParam = 1 }) => {
 
   // const filteredNewsItems = newsItems.filter((item) => item !== undefined);
   // return filteredNewsItems;
-  return fetchResult;
+  console.log('fetchResult', fetchResult);
+  return fetchResult.value;
 };
 
 /**
@@ -60,13 +66,14 @@ export const getBingNewsQueryData = (searchQuery: TBingNewsQuery['query']) => {
 };
 
 export const prefetchBingNewsFetch = async (query) => {
-  await queryClient.prefetchQuery({
+  await queryClient.prefetchInfiniteQuery({
     queryKey: [QUERY_KEY.BING_NEWS_SEARCH, query],
     queryFn: () =>
       queryFn({
         query,
         pageParam: 1,
       }),
+    initialPageParam: 1,
   });
 };
 
@@ -91,9 +98,9 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: IUseBingNewsFe
         query,
         pageParam: 1,
       }),
-      // getNextPageParam: (lastPage, pages) => {
-      //   return lastPage?.value?.length === 0 ? undefined : pages?.length;
-      // },
+    // getNextPageParam: (lastPage, pages) => {
+    //   return lastPage?.value?.length === 0 ? undefined : pages?.length;
+    // },
     // initialPageParam: 1,
   });
   // 이중배열 구조 평탄화
@@ -107,6 +114,37 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: IUseBingNewsFe
     ...queryStates,
     isEmpty: false,
     // flattenData,
+  };
+};
+
+/**
+ * 뉴스 결과 리스트 호출 query hook
+ */
+export const useFetchBingNewsList = ({ query, curPage, maxPage }) => {
+  const queryStates = useSuspenseInfiniteQuery({
+    queryKey: [QUERY_KEY.BING_NEWS_SEARCH, query],
+    queryFn: async ({ pageParam = curPage }) => {
+      const r = await queryFn({ query, pageParam });
+      return r;
+    },
+    getNextPageParam: (lastPage, allPages) => {
+      if (lastPage.length < maxPage) {
+        return undefined;
+      }
+      return allPages.length + 1;
+    },
+    initialPageParam: 1,
+  });
+
+  const flattenData = useMemo(() => {
+    return flatMap(queryStates.data?.pages, (item) => {
+      return item;
+    });
+  }, [queryStates.data?.pages]);
+
+  return {
+    ...queryStates,
+    flattenData,
   };
 };
 
