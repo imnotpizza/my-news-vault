@@ -17,7 +17,7 @@ const Link = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  
+
   cursor: pointer;
   &:hover {
     text-decoration: underline;
