@@ -1,5 +1,5 @@
 import { responsive } from '@/styles/responsive';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -25,7 +25,6 @@ const Button = styled.button`
 
 const ToSearchPageButton = () => {
   const router = useRouter();
-
   const onClick = () => {
     router.push('/search');
   };

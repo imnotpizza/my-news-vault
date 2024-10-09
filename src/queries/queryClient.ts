@@ -10,7 +10,7 @@ queryClient.setDefaultOptions({
     refetchOnWindowFocus: false,
     refetchInterval: false,
     retry: false,
-    cacheTime: QUERY_CACHE_TIME,
+    gcTime: QUERY_CACHE_TIME,
     staleTime: QUERY_CACHE_TIME,
   },
 });

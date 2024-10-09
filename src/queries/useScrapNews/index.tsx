@@ -4,6 +4,8 @@ import { TBingNewsQuery, TNewsItem, TUserInfo } from '@/types';
 import { updateNewsSearchQuery } from '../useBingNewsFetch';
 import { addScrapNewsToCache, deleteScrapNewsFromCache } from '../useScrappedNewsList';
 
+// TODO: firebase -> aws로 대체
+
 interface MutateParams {
   newsItem: TNewsItem;
   isScrapped: TNewsItem['isScrapped'];
@@ -17,6 +19,7 @@ interface MutateParams {
  */
 export const useScrapNews = () => {
   const queryStates = useMutation<void, Error, MutateParams>(
+    // @ts-ignore
     async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, query);
       await scrapNews(userId, newsItem);
@@ -42,6 +45,7 @@ export const useScrapNews = () => {
  */
 export const useUnscrapNews = () => {
   const queryStates = useMutation<void, Error, MutateParams>(
+    // @ts-ignore
     async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, query);
       await unscrapNews(userId, newsItem.newsId);

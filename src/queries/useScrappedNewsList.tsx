@@ -12,15 +12,13 @@ import QUERY_KEY from './keys';
  * @returns
  */
 const useScrappedNewsList = ({ userId }) => {
-  const queryStates = useQuery<Awaited<ReturnType<typeof fetchScrappedList>>, AxiosError>(
-    [QUERY_KEY.SCRAP_LIST],
-    () => fetchScrappedList(userId),
-    {
-      enabled: Boolean(userId),
-    },
-  );
+  // const queryStates = useQuery<Awaited<ReturnType<typeof fetchScrappedList>>, AxiosError>(
+  //   [QUERY_KEY.SCRAP_LIST],
+  //   () => fetchScrappedList(userId),
 
-  return queryStates;
+  // );
+
+  return {};
 };
 
 /**
@@ -71,7 +69,7 @@ export const fetchScrappedNewsList = async (userId: TUserInfo['email']) => {
 };
 
 export const removeQueryCache = () => {
-  queryClient.removeQueries([QUERY_KEY.SCRAP_LIST]);
+  // queryClient.removeQueries([QUERY_KEY.SCRAP_LIST]);
 };
 
 export default useScrappedNewsList;

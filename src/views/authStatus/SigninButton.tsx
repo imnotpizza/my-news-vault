@@ -37,6 +37,7 @@ const SigninText = styled.p`
 
 const SigninButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   const { setUserInfo } = useContext(userInfoContext);
+  // @ts-ignore
   const { mutate, isLoading } = useSignin({
     onSuccess: (newUserInfo) => {
       setUserInfo(() => newUserInfo);

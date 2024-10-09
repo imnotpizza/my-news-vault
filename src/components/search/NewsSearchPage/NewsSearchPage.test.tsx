@@ -3,7 +3,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import { mockPageProps } from '@/utils/mockData';
 import { server } from '@/msw/server';
 import { queryClient } from '@/queries/queryClient';
-import { DEFAULT_MOCK_QUERY, getMswRestHandler } from '@/msw/handlers';
+import { DEFAULT_MOCK_QUERY, getBingNewsSearchMswHandler } from '@/msw/handlers/bingNewsSearchHandlers';
 import NewsSearchPage from '.';
 
 describe('검색어가 없을 경우 (로그인, 비로그인 공통)', () => {
@@ -58,7 +58,7 @@ describe('검색 도중 에러 발생하였을 때', () => {
   });
   it('기본 에러 UI 보여주기', async () => {
     server.use(
-      getMswRestHandler(DEFAULT_MOCK_QUERY, (req, res, ctx) => {
+      getBingNewsSearchMswHandler(DEFAULT_MOCK_QUERY, (req, res, ctx) => {
         return res(ctx.status(500), ctx.json({ message: 'error' }));
       }),
     );
