@@ -94,15 +94,7 @@ const Container = styled.div`
 `;
 
 const NewsCard = ({ item }: { item: TNewsItem }) => {
-  const {
-    isScrapped,
-    title,
-    thumbnail,
-    description,
-    url,
-    providerIcon,
-    datePublished,
-  } = item;
+  const { isScrapped, title, thumbnail, description, url, providerIcon, datePublished } = item;
   const { userInfo, isSignin } = React.useContext<IUserInfoContext>(userInfoContext);
 
   // const { mutate: scrapNews, isLoading: isScrappingNews } = useScrapNews();
@@ -112,7 +104,6 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
   const onClickScarp = async () => {
     if (!isSignin) {
       alert('스크랩 기능은 로그인 후 사용해주세요.');
-      return;
     }
     // scrapNews({
     //   newsItem: item,
