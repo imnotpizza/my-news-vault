@@ -1,0 +1,29 @@
+name: MyNewsVault CI Actions
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+on:
+  push:
+    branches:
+      - "develop"
+      # tags:
+      # - 'v[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  cd-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set node-version
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.17.1'
+      - name: Install Vercel CLI
+        run: npm install vercel@latest -g
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

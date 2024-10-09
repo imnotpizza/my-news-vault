@@ -10,6 +10,9 @@ export const initialPageProps: TPageProps = {
   dehydratedState: null,
 };
 
+/** 최대 호출 가능한 페이지 수 */
+export const NEWS_LIST_PAGE_LIMIT = 3;
+
 // 쿠키 설정
 export const COOKIE_CONFIG = {
   path: '/',

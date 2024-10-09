@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useMemo } from 'react';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import QueryStateWrapper from '@/components/common/QueryStateWrapper';
@@ -37,6 +39,7 @@ const NewsSearchPage = ({ query }: INewsSearchPageProps) => {
     maxPage: 3,
   });
   const { ref } = useInfiniteScroll({
+    // @ts-ignore
     onTriggered: queryStates.fetchNextPage,
     maxPage: 3,
   });
@@ -49,12 +52,14 @@ const NewsSearchPage = ({ query }: INewsSearchPageProps) => {
       <div className="news-results flex-center">
         <QueryStateWrapper
           // 검색어 입력되지 않은경우도 false로 처리
-          isLoading={queryStates.isLoading && !isQueryEmpty}
+          isLoading={queryStates.isLoading}
           isError={queryStates.isError}
+          // @ts-ignore
           isEmpty={queryStates.flattenData?.length === 0}
           isDisabled={isQueryEmpty}
           DisabledUI={NewsQueryEmptyUI}
         >
+          {/* @ts-ignore */}
           <NewsItemList newsItems={queryStates.flattenData} />
           <InfiniteScrollThresholdBox ref={ref} isLoading={queryStates.isFetching} />
         </QueryStateWrapper>

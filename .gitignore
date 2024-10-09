@@ -35,4 +35,6 @@ next-env.d.ts
 
 # yarn cache
 .yarn
-/mockNews.json
+
+/src/pages_old
+/src/pages_old2

@@ -27,13 +27,7 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": [
-          "**/*.test.tsx",
-          "**/*.stories.ts",
-          "**/msw/*",
-          "jest.*.js",
-          "next.config.js"
-        ]
+        "devDependencies": true
       }
     ],
     "import/prefer-default-export": "off", // export defualt 강제: 필요없음

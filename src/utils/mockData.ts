@@ -1,4 +1,4 @@
-import { DEFAULT_MOCK_QUERY } from '@/msw/handlers';
+import { DEFAULT_MOCK_QUERY } from '@/msw/handlers/bingNewsSearchHandlers';
 import { TNewsItem, TRawNewsItem } from '@/types';
 
 export const mockRawNewsItem: TRawNewsItem = {
@@ -19,8 +19,8 @@ export const mockRawNewsItem: TRawNewsItem = {
   image: {
     thumbnail: {
       contentUrl: 'test',
-      height: '100',
-      width: '100',
+      height: 100,
+      width: 100,
     },
     name: 'test',
   },

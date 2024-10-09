@@ -94,42 +94,33 @@ const Container = styled.div`
 `;
 
 const NewsCard = ({ item }: { item: TNewsItem }) => {
-  const {
-    isScrapped,
-    title,
-    thumbnail,
-    description,
-    url,
-    providerIcon,
-    datePublished,
-  } = item;
+  const { isScrapped, title, thumbnail, description, url, providerIcon, datePublished } = item;
   const { userInfo, isSignin } = React.useContext<IUserInfoContext>(userInfoContext);
 
-  const { mutate: scrapNews, isLoading: isScrappingNews } = useScrapNews();
-  const { mutate: unscrapNews, isLoading: isUnscrappingNews } = useUnscrapNews();
+  // const { mutate: scrapNews, isLoading: isScrappingNews } = useScrapNews();
+  // const { mutate: unscrapNews, isLoading: isUnscrappingNews } = useUnscrapNews();
 
   // TODO: useCallback 추가
   const onClickScarp = async () => {
     if (!isSignin) {
       alert('스크랩 기능은 로그인 후 사용해주세요.');
-      return;
     }
-    scrapNews({
-      newsItem: item,
-      isScrapped: true,
-      query: item.searchQuery,
-      userId: userInfo!.email,
-    });
+    // scrapNews({
+    //   newsItem: item,
+    //   isScrapped: true,
+    //   query: item.searchQuery,
+    //   userId: userInfo!.email,
+    // });
   };
 
   // TODO: useCallback 추가
   const onClickUnscrap = async () => {
-    unscrapNews({
-      newsItem: item,
-      isScrapped: false,
-      query: item.searchQuery,
-      userId: userInfo!.email,
-    });
+    // unscrapNews({
+    //   newsItem: item,
+    //   isScrapped: false,
+    //   query: item.searchQuery,
+    //   userId: userInfo!.email,
+    // });
   };
 
   return (
@@ -151,12 +142,12 @@ const NewsCard = ({ item }: { item: TNewsItem }) => {
 
         <div className="bottom-space flex-row justify-space-between">
           <NewsCardPublishedDate>{datePublished}</NewsCardPublishedDate>
-          <NewsCardScrapButton
+          {/* <NewsCardScrapButton
             disabled={isScrappingNews || isUnscrappingNews}
             isScrapped={isScrapped}
             onClickScarp={onClickScarp}
             onClickUnscrap={onClickUnscrap}
-          />
+          /> */}
         </div>
       </div>
     </Container>
