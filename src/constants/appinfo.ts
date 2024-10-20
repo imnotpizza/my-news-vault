@@ -1,6 +1,6 @@
 export default {
-  app_name: 'MYNEWSVAULT',
-  app_desc: '신속한 뉴스 검색과 편리한 스크랩 기능을 갖춘 앱으로 최신 뉴스를 손쉽게 관리하세요.',
-  app_url: 'https://ilovenews.vercel.app',
+  app_name: 'My News Vault',
+  app_desc: '스크랩한 뉴스를 통해 나만의 뉴스를 만들어보세요.',
+  app_url: 'https://www.mynwsvault.com',
   author: 'imnotpizza',
 };
