@@ -51,7 +51,7 @@ const NewsCardList14 = ({ query, page }: INewsCardListProps) => {
   return (
     <Container className="flex-column justify-center">
       <GridContainer>
-        {newsItems?.map((item) => (
+        {newsItems.map((item) => (
           <NewsCard key={item.name} item={item as any} />
         ))}
       </GridContainer>
