@@ -1,5 +1,4 @@
 import { TBingNewsAPIRes, TBingNewsQuery, TNewsItem, TUserInfo } from '@/types';
-import { doc, getDocs, collection, deleteDoc, setDoc } from 'firebase/firestore/lite';
 import BingAPI from '@/api/BingAPI';
 import { mockBingNewsRes } from '@/mock';
 

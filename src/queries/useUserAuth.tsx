@@ -1,4 +1,3 @@
-import { signinWithFirebaseAuth, signoutWithFirebaseAuth } from '@/api/auth';
 import { TUserInfo } from '@/types';
 import { UseMutationOptions, useMutation } from '@tanstack/react-query';
 
@@ -6,7 +5,7 @@ export const useSignin = (options: UseMutationOptions<TUserInfo>) => {
   const queryStates = useMutation<TUserInfo, Error>(
     // @ts-ignore
     async () => {
-      const newUserInfo = await signinWithFirebaseAuth();
+      const newUserInfo = 'user';
       // @ts-ignore
       if (!newUserInfo) {
         throw new Error('user error');
@@ -25,8 +24,6 @@ export const useSignin = (options: UseMutationOptions<TUserInfo>) => {
 
 export const useSignout = (options: UseMutationOptions<void>) => {
   // @ts-ignore
-  const queryStates = useMutation<void, Error>(async () => {
-    await signoutWithFirebaseAuth();
-  }, options);
+  const queryStates = useMutation<void, Error>(async () => {}, options);
   return queryStates;
 };

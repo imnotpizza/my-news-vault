@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --transformIgnorePatterns '/node_modules/(?!firebase)/'",
+    "test": "jest --transformIgnorePatterns",
     "test:coverage": "jest --coverage && codecov",
     "build:analyze": "ANALYZE=true yarn build",
     "vercel-build": "next build",
@@ -17,8 +17,6 @@
   "dependencies": {
     "@tanstack/react-query": "^5.56.2",
     "axios": "^1.4.0",
-    "firebase": "^9.21.0",
-    "firebase-admin": "^11.8.0",
     "lodash-es": "^4.17.21",
     "next": "^14.2.13",
     "react": "^18.3.1",
