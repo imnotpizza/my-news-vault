@@ -6,7 +6,7 @@ import { userInfoContext } from '@/utils/userInfoProvider';
 import { queryClient } from '@/queries/queryClient';
 import { useSignout } from '@/queries/useUserAuth';
 import DefaultSpinner from '../searchStatus/DefaultSpinner';
-
+// 1312312321
 const Button = styled.button<{ disabled: boolean }>`
   gap: 0.81rem;
   width: 6.13rem;
@@ -59,7 +59,12 @@ const SignoutButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => 
       {isLoading ? (
         <DefaultSpinner size={12.5} isLoading={isLoading} />
       ) : (
-        <Image src="/svg/logout-button-icon.svg" alt="로그아웃 버튼" width={12.5} height={12.5} />
+        <Image
+          src="/svg/logout-button-icon.svg"
+          alt="로그아웃 버튼"
+          width={12.5}
+          height={12.5}
+        />
       )}
       <SignoutText>로그아웃</SignoutText>
     </Button>

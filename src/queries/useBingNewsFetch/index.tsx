@@ -69,7 +69,7 @@ export const prefetchBingNewsFetch = async (query) => {
   await queryClient.prefetchInfiniteQuery({
     queryKey: [QUERY_KEY.BING_NEWS_SEARCH, query],
     queryFn: () => {
-      queryFn({
+      return queryFn({
         query,
         pageParam: 1,
       });
@@ -95,7 +95,7 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: IUseBingNewsFe
   const queryStates = useQuery({
     queryKey: [QUERY_KEY.BING_NEWS_SEARCH, query],
     queryFn: () => {
-      queryFn({
+      return queryFn({
         query,
         pageParam: 1,
       });
@@ -130,7 +130,7 @@ export const useFetchBingNewsList = ({ query, curPage, maxPage }) => {
       return r;
     },
     getNextPageParam: (lastPage, allPages) => {
-      if (lastPage.length < maxPage) {
+      if (lastPage?.length < maxPage) {
         return undefined;
       }
       return allPages.length + 1;
