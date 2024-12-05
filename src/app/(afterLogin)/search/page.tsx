@@ -24,7 +24,7 @@ export default async function SearchPage(props) {
   console.log('### props', apiRes);
   return (
     <HydrationBoundary state={dehydratedState}>
-      {/* <NewsSearchPage14 query={props.searchParams.query} /> */}
+      <NewsSearchPage14 query={query} />
     </HydrationBoundary>
   );
 }
