@@ -33,7 +33,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# yarn cache
+# yarn cache #
 .yarn
 
 /src/pages_old
