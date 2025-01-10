@@ -15,16 +15,23 @@
     "docker:run": "docker run -p 3000:3000 my-news-vault"
   },
   "dependencies": {
+    "@radix-ui/react-select": "^2.1.4",
+    "@radix-ui/react-slot": "^1.1.1",
     "@tanstack/react-query": "^5.56.2",
     "axios": "^1.4.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "lodash-es": "^4.17.21",
+    "lucide-react": "^0.469.0",
     "next": "^14.2.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-error-boundary": "^4.0.4",
     "react-intersection-observer": "^9.4.3",
     "react-spinners": "^0.13.8",
-    "styled-components": "^6.1.13"
+    "styled-components": "^6.1.13",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.4.5",
