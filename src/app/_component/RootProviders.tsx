@@ -3,6 +3,7 @@
 import React from 'react';
 import '@/styles/reset.css';
 import '@/styles/flex.css';
+import '@/styles/twinit.css';
 import { queryClient } from '@/queries/queryClient';
 import { ThemeProvider } from 'styled-components';
 import Palette from '@/styles/palette';
