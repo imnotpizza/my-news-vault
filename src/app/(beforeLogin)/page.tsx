@@ -3,14 +3,58 @@ import React from 'react';
 import { createMetadataObj } from '../_lib/metadata';
 import HomePage from './_component/HomePage';
 import { Button } from '@/components/atoms/Button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/atoms/CardUI';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/atoms/SelectBox';
 
 //  <HomePage />
 
 export default function MainPage() {
-  return <div>
-    <Button>hello</Button>
-    
-  </div>;
+  return (
+    <div className="p-4 space-y-4">
+      {/* 카드 UI 예제 */}
+      <Card className="w-[350px]">
+        <CardHeader>
+          <CardTitle>환영합니다</CardTitle>
+          <CardDescription>서비스 소개 페이지입니다.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <p>메인 콘텐츠가 들어가는 영역입니다.</p>
+
+            {/* 셀렉트박스 예제 */}
+            <Select>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="옵션 선택" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="option1">옵션 1</SelectItem>
+                <SelectItem value="option2">옵션 2</SelectItem>
+                <SelectItem value="option3">옵션 3</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Button>자세히 보기</Button>
+          </div>
+        </CardContent>
+        <CardFooter>
+          <p className="text-sm text-gray-500">추가 정보는 하단을 확인해주세요</p>
+        </CardFooter>
+      </Card>
+    </div>
+  );
 }
 
 /** 메타데이터 설정 */
