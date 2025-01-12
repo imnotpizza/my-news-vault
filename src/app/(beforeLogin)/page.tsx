@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/atoms/SelectBox';
+import Dialog, { DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/atoms/Dialog';
 
 //  <HomePage />
 
@@ -18,7 +19,7 @@ export default function MainPage() {
   return (
     <div className="p-4 space-y-4">
       {/* 카드 UI 예제 */}
-      <Card className="w-[350px]">
+      <Card className="w-auto">
         <Card.Header>
           <Card.Title>환영합니다</Card.Title>
           <Card.Description>서비스 소개 페이지입니다.</Card.Description>
@@ -46,6 +47,21 @@ export default function MainPage() {
           <p className="text-sm text-gray-500">추가 정보는 하단을 확인해주세요</p>
         </Card.Footer>
       </Card>
+      <div>
+        <h1>dialog sample</h1>
+        <Dialog>
+          <DialogTrigger>Open</DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Are you absolutely sure?</DialogTitle>
+              <DialogDescription>
+                This action cannot be undone. This will permanently delete your account and
+                remove your data from our servers.
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+      </div>
     </div>
   );
 }
