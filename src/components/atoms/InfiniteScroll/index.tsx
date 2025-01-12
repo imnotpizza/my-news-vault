@@ -38,6 +38,15 @@ export default function useInfiniteScroll({ enabled, onTriggered, page }: IProps
     });
   }, [enabled, page]);
 
+  useEffect(() => {
+    return () => {
+      if (io.current) {
+        io.current.disconnect();
+        io.current = null;
+      }
+    };
+  }, []);
+
   const ref = useCallback((target: HTMLDivElement) => {
     if (!io.current) {
       io.current = new IntersectionObserver((entries) => {
