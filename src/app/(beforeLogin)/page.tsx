@@ -3,14 +3,7 @@ import React from 'react';
 import { createMetadataObj } from '../_lib/metadata';
 import HomePage from './_component/HomePage';
 import { Button } from '@/components/atoms/Button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/atoms/CardUI';
+import Card from '@/components/atoms/CardUI';
 import {
   Select,
   SelectContent,
@@ -26,11 +19,11 @@ export default function MainPage() {
     <div className="p-4 space-y-4">
       {/* 카드 UI 예제 */}
       <Card className="w-[350px]">
-        <CardHeader>
-          <CardTitle>환영합니다</CardTitle>
-          <CardDescription>서비스 소개 페이지입니다.</CardDescription>
-        </CardHeader>
-        <CardContent>
+        <Card.Header>
+          <Card.Title>환영합니다</Card.Title>
+          <Card.Description>서비스 소개 페이지입니다.</Card.Description>
+        </Card.Header>
+        <Card.Content>
           <div className="space-y-4">
             <p>메인 콘텐츠가 들어가는 영역입니다.</p>
 
@@ -48,10 +41,10 @@ export default function MainPage() {
 
             <Button>자세히 보기</Button>
           </div>
-        </CardContent>
-        <CardFooter>
+        </Card.Content>
+        <Card.Footer>
           <p className="text-sm text-gray-500">추가 정보는 하단을 확인해주세요</p>
-        </CardFooter>
+        </Card.Footer>
       </Card>
     </div>
   );
