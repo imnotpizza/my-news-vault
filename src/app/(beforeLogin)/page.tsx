@@ -3,6 +3,7 @@ import React from 'react';
 import { createMetadataObj } from '../_lib/metadata';
 import HomePage from './_component/HomePage';
 import { Button } from '@/components/atoms/Button';
+import { toast } from '@/hooks/useToast';
 import Card from '@/components/atoms/CardUI';
 import {
   Select,
@@ -11,7 +12,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/atoms/SelectBox';
-import Dialog, { DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/atoms/Dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/atoms/Dialog';
 
 //  <HomePage />
 
@@ -61,6 +69,19 @@ export default function MainPage() {
             </DialogHeader>
           </DialogContent>
         </Dialog>
+      </div>
+      <div>
+        <h1>toast sample</h1>
+        <Button
+          variant="outline"
+          onClick={() => {
+            toast({
+              description: 'Your message has been sent.',
+            });
+          }}
+        >
+          Show Toast
+        </Button>
       </div>
     </div>
   );
