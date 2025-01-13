@@ -1,7 +1,11 @@
 import { Meta, Story } from '@storybook/react';
 import withStoryProviders from '@/hoc/withStoryProviders';
-import Datepicker from './index';
+import Datepicker from '.';
 
+/**
+ * ### Datepicker 컴포넌트
+ * daypicker 라이브러리 기반 https://daypicker.dev/docs/anatomy
+ */
 export default {
   title: 'Atoms/Datepicker',
   component: withStoryProviders(Datepicker, {}),
