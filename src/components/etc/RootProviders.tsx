@@ -21,7 +21,7 @@ export default function RootProviders({ children }) {
     <ToastProvider>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={Palette}>{children}</ThemeProvider>
-        {/* <ReactQueryDevtools initialIsOpen={true} /> */}
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
       <Toaster />
     </ToastProvider>
