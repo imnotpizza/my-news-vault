@@ -1,21 +1,26 @@
-import { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 import withStoryProviders from '@/hoc/withStoryProviders';
-import { Button } from '.';
+import { Button, ButtonProps } from './index';
 
-/**
- * Button 컴포넌트
- * 
- */
-const meta: Meta<typeof Button> = {
+export default {
   title: 'Atoms/Button',
-  component: withStoryProviders(Button, {
-    children: 'Button',
-  }),
-} as Meta;
-export default meta;
-
-export const Default: StoryObj<typeof Button> = {
-  args: {
-    children: 'Button',
+  component: withStoryProviders(Button, {}),
+  argTypes: {
+    variant: {
+      control: { type: 'select' },
+      options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
+    },
+    size: {
+      control: { type: 'select' },
+      options: ['default', 'sm', 'lg', 'icon'],
+    },
   },
+} as Meta;
+
+const Template: Story<ButtonProps> = (args) => <Button {...args}>Button</Button>;
+
+export const Default = Template.bind({});
+Default.args = {
+  variant: 'default',
+  size: 'default',
 };
