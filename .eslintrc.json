@@ -23,13 +23,7 @@
     "import/newline-after-import": "off", // import문 다음에 빈줄을 사용하지 않음: 불필요한 코드 늘어남으로 제거
     "no-console": "off", // console 사용 허용
     "quotes": "off", // 따옴표를 사용하지 않음: ` 사용 못해서 제거
-    // test, storybook, msw 관련 파일에서는 devDependency 사용을 허용
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": true
-      }
-    ],
+    "import/no-extraneous-dependencies": "off", // 환경에 따라 의존성 사용 제한, 필요성 없어 Off
     "import/prefer-default-export": "off", // export defualt 강제: 필요없음
     "no-alert": "off", // alert 사용 허용
     "consistent-return": "off" // 함수에 무조건 return을 사용: 필요없음
