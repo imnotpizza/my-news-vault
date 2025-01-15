@@ -1,15 +1,20 @@
-import React from 'react';
-import { Story, Meta } from '@storybook/react';
-import Toast from './index';
+import { Meta, Story } from '@storybook/react';
+import withStoryProviders from '@/hoc/withStoryProviders';
+import { Toast, ToastProvider, ToastViewport, ToastTitle, ToastDescription } from './index';
 
 export default {
   title: 'Atoms/Toast',
-  component: Toast,
+  component: withStoryProviders(Toast, {}),
 } as Meta;
 
-const Template: Story<{ message: string }> = (args) => <Toast {...args} />;
+const Template: Story = () => (
+  <ToastProvider>
+    <Toast>
+      <ToastTitle>Toast Title</ToastTitle>
+      <ToastDescription>Toast Description</ToastDescription>
+    </Toast>
+    <ToastViewport />
+  </ToastProvider>
+);
 
 export const Default = Template.bind({});
-Default.args = {
-  message: 'This is a toast message',
-};

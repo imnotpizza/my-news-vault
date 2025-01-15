@@ -1,13 +1,16 @@
-import React from 'react';
-import { Story, Meta } from '@storybook/react';
-import InfiniteScroll from './index';
+import { Meta, Story } from '@storybook/react';
+import withStoryProviders from '@/hoc/withStoryProviders';
+import { InfiniteScrollWrapper } from './index';
 
 export default {
   title: 'Atoms/InfiniteScroll',
-  component: InfiniteScroll,
+  component: withStoryProviders(InfiniteScrollWrapper, {}),
 } as Meta;
 
-const Template: Story = (args) => <InfiniteScroll {...args} />;
+const Template: Story = () => (
+  <InfiniteScrollWrapper ioRef={() => {}} isLoading={false}>
+    Content
+  </InfiniteScrollWrapper>
+);
 
 export const Default = Template.bind({});
-Default.args = {};

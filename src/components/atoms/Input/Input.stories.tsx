@@ -1,13 +1,15 @@
-import React from 'react';
-import { Story, Meta } from '@storybook/react';
-import Input from './index';
+import { Meta, Story } from '@storybook/react';
+import withStoryProviders from '@/hoc/withStoryProviders';
+import { Input } from './index';
 
 export default {
   title: 'Atoms/Input',
-  component: Input,
+  component: withStoryProviders(Input, {}),
 } as Meta;
 
-const Template: Story = (args) => <Input {...args} />;
+const Template: Story<React.ComponentProps<typeof Input>> = (args) => <Input {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  placeholder: 'Enter text',
+};
