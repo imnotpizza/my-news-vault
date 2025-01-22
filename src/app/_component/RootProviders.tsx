@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import '@/styles/reset.css';
 import '@/styles/flex.css';
 import '@/styles/twinit.css';

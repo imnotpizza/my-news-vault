@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from '@/components/atoms/Button';
 import { toast } from '@/hooks/useToast';
 import Card from '@/components/atoms/CardUI';
@@ -20,9 +20,23 @@ import {
   DialogTrigger,
 } from '@/components/atoms/Dialog';
 
+const fetchData = async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+  const data = await res.json();
+  console.log(data);
+  return data;
+};
+
 export default function UITest() {
   return (
     <div className="p-4 space-y-4">
+      <button
+        onClick={() => {
+          fetchData();
+        }}
+      >
+        call
+      </button>
       {/* 카드 UI 예제 */}
       <Card className="w-auto">
         <Card.Header>

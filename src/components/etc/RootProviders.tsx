@@ -13,14 +13,17 @@ import { ToastProvider } from '@/components/ui/toast';
 import { Toaster } from '@/components/ui/toaster';
 
 /**
- * msw 활성화
+ * msw 실행
  */
-async function startClientMSW() {
+async function startMsw() {
   if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
     const worker = await import('../../../mocks/browser').then((res) => res.default);
     worker.start({
-      onUnhandledRequest: 'bypass',
+      // onUnhandledRequest: 'bypass',
     });
+  } else {
+    const server = await import('../../../mocks/server').then((res) => res.default);
+    server.listen();
   }
 }
 
@@ -30,7 +33,7 @@ async function startClientMSW() {
  */
 export default function RootProviders({ children }) {
   useEffect(() => {
-    startClientMSW();
+    startMsw();
   }, []);
 
   return (
