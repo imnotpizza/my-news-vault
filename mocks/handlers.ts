@@ -1,3 +1,3 @@
-import { reqHandler } from './handler/req';
+import { reqHandler } from './handler/newsHandler';
 
 export const handlers = [...reqHandler];
