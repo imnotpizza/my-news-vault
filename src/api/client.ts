@@ -1,9 +1,7 @@
 import { TBingNewsAPIRes, TBingNewsQuery, TNewsItem, TUserInfo } from '@/types';
-import BingAPI from '@/api/BingAPI';
 import { mockBingNewsRes } from '@/mock';
-
-// 한번에 몇개씩 호출할지 결정
-const NEWS_COUNT_NUM = 20;
+import { FETCH_NEWS_COUNT_PER_PAGE } from '@/constants';
+import BingAPI from './BingAPI';
 
 /**
  * Bing API 호출
@@ -11,16 +9,12 @@ const NEWS_COUNT_NUM = 20;
  * @param pageNum: 불러올 페이지
  * @returns
  */
-export const fetchBingNews = async (
-  query: TBingNewsQuery['query'],
-  pageNum: number,
-) => {
-  const offset = NEWS_COUNT_NUM * pageNum;
-  const url = `news/search?mkt=en-us&q=${query}&count=${NEWS_COUNT_NUM}&offset=${offset}`;
-  // const apiRes = await BingAPI.get<TBingNewsAPIRes>(url, {
-  //   cache: 'force-cache',
-  // });
-  return mockBingNewsRes;
+export const fetchBingNews = async (query: TBingNewsQuery['query'], pageNum: number) => {
+  const offset = FETCH_NEWS_COUNT_PER_PAGE * pageNum;
+  const url = `news/search?mkt=en-us&q=${query}&count=${FETCH_NEWS_COUNT_PER_PAGE}&offset=${offset}`;
+  const apiRes = await BingAPI.get<TBingNewsAPIRes>(url, {});
+
+  return apiRes;
 };
 
 /**

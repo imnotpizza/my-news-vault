@@ -1,4 +1,4 @@
-import { TBingNewsAPIRes } from '@/types';
+import { TBingNewsAPIRes, TNewsItem } from '@/types';
 
 export const mockBingNewsRes: TBingNewsAPIRes = {
   readLink: 'https://api.bing.microsoft.com/api/v7/news/search?q=undefined',
@@ -953,3 +953,66 @@ export const mockBingNewsRes: TBingNewsAPIRes = {
     },
   ],
 };
+
+export const mockScarpNewsList: TNewsItem[] = [
+  {
+    newsId: 'news1',
+    datePublished: '2025-01-24T12:00:00Z',
+    description: 'Breaking news about the latest advancements in AI technology.',
+    providerIcon: 'https://example.com/provider-icon-1.jpg',
+    providerName: 'Tech News Daily',
+    thumbnail: 'https://example.com/news-thumbnail-1.jpg',
+    title: 'AI Breakthrough: New Tech Revolution',
+    isScrapped: false,
+    url: 'https://example.com/news-1',
+    searchQuery: 'AI technology advancements',
+  },
+  {
+    newsId: 'news2',
+    datePublished: '2025-01-23T15:30:00Z',
+    description: 'Global markets experience significant changes as stocks rise.',
+    providerIcon: 'https://example.com/provider-icon-2.jpg',
+    providerName: 'Market Watch',
+    thumbnail: 'https://example.com/news-thumbnail-2.jpg',
+    title: 'Stock Market Hits Record Highs',
+    isScrapped: true,
+    url: 'https://example.com/news-2',
+    searchQuery: 'global stock market',
+  },
+  {
+    newsId: 'news3',
+    datePublished: '2025-01-22T10:15:00Z',
+    description: 'A groundbreaking discovery in space exploration has been made.',
+    providerIcon: 'https://example.com/provider-icon-3.jpg',
+    providerName: 'Space Explorer',
+    thumbnail: 'https://example.com/news-thumbnail-3.jpg',
+    title: 'Space Discovery: New Planet Found',
+    isScrapped: false,
+    url: 'https://example.com/news-3',
+    searchQuery: 'space exploration discoveries',
+  },
+  {
+    newsId: 'news4',
+    datePublished: '2025-01-21T09:00:00Z',
+    description: 'Tech giants announce a new partnership to develop green energy solutions.',
+    providerIcon: 'https://example.com/provider-icon-4.jpg',
+    providerName: 'Eco Tech News',
+    thumbnail: 'https://example.com/news-thumbnail-4.jpg',
+    title: 'Tech Giants Unite for Green Energy',
+    isScrapped: false,
+    url: 'https://example.com/news-4',
+    searchQuery: 'green energy tech partnership',
+  },
+  {
+    newsId: 'news5',
+    datePublished: '2025-01-20T08:45:00Z',
+    description: 'A major sports event ends with unexpected results.',
+    providerIcon: 'https://example.com/provider-icon-5.jpg',
+    providerName: 'Sports Central',
+    thumbnail: 'https://example.com/news-thumbnail-5.jpg',
+    title: 'Unexpected Upset at Major Sports Event',
+    isScrapped: true,
+    url: 'https://example.com/news-5',
+    searchQuery: 'major sports event results',
+  },
+];
