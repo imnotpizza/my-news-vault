@@ -1,7 +1,8 @@
 import { HttpResponse, http } from 'msw';
 
+
 // JSONPlaceholder API를 모킹하기 위한 MSW 핸들러 예시
-export const jsonPlaceholderHandlers = [
+export default [
   // 모든 게시글 조회
   http.get('https://jsonplaceholder.typicode.com/posts', ({ params }) => {
     const mockPosts = [
@@ -10,5 +11,12 @@ export const jsonPlaceholderHandlers = [
     ];
     return HttpResponse.json(mockPosts);
   }),
+  // fetchBingNews
+  
+
+  // fetchScrappedList
+
+  // scrapNews
+
+  // unscrapNews
 ];
-export const reqHandler = jsonPlaceholderHandlers;
