@@ -35,7 +35,7 @@ export default [
 
   // TODO: BE 확정되면 개선
   // scrapNews
-  http.post(`scrap/1/scrap`, () => {
+  http.patch(`scrap/1/scrap`, () => {
     return HttpResponse.json(null, {
       status: 201,
     });

@@ -19,6 +19,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/atoms/Dialog';
+import axios from 'axios';
 
 const fetchData = async () => {
   const res = await fetch('https://jsonplaceholder.typicode.com/posts');
@@ -30,13 +31,31 @@ const fetchData = async () => {
 export default function UITest() {
   return (
     <div className="p-4 space-y-4">
-      <button
+      scrap api call test
+      <Button
+        size="sm"
         onClick={() => {
-          fetchData();
+          axios.get('/api/scrap');
         }}
       >
-        call
-      </button>
+        getScrap
+      </Button>
+      <Button
+        size="sm"
+        onClick={() => {
+          axios.patch('/api/scrap');
+        }}
+      >
+        addScrap
+      </Button>
+      <Button
+        size="sm"
+        onClick={() => {
+          axios.delete('/api/scrap');
+        }}
+      >
+        deleteScrap
+      </Button>
       {/* 카드 UI 예제 */}
       <Card className="w-auto">
         <Card.Header>
