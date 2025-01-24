@@ -1,5 +1,5 @@
 import { FETCH_NEWS_COUNT_PER_PAGE } from '@/constants';
-import { mockBingNewsRes } from '@/mock';
+import { mockBingNewsRes, mockScarpNewsList } from '@/mock';
 import { HttpResponse, http } from 'msw';
 
 // JSONPlaceholder API를 모킹하기 위한 MSW 핸들러 예시
@@ -26,6 +26,11 @@ export default [
   ),
 
   // fetchScrappedList
+  http.get(`/scrap/1/scrap`, ({ params, request }) => {
+    return HttpResponse.json(mockScarpNewsList, {
+      status: 200,
+    });
+  }),
 
   // scrapNews
 
