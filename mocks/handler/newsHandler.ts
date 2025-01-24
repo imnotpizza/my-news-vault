@@ -1,5 +1,6 @@
+import { FETCH_NEWS_COUNT_PER_PAGE } from '@/constants';
+import { mockBingNewsRes } from '@/mock';
 import { HttpResponse, http } from 'msw';
-
 
 // JSONPlaceholder API를 모킹하기 위한 MSW 핸들러 예시
 export default [
@@ -12,7 +13,17 @@ export default [
     return HttpResponse.json(mockPosts);
   }),
   // fetchBingNews
-  
+  http.get(
+    `${
+      process.env.NEXT_PUBLIC_BING_API_BASEURL
+    }/news/search?mkt=en-us&q=${'test'}&count=${FETCH_NEWS_COUNT_PER_PAGE}&offset=${'offset'}`,
+    ({ params, request }) => {
+      // status 200
+      return HttpResponse.json(mockBingNewsRes, {
+        status: 200,
+      });
+    },
+  ),
 
   // fetchScrappedList
 
