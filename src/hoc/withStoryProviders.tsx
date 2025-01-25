@@ -1,4 +1,4 @@
-import RootProviders from '@/app/_component/RootProviders';
+import RootProviders from '@/components/etc/RootProviders';
 import { StoryFn } from '@storybook/react';
 import React from 'react';
 

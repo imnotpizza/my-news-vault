@@ -1,4 +1,8 @@
 /**
+ * mnv 2.0에서 참고할 타입
+ */
+
+/**
  *  Bing News API 응답데이터
  *  FIXME: any 타입들 전부 수정
  */
@@ -49,3 +53,5 @@ export interface IBingNewsAPIResponseModel {
     video?: any;
   }[];
 }
+/** Bing 뉴스 항목 */
+export type TBingNewsItem = IBingNewsAPIResponseModel['value'];
