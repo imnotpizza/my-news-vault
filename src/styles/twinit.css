@@ -27,7 +27,16 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem}
+    --radius: 0.5rem;
+
+    /* layout css variables */
+    --drawer-width: 12.5em;
+    --header-height: 4em;
+    --layout-padding: 1.5em;
+    --body-padding: 1.5em;
+    --footer-height: 6em;
+    --min-width: 18rem;
+  }
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -52,7 +61,8 @@
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%}
+    --chart-5: 340 75% 55%;
+  }
 }
 @layer base {
   * {
@@ -60,5 +70,55 @@
   }
   body {
     @apply bg-background text-foreground;
+
+    /** header 요소의 height값 */
+    .layout__header-height {
+      height: var(--header-height);
+    }
+
+    /** 레이아웃의 width 속성, body 컨텐츠의 min-width, max-width는 여기서 지정 **/
+    .layout__width {
+      min-width: var(--min-width);
+    }
+
+    /**
+      * 레이아웃이 줄어들 때 생기는 좌우 여백 padding
+      * padding: Layout.Header, Layout.Footer에서 사용 중
+      * padding 값은 항상 같은 값을 유지해야 함
+    **/
+    .layout__padding {
+      padding-left: var(--layout-padding);
+      padding-right: var(--layout-padding);
+    }
+
+    /**
+      * 레이아웃의 body에 사용되는 padding
+      * margin-top: Layout.Header와 Layout.Body 사이 간격 지정
+      * margin-bottom: Layout.Body와 Layout.Footer 사이 간격 지정
+    **/
+    .body__padding {
+      padding-top: var(--body-padding);
+      padding-bottom: var(--body-padding);
+    }
+
+    /** drawer open 상태일 때 body가 밀려날 여백, .ods-drawer__drawer-width과 동일하게 지정 */
+    .body__drawer-open-margin {
+      margin-left: var(--drawer-width);
+    }
+
+    /** 레이아웃의 footer height **/
+    .layout__footer-height {
+      height: var(--footer-height);
+    }
+
+    /** drawer margin top 속성, ods-layout__header-height와 동일한 사이즈로 지정할 것 **/
+    .drawer__margin-top {
+      margin-top: var(--header-height);
+    }
+
+    /** drawer width값 */
+    .drawer__drawer-width {
+      width: var(--drawer-width);
+    }
   }
 }
