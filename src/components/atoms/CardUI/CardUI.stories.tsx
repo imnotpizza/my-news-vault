@@ -8,7 +8,7 @@ export default {
 } as Meta;
 
 const Template: Story = () => (
-  <Card>
+  <Card className='h-[500px]'>
     <Card.Header>
       <Card.Title>Card Title</Card.Title>
       <Card.Description>Card Description</Card.Description>

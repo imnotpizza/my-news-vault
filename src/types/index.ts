@@ -62,7 +62,7 @@ export type TNewsItem = {
   title: TRawNewsItem['name'];
   isScrapped: boolean;
   url: TRawNewsItem['url'];
-  searchQuery: TBingNewsFilterQueries['query'];
+  searchQuery: TBingNewsFilterQueries['keyword'];
 };
 
 /**

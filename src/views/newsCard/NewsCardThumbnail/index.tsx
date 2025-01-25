@@ -6,8 +6,6 @@ import { responsive } from '@/styles/responsive';
 const Thumbnail = styled(Image)`
   border-radius: 0.38rem;
   margin: 0rem 0.5rem;
-  width: 13.44rem;
-  height: 8.63rem;
 
   ${responsive.mobile} {
     width: 5.13rem;
@@ -20,7 +18,7 @@ const Thumbnail = styled(Image)`
 const NewsCardThumbnail = ({ src, alt }) => {
   return (
     <Thumbnail
-      width={215}
+      width={231}
       height={138}
       src={src || '/img/newscard-default-thumbnail.png'}
       alt={alt}

@@ -14,6 +14,7 @@ interface IProps {
  *
  * 클릭 시: 사용자 정보 페이지로 이동
  * TODO: 사용자 정보 관련 고도화
+ * TODO: 프로필 이미지 ProfileImage 컴포넌트 적용
  *
  * @params onClick 클릭 시 이벤트
  * @params src 사용자 프로필 이미지
@@ -22,13 +23,7 @@ interface IProps {
 const ProfileButton: React.FC<IProps> = ({ onClick, src, userName }: IProps) => {
   return (
     <Button variant="ghost" className="rounded-full w-[50px] h-[50px] p-2" onClick={onClick}>
-      <Image
-        width={40}
-        height={40}
-        className="rounded-full"
-        src={src}
-        alt={``}
-      />
+      <Image width={40} height={40} className="rounded-full" src={src} alt={``} />
     </Button>
   );
 };

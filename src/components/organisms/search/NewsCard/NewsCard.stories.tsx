@@ -8,19 +8,19 @@ export default {
   component: withStoryProviders(NewsCard, {}),
 } as Meta;
 
-const Template: Story<{ item: TNewsItem }> = (args) => <NewsCard {...args} />;
+const Template: Story<any> = (args) => <NewsCard {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  item: {
+  newsItem: {
     newsId: '1',
     title: 'Sample News Title',
     description: 'This is a sample description for the news item.',
-    thumbnail: 'https://via.placeholder.com/150',
+    thumbnail: 'https://placehold.co/600x400',
     url: 'https://example.com',
-    providerIcon: 'https://via.placeholder.com/30',
+    providerIcon: 'https://placehold.co/30x30',
     datePublished: '2023-10-01',
     isScrapped: false,
     searchQuery: 'sample query',
   },
-}; 
+};
