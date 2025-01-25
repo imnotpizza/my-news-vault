@@ -50,6 +50,7 @@
     "@storybook/nextjs": "7.6.20",
     "@storybook/react": "7.6.20",
     "@storybook/test": "7.6.20",
+    "@svgr/webpack": "^8.1.0",
     "@tanstack/react-query-devtools": "^5.56.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
