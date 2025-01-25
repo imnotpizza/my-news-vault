@@ -1,5 +1,5 @@
 import { fetchBingNews } from '@/api/client';
-import { TBingNewsQuery, TNewsItem } from '@/types';
+import { TBingNewsFilterQueries, TNewsItem } from '@/types';
 import {
   InfiniteData,
   useInfiniteQuery,
@@ -19,7 +19,7 @@ import { flatMap } from 'lodash-es';
 import QUERY_KEY from '@/queries/keys';
 
 export interface IUseBingNewsFetchParams {
-  query: TBingNewsQuery['query'];
+  query: TBingNewsFilterQueries['query'];
   enabled: boolean;
   maxPage: number;
 }
@@ -54,7 +54,7 @@ export const queryFn = async ({ query, pageParam = 1 }) => {
  * @param searchQuery: 뉴스 검색 쿼리 (queryKey)
  * @returns 캐시 데이터
  */
-export const getBingNewsQueryData = (searchQuery: TBingNewsQuery['query']) => {
+export const geTBingNewsFilterQueriesData = (searchQuery: TBingNewsFilterQueries['query']) => {
   const res = queryClient.getQueryData<InfiniteData<TNewsItem[]>>([
     QUERY_KEY.BING_NEWS_SEARCH,
     searchQuery,
@@ -159,7 +159,7 @@ export const useFetchBingNewsList = ({ query, curPage, maxPage }) => {
 export const updateNewsSearchQuery = (
   targetNewsId: TNewsItem['newsId'],
   isScrapped: TNewsItem['isScrapped'],
-  searchQuery: TBingNewsQuery['query'],
+  searchQuery: TBingNewsFilterQueries['keyword'],
 ) => {
   queryClient.setQueryData<InfiniteData<TNewsItem[]>>(
     [QUERY_KEY.BING_NEWS_SEARCH, searchQuery],

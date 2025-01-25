@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { scrapNews, unscrapNews } from '@/api/client';
-import { TBingNewsQuery, TNewsItem, TUserInfo } from '@/types';
+import { TBingNewsFilterQueries, TNewsItem, TUserInfo } from '@/types';
 import { updateNewsSearchQuery } from '../useBingNewsFetch';
 import { addScrapNewsToCache, deleteScrapNewsFromCache } from '../useScrappedNewsList';
 
@@ -9,7 +9,7 @@ import { addScrapNewsToCache, deleteScrapNewsFromCache } from '../useScrappedNew
 interface MutateParams {
   newsItem: TNewsItem;
   isScrapped: TNewsItem['isScrapped'];
-  query: TBingNewsQuery['query'];
+  query: TBingNewsFilterQueries['query'];
   userId: TUserInfo['email'];
 }
 

@@ -1,5 +1,5 @@
 import { responsive } from '@/styles/responsive';
-import { TBingNewsQuery } from '@/types';
+import { TBingNewsFilterQueries } from '@/types';
 import { hasSpecialCharacters } from '@/utils/newsItem';
 import AlertText from '@/views/newsSearchForm/AlertText';
 import NewsSearchButton from '@/views/newsSearchForm/NewsSearchButton';
@@ -31,7 +31,7 @@ const INPUT_MAX_LENGTH = 20;
 
 const NewsSearchForm = ({ query }) => {
   const router = useRouter();
-  const [inputText, setInputText] = useState<TBingNewsQuery['query']>(query);
+  const [inputText, setInputText] = useState<TBingNewsFilterQueries['query']>(query);
 
   const isValidForm = useMemo(
     () => hasSpecialCharacters(inputText) || inputText.length <= INPUT_MAX_LENGTH,
@@ -62,7 +62,7 @@ const NewsSearchForm = ({ query }) => {
   return (
     <Container className="flex-center">
       <Form onSubmit={onSubmit} className="flex-center">
-        <NewsSearchInput data-testid="search-input" value={inputText} onChange={onChange}/>
+        <NewsSearchInput data-testid="search-input" value={inputText} onChange={onChange} />
         <div className="search-button">
           <NewsSearchButton onKeyDown={onKeyDown} disabled={!isValidForm || isQueryEmpty} />
         </div>

@@ -1,4 +1,4 @@
-import { TBingNewsAPIRes, TBingNewsQuery, TNewsItem, TUserInfo } from '@/types';
+import { TBingNewsAPIRes, TBingNewsFilterQueries, TNewsItem, TUserInfo } from '@/types';
 import { mockBingNewsRes } from '@/mock';
 import { FETCH_NEWS_COUNT_PER_PAGE } from '@/constants';
 import BingAPI from './BingAPI';
@@ -8,8 +8,11 @@ import BingAPI from './BingAPI';
  * @param query: 검색어
  * @param pageNum: 불러올 페이지
  * @returns
-*/
-export const fetchBingNews = async (query: TBingNewsQuery['query'], pageNum: number) => {
+ */
+export const fetchBingNews = async (
+  query: TBingNewsFilterQueries['keyword'],
+  pageNum: number,
+) => {
   const offset = FETCH_NEWS_COUNT_PER_PAGE * pageNum;
   const url = `news/search?mkt=en-us&q=${query}&count=${FETCH_NEWS_COUNT_PER_PAGE}&offset=${offset}`;
   const apiRes = await BingAPI.get<TBingNewsAPIRes>(url, {});
