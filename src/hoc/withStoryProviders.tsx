@@ -8,7 +8,7 @@ import React from 'react';
  * @param props
  * @returns
  */
-const withStoryProviders = (Story: StoryFn, props: any) => () =>
+const withStoryProviders = (Story: any, props: any) => () =>
   (
     <RootProviders>
       <Story {...props} />
