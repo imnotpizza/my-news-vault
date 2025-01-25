@@ -111,12 +111,13 @@ export const hasSpecialCharacters = (str: string) => {
  * @param filterQueries: 검색 필터링 쿼리 객체
  * @returns 검색 쿼리 url 문자열
  */
-export const createSearchUrlWithQueries = (filterQueries: TBingNewsFilterQueries) => {
+export const createSearchUrlWithQueries = (filterQueries: Record<string, string | number>) => {
   const url = new URLSearchParams();
   const keys = Object.keys(filterQueries);
+
   keys.forEach((key) => {
     if (Boolean(filterQueries[key])) {
-      url.append(key, filterQueries[key]);
+      url.append(key, filterQueries[key].toString());
     }
   });
 
