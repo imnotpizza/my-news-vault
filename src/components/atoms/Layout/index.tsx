@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { twMerge } from 'tailwind-merge';
 
 interface IProps {
@@ -56,14 +55,17 @@ Layout.Body = ({
         className,
       )}
     >
-      <BodyWithAnim
+      <div
+        style={{
+          transition: 'margin-left 0.2s ease-in-out',
+        }}
         className={twMerge(
           'w-full h-full layout__padding layout__width body__padding',
           isDrawerOpen ? 'body__drawer-open-margin' : '',
         )}
       >
         {children}
-      </BodyWithAnim>
+      </div>
     </div>
   );
 };
@@ -77,9 +79,5 @@ Layout.Footer = ({ children, className }: IProps) => {
     </footer>
   );
 };
-
-const BodyWithAnim = styled.div`
-  transition: margin-left 0.2s ease-in-out;
-`;
 
 export default Layout;

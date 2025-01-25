@@ -6,7 +6,7 @@ import UITest from '@/components/templates/UITest';
 //  <HomePage />
 
 export default function MainPage() {
-  return <UITest />;
+  return <div>MainPage</div>;
 }
 
 /** 메타데이터 설정 */

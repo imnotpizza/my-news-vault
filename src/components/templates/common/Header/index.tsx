@@ -1,72 +1,26 @@
-import React from 'react';
-import styled from 'styled-components';
+'use client';
+
+import LoginButton from '@/components/molecules/LoginButton';
 import AppLogo from '@/views/header/AppLogo';
-import { userInfoContext } from '@/utils/userInfoProvider';
-import LogoutButton from '@/views/authStatus/SignoutButton';
-import LoginButton from '@/views/authStatus/SigninButton';
-import UserProfile from '@/views/header/UserProfile';
 import ToScrapPageButton from '@/views/header/ToScrapPageButton';
-import { contentLayoutStyle, responsive } from '@/styles/responsive';
-
-const MainContainer = styled.div`
-  width: 100%;
-  height: 4.5rem;
-  background: ${(p) => p.theme.White};
-  box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.07);
-  ${responsive.mobile} {
-    height: 3.13rem;
-  }
-`;
-
-const TopContainer = styled.div`
-  height: 4rem;
-  margin: 0 auto;
-  padding: 0 1.25rem;
-  ${contentLayoutStyle};
-  ${responsive.mobile} {
-    height: 3.13rem;
-  }
-  .logo {
-  }
-
-  .scrap-link {
-  }
-
-  .user {
-  }
-
-  .user > .profile {
-    margin-left: 0.63rem;
-  }
-
-  .user > .login-logout {
-    margin-left: 2.5rem;
-    ${responsive.mobile} {
-      margin-left: 1.25rem;
-    }
-  }
-`;
+import React from 'react';
+// import AppLogo from '@/views/header/AppLogo';
 
 const Header = () => {
-  const { isSignin, userInfo } = React.useContext(userInfoContext);
   return (
-    <MainContainer>
-      <TopContainer className="flex-row justify-space-between">
-        <div className="logo flex-center">
-          <AppLogo />
+    <div className="w-full h-full mx-auto flex justify-between items-center md:h-[3.13rem]">
+      <div className="flex items-center justify-center">
+        <AppLogo />
+      </div>
+      <div className="flex justify-end items-center">
+        <div className="scrap-link flex justify-end items-center">
+          <ToScrapPageButton />
         </div>
-
-        <div className="user flex-row justify-end align-center">
-          <div className="scrap-link flex-row justify-end align-center">
-            <ToScrapPageButton />
-          </div>
-          <div className="login-logout">{isSignin ? <LogoutButton /> : <LoginButton />}</div>
-          <div className="profile">
-            {isSignin && <UserProfile src={userInfo?.photoURL} alt={userInfo?.displayName} />}
-          </div>
+        <div className="login-logout ml-[2.5rem] md:ml-[1.25rem]">
+          <LoginButton />
         </div>
-      </TopContainer>
-    </MainContainer>
+      </div>
+    </div>
   );
 };
 

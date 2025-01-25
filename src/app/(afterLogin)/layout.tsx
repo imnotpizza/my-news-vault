@@ -7,7 +7,7 @@ import Header from '@/components/templates/common/Header';
  */
 export default function AfterLoginLayout({ children }) {
   return (
-    <Layout className="h-auto">
+    <Layout className="w-full h-[4.5rem] bg-white shadow-md md:h-[3.13rem]">
       <Layout.Header>
         <Header />
       </Layout.Header>
