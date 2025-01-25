@@ -7,6 +7,7 @@ import { fetchBingNews } from '@/api/client';
 import { createMetadataObj } from '@/app/_lib/metadata';
 import NewsSearchPage14 from '@/components/search/NewsSearchPage14';
 import axios from 'axios';
+import SearchPageView from '@/components/templates/search/SearchPageView';
 
 // const fetchValues = async () => {
 //   const res = await axios.get('http://localhost:3000/api/cache-test');
@@ -17,7 +18,7 @@ import axios from 'axios';
 export default async function SearchPage(props) {
   const { query } = props;
   // TODO: prefetchQuery or getQueryData 호출
-  return <div>123123123</div>;
+  return <SearchPageView />;
 }
 
 // type Props = {

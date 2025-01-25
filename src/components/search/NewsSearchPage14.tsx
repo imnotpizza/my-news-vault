@@ -8,7 +8,7 @@ import { styled } from 'styled-components';
 import NewsCardList14 from './NewsCardList14';
 
 interface IProps {
-  query: TBingNewsFilterQueries['query'];
+  query: TBingNewsFilterQueries['keyword'];
 }
 
 const Container = styled.div`
