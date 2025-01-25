@@ -54,7 +54,7 @@ export const ButtonsBySize = () => {
 export const ButtonsByAsChild = () => {
   return (
     <Button asChild variant="link">
-      <a href="#">Link</a> 
+      <a href="#">Link</a>
     </Button>
   );
 };
