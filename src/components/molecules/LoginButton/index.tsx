@@ -1,4 +1,5 @@
 import { Button } from '@/components/atoms/Button';
+// import LoginButtonIcon from '@/assets/svgs/login-button-icon.svg';
 import React from 'react';
 
 interface IProps extends React.HTMLAttributes<HTMLButtonElement> {}
@@ -8,10 +9,11 @@ interface IProps extends React.HTMLAttributes<HTMLButtonElement> {}
  */
 export default function LoginButton({ ...props }: IProps) {
   return (
-    <Button {...props}>
-      <div>
-        {/* icon */}
-        <span>로그인F</span>
+    <Button variant="outline" {...props}>
+      <div className="flex gap-2 items-center">
+        {/* FIXME: svg 로드시 에러발생 */}
+        {/* <LoginButtonIcon /> */}
+        <span>로그인</span>
       </div>
     </Button>
   );
