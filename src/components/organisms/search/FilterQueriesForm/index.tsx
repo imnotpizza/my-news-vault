@@ -29,18 +29,16 @@ export default function FilterQueriesForm() {
   };
 
   return (
-    <section>
-      <form className="flex gap-2" onSubmit={handleSubmit}>
-        <Input
-          className="border-mnv-gray-10"
-          onChange={handleChange}
-          value={filterQueries.keyword}
-        />
-        {/* TODO: 아이콘으로 교체 */}
-        <Button className="border-mnv-gray-10" variant="outline" type="submit">
-          검색
-        </Button>
-      </form>
-    </section>
+    <form className="flex gap-2" onSubmit={handleSubmit}>
+      <Input
+        className="border-mnv-gray-10"
+        onChange={handleChange}
+        value={filterQueries.keyword}
+      />
+      {/* TODO: 아이콘으로 교체 */}
+      <Button className="border-mnv-gray-10" variant="outline" type="submit">
+        검색
+      </Button>
+    </form>
   );
 }
