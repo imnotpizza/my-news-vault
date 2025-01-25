@@ -1,13 +1,16 @@
+'use client';
+
 import { Button } from '@/components/atoms/Button';
 import { Input } from '@/components/atoms/Input';
 import { TBingNewsFilterQueries } from '@/types';
 import { createSearchUrlWithQueries } from '@/utils/newsItem';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 /**
  * 검색 입력 컴포넌트 (Input + Button)
  */
-export default function SearchInput() {
+export default function FilterQueriesForm() {
   const [filterQueries, setFilterQueries] = useState<TBingNewsFilterQueries>({
     keyword: '',
   });
@@ -23,7 +26,6 @@ export default function SearchInput() {
     e.preventDefault();
     // make query into query string
     const url = createSearchUrlWithQueries(filterQueries);
-    alert(url.toString());
   };
 
   return (

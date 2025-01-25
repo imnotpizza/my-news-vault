@@ -1,13 +1,13 @@
 import { Meta, Story } from '@storybook/react';
 import withStoryProviders from '@/hoc/withStoryProviders';
-import SearchInput from './index';
+import FilterQueriesForm from './index';
 
 export default {
-  title: 'Molecules/SearchInput',
-  component: withStoryProviders(SearchInput, {}),
+  title: 'Molecules/FilterQueriesForm',
+  component: withStoryProviders(FilterQueriesForm, {}),
 } as Meta;
 
-const Template: Story = (args) => <SearchInput {...args} />;
+const Template: Story = (args) => <FilterQueriesForm {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
