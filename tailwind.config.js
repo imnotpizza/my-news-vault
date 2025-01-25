@@ -59,7 +59,7 @@ module.exports = {
         mnv: {
           bg: '#FAFAFA',
           white: '#FFFFFF',
-          navy: {
+          gray: {
             default: '#1A2254',
             80: '#484E76',
             40: '#A3A7BB',
