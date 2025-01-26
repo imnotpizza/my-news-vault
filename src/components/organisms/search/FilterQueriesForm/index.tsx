@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/atoms/Button';
 import { Input } from '@/components/atoms/Input';
+import useFetchNewsList from '@/hooks/useFetchNewsList';
 import { TBingNewsFilterQueries } from '@/types';
 import { createSearchUrlWithQueries } from '@/utils/newsItem';
 import { useRouter } from 'next/navigation';
@@ -11,9 +12,7 @@ import React, { useState } from 'react';
  * 검색 입력 컴포넌트 (Input + Button)
  */
 export default function FilterQueriesForm() {
-  const [filterQueries, setFilterQueries] = useState<TBingNewsFilterQueries>({
-    keyword: '',
-  });
+  const { setFilterQueries, filterQueries } = useFetchNewsList.state();
 
   /**
    * query onChange

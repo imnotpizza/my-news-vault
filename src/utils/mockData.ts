@@ -18,7 +18,7 @@ export const mockRawNewsItem: TRawNewsItem = {
   ],
   image: {
     thumbnail: {
-      contentUrl: 'test',
+      contentUrl: 'test–',
       height: 100,
       width: 100,
     },
