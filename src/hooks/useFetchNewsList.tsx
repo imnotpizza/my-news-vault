@@ -2,7 +2,11 @@ import { fetchBingNews } from '@/api/client';
 import { TBingNewsFilterQueries } from '@/types';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { atom, useAtom, useAtomValue } from 'jotai';
-import React from 'react';
+
+const queryFn = async (filterQueries: TBingNewsFilterQueries) => {
+  const res = await fetchBingNews(filterQueries.keyword, 0);
+  return res.data;
+};
 
 const queryAtom = atom<TBingNewsFilterQueries>({
   keyword: '',
@@ -12,10 +16,10 @@ const queryAtom = atom<TBingNewsFilterQueries>({
  * jotai atom+useQuery
  */
 function useFetchNewsListQuery() {
-  const filterQueries = useAtomValue(queryAtom);
+  const [filterQueries, setFilterQueries] = useAtom(queryAtom);
   const queryStates = useSuspenseQuery({
     queryKey: ['news', filterQueries],
-    queryFn: async () => await fetchBingNews(filterQueries.keyword, 0),
+    queryFn: () => queryFn(filterQueries),
   });
 
   return {

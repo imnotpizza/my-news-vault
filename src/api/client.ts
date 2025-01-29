@@ -14,10 +14,10 @@ export const fetchBingNews = async (
   pageNum: number,
 ) => {
   const offset = FETCH_NEWS_COUNT_PER_PAGE * pageNum;
-  const url = `news/search?mkt=en-us&q=${query}&count=${FETCH_NEWS_COUNT_PER_PAGE}&offset=${offset}`;
-  const apiRes = await BingAPI.get<TBingNewsAPIRes>(url, {});
+  // const url = `news/search?mkt=en-us&q=${query}&count=${FETCH_NEWS_COUNT_PER_PAGE}&offset=${offset}`;
+  // const apiRes = await BingAPI.get<TBingNewsAPIRes>(url, {});
 
-  return apiRes;
+  return mockBingNewsRes;
 };
 
 /**

@@ -1,7 +1,5 @@
 import FilterQueriesForm from '@/components/organisms/search/FilterQueriesForm';
 import NewsSearchGridList from '@/components/organisms/search/NewsSearchGridList';
-import useFetchNewsList from '@/hooks/useFetchNewsList';
-import { TNewsItem } from '@/types';
 import React, { Suspense } from 'react';
 
 /**
