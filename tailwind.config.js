@@ -1,7 +1,7 @@
 /** responsive threshold */
-const DESKTOP_LAYOUT_THRESHOLD = 64;
-const TABLET_LAYOUT_THRESHOLD = 48;
-const MOBILE_LAYOUT_THRESHOLD = 22.5;
+const DESKTOP_LAYOUT_THRESHOLD = '64rem';
+const TABLET_LAYOUT_THRESHOLD = '48rem';
+const MOBILE_LAYOUT_THRESHOLD = '13.12rem';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -9,6 +9,11 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
+      screens: {
+        desktop: { min: DESKTOP_LAYOUT_THRESHOLD },
+        tablet: { min: TABLET_LAYOUT_THRESHOLD, max: DESKTOP_LAYOUT_THRESHOLD },
+        mobile: { max: TABLET_LAYOUT_THRESHOLD, min: MOBILE_LAYOUT_THRESHOLD },
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
@@ -71,13 +76,6 @@ module.exports = {
             20: '#E7EAF9',
           },
           error: '#C10606',
-        },
-        screens: {
-          // 데스크탑
-          dt: { min: DESKTOP_LAYOUT_THRESHOLD },
-          tb: { min: TABLET_LAYOUT_THRESHOLD, max: DESKTOP_LAYOUT_THRESHOLD },
-          // 모바일
-          mb: { max: MOBILE_LAYOUT_THRESHOLD },
         },
       },
     },
