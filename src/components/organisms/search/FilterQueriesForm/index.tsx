@@ -5,6 +5,7 @@ import { Input } from '@/components/atoms/Input';
 import useFetchNewsList from '@/hooks/useFetchNewsList';
 import { TBingNewsFilterQueries } from '@/types';
 import { createSearchUrlWithQueries } from '@/utils/newsItem';
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
@@ -12,7 +13,9 @@ import React, { useState } from 'react';
  * 검색 입력 컴포넌트 (Input + Button)
  */
 export default function FilterQueriesForm() {
-  const { setFilterQueries, filterQueries } = useFetchNewsList.state();
+  const [filterQueries, setFilterQueries] = useState<TBingNewsFilterQueries>({
+    keyword: '',
+  });
 
   /**
    * query onChange
@@ -22,13 +25,21 @@ export default function FilterQueriesForm() {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // make query into query string
-    const url = createSearchUrlWithQueries(filterQueries);
+    try {
+      e.preventDefault();
+      // make query into query string
+      const url = createSearchUrlWithQueries(filterQueries);
+      // TODO: api 호출
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
     <form className="flex gap-2" onSubmit={handleSubmit}>
+      <button onClick={() => {
+        axios.get('https://jsonplaceholder.typicode.com/posts');
+      }}>call api</button>
       <Input
         className="border-mnv-gray-10"
         onChange={handleChange}

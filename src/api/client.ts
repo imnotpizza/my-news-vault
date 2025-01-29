@@ -10,14 +10,15 @@ import BingAPI from './BingAPI';
  * @returns
  */
 export const fetchBingNews = async (
-  query: TBingNewsFilterQueries['keyword'],
+  query: TBingNewsFilterQueries['keyword'] = '',
   pageNum: number,
 ) => {
   const offset = FETCH_NEWS_COUNT_PER_PAGE * pageNum;
-  // const url = `news/search?mkt=en-us&q=${query}&count=${FETCH_NEWS_COUNT_PER_PAGE}&offset=${offset}`;
+  // const url = `https://api.bing.microsoft.com/v7.0/news/search?mkt=en-us&q=&count=20&offset=0`;
   // const apiRes = await BingAPI.get<TBingNewsAPIRes>(url, {});
-
-  return mockBingNewsRes;
+  return {
+    data: mockBingNewsRes,
+  }
 };
 
 /**
