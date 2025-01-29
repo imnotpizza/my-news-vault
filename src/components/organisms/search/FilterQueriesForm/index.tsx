@@ -5,17 +5,26 @@ import { Input } from '@/components/atoms/Input';
 import useFetchNewsList from '@/hooks/useFetchNewsList';
 import { TBingNewsFilterQueries } from '@/types';
 import { createSearchUrlWithQueries } from '@/utils/newsItem';
+import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { defaultNewsFilterQueries } from '@/constants';
 
 /**
  * 검색 입력 컴포넌트 (Input + Button)
  */
 export default function FilterQueriesForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { filterQueries: initializedFilterQueries } = useFetchNewsList.state();
   const [filterQueries, setFilterQueries] = useState<TBingNewsFilterQueries>({
-    keyword: '',
+    ...initializedFilterQueries,
   });
+
+  useEffect(() => {
+    setFilterQueries({ ...initializedFilterQueries });
+  }, [initializedFilterQueries]);
 
   /**
    * query onChange
@@ -29,6 +38,7 @@ export default function FilterQueriesForm() {
       e.preventDefault();
       // make query into query string
       const url = createSearchUrlWithQueries(filterQueries);
+      router.push(url);
       // TODO: api 호출
     } catch (e) {
       console.error(e);

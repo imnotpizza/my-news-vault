@@ -1,4 +1,4 @@
-import { TNewsItem, TPageProps } from '@/types';
+import { TBingNewsFilterQueries, TNewsItem, TPageProps } from '@/types';
 
 /** 한번에 몇개씩 호출할지 결정 */
 export const FETCH_NEWS_COUNT_PER_PAGE = 20;
@@ -36,4 +36,8 @@ export const defaultNewsItem: TNewsItem = {
   isScrapped: false,
   searchQuery: '',
   url: '',
+};
+
+export const defaultNewsFilterQueries: TBingNewsFilterQueries = {
+  keyword: '',
 };
