@@ -21,8 +21,8 @@ async function startMsw() {
       // onUnhandledRequest: 'bypass',
     });
   } else {
-    const server = await import('../../../mocks/server').then((res) => res.default);
-    server.listen();
+    // const server = await import('../../../mocks/server').then((res) => res.default);
+    // server.listen();
   }
 }
 
@@ -32,9 +32,9 @@ async function startMsw() {
  */
 export default function RootProviders({ children }) {
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      startMsw();
-    }
+    // if (process.env.NODE_ENV === 'development') {
+    //   startMsw();
+    // }
   }, []);
 
   return (

@@ -78,6 +78,15 @@ module.exports = {
           error: '#C10606',
         },
       },
+      keyframes: {
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
+      animation: {
+        shimmer: 'shimmer 1.5s linear infinite',
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],
