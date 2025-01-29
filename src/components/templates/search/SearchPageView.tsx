@@ -8,11 +8,11 @@ import React, { Suspense } from 'react';
 export default function SearchPageView() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-start gap-8">
-      <div className="w-[30.13rem]">
+      <div className="desktop:w-[30.13rem] tablet:w-[30.13rem] mobile:w-full">
         <FilterQueriesForm />
       </div>
       <Suspense fallback={<div>Loading...</div>}>
-        <NewsSearchGridList/>
+        <NewsSearchGridList/>π
       </Suspense>
     </div>
   );

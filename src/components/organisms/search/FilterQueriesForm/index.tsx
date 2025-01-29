@@ -36,10 +36,7 @@ export default function FilterQueriesForm() {
   };
 
   return (
-    <form className="flex gap-2" onSubmit={handleSubmit}>
-      <button onClick={() => {
-        axios.get('https://jsonplaceholder.typicode.com/posts');
-      }}>call api</button>
+    <form className="w-full flex gap-2" onSubmit={handleSubmit}>
       <Input
         className="border-mnv-gray-10"
         onChange={handleChange}

@@ -8,7 +8,7 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <div className="w-full h-full mx-auto flex justify-between items-center md:h-[3.13rem]">
+    <div className="w-full h-full mx-auto flex justify-between items-center">
       <div className="flex items-center justify-center">
         <AppLogo />
       </div>
