@@ -16,15 +16,15 @@ const SkeletonSlideUI = ({ className }: { className?: string }) => {
  * skeleton Box 컴포넌트
  * - Card, Inut 등등의 UI에 적합
  */
-const Box = ({ className }: { className: string }) => {
-  return <SkeletonSlideUI className={cn('rounded-lg w-full h-[2rem]', className)} />;
+const Box = ({ className }: { className?: string }) => {
+  return <SkeletonSlideUI className={cn('rounded-sm w-full h-4', className)} />;
 };
 
 /**
  * skeleton Circle 컴포넌트
  * - 프로필 등 원형 UI에 적합
  */
-const Circle = ({ className }: { className: string }) => {
+const Circle = ({ className }: { className?: string }) => {
   return <SkeletonSlideUI className={cn('w-[2.5rem] h-[2.5rem] rounded-full', className)} />;
 };
 
