@@ -1,9 +1,10 @@
 import FilterQueriesForm from '@/components/organisms/search/FilterQueriesForm';
 import NewsSearchGridList from '@/components/organisms/search/NewsSearchGridList';
 import React, { Suspense } from 'react';
+import SearchPageFallback from './SearchPageFallback';
 
 /**
- * 검색 & 결과 메인페이지
+ * 뉴스 검색 필터링+목록 페이지
  */
 export default function SearchPageView() {
   return (
@@ -11,8 +12,8 @@ export default function SearchPageView() {
       <div className="desktop:w-[30.13rem] tablet:w-[30.13rem] mobile:w-full">
         <FilterQueriesForm />
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <NewsSearchGridList/>π
+      <Suspense fallback={<SearchPageFallback />}>
+        <NewsSearchGridList />
       </Suspense>
     </div>
   );

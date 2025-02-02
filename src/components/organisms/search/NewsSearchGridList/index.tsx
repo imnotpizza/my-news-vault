@@ -5,6 +5,7 @@ import useFetchNewsList from '@/hooks/useFetchNewsList';
 import { mockBingNewsRes } from '@/mock';
 import { convertToNewsItem } from '@/utils/newsItem';
 import React, { useMemo } from 'react';
+import NewsCard from '../NewsCard';
 
 export default function NewsSearchGridList() {
   const { data } = useFetchNewsList.query();
@@ -15,5 +16,11 @@ export default function NewsSearchGridList() {
     return data.value.map((item) => convertToNewsItem(item, null, '', false));
   }, [mockBingNewsRes]);
 
-  return <NewsGridList newsList={newsCardList} />;
+  return (
+    <NewsGridList>
+      {newsCardList.map((item) => (
+        <NewsCard newsItem={item} key={item.newsId} />
+      ))}
+    </NewsGridList>
+  );
 }
