@@ -2,13 +2,13 @@
 
 import { queryFn, useFetchBingNewsList } from '@/queries/useBingNewsFetch';
 import QueryForm from '@/components/form/NewsSearchForm';
-import { TBingNewsQuery } from '@/types';
+import { TBingNewsFilterQueries } from '@/types';
 import { Suspense, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import NewsCardList14 from './NewsCardList14';
 
 interface IProps {
-  query: TBingNewsQuery['query'];
+  query: TBingNewsFilterQueries['keyword'];
 }
 
 const Container = styled.div`

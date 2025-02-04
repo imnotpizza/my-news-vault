@@ -1,15 +1,26 @@
+/** responsive threshold */
+const DESKTOP_LAYOUT_THRESHOLD = '64rem';
+const TABLET_LAYOUT_THRESHOLD = '48rem';
+const MOBILE_LAYOUT_THRESHOLD = '13.12rem';
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
+      screens: {
+        desktop: { min: DESKTOP_LAYOUT_THRESHOLD },
+        tablet: { min: TABLET_LAYOUT_THRESHOLD, max: DESKTOP_LAYOUT_THRESHOLD },
+        mobile: { max: TABLET_LAYOUT_THRESHOLD, min: MOBILE_LAYOUT_THRESHOLD },
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        /** ============ shadcn ============ */
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -36,7 +47,7 @@ module.exports = {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
         },
-        destructive: {
+        destrucπtive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
         },
@@ -50,6 +61,31 @@ module.exports = {
           4: 'hsl(var(--chart-4))',
           5: 'hsl(var(--chart-5))',
         },
+        mnv: {
+          bg: '#FAFAFA',
+          white: '#FFFFFF',
+          gray: {
+            default: '#1A2254',
+            80: '#484E76',
+            40: '#A3A7BB',
+            10: '#E8E9EE',
+          },
+          blue: {
+            default: '#112EBE',
+            10: '#B5BEED',
+            20: '#E7EAF9',
+          },
+          error: '#C10606',
+        },
+      },
+      keyframes: {
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
+      animation: {
+        shimmer: 'shimmer 1.5s linear infinite',
       },
     },
   },

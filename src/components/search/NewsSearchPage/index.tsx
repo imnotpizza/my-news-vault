@@ -8,7 +8,7 @@ import NewsItemList from '@/components/common/NewsCardList';
 import styled from 'styled-components';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import InfiniteScrollThresholdBox from '@/views/common/InfiniteScrollThresholdBox';
-import { TBingNewsQuery } from '@/types';
+import { TBingNewsFilterQueries } from '@/types';
 import NewsQueryEmptyUI from '@/views/searchStatus/NewsQueryEmptyUI';
 
 const Container = styled.div`
@@ -28,7 +28,7 @@ const Container = styled.div`
 `;
 
 interface INewsSearchPageProps {
-  query: TBingNewsQuery['query'];
+  query: TBingNewsFilterQueries['query'];
 }
 
 const NewsSearchPage = ({ query }: INewsSearchPageProps) => {

@@ -14,10 +14,9 @@ export default [
   }),
   // fetchBingNews
   http.get(
-    `${
-      process.env.NEXT_PUBLIC_BING_API_BASEURL
-    }/news/search?mkt=en-us&q=${'test'}&count=${FETCH_NEWS_COUNT_PER_PAGE}&offset=${'offset'}`,
+    `https://api.bing.microsoft.com/v7.0/news/search?mkt=en-us&q=&count=20&offset=0`,
     ({ params, request }) => {
+      console.log('######################### mock called');
       // status 200
       return HttpResponse.json(mockBingNewsRes, {
         status: 200,

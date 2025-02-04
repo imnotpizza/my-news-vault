@@ -1,12 +1,35 @@
 import * as React from 'react';
-
 import { cn } from '@/lib/utils';
+
+// FIXME: type 개선
+type ICard = React.ForwardRefExoticComponent<
+  React.RefAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>
+> & {
+  Header: React.ForwardRefExoticComponent<
+    React.RefAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>
+  >;
+  Title: React.ForwardRefExoticComponent<
+    React.RefAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>
+  >;
+  Description: React.ForwardRefExoticComponent<
+    React.RefAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>
+  >;
+  Content: React.ForwardRefExoticComponent<
+    React.RefAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>
+  >;
+  Footer: React.ForwardRefExoticComponent<
+    React.RefAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>
+  >;
+};
 
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn('rounded-lg border bg-card text-card-foreground shadow-sm', className)}
+      className={cn(
+        'rounded-lg border border-solid border-mnv-gray-10 bg-card text-card-foreground shadow-md',
+        className,
+      )}
       {...props}
     />
   ),
@@ -52,10 +75,11 @@ const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElem
 );
 Footer.displayName = 'Card.Footer';
 
-Card.Header = Header;
-Card.Title = Title;
-Card.Description = Description;
-Card.Content = Content;
-Card.Footer = Footer;
-
-export default Card;
+// Compound components 설정
+export default Object.assign(Card, {
+  Header,
+  Title,
+  Description,
+  Content,
+  Footer,
+}) as ICard;

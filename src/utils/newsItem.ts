@@ -1,5 +1,5 @@
 import { defaultNewsItem } from '@/constants';
-import { TBingNewsQuery, TNewsItem, TRawNewsItem } from '@/types';
+import { TBingNewsFilterQueries, TNewsItem, TRawNewsItem } from '@/types';
 
 /**
  * YYYY-MM-DD hh:mm 형식으로 날짜 변환
@@ -46,7 +46,12 @@ export const getProviderName = (provider: TRawNewsItem['provider']) => {
  * @param isScrapped: 스크랩 여부
  * @returns TNewsItem
  */
-export const convertToNewsItem = (raw: TRawNewsItem, datePublished: string, searchQuery: TBingNewsQuery['query'], isScrapped: boolean) => {
+export const convertToNewsItem = (
+  raw: TRawNewsItem,
+  datePublished: string,
+  searchQuery: TBingNewsFilterQueries['keyword'],
+  isScrapped: boolean,
+) => {
   return {
     newsId: raw?.name || defaultNewsItem.newsId,
     datePublished: parseDateToFormat(datePublished) || defaultNewsItem.datePublished,
@@ -66,7 +71,10 @@ export const convertToNewsItem = (raw: TRawNewsItem, datePublished: string, sear
  * @param targetNewsId: 스크랩 여부 초기화할 뉴스 아이디
  * @param scrappedNewsList: 스크랩 리스트
  */
-export const setIsScrapped = (targetNewsId: TNewsItem['newsId'], scrappedNewsList: TNewsItem[]) => {
+export const setIsScrapped = (
+  targetNewsId: TNewsItem['newsId'],
+  scrappedNewsList: TNewsItem[],
+) => {
   if (!scrappedNewsList) return false;
 
   const hasSame = scrappedNewsList.find((item) => item.newsId === targetNewsId);
@@ -78,7 +86,10 @@ export const setIsScrapped = (targetNewsId: TNewsItem['newsId'], scrappedNewsLis
  * @param targetNewsId: 중복 체크 대상 뉴스 아이디
  * @param scrappedNewsList: 스크랩 리스트
  */
-export const isDuplicatedNews = (targetNewsId: TNewsItem['newsId'], curNewsItems: TNewsItem[]) => {
+export const isDuplicatedNews = (
+  targetNewsId: TNewsItem['newsId'],
+  curNewsItems: TNewsItem[],
+) => {
   if (!curNewsItems) return false;
 
   const isDuplicated = curNewsItems.find((item) => item.newsId === targetNewsId);
@@ -93,4 +104,22 @@ export const isDuplicatedNews = (targetNewsId: TNewsItem['newsId'], curNewsItems
 export const hasSpecialCharacters = (str: string) => {
   const regExp = /[~!@#$%^&*()_+|<>?:{}]/;
   return !regExp.test(str);
+};
+
+/**
+ * 검색 쿼리 문자열 생성
+ * @param filterQueries: 검색 필터링 쿼리 객체
+ * @returns 검색 쿼리 url 문자열
+ */
+export const createSearchUrlWithQueries = (filterQueries: Record<string, string | number>) => {
+  const url = new URLSearchParams();
+  const keys = Object.keys(filterQueries);
+
+  keys.forEach((key) => {
+    if (Boolean(filterQueries[key])) {
+      url.append(key, filterQueries[key].toString());
+    }
+  });
+
+  return `?${url.toString()}`;
 };

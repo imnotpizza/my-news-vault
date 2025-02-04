@@ -31,6 +31,12 @@ const buttonVariants = cva(
   },
 );
 
+/**
+ * Button 컴포넌트
+ * @params asChild: true시 children 컴포넌트에 버튼 속성이 전부 적용됨
+ * @params size: default, sm, lg, icon
+ * @params variant: destructive(danger), default, outline, secondary, ghost, link
+ */
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {

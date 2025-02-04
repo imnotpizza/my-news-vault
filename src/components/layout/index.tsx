@@ -1,4 +1,4 @@
-import Header from '@/components/header/Header';
+import Header from '@/components/templates/common/Header';
 import styled from 'styled-components';
 
 const LayoutContainer = styled.div`

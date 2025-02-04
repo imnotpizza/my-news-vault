@@ -1,4 +1,4 @@
-import RootProviders from '@/app/_component/RootProviders';
+import RootProviders from '@/components/etc/RootProviders';
 import { StoryFn } from '@storybook/react';
 import React from 'react';
 
@@ -8,7 +8,7 @@ import React from 'react';
  * @param props
  * @returns
  */
-const withStoryProviders = (Story: StoryFn, props: any) => () =>
+const withStoryProviders = (Story: any, props: any) => () =>
   (
     <RootProviders>
       <Story {...props} />

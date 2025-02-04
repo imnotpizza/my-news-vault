@@ -2,7 +2,6 @@
 
 import React, { useEffect } from 'react';
 import '@/styles/reset.css';
-import '@/styles/flex.css';
 import '@/styles/twinit.css';
 import { queryClient } from '@/queries/queryClient';
 import { ThemeProvider } from 'styled-components';
@@ -22,8 +21,8 @@ async function startMsw() {
       // onUnhandledRequest: 'bypass',
     });
   } else {
-    const server = await import('../../../mocks/server').then((res) => res.default);
-    server.listen();
+    // const server = await import('../../../mocks/server').then((res) => res.default);
+    // server.listen();
   }
 }
 
@@ -33,7 +32,9 @@ async function startMsw() {
  */
 export default function RootProviders({ children }) {
   useEffect(() => {
-    startMsw();
+    // if (process.env.NODE_ENV === 'development') {
+    //   startMsw();
+    // }
   }, []);
 
   return (
