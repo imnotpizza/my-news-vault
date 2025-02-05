@@ -1,3 +1,4 @@
+import { fetchBingNews } from '@/api/client';
 import { defaultNewsFilterQueries } from '@/constants';
 import { mockBingNewsRes } from '@/mock';
 import { TBingNewsFilterQueries } from '@/types';
@@ -7,10 +8,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 const queryFn = async (filterQueries: TBingNewsFilterQueries) => {
-  // const res = await fetchBingNews(filterQueries.keyword, 0);
-  return {
-    data: mockBingNewsRes,
-  };
+  const res = await fetchBingNews(filterQueries.keyword, 0);
+  return res;
 };
 
 const queryAtom = atom<TBingNewsFilterQueries>({
