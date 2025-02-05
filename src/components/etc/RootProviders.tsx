@@ -26,17 +26,13 @@ async function startMsw() {
   }
 }
 
+startMsw();
+
 /**
  * Root Layout 컴포넌트
  * 전역 provider, style 등등 _app에서 사용되는 건 여기에
  */
 export default function RootProviders({ children }) {
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      startMsw();
-    }
-  }, []);
-
   return (
     <ToastProvider>
       <QueryClientProvider client={queryClient}>
