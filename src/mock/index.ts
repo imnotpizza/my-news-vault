@@ -23,7 +23,7 @@ export const mockBingNewsRes: TBingNewsAPIRes = {
   ],
   value: [
     {
-      name: '17 Walmart Items Retirees Should Stock Up on Before Winter Hits',
+      name: '###### MOCK TEST',
       url: 'https://finance.yahoo.com/news/17-walmart-items-retirees-stock-130152895.html',
       image: {
         thumbnail: {

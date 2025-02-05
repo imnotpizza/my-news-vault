@@ -12,9 +12,8 @@ export default function NewsSearchGridList() {
 
   // TNewsItem 타입으로 변환
   const newsCardList = useMemo(() => {
-    const data = mockBingNewsRes;
     return data.value.map((item) => convertToNewsItem(item, null, '', false));
-  }, [mockBingNewsRes]);
+  }, [data]);
 
   return (
     <NewsGridList>
