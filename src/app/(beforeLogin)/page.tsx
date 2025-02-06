@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import React from 'react';
+import MSWTest from '@/components/etc/MSWTest';
 import { createMetadataObj } from '../_lib/metadata';
-import UITest from '@/components/templates/UITest';
 
 //  <HomePage />
 
 export default function MainPage() {
-  return <div>MainPage</div>;
+  return <MSWTest />;
 }
 
 /** 메타데이터 설정 */
