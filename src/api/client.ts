@@ -2,6 +2,7 @@ import { TBingNewsAPIRes, TBingNewsFilterQueries, TNewsItem, TUserInfo } from '@
 import { mockBingNewsRes } from '@/mock';
 import { FETCH_NEWS_COUNT_PER_PAGE } from '@/constants';
 import BingAPI from './BingAPI';
+import axios from 'axios';
 
 /**
  * Bing API 호출
@@ -31,6 +32,7 @@ export const fetchScrappedList = async (userId: TUserInfo['email']) => {
   //   data.isScrapped = true;
   //   res.push(data);
   // });
+  await axios.get('/api/scrap');
   return [];
 };
 
@@ -39,6 +41,7 @@ export const fetchScrappedList = async (userId: TUserInfo['email']) => {
  */
 export const scrapNews = async (userId: TUserInfo['email'], newsItem: TNewsItem) => {
   // await setDoc(doc(database, `scrap/${userId}/scrap`, newsItem.newsId), newsItem);
+  await axios.patch('/api/scrap');
 };
 
 /**
@@ -47,4 +50,5 @@ export const scrapNews = async (userId: TUserInfo['email'], newsItem: TNewsItem)
 export const unscrapNews = async (userId: TUserInfo['email'], newsId: string) => {
   // const target = doc(database, `scrap/${userId}/scrap`, newsId);
   // await deleteDoc(target);
+  await axios.delete('/api/scrap');
 };
