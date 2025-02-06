@@ -1,3 +1,4 @@
+import { Button } from '@/components/atoms/Button';
 import Card from '@/components/atoms/CardUI';
 import ProfileImage from '@/components/atoms/ProfileImage';
 import ProfileButton from '@/components/molecules/ProfileButton';
@@ -15,7 +16,15 @@ interface IProps {
  * 뉴스 카드 컴포넌트
  */
 function NewsCard({ newsItem }: IProps) {
-  const { title, description, url, providerIcon, datePublished, thumbnail } = newsItem;
+  const { title, description, url, isScrapped, providerIcon, datePublished, thumbnail } = newsItem;
+
+  /**
+   * 스크랩
+   */
+  const onClickScrap = () => {
+    
+  };
+
   return (
     <Card
       className={cn(
@@ -33,16 +42,21 @@ function NewsCard({ newsItem }: IProps) {
       <img src={thumbnail} alt={title} className={cn('w-full')} />
       <Card.Content className="p-4">
         <div className="flex flex-col gap-2 mb-6">
-          <Card.Title className="text-md">{title}</Card.Title>
-          <Card.Description className="text-sm">{description}</Card.Description>
-        </div>
-        <div className="flex justify-between items-center">
-          <span className="text-sm text-mnv-gray-40">{datePublished}</span>
-          {/* TODO: 아이콘 추가 */}
-          <span>scrap</span>
+          <Card.Title className="text-md overflow-hidden text-nowrap text-ellipsis">
+            {title}
+          </Card.Title>
+          <Card.Description className="text-sm overflow-hidden">
+            {/* {description} */}
+          </Card.Description>
         </div>
       </Card.Content>
-      <Card.Footer className="absolute bottom-0 left-0 w-[14.44rem] h-auto flex justify-between p-4"></Card.Footer>
+      <Card.Footer className="absolute bottom-0 left-0 w-[14.44rem] h-auto flex justify-between p-4">
+        <span className="text-sm text-mnv-gray-40">{datePublished}</span>
+        {/* TODO: 아이콘 추가 */}
+        <Button onClick={onClickScrap} size="sm">
+          scrap {isScrapped ? 'on' : 'off'}
+        </Button>
+      </Card.Footer>
     </Card>
   );
 }
