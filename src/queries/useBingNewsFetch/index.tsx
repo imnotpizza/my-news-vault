@@ -52,6 +52,7 @@ const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: Params) => {
   const queryStates = useInfiniteQuery(
     {
       queryKey: [QUERY_KEY.BING_NEWS_SEARCH, query],
+      enabled,
       queryFn: async ({ pageParam = 1 }) => {
         // api 호출
         const fetchResult = await fetchBingNews(query, pageParam);

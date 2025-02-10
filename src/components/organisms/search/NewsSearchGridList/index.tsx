@@ -5,10 +5,10 @@ import useFetchNewsList from '@/hooks/useFetchNewsList';
 import { mockBingNewsRes } from '@/mock';
 import { convertToNewsItem } from '@/utils/newsItem';
 import React, { useMemo } from 'react';
-import NewsCard from '../NewsCard';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import InfiniteScrollThresholdBox from '@/views/common/InfiniteScrollThresholdBox';
+import NewsCard from '../NewsCard';
 
 export default function NewsSearchGridList() {
   // const { data } = useFetchNewsList.query();
