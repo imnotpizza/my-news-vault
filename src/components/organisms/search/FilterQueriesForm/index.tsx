@@ -5,18 +5,14 @@ import { Input } from '@/components/atoms/Input';
 import useFetchNewsList from '@/hooks/useFetchNewsList';
 import { TBingNewsFilterQueries } from '@/types';
 import { createSearchUrlWithQueries } from '@/utils/newsItem';
-import { useSearchParams } from 'next/navigation';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import { defaultNewsFilterQueries } from '@/constants';
 
 /**
  * 검색 입력 컴포넌트 (Input + Button)
  */
 export default function FilterQueriesForm() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const { filterQueries: initializedFilterQueries } = useFetchNewsList.state();
   const [filterQueries, setFilterQueries] = useState<TBingNewsFilterQueries>({
     ...initializedFilterQueries,
@@ -53,7 +49,7 @@ export default function FilterQueriesForm() {
         value={filterQueries.keyword}
       />
       {/* TODO: 아이콘으로 교체 */}
-      <Button className="border-mnv-gray-10" variant="outline" type="submit">
+      <Button className="border-mnv-gray-10" type="submit">
         검색
       </Button>
     </form>

@@ -9,7 +9,7 @@ import { addScrapNewsToCache, deleteScrapNewsFromCache } from '../useScrappedNew
 interface MutateParams {
   newsItem: TNewsItem;
   isScrapped: TNewsItem['isScrapped'];
-  query: TBingNewsFilterQueries['query'];
+  query: TBingNewsFilterQueries['keyword'];
   userId: TUserInfo['email'];
 }
 

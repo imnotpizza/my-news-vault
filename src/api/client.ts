@@ -1,4 +1,4 @@
-import { TBingNewsAPIRes, TBingNewsQuery, TNewsItem, TUserInfo } from '@/types';
+import { TBingNewsAPIRes, TBingNewsFilterQueries, TNewsItem, TUserInfo } from '@/types';
 import { doc, getDocs, collection, deleteDoc, setDoc } from 'firebase/firestore/lite';
 import { database } from '@/firebase';
 import BingAPI from '@/api/BingAPI';
@@ -13,7 +13,7 @@ const NEWS_COUNT_NUM = 20;
  * @returns
  */
 export const fetchBingNews = async (
-  query: TBingNewsQuery['query'],
+  query: TBingNewsFilterQueries['keyword'],
   pageNum: number,
 ) => {
   const offset = NEWS_COUNT_NUM * pageNum;
