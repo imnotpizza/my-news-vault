@@ -24,7 +24,8 @@ export const useScrapNews = () => {
       await scrapNews(userId, newsItem);
       addScrapNewsToCache({ ...newsItem, isScrapped });
     },
-    onError: () => {
+    onError: (e) => {
+      console.error(e);
       alert('스크랩 추가 도중 문제가 발생하였습니다.');
     },
     onSettled: () => {},
@@ -44,7 +45,8 @@ export const useUnscrapNews = () => {
       await unscrapNews(userId, newsItem.newsId);
       deleteScrapNewsFromCache(newsItem.newsId);
     },
-    onError: () => {
+    onError: (e) => {
+      console.error(e);
       alert('스크랩 삭제 도중 문제가 발생하였습니다.');
     },
     onSettled: () => {},

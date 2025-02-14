@@ -1,13 +1,11 @@
 import React from 'react';
-import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
-import type { Metadata } from 'next';
-import { queryClient } from '@/queries/queryClient';
-import { prefetchBingNewsFetch } from '@/queries/useBingNewsFetch';
-import { fetchBingNews } from '@/api/client';
-import { createMetadataObj } from '@/app/_lib/metadata';
-import NewsSearchPage14 from '@/components/search/NewsSearchPage14';
-import axios from 'axios';
 import SearchPageView from '@/components/templates/search/SearchPageView';
+import { initialPageProps } from '@/constants';
+import { getDehydratedStateInServerside } from '@/prefetch/scarp';
+import { getUserInfoInServerside } from '@/prefetch/userInfo';
+import { useHydrateAtoms } from 'jotai/utils';
+import { authAtom } from '@/hooks/useAuth';
+import JotaiHydrateProvider from '@/components/etc/JotaiHydrateProvider';
 
 // const fetchValues = async () => {
 //   const res = await axios.get('http://localhost:3000/api/cache-test');
@@ -18,7 +16,15 @@ import SearchPageView from '@/components/templates/search/SearchPageView';
 export default async function SearchPage(props) {
   const { query } = props;
   // TODO: prefetchQuery or getQueryData 호출
-  return <SearchPageView />;
+  const prefetchedUser = await getUserInfoInServerside(initialPageProps);
+  const res2 = await getDehydratedStateInServerside(prefetchedUser);
+  console.log(res2);
+  // prefetchedUserInfo={prefetchedUser.userInfo || null}
+  return (
+    <JotaiHydrateProvider prefetchedUserInfo={prefetchedUser.userInfo || null}>
+      <SearchPageView />
+    </JotaiHydrateProvider>
+  );
 }
 
 // type Props = {
