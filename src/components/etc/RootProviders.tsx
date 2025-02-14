@@ -10,7 +10,6 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ToastProvider } from '@/components/ui/toast';
 import { Toaster } from '@/components/ui/toaster';
-import MSWEnabledProvider from './MSWEnabledProvider';
 
 /**
  * Root Layout 컴포넌트

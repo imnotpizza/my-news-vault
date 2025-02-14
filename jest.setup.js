@@ -1,14 +1,14 @@
-import { server } from '@/msw/server';
+import { TextEncoder, TextDecoder } from 'util';
+import { TransformStream } from 'stream/web';
+import { BroadcastChannel } from 'worker_threads';
 import '@testing-library/jest-dom/extend-expect';
-
-// 모든 테스트 시작 전 실행
-beforeAll(() => server.listen());
-
-// 테스트 하나 종료 후 실행
-afterEach(() => server.resetHandlers());
-
-// 모든 테스트 종료 후 실행
-afterAll(() => server.close());
+import 'cross-fetch/polyfill';
+// test환경에 없는 브라우저 api를 전역객체로 설정
+// msw2.0 & jest 연동중 발생
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
+global.TransformStream = TransformStream;
+global.BroadcastChannel = BroadcastChannel;
 
 // next/router mock
 jest.mock('next/router', () => ({
