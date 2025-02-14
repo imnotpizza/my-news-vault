@@ -18,6 +18,7 @@ export const NEWS_LIST_PAGE_LIMIT = 3;
 
 /** 쿠키 설정 */
 export const COOKIE_CONFIG = {
+  title: 'authToken',
   path: '/',
   httpOnly: true,
   secure: process.env.NODE_ENV === 'production',

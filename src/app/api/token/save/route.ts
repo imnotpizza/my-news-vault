@@ -19,10 +19,11 @@ const setCookieStr = (token: string) => {
  */
 export async function POST(req: Request, res: Response) {
   try {
-    // Set-Cookie 헤더에 토큰 저장
+    console.log('res>>', req, res);
     res.headers.append('Set-Cookie', setCookieStr('token'));
     return NextResponse.json({ message: 'ok' }, { status: 200 });
   } catch (e) {
-    return NextResponse.json({ message: e.message }, { status: 500 });
+    console.error(e);
+    return NextResponse.json({ status: 500 });
   }
 }

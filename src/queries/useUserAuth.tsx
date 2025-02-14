@@ -1,3 +1,4 @@
+import { signinWithFirebaseAuth } from '@/api/auth';
 import { TUserInfo } from '@/types';
 import { UseMutationOptions, useMutation } from '@tanstack/react-query';
 
@@ -5,7 +6,7 @@ export const useSignin = (options: UseMutationOptions<TUserInfo>) => {
   const queryStates = useMutation({
     mutationKey: ['signin'],
     mutationFn: async () => {
-      const newUserInfo = 'user';
+      const newUserInfo = await signinWithFirebaseAuth();
       // @ts-ignore
       if (!newUserInfo) {
         throw new Error('user error');
