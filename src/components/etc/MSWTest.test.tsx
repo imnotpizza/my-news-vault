@@ -17,17 +17,37 @@ afterEach(() => server.resetHandlers());
 // 모든 테스트 종료 후 실행
 afterAll(() => server.close());
 
+const renderTest = () => {
+  render(
+    <RootProviders>
+      <MSWTest />
+    </RootProviders>,
+  );
+};
+
 describe('MSWTest Component', () => {
   it('로딩 상태를 표시해야 함', () => {
-    render(
-      <RootProviders>
-        <MSWTest />
-      </RootProviders>,
-    );
+    renderTest();
     expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
 
-  // it('데이터가 정상적으로 렌더링 되어야 함', async () => {
+  it('데이터가 정상적으로 렌더링 되어야 함', async () => {
+    renderTest();
+    await waitFor(() => {
+      expect(screen.getByText('테스트 글 제목 #1')).toBeInTheDocument();
+      expect(screen.getByText('테스트 글 제목 #2')).toBeInTheDocument();
+    });
+  });
+
+  // it('refetch 버튼 클릭 시 데이터를 다시 불러와야 함', async () => {
+  //   renderTest();
+
+  //   await waitFor(() => expect(screen.getByText('Test Post')).toBeInTheDocument());
+
+  //   fireEvent.click(screen.getByRole('button', { name: 'refetch' }));
+
+  //   await waitFor(() => expect(screen.getByText('Test Post')).toBeInTheDocument());
+  // });
   //   renderWithQueryClient(<MSWTest />);
   //   await waitFor(() => expect(screen.getByText('Test Post')).toBeInTheDocument());
   // });
