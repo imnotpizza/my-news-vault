@@ -5,6 +5,13 @@ import { composeStories } from '@storybook/react';
 import MSWTest from './MSWTest';
 import { mswTestHandler } from '../../../mocks/handler/newsHandler';
 import RootProviders from './RootProviders';
+import * as MSWTestStories from './MSWTest.stories';
+
+/**
+ * storybook에서 설정한 테스트 컴포넌트 그대로 단위테스트용으로 사용
+ * - mock component 중복 사용문제 개선위해
+ * */
+const { Default } = composeStories(MSWTestStories);
 
 const server = setupServer(mswTestHandler[0]);
 
@@ -18,11 +25,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 const renderTest = () => {
-  render(
-    <RootProviders>
-      <MSWTest />
-    </RootProviders>,
-  );
+  render(<Default />);
 };
 
 describe('MSWTest Component', () => {
