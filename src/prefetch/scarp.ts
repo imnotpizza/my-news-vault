@@ -4,6 +4,8 @@ import { dehydrate } from '@tanstack/react-query';
 import { queryClient } from '@/queries/queryClient';
 import { prefetchScrappedNewsList } from '@/queries/useScrappedNewsList';
 import ERRCODE from '@/constants/errCode';
+import _ from 'lodash';
+import QUERY_KEY from '@/queries/keys';
 
 /**
  *
@@ -16,6 +18,8 @@ export const getDehydratedStateInServerside = async (
 ): Promise<TPageProps> => {
   if (pageProps.userInfo) {
     await prefetchScrappedNewsList(pageProps.userInfo.email);
+    const { queries } = dehydrate(queryClient);
+
     return {
       ...pageProps,
       dehydratedState: dehydrate(queryClient),
