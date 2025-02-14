@@ -18,12 +18,14 @@ import MSWEnabledProvider from './MSWEnabledProvider';
  */
 export default function RootProviders({ children }) {
   return (
-    <ToastProvider>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={Palette}>{children}</ThemeProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-      <Toaster />
-    </ToastProvider>
+    <MSWEnabledProvider enabled={true}>
+      <ToastProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider theme={Palette}>{children}</ThemeProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+        <Toaster />
+      </ToastProvider>
+    </MSWEnabledProvider>
   );
 }

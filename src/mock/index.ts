@@ -23,7 +23,7 @@ export const mockBingNewsRes: TBingNewsAPIRes = {
   ],
   value: [
     {
-      name: '###### MOCK TEST',
+      name: '#MOCK TEST',
       url: 'https://finance.yahoo.com/news/17-walmart-items-retirees-stock-130152895.html',
       image: {
         thumbnail: {
