@@ -14,20 +14,28 @@ import { COOKIE_CONFIG } from '@/constants';
  * @returns userInfo 추가된 pageProps
  */
 export const getUserInfoInServerside = async (pageProps: TPageProps): Promise<TPageProps> => {
-  const authToken = cookies().get(COOKIE_CONFIG.title);
-  if (authToken) {
-    const verifiedToken = await getDecodedUserInfoByToken(authToken.value);
-    const { name, picture, email } = verifiedToken;
-    const userInfo: TUserInfo = {
-      displayName: name,
-      photoURL: picture,
-      email,
-    };
-    return {
-      ...pageProps,
-      userInfo,
-    };
-  } else {
+  try {
+    const authToken = cookies().get(COOKIE_CONFIG.title);
+    if (authToken) {
+      const verifiedToken = await getDecodedUserInfoByToken(authToken.value);
+      const { name, picture, email } = verifiedToken;
+      const userInfo: TUserInfo = {
+        displayName: name,
+        photoURL: picture,
+        email,
+      };
+      return {
+        ...pageProps,
+        userInfo,
+      };
+    } else {
+      return {
+        ...pageProps,
+        userInfo: null,
+      };
+    }
+  } catch (e) {
+    console.error(e);
     return {
       ...pageProps,
       userInfo: null,

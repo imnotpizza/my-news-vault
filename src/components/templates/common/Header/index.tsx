@@ -1,11 +1,11 @@
 'use client';
 
+import AppLogo from '@/components/atoms/AppLogo';
 import LoginButton from '@/components/molecules/LoginButton';
 import LogoutButton from '@/components/molecules/LogoutButton';
+import ToScrapPageButton from '@/components/organisms/scrap/ToScrapPageButton';
 import useAuth from '@/hooks/useAuth';
 import { authAtom, userInfoContext } from '@/utils/userInfoProvider';
-import AppLogo from '@/views/header/AppLogo';
-import ToScrapPageButton from '@/views/header/ToScrapPageButton';
 import { useAtomValue } from 'jotai';
 import React, { useContext } from 'react';
 // import AppLogo from '@/views/header/AppLogo';
