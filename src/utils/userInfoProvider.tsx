@@ -1,4 +1,5 @@
 import { TUserInfo } from '@/types';
+import { atom } from 'jotai';
 import React from 'react';
 
 export interface IUserInfoContext {
@@ -7,6 +8,11 @@ export interface IUserInfoContext {
   isSignin: boolean;
 }
 
+export const authAtom = atom<Pick<IUserInfoContext, 'userInfo'>>({
+  userInfo: null,
+});
+
+// TODO: context 제거, jotai atom으로 대체
 const userInfoContext = React.createContext<IUserInfoContext>({
   userInfo: null,
   setUserInfo: () => {},

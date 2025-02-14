@@ -40,8 +40,8 @@ const SigninButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   // @ts-ignore
   const { mutate, isLoading } = useSignin({
     onSuccess: (newUserInfo) => {
-      setUserInfo(() => newUserInfo);
-      window.location.reload();
+      // setUserInfo(() => newUserInfo);
+      // window.location.reload();
     },
   });
 

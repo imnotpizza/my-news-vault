@@ -1,10 +1,12 @@
 'use client';
 
 import { Button } from '@/components/atoms/Button';
+import useAuth from '@/hooks/useAuth';
 import { useSignin } from '@/queries/useUserAuth';
 // import LoginButtonIcon from '@/assets/svgs/login-button-icon.svg';
-import { userInfoContext } from '@/utils/userInfoProvider';
-import { useRouter } from 'next/router';
+import { authAtom, userInfoContext } from '@/utils/userInfoProvider';
+import { useAtom } from 'jotai';
+import { useRouter } from 'next/navigation';
 import React, { useContext } from 'react';
 
 interface IProps extends React.HTMLAttributes<HTMLButtonElement> {}
@@ -13,12 +15,13 @@ interface IProps extends React.HTMLAttributes<HTMLButtonElement> {}
  * 로그인 버튼, 버튼 클릭시 로그인 수행
  */
 export default function LoginButton({ ...props }: IProps) {
-  const { reload } = useRouter();
-  const { setUserInfo } = useContext(userInfoContext);
+  const { refresh } = useRouter();
+  const { setUserInfo } = useAuth();
   const { mutate } = useSignin({
-    onSuccess: (newUserInfo) => {
-      setUserInfo(() => newUserInfo);
-      reload();
+    onSettled: (newUserInfo) => {
+      console.log('newUserInfo', newUserInfo);
+      setUserInfo({ ...newUserInfo });
+      // refresh();
     },
   });
 

@@ -41,9 +41,9 @@ const SignoutButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => 
   // @ts-ignore
   const { mutate, isLoading } = useSignout({
     onSuccess: () => {
-      setUserInfo(() => null);
-      queryClient.clear();
-      window.location.href = '/';
+      // setUserInfo(() => null);
+      // queryClient.clear();
+      // window.location.href = '/';
     },
     onError: () => {
       alert('로그아웃 도중 문제가 발생하였습니다.');

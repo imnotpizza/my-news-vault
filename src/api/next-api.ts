@@ -4,9 +4,9 @@ import { cookies } from 'next/headers';
 import { COOKIE_CONFIG } from '@/constants';
 
 export const saveToken = (authToken: string) => {
-  if (cookies().has(COOKIE_CONFIG.title)) {
-    return new Error('token already exists');
-  }
+  // if (cookies().has(COOKIE_CONFIG.title)) {
+  //   return new Error('token already exists');
+  // }
 
   cookies().set({
     name: COOKIE_CONFIG.title,
@@ -18,13 +18,14 @@ export const saveToken = (authToken: string) => {
   });
 };
 
-export const removeToken = async () => {
-  if (!cookies().has(COOKIE_CONFIG.title)) {
-    return new Error('token not exists');
-  }
+export const removeToken = () => {
+  // if (!cookies().has(COOKIE_CONFIG.title)) {
+  //   return new Error('token not exists');
+  // }
   cookies().delete(COOKIE_CONFIG.title);
 };
 
-export const getAuthToken = () => {
-  return cookies().get(COOKIE_CONFIG.title);
-};
+// export const getAuthToken = () => {
+//   const cookie = cookies().get(COOKIE_CONFIG.title);
+//   return cookie;
+// };
