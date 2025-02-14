@@ -16,15 +16,7 @@ const config: StorybookConfig = {
   docs: {
     autodocs: true,
   },
-  // webpackFinal: async (config) => ({
-  //   ...config,
-  //   resolve: {
-  //     alias: {
-  //       ...config.resolve?.alias,
-  //       '@': path.resolve(__dirname, '../src'),
-  //     },
-  //   },
-  // }),
+  staticDirs: ['../public/'],
   webpackFinal: async (config) => {
     config.resolve.modules = [...(config.resolve.modules || []), path.resolve('./')];
     config.resolve.alias = {
