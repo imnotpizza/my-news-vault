@@ -1,10 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
-
-import axios from 'axios';
 import { COOKIE_CONFIG } from '@/constants';
-import { NextResponse } from 'next/server';
 
 export const saveToken = (authToken: string) => {
   if (cookies().has(COOKIE_CONFIG.title)) {
