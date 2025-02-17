@@ -13,7 +13,7 @@ import { COOKIE_CONFIG } from '@/constants';
  * @param pageProps: page props
  * @returns userInfo 추가된 pageProps
  */
-export const getUserInfoInServerside = async (pageProps: TPageProps): Promise<TPageProps> => {
+export const getUserInfoInServerside = async (): Promise<TUserInfo | null> => {
   try {
     const authToken = cookies().get(COOKIE_CONFIG.title);
     if (authToken) {
@@ -24,21 +24,12 @@ export const getUserInfoInServerside = async (pageProps: TPageProps): Promise<TP
         photoURL: picture,
         email,
       };
-      return {
-        ...pageProps,
-        userInfo,
-      };
+      return userInfo;
     } else {
-      return {
-        ...pageProps,
-        userInfo: null,
-      };
+      return null;
     }
   } catch (e) {
     console.error(e);
-    return {
-      ...pageProps,
-      userInfo: null,
-    };
+    return null;
   }
 };
