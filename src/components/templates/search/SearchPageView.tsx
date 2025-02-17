@@ -6,7 +6,7 @@ import SearchPageFallback from './SearchPageFallback';
 /**
  * 뉴스 검색 필터링+목록 페이지
  */
-export default function SearchPageView() {
+export default async function SearchPageView() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-start gap-8">
       <div className="desktop:w-[30.13rem] tablet:w-[30.13rem] mobile:w-full">
