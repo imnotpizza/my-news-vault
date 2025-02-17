@@ -39,7 +39,6 @@ export const prefetchScrappedNewsList = async (userId: TUserInfo['email']) => {
  */
 export const addScrapNewsToCache = (item: TNewsItem) => {
   queryClient.setQueryData<TNewsItem[]>([QUERY_KEY.SCRAP_LIST], (oldData) => {
-    console.log('oldData', oldData);
     return [...oldData, item];
   });
 };
