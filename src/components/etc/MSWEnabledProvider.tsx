@@ -7,8 +7,8 @@ async function startMsw() {
   if (process.env.NODE_ENV === 'production') return;
   if (typeof window !== 'undefined') {
     const worker = await import('../../../mocks/browser').then((res) => res.default);
-    worker.start({
-      // onUnhandledRequest: 'bypass',
+    await worker.start({
+      onUnhandledRequest: 'warn',
     });
   } else {
     const server = await import('../../../mocks/server').then((res) => res.default);
@@ -17,10 +17,7 @@ async function startMsw() {
 }
 
 /**
- * MSW mocking 실패용 임시추가
- * - 최초실행시 mocking되지 않는문제 임시 해결용 delay 추가
- * - 해결후 제거예정
- * - FIXME: 해결되면 이 컴포넌트 제거할 것
+ * MSW 초기화 담당 provider
  */
 export default function MSWEnabledProvider({ enabled, children }) {
   const [mswReady, setMswReady] = React.useState(false);
@@ -28,9 +25,7 @@ export default function MSWEnabledProvider({ enabled, children }) {
     if (enabled) {
       (async () => {
         await startMsw();
-        setTimeout(() => {
-          setMswReady(true);
-        }, 10);
+        setMswReady(true);
       })();
     }
   }, [enabled]);
