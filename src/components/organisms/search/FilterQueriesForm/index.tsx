@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/atoms/Button';
 import { Input } from '@/components/atoms/Input';
-import useFetchNewsList from '@/hooks/useFetchNewsList';
+import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import { TBingNewsFilterQueries } from '@/types';
 import { createSearchUrlWithQueries } from '@/utils/newsItem';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -13,7 +13,7 @@ import React, { useEffect, useState } from 'react';
  */
 export default function FilterQueriesForm() {
   const router = useRouter();
-  const { filterQueries: initializedFilterQueries } = useFetchNewsList.state();
+  const { filterQueries: initializedFilterQueries } = useBingNewsFetch.state();
   const [filterQueries, setFilterQueries] = useState<TBingNewsFilterQueries>({
     ...initializedFilterQueries,
   });
