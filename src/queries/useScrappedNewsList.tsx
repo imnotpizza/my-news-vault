@@ -5,17 +5,18 @@ import { TNewsItem, TUserInfo } from '@/types';
 import ERRCODE from '@/constants/errCode';
 import { queryClient } from './queryClient';
 import QUERY_KEY from './keys';
+import useAuth from '@/hooks/useAuth';
 
 /**
  * 유저별 스크랩한 뉴스 목록 호출 쿼리
  * @param userId: 사용자 email
  * @returns
  */
-const useScrappedNewsList = ({ userId }: { userId: TUserInfo['email'] }) => {
-  const queryStates = useSuspenseQuery<
-    Awaited<ReturnType<typeof fetchScrappedList>>,
-    AxiosError
-  >({
+const useScrappedNewsList = () => {
+  const { authState } = useAuth();
+  const userId = authState.userInfo.email;
+  // TODO: 무한스크롤 기능 구현되면 infiniteQuery로 변경
+  const queryStates = useSuspenseQuery({
     queryKey: [QUERY_KEY.SCRAP_LIST, userId],
     queryFn: () => fetchScrappedList(userId),
   });
