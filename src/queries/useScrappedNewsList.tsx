@@ -1,24 +1,28 @@
 import { fetchScrappedList } from '@/api/client';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { TNewsItem, TUserInfo } from '@/types';
 import ERRCODE from '@/constants/errCode';
 import { queryClient } from './queryClient';
 import QUERY_KEY from './keys';
+import useAuth from '@/hooks/useAuth';
 
 /**
  * 유저별 스크랩한 뉴스 목록 호출 쿼리
  * @param userId: 사용자 email
  * @returns
  */
-const useScrappedNewsList = ({ userId }) => {
-  // const queryStates = useQuery<Awaited<ReturnType<typeof fetchScrappedList>>, AxiosError>(
-  //   [QUERY_KEY.SCRAP_LIST],
-  //   () => fetchScrappedList(userId),
+const useScrappedNewsList = () => {
+  const { authState } = useAuth();
+  const userId = authState.userInfo.email;
+  // TODO: 무한스크롤 기능 구현되면 infiniteQuery로 변경
+  // queryKey에 userId 필요한지 확인
+  const queryStates = useSuspenseQuery({
+    queryKey: [QUERY_KEY.SCRAP_LIST],
+    queryFn: () => fetchScrappedList(userId),
+  });
 
-  // );
-
-  return {};
+  return queryStates;
 };
 
 /**
