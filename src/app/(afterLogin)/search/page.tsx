@@ -1,50 +1,26 @@
 import React from 'react';
-import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
-import type { Metadata } from 'next';
-import { queryClient } from '@/queries/queryClient';
-import { prefetchBingNewsFetch } from '@/queries/useBingNewsFetch';
-import { fetchBingNews } from '@/api/client';
-import { createMetadataObj } from '@/app/_lib/metadata';
-import NewsSearchPage14 from '@/components/search/NewsSearchPage14';
-import axios from 'axios';
 import SearchPageView from '@/components/templates/search/SearchPageView';
+import { getUserInfoInServerside } from '@/prefetch/userInfo';
+import JotaiHydrateProvider from '@/components/etc/JotaiHydrateProvider';
+import { prefetchScrappedNewsList } from '@/queries/useScrappedNewsList';
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
+import { queryClient } from '@/queries/queryClient';
 
-// const fetchValues = async () => {
-//   const res = await axios.get('http://localhost:3000/api/cache-test');
-//   return res.data;
-// };
-
-// 2
-export default async function SearchPage(props) {
-  const { query } = props;
-  // TODO: prefetchQuery or getQueryData 호출
-  return <SearchPageView />;
+/**
+ * 검색 메인페이지
+ * TODO: react query prefetch 구현 (스크랩 기능에 필요함)
+ */
+export default async function SearchPage() {
+  // scrap list prefetch 수행
+  const prefetchedUserInfo = await getUserInfoInServerside();
+  if (prefetchedUserInfo) {
+    await prefetchScrappedNewsList(prefetchedUserInfo.email);
+  }
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <JotaiHydrateProvider prefetchedUserInfo={prefetchedUserInfo}>
+        <SearchPageView />
+      </JotaiHydrateProvider>
+    </HydrationBoundary>
+  );
 }
-
-// type Props = {
-//   params: { id: string };
-//   searchParams: { [key: string]: string | string[] | undefined };
-// };
-
-// export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
-//   // FIXME: fetchQuery 호출
-//   const res = await fetchBingNews(searchParams.query as string, 0);
-//   const seoVals = res.value.map((item) => {
-//     return {
-//       name: item.name,
-//       description: item.description,
-//       image: item.image?.thumbnail?.contentUrl,
-//     };
-//   });
-//   const first = seoVals[0];
-//   // TODO 여기에 seo 데이터 초기화
-//   return createMetadataObj({
-//     title: first.name,
-//     description: first.description,
-//     openGraph: {
-//       title: first.name,
-//       description: first.description,
-//       images: [{ url: first.image }],
-//     },
-//   });
-// }

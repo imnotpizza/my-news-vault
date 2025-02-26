@@ -1,28 +1,33 @@
-// import { TUserInfo } from '@/types';
-// import React from 'react';
+import { TUserInfo } from '@/types';
+import { atom } from 'jotai';
+import React from 'react';
 
-// export interface IUserInfoContext {
-//   userInfo: TUserInfo | null;
-//   setUserInfo: React.Dispatch<React.SetStateAction<TUserInfo | null>>;
-//   isSignin: boolean;
-// }
+export interface IUserInfoContext {
+  userInfo: TUserInfo | null;
+  setUserInfo: React.Dispatch<React.SetStateAction<TUserInfo | null>>;
+  isSignin: boolean;
+}
 
-// const userInfoContext = React.createContext<IUserInfoContext>({
-//   userInfo: null,
-//   setUserInfo: () => {},
-//   isSignin: false,
-// });
+export const authAtom = atom<Pick<IUserInfoContext, 'userInfo'>>({
+  userInfo: null,
+});
 
-// const UserInfoProvider = ({ children, initialUserInfo = null }: any) => {
-//   const [userInfo, setUserInfo] = React.useState<IUserInfoContext['userInfo']>(initialUserInfo);
+// TODO: context 제거, jotai atom으로 대체
+const userInfoContext = React.createContext<IUserInfoContext>({
+  userInfo: null,
+  setUserInfo: () => {},
+  isSignin: false,
+});
 
-//   return (
-//     <userInfoContext.Provider value={{ userInfo, setUserInfo, isSignin: Boolean(userInfo) }}>
-//       {children}
-//     </userInfoContext.Provider>
-//   );
-// };
+const UserInfoProvider = ({ children, initialUserInfo = null }: any) => {
+  const [userInfo, setUserInfo] =
+    React.useState<IUserInfoContext['userInfo']>(initialUserInfo);
 
-// export { userInfoContext, UserInfoProvider };
+  return (
+    <userInfoContext.Provider value={{ userInfo, setUserInfo, isSignin: Boolean(userInfo) }}>
+      {children}
+    </userInfoContext.Provider>
+  );
+};
 
-export {};
+export { userInfoContext, UserInfoProvider };

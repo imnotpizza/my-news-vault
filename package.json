@@ -39,7 +39,9 @@
     "react-spinners": "^0.13.8",
     "styled-components": "^6.1.13",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "firebase": "^9.21.0",
+    "firebase-admin": "^11.8.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.4.5",

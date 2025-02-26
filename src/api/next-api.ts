@@ -1,11 +1,31 @@
-import axios from 'axios';
+'use server';
 
-export const saveToken = async (authToken: string) => {
-  const apiRes = await axios.post('/api/token/save', { authToken });
-  return apiRes.data;
+import { cookies } from 'next/headers';
+import { COOKIE_CONFIG } from '@/constants';
+
+export const saveToken = (authToken: string) => {
+  // if (cookies().has(COOKIE_CONFIG.title)) {
+  //   return new Error('token already exists');
+  // }
+
+  cookies().set({
+    name: COOKIE_CONFIG.title,
+    value: authToken,
+    path: COOKIE_CONFIG.path,
+    maxAge: COOKIE_CONFIG.maxAge,
+    httpOnly: COOKIE_CONFIG.httpOnly,
+    secure: COOKIE_CONFIG.secure,
+  });
 };
 
-export const removeToken = async () => {
-  const apiRes = await axios.post('/api/token/remove');
-  return apiRes.data;
+export const removeToken = () => {
+  // if (!cookies().has(COOKIE_CONFIG.title)) {
+  //   return new Error('token not exists');
+  // }
+  cookies().delete(COOKIE_CONFIG.title);
 };
+
+// export const getAuthToken = () => {
+//   const cookie = cookies().get(COOKIE_CONFIG.title);
+//   return cookie;
+// };

@@ -9,7 +9,7 @@ import { addScrapNewsToCache, deleteScrapNewsFromCache } from '../useScrappedNew
 interface MutateParams {
   newsItem: TNewsItem;
   isScrapped: TNewsItem['isScrapped'];
-  query: TBingNewsFilterQueries['query'];
+  query: TBingNewsFilterQueries['keyword'];
   userId: TUserInfo['email'];
 }
 
@@ -18,23 +18,18 @@ interface MutateParams {
  * @returns mutation states
  */
 export const useScrapNews = () => {
-  const queryStates = useMutation<void, Error, MutateParams>(
-    // @ts-ignore
-    async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
+  const queryStates = useMutation<void, Error, MutateParams>({
+    mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, query);
       await scrapNews(userId, newsItem);
       addScrapNewsToCache({ ...newsItem, isScrapped });
     },
-    {
-      onSuccess: () => {
-        console.log('### scrap success');
-      },
-      onError: () => {
-        alert('스크랩 추가 도중 문제가 발생하였습니다.');
-      },
-      onSettled: () => {},
+    onError: (e) => {
+      console.error(e);
+      alert('스크랩 추가 도중 문제가 발생하였습니다.');
     },
-  );
+    onSettled: () => {},
+  });
 
   return queryStates;
 };
@@ -44,23 +39,18 @@ export const useScrapNews = () => {
  * @returns mutation states
  */
 export const useUnscrapNews = () => {
-  const queryStates = useMutation<void, Error, MutateParams>(
-    // @ts-ignore
-    async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
+  const queryStates = useMutation<void, Error, MutateParams>({
+    mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, query);
       await unscrapNews(userId, newsItem.newsId);
       deleteScrapNewsFromCache(newsItem.newsId);
     },
-    {
-      onSuccess: () => {
-        console.log('### unscrap success');
-      },
-      onError: () => {
-        alert('스크랩 삭제 도중 문제가 발생하였습니다.');
-      },
-      onSettled: () => {},
+    onError: (e) => {
+      console.error(e);
+      alert('스크랩 삭제 도중 문제가 발생하였습니다.');
     },
-  );
+    onSettled: () => {},
+  });
 
   return queryStates;
 };

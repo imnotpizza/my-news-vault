@@ -8,8 +8,7 @@ import { ThemeProvider } from 'styled-components';
 import Palette from '@/styles/palette';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ToastProvider } from '@/components/ui/toast';
-import { Toaster } from '@/components/ui/toaster';
+import { ToastProvider, Toaster } from '@/components/atoms/Toast';
 import MSWEnabledProvider from './MSWEnabledProvider';
 
 /**
@@ -18,7 +17,7 @@ import MSWEnabledProvider from './MSWEnabledProvider';
  */
 export default function RootProviders({ children }) {
   return (
-    <MSWEnabledProvider>
+    <MSWEnabledProvider enabled={true}>
       <ToastProvider>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={Palette}>{children}</ThemeProvider>
