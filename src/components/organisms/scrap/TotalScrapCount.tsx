@@ -1,3 +1,5 @@
+'use client';
+
 import useAuth from '@/hooks/useAuth';
 import useScrappedNewsList from '@/queries/useScrappedNewsList';
 import React from 'react';
