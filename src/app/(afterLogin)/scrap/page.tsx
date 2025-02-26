@@ -1,10 +1,10 @@
 import React from 'react';
-import SearchPageView from '@/components/templates/search/SearchPageView';
 import { getUserInfoInServerside } from '@/prefetch/userInfo';
 import JotaiHydrateProvider from '@/components/etc/JotaiHydrateProvider';
 import { prefetchScrappedNewsList } from '@/queries/useScrappedNewsList';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { queryClient } from '@/queries/queryClient';
+import ScrapPageView from '@/components/templates/scrap/ScrapPageView';
 
 export default async function ScrapPage() {
   // scrap list prefetch 수행
@@ -15,7 +15,7 @@ export default async function ScrapPage() {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <JotaiHydrateProvider prefetchedUserInfo={prefetchedUserInfo}>
-        <SearchPageView />
+        <ScrapPageView />
       </JotaiHydrateProvider>
     </HydrationBoundary>
   );
