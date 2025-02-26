@@ -1,5 +1,5 @@
-import NewsSearchGridList from '@/components/organisms/search/NewsSearchGridList';
 import React, { Suspense } from 'react';
+import ScrapGridList from '@/components/organisms/scrap/ScarpGridList';
 import TotalScrapCount from '@/components/organisms/scrap/TotalScrapCount';
 import ScrapPageFallback from './ScrapPageFallback';
 
@@ -13,7 +13,7 @@ export default async function ScrapPageView() {
         <div className="w-full px-10">
           <TotalScrapCount />
         </div>
-        <NewsSearchGridList />
+        <ScrapGridList />
       </Suspense>
     </div>
   );

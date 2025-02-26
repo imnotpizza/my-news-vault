@@ -6,7 +6,7 @@ import useScrappedNewsList from '@/queries/useScrappedNewsList';
 import useAuth from '@/hooks/useAuth';
 import NewsCard from '@/components/organisms/search/NewsCard';
 
-export default function NewsSearchGridList() {
+export default function ScrapGridList() {
   const { authState } = useAuth();
   const { data } = useScrappedNewsList({
     userId: authState.userInfo.email,
