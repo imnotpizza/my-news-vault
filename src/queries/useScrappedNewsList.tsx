@@ -1,5 +1,5 @@
 import { fetchScrappedList } from '@/api/client';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { TNewsItem, TUserInfo } from '@/types';
 import ERRCODE from '@/constants/errCode';
@@ -11,14 +11,16 @@ import QUERY_KEY from './keys';
  * @param userId: 사용자 email
  * @returns
  */
-const useScrappedNewsList = ({ userId }) => {
-  // const queryStates = useQuery<Awaited<ReturnType<typeof fetchScrappedList>>, AxiosError>(
-  //   [QUERY_KEY.SCRAP_LIST],
-  //   () => fetchScrappedList(userId),
+const useScrappedNewsList = ({ userId }: { userId: TUserInfo['email'] }) => {
+  const queryStates = useSuspenseQuery<
+    Awaited<ReturnType<typeof fetchScrappedList>>,
+    AxiosError
+  >({
+    queryKey: [QUERY_KEY.SCRAP_LIST, userId],
+    queryFn: () => fetchScrappedList(userId),
+  });
 
-  // );
-
-  return {};
+  return queryStates;
 };
 
 /**
