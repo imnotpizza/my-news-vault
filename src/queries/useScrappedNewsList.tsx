@@ -16,8 +16,9 @@ const useScrappedNewsList = () => {
   const { authState } = useAuth();
   const userId = authState.userInfo.email;
   // TODO: 무한스크롤 기능 구현되면 infiniteQuery로 변경
+  // queryKey에 userId 필요한지 확인
   const queryStates = useSuspenseQuery({
-    queryKey: [QUERY_KEY.SCRAP_LIST, userId],
+    queryKey: [QUERY_KEY.SCRAP_LIST],
     queryFn: () => fetchScrappedList(userId),
   });
 
