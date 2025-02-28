@@ -20,10 +20,12 @@ interface MutateParams {
 export const useScrapNews = () => {
   const { filterQueries } = useBingNewsFetch.state();
   const queryStates = useMutation<void, Error, MutateParams>({
-    mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
+    onMutate: ({newsItem, isScrapped, query, userId}) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
-      await scrapNews(userId, newsItem);
       addScrapNewsToCache({ ...newsItem, isScrapped });
+    },
+    mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
+      await scrapNews(userId, newsItem);
     },
     onError: (e) => {
       console.error(e);
@@ -40,11 +42,16 @@ export const useScrapNews = () => {
  * @returns mutation states
  */
 export const useUnscrapNews = () => {
+  const { filterQueries } = useBingNewsFetch.state();
   const queryStates = useMutation<void, Error, MutateParams>({
-    mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
-      updateNewsSearchQuery(newsItem.newsId, isScrapped, query);
-      await unscrapNews(userId, newsItem.newsId);
+    onMutate: ({newsItem, isScrapped, query, userId}) => {
+      updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
       deleteScrapNewsFromCache(newsItem.newsId);
+    },
+    mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
+      // updateNewsSearchQuery(newsItem.newsId, isScrapped, query);
+      await unscrapNews(userId, newsItem.newsId);
+      // deleteScrapNewsFromCache(newsItem.newsId);
     },
     onError: (e) => {
       console.error(e);
