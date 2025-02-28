@@ -7,6 +7,7 @@ import { TBingNewsFilterQueries } from '@/types';
 import { createSearchUrlWithQueries } from '@/utils/newsItem';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import SearchIcon from '@/assets/search-ui.svg';
 
 /**
  * 검색 입력 컴포넌트 (Input + Button)
@@ -35,7 +36,6 @@ export default function FilterQueriesForm() {
       // make query into query string
       const url = createSearchUrlWithQueries(filterQueries);
       router.push(url);
-      // TODO: api 호출
     } catch (e) {
       console.error(e);
     }
@@ -49,8 +49,8 @@ export default function FilterQueriesForm() {
         value={filterQueries.keyword}
       />
       {/* TODO: 아이콘으로 교체 */}
-      <Button className="border-mnv-gray-10" type="submit">
-        검색
+      <Button className="border-mnv-gray-10 " type="submit" variant="outline">
+        <SearchIcon />
       </Button>
     </form>
   );
