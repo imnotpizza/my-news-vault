@@ -15,8 +15,6 @@ const useFadeUIEffect = (callback: () => void) => {
     observer.current = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // fadein effect
-          console.log('fadein');
           callback();
           observer.current?.unobserve(target);
         }

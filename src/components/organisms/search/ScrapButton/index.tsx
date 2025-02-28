@@ -3,6 +3,8 @@ import useAuth from '@/hooks/useAuth';
 import { useScrapNews, useUnscrapNews } from '@/queries/useScrapNews';
 import { TNewsItem } from '@/types';
 import React from 'react';
+import NewsScrapIcon from '@/assets/news-scrap-icon.svg';
+import { cn } from '@/lib/utils';
 
 interface IScrapButtonProps {
   isScrapped: boolean;
@@ -45,6 +47,7 @@ export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps)
     <Button
       disabled={isScrappingNews || isUnscrappingNews}
       aria-label={title}
+      variant="ghost"
       onClick={() => {
         if (isScrapped) {
           onClickUnscrap();
@@ -52,8 +55,11 @@ export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps)
           onClickScarp();
         }
       }}
+      className="p-2"
     >
-      {title}
+      <NewsScrapIcon
+        className={cn('!w-8 !h-8', isScrapped ? 'fill-pink-500' : 'fill-gray-400')}
+      />
     </Button>
   );
 }

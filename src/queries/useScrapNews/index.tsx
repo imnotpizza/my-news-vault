@@ -1,8 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 import { scrapNews, unscrapNews } from '@/api/client';
 import { TBingNewsFilterQueries, TNewsItem, TUserInfo } from '@/types';
-import { updateNewsSearchQuery } from '../useBingNewsFetch';
+import useBingNewsFetch, { updateNewsSearchQuery } from '../useBingNewsFetch';
 import { addScrapNewsToCache, deleteScrapNewsFromCache } from '../useScrappedNewsList';
+import { useToast } from '@/hooks/useToast';
 
 // TODO: firebase -> aws로 대체
 
@@ -18,11 +19,18 @@ interface MutateParams {
  * @returns mutation states
  */
 export const useScrapNews = () => {
+  const { toast } = useToast();
+  const { filterQueries } = useBingNewsFetch.state();
   const queryStates = useMutation<void, Error, MutateParams>({
-    mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
-      updateNewsSearchQuery(newsItem.newsId, isScrapped, query);
-      await scrapNews(userId, newsItem);
+    onMutate: ({ newsItem, isScrapped, query, userId }) => {
+      updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
       addScrapNewsToCache({ ...newsItem, isScrapped });
+    },
+    mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
+      await scrapNews(userId, newsItem);
+      toast({
+        description: '스크랩 등록이 완료되었습니다',
+      });
     },
     onError: (e) => {
       console.error(e);
@@ -39,11 +47,18 @@ export const useScrapNews = () => {
  * @returns mutation states
  */
 export const useUnscrapNews = () => {
+  const { toast } = useToast();
+  const { filterQueries } = useBingNewsFetch.state();
   const queryStates = useMutation<void, Error, MutateParams>({
-    mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
-      updateNewsSearchQuery(newsItem.newsId, isScrapped, query);
-      await unscrapNews(userId, newsItem.newsId);
+    onMutate: ({ newsItem, isScrapped, query, userId }) => {
+      updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
       deleteScrapNewsFromCache(newsItem.newsId);
+    },
+    mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
+      await unscrapNews(userId, newsItem.newsId);
+      toast({
+        description: '스크랩 삭제가 완료되었습니다',
+      });
     },
     onError: (e) => {
       console.error(e);
