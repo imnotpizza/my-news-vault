@@ -11,7 +11,7 @@ import React, { useContext } from 'react';
 const Header = () => {
   const { isLogined } = useAuth();
   return (
-    <div className="w-full h-full mx-auto flex justify-between items-center">
+    <div className="w-full h-full mx-auto flex justify-between items-center bg-white">
       <div className="flex items-center justify-center">
         <AppLogo />
       </div>

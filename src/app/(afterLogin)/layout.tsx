@@ -8,10 +8,10 @@ import Header from '@/components/templates/common/Header';
 export default function AfterLoginLayout({ children }) {
   return (
     <Layout className="w-full bg-white">
-      <Layout.Header className="shadow-md">
+      <Layout.Header className="shadow-md fixed">
         <Header />
       </Layout.Header>
-      <Layout.Body>{children}</Layout.Body>
+      <Layout.Body className="mt-[64px]">{children}</Layout.Body>
     </Layout>
   );
 }
