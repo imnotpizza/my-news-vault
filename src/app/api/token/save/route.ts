@@ -19,7 +19,6 @@ const setCookieStr = (token: string) => {
  */
 export async function POST(req: Request, res: Response) {
   try {
-    console.log('res>>', req, res);
     res.headers.append('Set-Cookie', setCookieStr('token'));
     return NextResponse.json({ message: 'ok' }, { status: 200 });
   } catch (e) {

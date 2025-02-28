@@ -12,7 +12,6 @@ export const signinWithFirebaseAuth = async (): Promise<TUserInfo> => {
   const token = await res.user.getIdToken();
   // 쿠키에 토큰 저장
   saveToken(token);
-  console.log('###############11111', displayName, email, photoURL);
   return {
     displayName,
     email,
