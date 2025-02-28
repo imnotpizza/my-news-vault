@@ -5,6 +5,7 @@ import { TNewsItem } from '@/types';
 import React, { memo } from 'react';
 import ScrapButton from '../ScrapButton';
 import styles from './NewsCard.module.css';
+import ImageView from '@/components/atoms/ImageView';
 
 interface IProps {
   newsItem: TNewsItem;
@@ -30,7 +31,7 @@ function NewsCard({ newsItem }: IProps) {
       />
       {/* thumbnail */}
       {/* FIXME: ImageView 적용, 현재 next/image가 외부이미지를 못읽어 문제발생 */}
-      <img src={thumbnail} alt={title} className={cn('w-full')} />
+      <ImageView src={thumbnail} alt={title} className={cn('w-full aspect-[4/3.8]')} />
       <Card.Content className="p-4">
         <div className="flex flex-col gap-2 mb-6">
           <Card.Title className={cn('text-md', styles['card-title-ellipsis'])}>
