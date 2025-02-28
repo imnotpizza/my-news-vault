@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { scrapNews, unscrapNews } from '@/api/client';
 import { TBingNewsFilterQueries, TNewsItem, TUserInfo } from '@/types';
-import { updateNewsSearchQuery } from '../useBingNewsFetch';
+import useBingNewsFetch, { updateNewsSearchQuery } from '../useBingNewsFetch';
 import { addScrapNewsToCache, deleteScrapNewsFromCache } from '../useScrappedNewsList';
 
 // TODO: firebase -> aws로 대체
@@ -18,9 +18,10 @@ interface MutateParams {
  * @returns mutation states
  */
 export const useScrapNews = () => {
+  const { filterQueries } = useBingNewsFetch.state();
   const queryStates = useMutation<void, Error, MutateParams>({
     mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
-      updateNewsSearchQuery(newsItem.newsId, isScrapped, query);
+      updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
       await scrapNews(userId, newsItem);
       addScrapNewsToCache({ ...newsItem, isScrapped });
     },

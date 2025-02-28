@@ -44,7 +44,7 @@ export const getSearchQueryCache = (searchQuery: TBingNewsFilterQueries['keyword
 };
 
 /** 검색어 query atom */
-const queryAtom = atom<TBingNewsFilterQueries>({
+export const queryAtom = atom<TBingNewsFilterQueries>({
   ...defaultNewsFilterQueries,
 });
 
@@ -75,7 +75,6 @@ function useBingNewsFetchQuery({ maxPage = 1 }: Params) {
           return undefined;
         }
       });
-
       const filteredNewsItems = newsItems.filter((item) => item !== undefined);
       return filteredNewsItems;
     },
@@ -143,10 +142,10 @@ function useBingNewsFetchState() {
 export function updateNewsSearchQuery(
   targetNewsId: TNewsItem['newsId'],
   isScrapped: TNewsItem['isScrapped'],
-  searchQuery: TBingNewsFilterQueries['keyword'],
+  filterQueries: TBingNewsFilterQueries,
 ) {
   queryClient.setQueryData<InfiniteData<TNewsItem[]>>(
-    [QUERY_KEY.BING_NEWS_SEARCH, searchQuery],
+    [QUERY_KEY.BING_NEWS_SEARCH, filterQueries],
     (oldPagesArray) => {
       if (oldPagesArray) {
         // 캐시 데이터 존재하는 경우: 캐시 업데이트
