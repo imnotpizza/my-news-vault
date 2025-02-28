@@ -9,7 +9,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'www.bing.com',
-        pathname: '/**',
+        pathname: '/.image/**',
       },
       {
         protocol: 'https',

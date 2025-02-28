@@ -5,8 +5,6 @@ import LoginButton from '@/components/molecules/LoginButton';
 import LogoutButton from '@/components/molecules/LogoutButton';
 import ToScrapPageButton from '@/components/organisms/scrap/ToScrapPageButton';
 import useAuth from '@/hooks/useAuth';
-import { authAtom, userInfoContext } from '@/utils/userInfoProvider';
-import { useAtomValue } from 'jotai';
 import React, { useContext } from 'react';
 // import AppLogo from '@/views/header/AppLogo';
 
