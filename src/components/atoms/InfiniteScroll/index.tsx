@@ -99,11 +99,7 @@ export const InfiniteScrollWrapper = forwardRef(
             '!absolute w-full bottom-0 left-0 flex justify-center items-center',
           )}
         ></div>
-        {isLoading && (
-          <div className="flex justify-center items-center p-8">
-            {loadingUI}
-          </div>
-        )}
+        {isLoading && <div className="flex justify-center items-center p-8">{loadingUI}</div>}
       </div>
     );
   },

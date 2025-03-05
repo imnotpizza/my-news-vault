@@ -26,12 +26,12 @@ export default function NewsSearchGridList() {
   });
 
   return (
-    <NewsGridList>
-      <InfiniteScrollWrapper ref={ref}>
+    <InfiniteScrollWrapper ref={ref} isLoading={isFetchingNextPage}>
+      <NewsGridList>
         {flattenData.map((item) => (
           <NewsCard newsItem={item} key={item.newsId} />
         ))}
-      </InfiniteScrollWrapper>
-    </NewsGridList>
+      </NewsGridList>
+    </InfiniteScrollWrapper>
   );
 }

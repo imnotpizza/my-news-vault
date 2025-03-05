@@ -17,7 +17,7 @@ import MSWEnabledProvider from './MSWEnabledProvider';
  */
 export default function RootProviders({ children }) {
   return (
-    <MSWEnabledProvider enabled={true}>
+    <MSWEnabledProvider enabled={false}>
       <ToastProvider>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={Palette}>{children}</ThemeProvider>
