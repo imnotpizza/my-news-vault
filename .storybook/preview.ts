@@ -1,4 +1,12 @@
 import type { Preview } from '@storybook/react';
+import { initialize, mswLoader } from 'msw-storybook-addon';
+
+// MSW 초기화 함수 실행
+initialize({
+  serviceWorker: {
+    url: '/mockServiceWorker.js',
+  }
+});
 
 const preview: Preview = {
   parameters: {
@@ -10,6 +18,7 @@ const preview: Preview = {
       },
     },
   },
+  loaders: [mswLoader],
 };
 
 export default preview;
