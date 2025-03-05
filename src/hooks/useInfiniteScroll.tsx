@@ -5,6 +5,12 @@ interface IUseInfiniteScrollParams {
   maxPage?: number;
 }
 
+/**
+ * 무한 스크롤 기능 hook
+ * @deprecated
+ * @param onTriggered: 교차 트리거 발생시 실행될 콜백
+ * @param maxPage: 최대 페이지
+ */
 const useInfiniteScroll = ({ onTriggered, maxPage = 1 }: IUseInfiniteScrollParams) => {
   const observer = useRef<IntersectionObserver>();
   const targetElement = useRef<Element>();
