@@ -21,6 +21,7 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  reactStrictMode: false,
   webpack(config) {
     // svgr 연동, https://react-svgr.com/docs/next/ 참고함
     // Grab the existing rule that handles SVG imports
