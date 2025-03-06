@@ -1,10 +1,7 @@
-import { fetchScrappedList } from '@/api/client';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
 import { TNewsItem, TUserInfo } from '@/types';
 import ERRCODE from '@/constants/errCode';
 import { queryClient } from './queryClient';
-import QUERY_KEY from './keys';
 import useAuth from '@/hooks/useAuth';
 import { scrapNewsQueryKeys } from './queryKey';
 
