@@ -6,6 +6,7 @@ import ERRCODE from '@/constants/errCode';
 import { queryClient } from './queryClient';
 import QUERY_KEY from './keys';
 import useAuth from '@/hooks/useAuth';
+import { scrapNewsQueryKeys } from './queryKey';
 
 /**
  * 유저별 스크랩한 뉴스 목록 호출 쿼리
@@ -18,8 +19,7 @@ const useScrappedNewsList = () => {
   // TODO: 무한스크롤 기능 구현되면 infiniteQuery로 변경
   // queryKey에 userId 필요한지 확인
   const queryStates = useSuspenseQuery({
-    queryKey: [QUERY_KEY.SCRAP_LIST],
-    queryFn: () => fetchScrappedList(userId),
+    ...scrapNewsQueryKeys.list.all,
   });
 
   return queryStates;
@@ -32,8 +32,7 @@ const useScrappedNewsList = () => {
 export const prefetchScrappedNewsList = async (userId: TUserInfo['email']) => {
   if (!userId) throw new Error(ERRCODE.FETCH_SCRAPPED_NEWS_LIST_FAILED);
   await queryClient.prefetchQuery({
-    queryKey: [QUERY_KEY.SCRAP_LIST],
-    queryFn: () => fetchScrappedList(userId),
+    ...scrapNewsQueryKeys.list.all,
   });
 };
 
@@ -42,7 +41,7 @@ export const prefetchScrappedNewsList = async (userId: TUserInfo['email']) => {
  * @param item: 추가할 뉴스 아이템
  */
 export const addScrapNewsToCache = (item: TNewsItem) => {
-  queryClient.setQueryData<TNewsItem[]>([QUERY_KEY.SCRAP_LIST], (oldData) => {
+  queryClient.setQueryData<TNewsItem[]>(scrapNewsQueryKeys.list.all.queryKey, (oldData) => {
     return [...oldData, item];
   });
 };
@@ -52,7 +51,7 @@ export const addScrapNewsToCache = (item: TNewsItem) => {
  * @param newsId: 삭제할 뉴스의 id
  */
 export const deleteScrapNewsFromCache = (newsId: TNewsItem['newsId']) => {
-  queryClient.setQueryData<TNewsItem[]>([QUERY_KEY.SCRAP_LIST], (oldData) => {
+  queryClient.setQueryData<TNewsItem[]>(scrapNewsQueryKeys.list.all.queryKey, (oldData) => {
     return oldData.filter((news: TNewsItem) => news.newsId !== newsId);
   });
 };
@@ -66,8 +65,7 @@ export const fetchScrappedNewsList = async (userId: TUserInfo['email']) => {
   if (!userId) throw new Error(ERRCODE.FETCH_SCRAPPED_NEWS_LIST_FAILED);
 
   const res = await queryClient.fetchQuery({
-    queryKey: [QUERY_KEY.SCRAP_LIST],
-    queryFn: () => fetchScrappedList(userId),
+    ...scrapNewsQueryKeys.list.all,
   });
   return res;
 };

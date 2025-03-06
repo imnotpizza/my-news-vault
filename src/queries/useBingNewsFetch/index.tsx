@@ -20,6 +20,7 @@ import { atom, useAtom, useAtomValue } from 'jotai';
 import { flatMap, flatten } from 'lodash-es';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
+import { bingNewsQueryKeys } from '../queryKey';
 
 interface Params {
   query: TBingNewsFilterQueries['keyword'];
@@ -55,7 +56,8 @@ function useBingNewsFetchQuery({ maxPage = 1 }: Params) {
   const filterQueries = useAtomValue(queryAtom);
 
   const queryStates = useSuspenseInfiniteQuery({
-    queryKey: [QUERY_KEY.BING_NEWS_SEARCH, filterQueries],
+    // queryKey: [QUERY_KEY.BING_NEWS_SEARCH, filterQueries],
+    ...bingNewsQueryKeys.search.list(filterQueries),
     queryFn: async ({ pageParam = 1 }) => {
       const { keyword } = filterQueries;
       // api 호출
@@ -145,7 +147,8 @@ export function updateNewsSearchQuery(
   filterQueries: TBingNewsFilterQueries,
 ) {
   queryClient.setQueryData<InfiniteData<TNewsItem[]>>(
-    [QUERY_KEY.BING_NEWS_SEARCH, filterQueries],
+    // [QUERY_KEY.BING_NEWS_SEARCH, filterQueries],
+    bingNewsQueryKeys.search.list(filterQueries).queryKey,
     (oldPagesArray) => {
       if (oldPagesArray) {
         // 캐시 데이터 존재하는 경우: 캐시 업데이트
