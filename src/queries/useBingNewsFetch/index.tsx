@@ -8,12 +8,23 @@ import {
   parseDateToFormat,
   setIsScrapped,
 } from '@/utils/newsItem';
+import { createQueryKeyStore } from '@lukemorales/query-key-factory';
 import { InfiniteData, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { flatMap, flatten } from 'lodash-es';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
-import { bingNewsQueryKeys } from '../queryKey';
+
+/**
+ * bing new query key
+ */
+export const bingNewsQueryKeys = createQueryKeyStore({
+  search: {
+    list: (filterQueries: TBingNewsFilterQueries) => ({
+      queryKey: [{ ...filterQueries }],
+    }),
+  },
+});
 
 interface Params {
   query: TBingNewsFilterQueries['keyword'];

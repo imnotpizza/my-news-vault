@@ -1,9 +1,28 @@
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { TNewsItem, TUserInfo } from '@/types';
 import ERRCODE from '@/constants/errCode';
-import { queryClient } from './queryClient';
 import useAuth from '@/hooks/useAuth';
-import { scrapNewsQueryKeys } from './queryKey';
+import { createQueryKeyStore } from '@lukemorales/query-key-factory';
+import { fetchScrappedList } from '@/api/client';
+import { queryClient } from './queryClient';
+
+export const scrapNewsQueryKeys = createQueryKeyStore({
+  scrap: null,
+  unscrap: null,
+  list: {
+    all: {
+      queryKey: null,
+      queryFn: (userId: TUserInfo['email']) => fetchScrappedList(userId),
+    },
+  },
+  users: {
+    all: null,
+    detail: (userId: string) => ({
+      queryKey: [userId],
+      queryFn: () => userId,
+    }),
+  },
+});
 
 /**
  * 유저별 스크랩한 뉴스 목록 호출 쿼리
