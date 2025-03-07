@@ -140,12 +140,14 @@ function Toaster() {
       {toasts.map(({ id, title, description, action, ...props }) => {
         return (
           <Toast key={id} {...props}>
-            <div className="grid gap-1">
-              {title && <ToastTitle>{title}</ToastTitle>}
-              {description && <ToastDescription>{description}</ToastDescription>}
-            </div>
-            {action}
-            <ToastClose />
+            <ToastPrimitives.Close className="w-full h-full bg-transparent">
+              <div className="grid gap-1">
+                {title && <ToastTitle>{title}</ToastTitle>}
+                {description && <ToastDescription>{description}</ToastDescription>}
+              </div>
+              {action}
+              {/* <ToastClose /> */}
+            </ToastPrimitives.Close>
           </Toast>
         );
       })}
