@@ -8,6 +8,21 @@ import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/useToast';
 
+/**
+ * ========================================== Toast 커스터마이징 관련 ==========================================
+ */
+
+/** 토스트 박스 스타일 */
+const toastTheme =
+  'rounded-full p-2 px-6 shadow-none bg-gray-300 bg-opacity-50 text-white !w-auto';
+
+/** 토스트 container 스타일 */
+const toastContainerStyle = 'flex-center'
+
+
+/**
+ * ========================================== 이하 코드 수정하지 말 것 ==========================================
+ */
 const ToastProvider = ToastPrimitives.Provider;
 
 const ToastViewport = React.forwardRef<
@@ -18,6 +33,7 @@ const ToastViewport = React.forwardRef<
     ref={ref}
     className={cn(
       'fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]',
+      toastContainerStyle,
       className,
     )}
     {...props}
@@ -41,6 +57,7 @@ const toastVariants = cva(
   },
 );
 
+
 const Toast = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Root>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> &
@@ -49,7 +66,7 @@ const Toast = React.forwardRef<
   return (
     <ToastPrimitives.Root
       ref={ref}
-      className={cn(toastVariants({ variant }), className)}
+      className={cn(toastVariants({ variant }), toastTheme, className)}
       {...props}
     />
   );
