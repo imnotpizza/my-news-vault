@@ -17,8 +17,7 @@ const toastTheme =
   'rounded-full p-2 px-6 shadow-none bg-gray-300 bg-opacity-50 text-white !w-auto';
 
 /** 토스트 container 스타일 */
-const toastContainerStyle = 'flex-center'
-
+const toastContainerStyle = 'flex-center';
 
 /**
  * ========================================== 이하 코드 수정하지 말 것 ==========================================
@@ -56,7 +55,6 @@ const toastVariants = cva(
     },
   },
 );
-
 
 const Toast = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Root>,
