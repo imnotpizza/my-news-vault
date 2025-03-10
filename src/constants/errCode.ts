@@ -1,7 +1,21 @@
+/** ERROR CODE */
 const ERRCODE = {
-  USER_AUTH_FAILED: 'UserAuthFailedError',
-  FETCH_SCRAPPED_NEWS_LIST_FAILED: 'fetchScrappedNewsListFailedError',
-  FETCH_NEWS_SEARCH_FAILED: 'fetchNewsSearchFailedError',
+  AUTH: {
+    ALREADY_LOGINED: 10001,
+    USER_NOT_FOUND: 10002,
+    INVALID_TOKEN: 10003,
+  },
+  API: {
+    NEWS: {
+      FETCH_FAILED: 11001,
+      FETCH_SCRAPPED_LIST_FAILED: 11002,
+      SCRAP_FAILED: 11003,
+      UNSCRAP_FAILED: 11004,
+    },
+  },
+  NETWORK_ERROR: 20000,
+  TIMEOUT_ERROR: 20001,
+  UNKNOWN: 99999,
 };
 
 export default ERRCODE;
