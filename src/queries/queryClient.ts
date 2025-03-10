@@ -1,16 +1,23 @@
-import { QueryClient } from '@tanstack/react-query';
-
-// query 캐시 유지기간: 10분
-const QUERY_CACHE_TIME = Infinity;
+import { MutationCache, QueryCache, QueryClient } from '@tanstack/react-query';
 
 // react query 공통 옵션
-export const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+  queryCache: new QueryCache({
+    onError: (err) => {
+
+    }
+  }),
+  mutationCache: new MutationCache({
+    onError: (err) => {
+      
+    }
+  }),
+});
 queryClient.setDefaultOptions({
   queries: {
     refetchOnWindowFocus: false,
     refetchInterval: false,
     retry: false,
-    gcTime: QUERY_CACHE_TIME,
-    staleTime: QUERY_CACHE_TIME,
+    staleTime: 0,
   },
 });

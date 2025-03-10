@@ -1,3 +1,4 @@
+import { DEFAULT_API_TIMEOUT } from '@/constants';
 import axios from 'axios';
 
 const BingAPI = axios.create({
@@ -5,6 +6,7 @@ const BingAPI = axios.create({
   headers: {
     'Ocp-Apim-Subscription-Key': process.env.NEXT_PUBLIC_BING_API_KEY,
   },
+  timeout: DEFAULT_API_TIMEOUT,
 });
 
 export default BingAPI;

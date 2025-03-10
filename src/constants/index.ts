@@ -42,3 +42,6 @@ export const defaultNewsItem: TNewsItem = {
 export const defaultNewsFilterQueries: TBingNewsFilterQueries = {
   keyword: '',
 };
+
+/** API timout: 10초 */
+export const DEFAULT_API_TIMEOUT = 1000 * 10;
