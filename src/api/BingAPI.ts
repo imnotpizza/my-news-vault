@@ -1,5 +1,6 @@
 import { DEFAULT_API_TIMEOUT } from '@/constants';
 import axios from 'axios';
+import initInterceptors from './interceptors';
 
 const BingAPI = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BING_API_BASEURL,
@@ -9,4 +10,4 @@ const BingAPI = axios.create({
   timeout: DEFAULT_API_TIMEOUT,
 });
 
-export default BingAPI;
+export default initInterceptors(BingAPI);
