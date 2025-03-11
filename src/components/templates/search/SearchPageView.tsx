@@ -2,6 +2,8 @@ import FilterQueriesForm from '@/components/organisms/search/FilterQueriesForm';
 import NewsSearchGridList from '@/components/organisms/search/NewsSearchGridList';
 import React, { Suspense } from 'react';
 import SearchPageFallback from './SearchPageFallback';
+import ErrorBoundary from '@/components/atoms/ErrorBoundary';
+import { toast } from '@/hooks/useToast';
 
 /**
  * 뉴스 검색 필터링+목록 페이지
@@ -13,7 +15,9 @@ export default async function SearchPageView() {
         <FilterQueriesForm />
       </div>
       <Suspense fallback={<SearchPageFallback />}>
-        <NewsSearchGridList />
+        <ErrorBoundary>
+          <NewsSearchGridList />
+        </ErrorBoundary>
       </Suspense>
     </div>
   );
