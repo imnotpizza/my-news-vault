@@ -1,3 +1,6 @@
+'use client';
+
+import { useToast } from '@/hooks/useToast';
 import { QueryErrorResetBoundary } from '@tanstack/react-query';
 import React from 'react';
 import { ErrorBoundary as EBoundary } from 'react-error-boundary';
@@ -25,6 +28,7 @@ export default function ErrorBoundary({
   children,
   className,
 }: IProps) {
+  const { toast } = useToast();
   return (
     <QueryErrorResetBoundary>
       {({ reset }) => (
@@ -35,7 +39,12 @@ export default function ErrorBoundary({
               {fallbackContent(props)}
             </div>
           )}
-          onError={onError}
+          onError={() => {
+            // TODO: 지역 에러처리는 여기서
+            toast({
+              description: '데이터를 불러오는 중 문제가 발생했습니다.',
+            });
+          }}
         >
           {children}
         </EBoundary>
