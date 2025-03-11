@@ -43,7 +43,7 @@ class APIError extends Error {
       case ERRCODE.TIMEOUT_ERROR:
         return '요청 시간이 초과되었습니다.';
       case ERRCODE.NEWS_FETCH_NOT_FOUND:
-        return '',
+        return '';
       case ERRCODE.UNKNOWN:
         return '알 수 없는 에러가 발생했습니다.';
       default:
