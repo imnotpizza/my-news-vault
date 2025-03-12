@@ -27,7 +27,6 @@ export const useSignout = (options: UseMutationOptions<void>) => {
   const queryStates = useMutation({
     mutationFn: async () => {
       signoutWithFirebaseAuth();
-      queryClient.removeQueries();
     },
     onError: () => {
       alert('로그아웃 도중 문제가 발생하였습니다.');

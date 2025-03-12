@@ -1,7 +1,9 @@
 import { fetchBingNews } from '@/api/client';
 import { defaultNewsFilterQueries } from '@/constants';
+import ERRCODE from '@/constants/errCode';
 import { queryClient } from '@/queries/queryClient';
 import { TBingNewsFilterQueries, TNewsItem } from '@/types';
+import APIError from '@/utils/APIError';
 import {
   convertToNewsItem,
   isDuplicatedNews,
@@ -64,6 +66,11 @@ function useBingNewsFetchQuery({ maxPage = 1 }: Params) {
       const { keyword } = filterQueries;
       // api 호출
       const fetchResult = await fetchBingNews(keyword, pageParam);
+
+      // 검색결과 없으면 error
+      if (fetchResult.value.length === 0) {
+        throw new APIError(ERRCODE.NEWS_FETCH_NOT_FOUND);
+      }
       // 스크랩 목록
       const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>(
         bingNewsQueryKeys.search.list(filterQueries).queryKey,
