@@ -2,10 +2,12 @@ import { Button } from '@/components/atoms/Button';
 import useAuth from '@/hooks/useAuth';
 import { useScrapNews, useUnscrapNews } from '@/queries/useScrapNews';
 import { TNewsItem } from '@/types';
-import React from 'react';
+import React, { useState } from 'react';
 import NewsScrapIcon from '@/assets/news-scrap-icon.svg';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/useToast';
+import { motion } from 'motion/react';
+import { Bell, BellOff } from 'lucide-react';
 
 interface IScrapButtonProps {
   isScrapped: boolean;
@@ -82,22 +84,40 @@ export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps)
   };
 
   return (
-    <Button
-      disabled={isScrappingNews || isUnscrappingNews}
-      aria-label={title}
-      variant="ghost"
-      onClick={() => {
-        if (isScrapped) {
-          onClickUnscrap();
-        } else {
-          onClickScarp();
-        }
+    <SubscribeAnimation isScrapped={isScrapped}>
+      <Button
+        disabled={isScrappingNews || isUnscrappingNews}
+        aria-label={title}
+        variant="ghost"
+        onClick={() => {
+          if (isScrapped) {
+            onClickUnscrap();
+          } else {
+            onClickScarp();
+          }
+        }}
+        className="p-2"
+      >
+        <NewsScrapIcon
+          className={cn('!w-8 !h-8', isScrapped ? 'fill-pink-500' : 'fill-gray-400')}
+        />
+      </Button>
+    </SubscribeAnimation>
+  );
+}
+
+/** 스크랩 시 스프링 애니메이션 효과 추가 */
+function SubscribeAnimation({ isScrapped, children }) {
+  return (
+    <motion.button
+      initial={{ scale: 1 }}
+      animate={{
+        scale: isScrapped ? 1.3 : 1,
       }}
-      className="p-2"
+      exit={{ scale: 1 }}
+      transition={{ type: 'spring', stiffness: 500, damping: 10, duration: 0.3 }}
     >
-      <NewsScrapIcon
-        className={cn('!w-8 !h-8', isScrapped ? 'fill-pink-500' : 'fill-gray-400')}
-      />
-    </Button>
+      {children}
+    </motion.button>
   );
 }
