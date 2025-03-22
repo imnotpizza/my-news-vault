@@ -16,8 +16,16 @@ export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps)
   const { toast } = useToast();
   const { isLogined, authState } = useAuth();
   const { userInfo } = authState;
-  const { mutateAsync: scrapNews, isPending: isScrappingNews } = useScrapNews();
-  const { mutateAsync: unscrapNews, isPending: isUnscrappingNews } = useUnscrapNews();
+  const {
+    mutateAsync: scrapNews,
+    isPending: isScrappingNews,
+    rollbackScrapMutation,
+  } = useScrapNews();
+  const {
+    mutateAsync: unscrapNews,
+    isPending: isUnscrappingNews,
+    rollbackUnscrapMutation,
+  } = useUnscrapNews();
 
   const title = isScrapped ? '스크랩 해제' : '스크랩 추가';
 
@@ -43,6 +51,10 @@ export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps)
       toast({
         description: '스크랩 등록 도중 문제가 발생하였습니다',
       });
+      rollbackScrapMutation({
+        newsItem,
+        isScrapped: false,
+      });
     }
   };
 
@@ -61,6 +73,10 @@ export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps)
     } catch (e) {
       toast({
         description: '스크랩 삭제 도중 문제가 발생하였습니다',
+      });
+      rollbackUnscrapMutation({
+        newsItem,
+        isScrapped: true,
       });
     }
   };

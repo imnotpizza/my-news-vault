@@ -19,20 +19,27 @@ interface MutateParams {
  * @returns mutation states
  */
 export const useScrapNews = () => {
-  const { toast } = useToast();
   const { filterQueries } = useBingNewsFetch.state();
   const queryStates = useMutation<void, Error, MutateParams>({
-    onMutate: ({ newsItem, isScrapped, query, userId }) => {
+    onMutate: ({ newsItem, isScrapped }) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
       addScrapNewsToCache({ ...newsItem, isScrapped });
     },
     mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
       await scrapNews(userId, newsItem);
     },
-    onSettled: () => {},
   });
 
-  return queryStates;
+  /** update 중 에러 발생시 다시 unscrap 상태로 되돌림 */
+  const rollbackScrapMutation = ({ newsItem, isScrapped }) => {
+    updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
+    deleteScrapNewsFromCache(newsItem.newsId);
+  };
+
+  return {
+    ...queryStates,
+    rollbackScrapMutation,
+  };
 };
 
 /**
@@ -40,21 +47,25 @@ export const useScrapNews = () => {
  * @returns mutation states
  */
 export const useUnscrapNews = () => {
-  const { toast } = useToast();
   const { filterQueries } = useBingNewsFetch.state();
   const queryStates = useMutation<void, Error, MutateParams>({
-    onMutate: ({ newsItem, isScrapped, query, userId }) => {
+    onMutate: ({ newsItem, isScrapped }) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
       deleteScrapNewsFromCache(newsItem.newsId);
     },
     mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
       await unscrapNews(userId, newsItem.newsId);
-      toast({
-        description: '스크랩 삭제가 완료되었습니다',
-      });
     },
-    onSettled: () => {},
   });
 
-  return queryStates;
+  /** update 중 에러 발생시 다시 scrap 상태로 되돌림 */
+  const rollbackUnscrapMutation = ({ newsItem, isScrapped }) => {
+    updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
+    addScrapNewsToCache({ ...newsItem, isScrapped });
+  };
+
+  return {
+    ...queryStates,
+    rollbackUnscrapMutation,
+  };
 };
