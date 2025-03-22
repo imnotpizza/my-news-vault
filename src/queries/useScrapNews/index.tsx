@@ -28,9 +28,6 @@ export const useScrapNews = () => {
     },
     mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
       await scrapNews(userId, newsItem);
-      toast({
-        description: '스크랩 등록이 완료되었습니다',
-      });
     },
     onSettled: () => {},
   });

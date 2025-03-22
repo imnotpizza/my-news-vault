@@ -5,6 +5,7 @@ import { TNewsItem } from '@/types';
 import React from 'react';
 import NewsScrapIcon from '@/assets/news-scrap-icon.svg';
 import { cn } from '@/lib/utils';
+import { useToast } from '@/hooks/useToast';
 
 interface IScrapButtonProps {
   isScrapped: boolean;
@@ -12,6 +13,7 @@ interface IScrapButtonProps {
 }
 
 export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps) {
+  const { toast } = useToast();
   const { isLogined, authState } = useAuth();
   const { userInfo } = authState;
   const { mutateAsync: scrapNews, isPending: isScrappingNews } = useScrapNews();
@@ -22,7 +24,9 @@ export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps)
   // TODO: useCallback 추가
   const onClickScarp = async () => {
     if (!isLogined) {
-      alert('스크랩 기능은 로그인 후 사용해주세요.');
+      toast({
+        description: '스크랩 기능은 로그인 후 이용 가능합니다',
+      });
       return;
     }
     try {
@@ -32,8 +36,13 @@ export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps)
         query: newsItem.searchQuery,
         userId: userInfo!.email,
       });
+      toast({
+        description: '스크랩이 완료되었습니다',
+      });
     } catch (e) {
-      alert('스크랩 추가 도중 문제가 발생하였습니다.');
+      toast({
+        description: '스크랩 등록 도중 문제가 발생하였습니다',
+      });
     }
   };
 
@@ -46,8 +55,13 @@ export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps)
         query: newsItem.searchQuery,
         userId: userInfo!.email,
       });
+      toast({
+        description: '스크랩 삭제가 완료되었습니다',
+      });
     } catch (e) {
-      alert('스크랩 삭제 도중 문제가 발생하였습니다.');
+      toast({
+        description: '스크랩 삭제 도중 문제가 발생하였습니다',
+      });
     }
   };
 

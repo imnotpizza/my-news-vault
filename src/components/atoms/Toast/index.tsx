@@ -17,7 +17,7 @@ const toastTheme =
   'rounded-full p-2 px-6 shadow-none bg-gray-300 bg-opacity-50 text-white !w-auto';
 
 /** 토스트 container 스타일 */
-const toastContainerStyle = 'flex-center';
+const toastContainerStyle = 'flex-center w-full';
 
 /**
  * ========================================== 이하 코드 수정하지 말 것 ==========================================
@@ -31,7 +31,7 @@ const ToastViewport = React.forwardRef<
   <ToastPrimitives.Viewport
     ref={ref}
     className={cn(
-      'fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]',
+      'fixed top-0 z-[9999] flex max-h-screen w-full flex-col-reverse p-4',
       toastContainerStyle,
       className,
     )}
