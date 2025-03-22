@@ -6,6 +6,9 @@ import React, { memo } from 'react';
 import NewsScrapIcon from '@/assets/news-scrap-icon.svg';
 import styles from './NewsCard.module.css';
 import ImageView from '@/components/atoms/ImageView';
+import { Button } from '@/components/atoms/Button';
+import { useAtom } from 'jotai';
+import { detailNewsAtom } from '@/components/templates/search/NewsDetailTemplate';
 
 interface IProps {
   newsItem: TNewsItem;
@@ -15,6 +18,7 @@ interface IProps {
  * 뉴스 카드 컴포넌트
  */
 function NewsCard({ newsItem }: IProps) {
+  const [detailNews, setDetailNews] = useAtom<TNewsItem | null>(detailNewsAtom);
   const { title, description, url, providerIcon, datePublished, thumbnail, isScrapped } =
     newsItem;
   return (
@@ -24,7 +28,11 @@ function NewsCard({ newsItem }: IProps) {
         'desktop:w-[14.44rem] desktop:h-[23.38rem]',
         'tablet:w-[14.44rem] tablet:h-[23.38rem]',
         'mobile:w-full mobile:h-auto',
+        'hover:shadow-lg transition-all duration-300',
       )}
+      onClick={() => {
+        setDetailNews(newsItem);
+      }}
     >
       <ProfileImage
         src={providerIcon}
@@ -55,8 +63,7 @@ function NewsCard({ newsItem }: IProps) {
 
 export default memo(NewsCard);
 
-
-      // <Card.Footer className="absolute bottom-0 left-0 w-full h-auto flex justify-between p-4">
-      //   <span className="text-sm text-mnv-gray-40">{datePublished}</span>
-      //   <ScrapButton newsItem={newsItem} isScrapped={newsItem.isScrapped} />
-      // </Card.Footer>;
+// <Card.Footer className="absolute bottom-0 left-0 w-full h-auto flex justify-between p-4">
+//   <span className="text-sm text-mnv-gray-40">{datePublished}</span>
+//   <ScrapButton newsItem={newsItem} isScrapped={newsItem.isScrapped} />
+// </Card.Footer>;
