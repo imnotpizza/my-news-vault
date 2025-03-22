@@ -62,7 +62,7 @@ function useBingNewsFetchQuery({ maxPage = 1 }: Params) {
   const filterQueries = useAtomValue(queryAtom);
 
   const queryStates = useSuspenseInfiniteQuery({
-    ...bingNewsQueryKeys.search.list(filterQueries),
+    queryKey: bingNewsQueryKeys.search.list(filterQueries).queryKey,
     queryFn: async ({ pageParam = 1 }) => {
       const { keyword } = filterQueries;
       // api 호출
@@ -73,9 +73,6 @@ function useBingNewsFetchQuery({ maxPage = 1 }: Params) {
         throw new APIError(ERRCODE.NEWS_FETCH_NOT_FOUND);
       }
       // 스크랩 목록
-      // const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>(
-      //   bingNewsQueryKeys.search.list(filterQueries).queryKey,
-      // );
       const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>(
         SCRAP_QUERY_KEYS.SCRAP.LIST.queryKey,
       );
