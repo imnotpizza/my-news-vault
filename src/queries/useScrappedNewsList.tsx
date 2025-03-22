@@ -9,14 +9,6 @@ import { queryClient } from './queryClient';
 
 export const SCRAP_QUERY_KEYS = createQueryKeyStore({
   SCRAP: {
-    /** 스크랩 추가 */
-    ADD: {
-      queryKey: null,
-    },
-    /** 스크랩 해제 */
-    DELETE: {
-      queryKey: null,
-    },
     /** 목록 */
     LIST: {
       queryKey: null,
@@ -59,7 +51,7 @@ export const prefetchScrappedNewsList = async (userId: TUserInfo['email']) => {
  * @param item: 추가할 뉴스 아이템
  */
 export const addScrapNewsToCache = (item: TNewsItem) => {
-  queryClient.setQueryData<TNewsItem[]>(SCRAP_QUERY_KEYS.SCRAP.ADD.queryKey, (oldData) => {
+  queryClient.setQueryData<TNewsItem[]>(SCRAP_QUERY_KEYS.SCRAP.LIST.queryKey, (oldData) => {
     return [...oldData, item];
   });
 };
@@ -69,7 +61,7 @@ export const addScrapNewsToCache = (item: TNewsItem) => {
  * @param newsId: 삭제할 뉴스의 id
  */
 export const deleteScrapNewsFromCache = (newsId: TNewsItem['newsId']) => {
-  queryClient.setQueryData<TNewsItem[]>(SCRAP_QUERY_KEYS.SCRAP.DELETE.queryKey, (oldData) => {
+  queryClient.setQueryData<TNewsItem[]>(SCRAP_QUERY_KEYS.SCRAP.LIST.queryKey, (oldData) => {
     return oldData.filter((news: TNewsItem) => news.newsId !== newsId);
   });
 };
