@@ -45,10 +45,10 @@ function NewsCard({ newsItem }: IProps) {
         </div>
       </Card.Content>
       {/* FIXME: 여백 없어 별도 팝업 띄워 출력할 예정 */}
-      {/* <Card.Footer className="absolute bottom-0 left-0 w-full h-auto flex justify-between p-4">
+      <Card.Footer className="absolute bottom-0 left-0 w-full h-auto flex justify-between p-4">
         <span className="text-sm text-mnv-gray-40">{datePublished}</span>
         <ScrapButton newsItem={newsItem} isScrapped={newsItem.isScrapped} />
-      </Card.Footer> */}
+      </Card.Footer>
     </Card>
   );
 }

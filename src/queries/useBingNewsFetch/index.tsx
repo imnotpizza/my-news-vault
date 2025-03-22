@@ -16,6 +16,7 @@ import { atom, useAtom, useAtomValue } from 'jotai';
 import { flatMap, flatten } from 'lodash-es';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
+import { fetchScrappedNewsList, SCRAP_QUERY_KEYS } from '../useScrappedNewsList';
 
 /**
  * bing new query key
@@ -72,8 +73,11 @@ function useBingNewsFetchQuery({ maxPage = 1 }: Params) {
         throw new APIError(ERRCODE.NEWS_FETCH_NOT_FOUND);
       }
       // 스크랩 목록
+      // const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>(
+      //   bingNewsQueryKeys.search.list(filterQueries).queryKey,
+      // );
       const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>(
-        bingNewsQueryKeys.search.list(filterQueries).queryKey,
+        SCRAP_QUERY_KEYS.SCRAP.LIST.queryKey,
       );
       // 현재 뉴스데이터
       const curNewsItems = getSearchQueryCache(filterQueries);
