@@ -1,3 +1,4 @@
+import { Button } from '@/components/atoms/Button';
 import {
   Dialog,
   DialogContent,
@@ -7,7 +8,7 @@ import {
   DialogDescription,
 } from '@/components/atoms/Dialog';
 import LoginButton from '@/components/molecules/LoginButton';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface IProps {
   isOpen: boolean;
@@ -17,7 +18,7 @@ interface IProps {
 /**
  * 로그인 모달창
  */
-export default function LoginTemplate({ isOpen, onClose }: IProps) {
+function LoginDialogTemplate({ isOpen, onClose }: IProps) {
   return (
     <Dialog open={isOpen} onOpenChange={(_isOpen) => !_isOpen && onClose()}>
       <DialogContent>
@@ -33,3 +34,17 @@ export default function LoginTemplate({ isOpen, onClose }: IProps) {
     </Dialog>
   );
 }
+
+function OpenButton() {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <Button>로그인</Button>
+      <LoginDialogTemplate isOpen={isOpen} onClose={() => setIsOpen(false)} />
+    </>
+  );
+}
+
+LoginDialogTemplate.OpenButton = OpenButton;
+
+export default LoginDialogTemplate;
