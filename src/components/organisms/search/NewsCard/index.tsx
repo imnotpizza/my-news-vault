@@ -18,9 +18,8 @@ interface IProps {
  * 뉴스 카드 컴포넌트
  */
 function NewsCard({ newsItem }: IProps) {
-  const [detailNews, setDetailNews] = useAtom<TNewsItem | null>(detailNewsAtom);
-  const { title, description, url, providerIcon, datePublished, thumbnail, isScrapped } =
-    newsItem;
+  const [_, setDetailNews] = useAtom<TNewsItem | null>(detailNewsAtom);
+  const { title, description, providerIcon, thumbnail, isScrapped } = newsItem;
   return (
     <Card
       className={cn(

@@ -15,6 +15,9 @@ import { TNewsItem } from '@/types';
 import { Button } from '@/components/atoms/Button';
 import { atom, useAtom } from 'jotai';
 import ScrapButton from '@/components/organisms/search/ScrapButton';
+import { cn } from '@/lib/utils';
+import ProfileImage from '@/components/atoms/ProfileImage';
+import ImageView from '@/components/atoms/ImageView';
 
 interface IProps {
   newsItem: TNewsItem;
@@ -34,18 +37,29 @@ export default function NewsDetailTemplate() {
   const [detailNews, setDetailNews] = useAtom<TNewsItem | null>(detailNewsAtom);
   return (
     <Dialog open={!!detailNews} onOpenChange={(isOpen) => !isOpen && setDetailNews(null)}>
-      {/* 모달을 여는 버튼 */}
-
       {/* 모달 내용 */}
-      <DialogContent className="bg-white p-6 rounded-lg">
-        <DialogHeader>
-          <DialogTitle>구독하시겠습니까?</DialogTitle>
-          <DialogDescription>뉴스 상세정보 레이아웃 만들고 넣어주세요</DialogDescription>
-        </DialogHeader>
-        <ScrapButton isScrapped={detailNews?.isScrapped} newsItem={detailNews!} />
-        <DialogFooter>
-        </DialogFooter>
-      </DialogContent>
+      <section className="desktop:flex tablet:flex mobile:flex-col gap-4 relative">
+        <ProfileImage
+          src={detailNews.providerIcon}
+          alt={detailNews.title}
+          className={cn('absolute top-[0.6rem] left-[0.6rem] w-[2rem] h-[2rem] z-30')}
+        />
+        <div className="w-1/2 mobile:w-full">
+          <ImageView
+            src={detailNews.thumbnail}
+            alt={detailNews.title}
+            className={cn('w-full aspect-[4/3.8]')}
+          />
+        </div>
+        <div className="w-1/2 mobile:w-full gap-4">
+          <h2>{detailNews.title}</h2>
+          <p>{detailNews.description}</p>
+          <div className="w-full flex justify-between items-center">
+            <span className="text-sm text-mnv-gray-40">{detailNews.datePublished}</span>
+            <ScrapButton newsItem={detailNews} isScrapped={detailNews.isScrapped} />
+          </div>
+        </div>
+      </section>
     </Dialog>
   );
 }
