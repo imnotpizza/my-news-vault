@@ -20,6 +20,7 @@ const Header = () => {
         <div className="scrap-link flex justify-end items-center">
           <ToScrapPageButton />
         </div>
+        {/* TODO: user profile 추가 */}
         <div className="login-logout ml-[2.5rem] md:ml-[1.25rem]">
           {isLogined ? <LogoutButton /> : <LoginDialogTemplate.OpenButton />}
         </div>
