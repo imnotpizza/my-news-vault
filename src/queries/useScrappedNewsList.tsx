@@ -1,8 +1,8 @@
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { TNewsItem, TUserInfo } from '@/types';
 import ERRCODE from '@/constants/errCode';
 import useAuth from '@/hooks/useAuth';
-import { createQueryKeys, createQueryKeyStore } from '@lukemorales/query-key-factory';
+import { createQueryKeyStore } from '@lukemorales/query-key-factory';
 import { fetchScrappedList } from '@/api/client';
 import APIError from '@/utils/APIError';
 import { queryClient } from './queryClient';

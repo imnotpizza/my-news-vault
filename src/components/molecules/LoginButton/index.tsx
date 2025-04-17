@@ -4,8 +4,6 @@ import { Button } from '@/components/atoms/Button';
 import useAuth from '@/hooks/useAuth';
 import { useSignin } from '@/queries/useUserAuth';
 // import LoginButtonIcon from '@/assets/svgs/login-button-icon.svg';
-import { authAtom, userInfoContext } from '@/utils/userInfoProvider';
-import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import React, { useContext } from 'react';
 import GoogleIcon from '@/assets/google.svg';

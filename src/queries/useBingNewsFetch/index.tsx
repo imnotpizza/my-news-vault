@@ -13,10 +13,10 @@ import {
 import { createQueryKeyStore } from '@lukemorales/query-key-factory';
 import { InfiniteData, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { atom, useAtom, useAtomValue } from 'jotai';
-import { flatMap, flatten } from 'lodash-es';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { flatMap } from 'lodash-es';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
-import { fetchScrappedNewsList, SCRAP_QUERY_KEYS } from '../useScrappedNewsList';
+import { SCRAP_QUERY_KEYS } from '../useScrappedNewsList';
 
 /**
  * bing new query key

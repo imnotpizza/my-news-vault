@@ -4,11 +4,10 @@ import { cn } from '@/lib/utils';
 import { TNewsItem } from '@/types';
 import React, { memo } from 'react';
 import NewsScrapIcon from '@/assets/news-scrap-icon.svg';
-import styles from './NewsCard.module.css';
 import ImageView from '@/components/atoms/ImageView';
-import { Button } from '@/components/atoms/Button';
 import { useAtom } from 'jotai';
 import { detailNewsAtom } from '@/components/templates/search/NewsDetailTemplate';
+import styles from './NewsCard.module.css';
 
 interface IProps {
   newsItem: TNewsItem;

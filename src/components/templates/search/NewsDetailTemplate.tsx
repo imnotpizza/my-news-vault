@@ -1,18 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose,
-} from '@/components/atoms/Dialog'; // Dialog 경로에 맞게 변경
+import { Dialog } from '@/components/atoms/Dialog'; // Dialog 경로에 맞게 변경
 import { TNewsItem } from '@/types';
-import { Button } from '@/components/atoms/Button';
 import { atom, useAtom } from 'jotai';
 import ScrapButton from '@/components/organisms/search/ScrapButton';
 import { cn } from '@/lib/utils';
