@@ -14,9 +14,8 @@ interface IProps extends React.HTMLAttributes<HTMLButtonElement> {}
  * 로그인 버튼, 버튼 클릭시 로그인 수행
  */
 export default function LoginButton({ ...props }: IProps) {
-  const { refresh } = useRouter();
   const { setUserInfo } = useAuth();
-  const { mutate } = useSignin({
+  const { mutate, isPending } = useSignin({
     onSettled: (newUserInfo) => {
       console.log('newUserInfo', newUserInfo);
       setUserInfo({ ...newUserInfo });
@@ -33,6 +32,7 @@ export default function LoginButton({ ...props }: IProps) {
       variant="ghost"
       {...props}
       onClick={onClickSignin}
+      disabled={isPending}
       className="relative flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md shadow hover:shadow-md transition duration-150"
     >
       <div className="absolute inset-0 bg-black opacity-0 hover:opacity-5 transition-opacity rounded-md pointer-events-none"></div>

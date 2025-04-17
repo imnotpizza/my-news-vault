@@ -8,6 +8,7 @@ import {
   DialogDescription,
 } from '@/components/atoms/Dialog';
 import LoginButton from '@/components/molecules/LoginButton';
+import { DialogTrigger } from '@radix-ui/react-dialog';
 import React, { useState } from 'react';
 
 interface IProps {
@@ -20,11 +21,16 @@ interface IProps {
  */
 function LoginDialogTemplate({ isOpen, onClose }: IProps) {
   return (
-    <Dialog open={isOpen} onOpenChange={(_isOpen) => !_isOpen && onClose()}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>로그인</DialogTitle>
-          <DialogDescription>로그인 후 서비스를 이용하세요</DialogDescription>
+    <Dialog>
+      <DialogTrigger>
+        <Button>로그인</Button>
+      </DialogTrigger>
+      <DialogContent className="justify-center min-h-[15rem]">
+        <DialogHeader className="justify-center gap-4">
+          <DialogTitle className="justify-center text-center">로그인</DialogTitle>
+          <DialogDescription className="justify-center text-center">
+            로그인 후 서비스를 이용하세요
+          </DialogDescription>
         </DialogHeader>
 
         <DialogFooter>
@@ -39,7 +45,6 @@ function OpenButton() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <Button>로그인</Button>
       <LoginDialogTemplate isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
