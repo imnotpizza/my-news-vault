@@ -6,15 +6,7 @@ import { createQueryKeyStore } from '@lukemorales/query-key-factory';
 import { fetchScrappedList } from '@/api/client';
 import APIError from '@/utils/APIError';
 import { queryClient } from './queryClient';
-
-export const SCRAP_QUERY_KEYS = createQueryKeyStore({
-  SCRAP: {
-    /** 목록 */
-    LIST: {
-      queryKey: null,
-    },
-  },
-});
+import { queryOptionsFactory } from '@/utils/queryOptionsFactory';
 
 /**
  * 유저별 스크랩한 뉴스 목록 호출 쿼리
@@ -26,10 +18,7 @@ const useScrappedNewsList = () => {
   const userId = authState.userInfo.email;
   // TODO: 무한스크롤 기능 구현되면 infiniteQuery로 변경
   // queryKey에 userId 필요한지 확인
-  const queryStates = useSuspenseQuery({
-    queryKey: SCRAP_QUERY_KEYS.SCRAP.LIST.queryKey,
-    queryFn: () => fetchScrappedList(userId),
-  });
+  const queryStates = useSuspenseQuery(queryOptionsFactory.scrap.list(userId));
 
   return queryStates;
 };
@@ -40,10 +29,7 @@ const useScrappedNewsList = () => {
  */
 export const prefetchScrappedNewsList = async (userId: TUserInfo['email']) => {
   if (!userId) throw new APIError(ERRCODE.AUTH_USER_NOT_FOUND);
-  await queryClient.prefetchQuery({
-    queryKey: SCRAP_QUERY_KEYS.SCRAP.LIST.queryKey,
-    queryFn: () => fetchScrappedList(userId),
-  });
+  await queryClient.prefetchQuery(queryOptionsFactory.scrap.list(userId));
 };
 
 /**
@@ -51,9 +37,12 @@ export const prefetchScrappedNewsList = async (userId: TUserInfo['email']) => {
  * @param item: 추가할 뉴스 아이템
  */
 export const addScrapNewsToCache = (item: TNewsItem) => {
-  queryClient.setQueryData<TNewsItem[]>(SCRAP_QUERY_KEYS.SCRAP.LIST.queryKey, (oldData) => {
-    return [...oldData, item];
-  });
+  queryClient.setQueryData<TNewsItem[]>(
+    queryOptionsFactory.scrap.list('dd').queryKey,
+    (oldData) => {
+      return [...oldData, item];
+    },
+  );
 };
 
 /**
@@ -61,9 +50,12 @@ export const addScrapNewsToCache = (item: TNewsItem) => {
  * @param newsId: 삭제할 뉴스의 id
  */
 export const deleteScrapNewsFromCache = (newsId: TNewsItem['newsId']) => {
-  queryClient.setQueryData<TNewsItem[]>(SCRAP_QUERY_KEYS.SCRAP.LIST.queryKey, (oldData) => {
-    return oldData.filter((news: TNewsItem) => news.newsId !== newsId);
-  });
+  queryClient.setQueryData<TNewsItem[]>(
+    queryOptionsFactory.scrap.list('dd').queryKey,
+    (oldData) => {
+      return oldData.filter((news: TNewsItem) => news.newsId !== newsId);
+    },
+  );
 };
 
 /**
@@ -74,10 +66,7 @@ export const deleteScrapNewsFromCache = (newsId: TNewsItem['newsId']) => {
 export const fetchScrappedNewsList = async (userId: TUserInfo['email']) => {
   if (!userId) throw new APIError(ERRCODE.AUTH_USER_NOT_FOUND);
 
-  const res = await queryClient.fetchQuery({
-    queryKey: SCRAP_QUERY_KEYS.SCRAP.LIST.queryKey,
-    queryFn: () => fetchScrappedList(userId),
-  });
+  const res = await queryClient.fetchQuery(queryOptionsFactory.scrap.list(userId));
   return res;
 };
 
