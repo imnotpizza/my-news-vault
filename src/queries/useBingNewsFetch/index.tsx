@@ -120,7 +120,7 @@ export function updateNewsSearchQuery(
   filterQueries: TBingNewsFilterQueries,
 ) {
   queryClient.setQueryData<InfiniteData<TNewsItem[]>>(
-    bingNewsQueryKeys.search.list(filterQueries).queryKey,
+    queryOptionsFactory.news.bing.list(filterQueries).queryKey,
     (oldPagesArray) => {
       if (oldPagesArray) {
         // 캐시 데이터 존재하는 경우: 캐시 업데이트
