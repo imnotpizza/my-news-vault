@@ -3,6 +3,7 @@ import NewsSearchGridList from '@/components/organisms/search/NewsSearchGridList
 import React, { Suspense } from 'react';
 import SearchPageFallback from './SearchPageFallback';
 import ErrorBoundary from '@/components/atoms/ErrorBoundary';
+import NewsDetailTemplate from './NewsDetailTemplate';
 
 /**
  * 뉴스 검색 필터링+목록 페이지
@@ -18,6 +19,7 @@ export default async function SearchPageView() {
           <NewsSearchGridList />
         </ErrorBoundary>
       </Suspense>
+      <NewsDetailTemplate />
     </div>
   );
 }

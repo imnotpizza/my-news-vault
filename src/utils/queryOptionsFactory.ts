@@ -1,0 +1,51 @@
+import { fetchBingNews, fetchScrappedList } from '@/api/client';
+import { TBingNewsFilterQueries, TNewsItem, TUserInfo } from '@/types';
+import APIError from './APIError';
+import ERRCODE from '@/constants/errCode';
+import { queryClient } from '@/queries/queryClient';
+
+import { fetchNewsListAndConvert, getSearchQueryCache } from '@/queries/useBingNewsFetch';
+import {
+  convertToNewsItem,
+  isDuplicatedNews,
+  parseDateToFormat,
+  setIsScrapped,
+} from './newsItem';
+
+// private queries (인증없이 호출 불가F)
+export const QK_PRIVATE = 'PRIVATE';
+// public queries (인증없이도 호출가능)
+export const QK_PUBLIC = 'PUBLIC';
+
+/** query key: 뉴스 api */
+export const QK_NEWS = 'NEWS';
+/** query key: bing news */
+export const QK_BING = 'BING';
+/** query key: scrap api */
+export const QK_SCRAP = 'SCRAP';
+
+/**
+ * queryKey, queryFn을 이용하여 쿼리 옵션을 생성하는 팩토리 함수
+ * useQuery Hook, queryClient fn에 다음 옵션 넣어 사용
+ */
+export const queryOptionsFactory = {
+  // news api
+  news: {
+    bing: {
+      list: (filterQueries: TBingNewsFilterQueries) => ({
+        queryKey: [QK_PUBLIC, QK_NEWS, QK_BING, 'LIST', { ...filterQueries }],
+
+        queryFn: async ({ pageParam = 1 }) => {
+          return await fetchNewsListAndConvert(filterQueries, pageParam);
+        },
+      }),
+    },
+  },
+  // scrap api
+  scrap: {
+    list: (userId: TUserInfo['email']) => ({
+      queryKey: [QK_PRIVATE, QK_SCRAP, 'LIST', userId],
+      queryFn: () => fetchScrappedList(userId),
+    }),
+  },
+};

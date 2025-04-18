@@ -5,8 +5,10 @@ import * as React from 'react';
 
 import type { ToastActionElement, ToastProps } from '@/components/atoms/Toast';
 
+/** 최대 토스트 수 */
 const TOAST_LIMIT = 1;
-const TOAST_REMOVE_DELAY = 1000000;
+/** 토스트 duration */
+const TOAST_REMOVE_DELAY = 10000000;
 
 type ToasterToast = ToastProps & {
   id: string;

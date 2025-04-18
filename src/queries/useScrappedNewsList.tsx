@@ -1,28 +1,12 @@
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { TNewsItem, TUserInfo } from '@/types';
 import ERRCODE from '@/constants/errCode';
 import useAuth from '@/hooks/useAuth';
 import { createQueryKeyStore } from '@lukemorales/query-key-factory';
 import { fetchScrappedList } from '@/api/client';
+import APIError from '@/utils/APIError';
 import { queryClient } from './queryClient';
-
-export const scrapNewsQueryKeys = createQueryKeyStore({
-  scrap: null,
-  unscrap: null,
-  list: {
-    all: {
-      queryKey: null,
-      queryFn: (userId: TUserInfo['email']) => fetchScrappedList(userId),
-    },
-  },
-  users: {
-    all: null,
-    detail: (userId: string) => ({
-      queryKey: [userId],
-      queryFn: () => userId,
-    }),
-  },
-});
+import { queryOptionsFactory } from '@/utils/queryOptionsFactory';
 
 /**
  * 유저별 스크랩한 뉴스 목록 호출 쿼리
@@ -34,9 +18,7 @@ const useScrappedNewsList = () => {
   const userId = authState.userInfo.email;
   // TODO: 무한스크롤 기능 구현되면 infiniteQuery로 변경
   // queryKey에 userId 필요한지 확인
-  const queryStates = useSuspenseQuery({
-    ...scrapNewsQueryKeys.list.all,
-  });
+  const queryStates = useSuspenseQuery(queryOptionsFactory.scrap.list(userId));
 
   return queryStates;
 };
@@ -46,10 +28,8 @@ const useScrappedNewsList = () => {
  * @param userId: 사용자 email
  */
 export const prefetchScrappedNewsList = async (userId: TUserInfo['email']) => {
-  if (!userId) throw new Error(ERRCODE.FETCH_SCRAPPED_NEWS_LIST_FAILED);
-  await queryClient.prefetchQuery({
-    ...scrapNewsQueryKeys.list.all,
-  });
+  if (!userId) throw new APIError(ERRCODE.AUTH_USER_NOT_FOUND);
+  await queryClient.prefetchQuery(queryOptionsFactory.scrap.list(userId));
 };
 
 /**
@@ -57,9 +37,12 @@ export const prefetchScrappedNewsList = async (userId: TUserInfo['email']) => {
  * @param item: 추가할 뉴스 아이템
  */
 export const addScrapNewsToCache = (item: TNewsItem) => {
-  queryClient.setQueryData<TNewsItem[]>(scrapNewsQueryKeys.list.all.queryKey, (oldData) => {
-    return [...oldData, item];
-  });
+  queryClient.setQueryData<TNewsItem[]>(
+    queryOptionsFactory.scrap.list('dd').queryKey,
+    (oldData) => {
+      return [...oldData, item];
+    },
+  );
 };
 
 /**
@@ -67,9 +50,12 @@ export const addScrapNewsToCache = (item: TNewsItem) => {
  * @param newsId: 삭제할 뉴스의 id
  */
 export const deleteScrapNewsFromCache = (newsId: TNewsItem['newsId']) => {
-  queryClient.setQueryData<TNewsItem[]>(scrapNewsQueryKeys.list.all.queryKey, (oldData) => {
-    return oldData.filter((news: TNewsItem) => news.newsId !== newsId);
-  });
+  queryClient.setQueryData<TNewsItem[]>(
+    queryOptionsFactory.scrap.list('dd').queryKey,
+    (oldData) => {
+      return oldData.filter((news: TNewsItem) => news.newsId !== newsId);
+    },
+  );
 };
 
 /**
@@ -78,16 +64,10 @@ export const deleteScrapNewsFromCache = (newsId: TNewsItem['newsId']) => {
  * @returns 호출된 데이터
  */
 export const fetchScrappedNewsList = async (userId: TUserInfo['email']) => {
-  if (!userId) throw new Error(ERRCODE.FETCH_SCRAPPED_NEWS_LIST_FAILED);
+  if (!userId) throw new APIError(ERRCODE.AUTH_USER_NOT_FOUND);
 
-  const res = await queryClient.fetchQuery({
-    ...scrapNewsQueryKeys.list.all,
-  });
+  const res = await queryClient.fetchQuery(queryOptionsFactory.scrap.list(userId));
   return res;
-};
-
-export const removeQueryCache = () => {
-  // queryClient.removeQueries([QUERY_KEY.SCRAP_LIST]);
 };
 
 export default useScrappedNewsList;

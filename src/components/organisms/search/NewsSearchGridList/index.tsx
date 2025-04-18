@@ -7,7 +7,7 @@ import NewsCard from '../NewsCard';
 
 export default function NewsSearchGridList() {
   const { filterQueries } = useBingNewsFetch.state();
-  // TODO: query 관련코드 제거
+  // TODO: query 관련코드 제거, useBingNewsFetchQuery hook 안쪽에서 관리
   const query = filterQueries.keyword;
   const isQueryEmpty = useMemo(() => query === '', [query]);
   const queryStates = useBingNewsFetch.query({

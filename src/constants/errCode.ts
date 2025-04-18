@@ -3,7 +3,7 @@
  * AUTH: 사용자 로그인/로그아웃 관련
  * API: API 호출 관련 (BingAPI, Scrap 등등)
  */
-const ERRCODE = {
+export const ERRCODE = {
   AUTH_ALREADY_LOGINED: 10001,
   AUTH_USER_NOT_FOUND: 10002,
   AUTH_INVALID_TOKEN: 10003,
@@ -19,6 +19,7 @@ const ERRCODE = {
   TIMEOUT_ERROR: 20001,
   UNKNOWN: 99999,
 } as const;
-type ERRCODE = (typeof ERRCODE)[keyof typeof ERRCODE];
+
+export type ERRCODE = (typeof ERRCODE)[keyof typeof ERRCODE];
 
 export default ERRCODE;

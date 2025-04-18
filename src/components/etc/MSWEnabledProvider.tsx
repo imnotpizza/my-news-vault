@@ -23,7 +23,7 @@ export default function MSWEnabledProvider({ enabled, children }) {
   const [mswReady, setMswReady] = React.useState(false);
   useEffect(() => {
     if (enabled) {
-      (async () => {
+      (async () => {    
         await startMsw();
         setMswReady(true);
       })();
