@@ -1,3 +1,5 @@
+'use client';
+
 import { useMutation } from '@tanstack/react-query';
 import { scrapNews, unscrapNews } from '@/api/client';
 import { TBingNewsFilterQueries, TNewsItem, TUserInfo } from '@/types';
