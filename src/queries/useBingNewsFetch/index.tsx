@@ -17,17 +17,7 @@ import { flatMap } from 'lodash-es';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
 import { SCRAP_QUERY_KEYS } from '../useScrappedNewsList';
-
-/**
- * bing new query key
- */
-export const bingNewsQueryKeys = createQueryKeyStore({
-  search: {
-    list: (filterQueries: TBingNewsFilterQueries) => ({
-      queryKey: [{ ...filterQueries }],
-    }),
-  },
-});
+import { queryOptionsFactory } from '@/utils/queryOptionsFactory';
 
 interface Params {
   query: TBingNewsFilterQueries['keyword'];
@@ -42,7 +32,7 @@ interface Params {
  */
 export const getSearchQueryCache = (filterQueries: TBingNewsFilterQueries) => {
   const res = queryClient.getQueryData<InfiniteData<TNewsItem[]>>(
-    bingNewsQueryKeys.search.list(filterQueries).queryKey,
+    queryOptionsFactory.news.bing.list(filterQueries).queryKey,
   );
 
   return flatMap(res?.pages, (item) => {
@@ -62,36 +52,7 @@ function useBingNewsFetchQuery({ maxPage = 1 }: Params) {
   const filterQueries = useAtomValue(queryAtom);
 
   const queryStates = useSuspenseInfiniteQuery({
-    queryKey: bingNewsQueryKeys.search.list(filterQueries).queryKey,
-    queryFn: async ({ pageParam = 1 }) => {
-      const { keyword } = filterQueries;
-      // api 호출
-      const fetchResult = await fetchBingNews(keyword, pageParam);
-
-      // 검색결과 없으면 error
-      if (fetchResult.value.length === 0) {
-        throw new APIError(ERRCODE.NEWS_FETCH_NOT_FOUND);
-      }
-      // 스크랩 목록
-      const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>(
-        SCRAP_QUERY_KEYS.SCRAP.LIST.queryKey,
-      );
-      // 현재 뉴스데이터
-      const curNewsItems = getSearchQueryCache(filterQueries);
-      // newsItem형식으로 변환
-      const newsItems = fetchResult.value.map((item) => {
-        const isScrapped = setIsScrapped(item.name, scrappedNewsList);
-        const datePublished = parseDateToFormat(item.datePublished);
-        const isDuplicated = isDuplicatedNews(item.name, curNewsItems);
-        if (!isDuplicated) {
-          return convertToNewsItem(item, datePublished, keyword, isScrapped);
-        } else {
-          return undefined;
-        }
-      });
-      const filteredNewsItems = newsItems.filter((item) => item !== undefined);
-      return filteredNewsItems;
-    },
+    ...queryOptionsFactory.news.bing.list(filterQueries),
     getNextPageParam: (lastPage, pages) => {
       return pages.length === maxPage ? undefined : pages.length + 1;
     },

@@ -28,7 +28,7 @@ export const QK_SCRAP = 'SCRAP';
  * queryKey, queryFn을 이용하여 쿼리 옵션을 생성하는 팩토리 함수
  * useQuery Hook, queryClient fn에 다음 옵션 넣어 사용
  */
-const queryOptionsFactory = () => ({
+export const queryOptionsFactory = {
   // news api
   news: {
     bing: {
@@ -76,4 +76,4 @@ const queryOptionsFactory = () => ({
       queryFn: () => fetchScrappedList(userId),
     }),
   },
-});
+};
