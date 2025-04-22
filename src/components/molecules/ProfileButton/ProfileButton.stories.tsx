@@ -2,8 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import withStoryProviders from '@/hoc/withStoryProviders';
 import ProfileButton from './index';
 
-const SAMPLE_AVATAR =
-  'https://ashallendesign.ams3.cdn.digitaloceanspaces.com/rMbsGOyK6i1KjNkbXff8qLohzM1nWQA8HNGwHF0J.png';
+const SAMPLE_AVATAR = 'https://ashallendesign.ams3.cdn.digitaloceanspaces.com/rMbsGOyK6i1KjNkbXff8qLohzM1nWQA8HNGwHF0J.png';
 
 export default {
   title: 'Molecules/ProfileButton',

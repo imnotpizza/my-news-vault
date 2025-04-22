@@ -1,7 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import withStoryProviders from '@/hoc/withStoryProviders';
-import NewsCard from './index';
 import { TNewsItem } from '@/types';
+import NewsCard from './index';
 
 export default {
   title: 'Organisms/Search/NewsCard',

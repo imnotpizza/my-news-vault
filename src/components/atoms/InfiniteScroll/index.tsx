@@ -14,6 +14,8 @@ interface IProps {
   maxPage: number;
 }
 
+// 이미 존재하는 type 사용중, eslint-ignore 처리
+// eslint-disable-next-line no-undef
 const options: IntersectionObserverInit = {
   threshold: 0,
 };
@@ -26,7 +28,7 @@ const options: IntersectionObserverInit = {
  */
 export default function useInfiniteScroll({ enabled, onTriggered, page }: IProps) {
   const io = useRef<IntersectionObserver | null>(null);
-  const [_state, _setState] = useState({
+  const [, _setState] = useState({
     enabled,
     page,
   });

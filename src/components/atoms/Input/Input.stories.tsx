@@ -1,6 +1,7 @@
+import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import withStoryProviders from '@/hoc/withStoryProviders';
-import { Input } from './index';
+import Input from './index';
 
 export default {
   title: 'Atoms/Input',

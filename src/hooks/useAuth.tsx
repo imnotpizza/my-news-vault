@@ -21,9 +21,9 @@ export default function useAuth() {
           newUserInfo === null
             ? null
             : {
-                ...prev.userInfo,
-                newUserInfo,
-              },
+              ...prev.userInfo,
+              newUserInfo,
+            },
       };
     });
   };

@@ -20,8 +20,7 @@ const userInfoContext = React.createContext<IUserInfoContext>({
 });
 
 const UserInfoProvider = ({ children, initialUserInfo = null }: any) => {
-  const [userInfo, setUserInfo] =
-    React.useState<IUserInfoContext['userInfo']>(initialUserInfo);
+  const [userInfo, setUserInfo] = React.useState<IUserInfoContext['userInfo']>(initialUserInfo);
 
   return (
     <userInfoContext.Provider value={{ userInfo, setUserInfo, isSignin: Boolean(userInfo) }}>

@@ -1,16 +1,7 @@
 import { fetchBingNews, fetchScrappedList } from '@/api/client';
 import { TBingNewsFilterQueries, TNewsItem, TUserInfo } from '@/types';
-import APIError from './APIError';
-import ERRCODE from '@/constants/errCode';
-import { queryClient } from '@/queries/queryClient';
-
 import { fetchNewsListAndConvert, getSearchQueryCache } from '@/queries/useBingNewsFetch';
-import {
-  convertToNewsItem,
-  isDuplicatedNews,
-  parseDateToFormat,
-  setIsScrapped,
-} from './newsItem';
+
 
 // private queries (인증없이 호출 불가F)
 export const QK_PRIVATE = 'PRIVATE';

@@ -1,7 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import withStoryProviders from '@/hoc/withStoryProviders';
-import Skeleton from '.';
 import { cn } from '@/lib/utils';
+import Skeleton from '.';
 
 export default {
   title: 'Atoms/Skeleton',

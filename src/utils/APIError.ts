@@ -4,20 +4,17 @@ import ERRCODE from '@/constants/errCode';
  * My News Vault 커스텀 에러
  */
 class APIError extends Error {
-  private _errCode: ERRCODE;
+  public errCode: ERRCODE;
 
   constructor(errCode: ERRCODE) {
-    super('ERROR ::' + errCode);
+    super(`ERROR ::${errCode}`);
     this.name = 'APIError';
-    this._errCode = errCode;
+    this.errCode = errCode;
   }
 
-  get errCode() {
-    return this._errCode;
-  }
   // TODO: gpt 자동생성 문구, 어색한 부분 재작성
   get msgFromCode(): string {
-    switch (this._errCode) {
+    switch (this.errCode) {
       case ERRCODE.AUTH_ALREADY_LOGINED:
         return '이미 로그인 되어 있습니다.';
       case ERRCODE.AUTH_USER_NOT_FOUND:

@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/atoms/Button';
-import { Input } from '@/components/atoms/Input';
+import Input from '@/components/atoms/Input';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
 import { TBingNewsFilterQueries } from '@/types';
 import { createSearchUrlWithQueries } from '@/utils/newsItem';
@@ -36,8 +36,9 @@ export default function FilterQueriesForm() {
       // make query into query string
       const url = createSearchUrlWithQueries(filterQueries);
       router.push(url);
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      // TODO: 에러 처리
+      console.error(err);
     }
   };
 

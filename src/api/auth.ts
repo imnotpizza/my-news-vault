@@ -1,10 +1,10 @@
 import { googleProvider, auth } from '@/firebase';
 import { TUserInfo } from '@/types';
 import { signInWithPopup } from 'firebase/auth';
-import { removeToken, saveToken } from './next-api';
 import APIError from '@/utils/APIError';
 import ERRCODE from '@/constants/errCode';
 import { queryClient } from '@/queries/queryClient';
+import { removeToken, saveToken } from './next-api';
 
 // FIXME: firebase admin 사용으로 변경
 export const signinWithFirebaseAuth = async (): Promise<TUserInfo> => {

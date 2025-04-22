@@ -7,11 +7,26 @@ import NewsScrapIcon from '@/assets/news-scrap-icon.svg';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/useToast';
 import { motion } from 'motion/react';
-import { Bell, BellOff } from 'lucide-react';
 
 interface IScrapButtonProps {
   isScrapped: boolean;
   newsItem: TNewsItem;
+}
+
+/** 스크랩 시 스프링 애니메이션 효과 추가 */
+function SubscribeAnimation({ isScrapped, children }) {
+  return (
+    <motion.button
+      initial={{ scale: 1 }}
+      animate={{
+        scale: isScrapped ? 1.3 : 1,
+      }}
+      exit={{ scale: 1 }}
+      transition={{ type: 'spring', stiffness: 500, damping: 10, duration: 0.3 }}
+    >
+      {children}
+    </motion.button>
+  );
 }
 
 export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps) {
@@ -103,21 +118,5 @@ export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps)
         />
       </Button>
     </SubscribeAnimation>
-  );
-}
-
-/** 스크랩 시 스프링 애니메이션 효과 추가 */
-function SubscribeAnimation({ isScrapped, children }) {
-  return (
-    <motion.button
-      initial={{ scale: 1 }}
-      animate={{
-        scale: isScrapped ? 1.3 : 1,
-      }}
-      exit={{ scale: 1 }}
-      transition={{ type: 'spring', stiffness: 500, damping: 10, duration: 0.3 }}
-    >
-      {children}
-    </motion.button>
   );
 }

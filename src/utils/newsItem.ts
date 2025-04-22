@@ -116,7 +116,7 @@ export const createSearchUrlWithQueries = (filterQueries: Record<string, string 
   const keys = Object.keys(filterQueries);
 
   keys.forEach((key) => {
-    if (Boolean(filterQueries[key])) {
+    if (filterQueries[key]) {
       url.append(key, filterQueries[key].toString());
     }
   });

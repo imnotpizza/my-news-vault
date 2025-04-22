@@ -1,8 +1,8 @@
 import withStoryProviders from '@/hoc/withStoryProviders';
-import MSWTest from './MSWTest';
 import { Meta } from '@storybook/react';
-import RootProviders from './RootProviders';
 import { http, HttpResponse } from 'msw';
+import MSWTest from './MSWTest';
+import RootProviders from './RootProviders';
 import { mswTestHandler } from '../../../mocks/handler/newsHandler';
 
 export default {
