@@ -1,18 +1,8 @@
 'use client';
 
-import { fetchBingNews } from '@/api/client';
 import { defaultNewsFilterQueries } from '@/constants';
-import ERRCODE from '@/constants/errCode';
 import { queryClient } from '@/queries/queryClient';
 import { TBingNewsFilterQueries, TNewsItem } from '@/types';
-import APIError from '@/utils/APIError';
-import {
-  convertToNewsItem,
-  isDuplicatedNews,
-  parseDateToFormat,
-  setIsScrapped,
-} from '@/utils/newsItem';
-import { createQueryKeyStore } from '@lukemorales/query-key-factory';
 import { InfiniteData, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { flatMap } from 'lodash-es';
@@ -144,42 +134,6 @@ export function updateNewsSearchQuery(
       }
     },
   );
-}
-
-// FIXME: 나중에 api결과 처리하는 부분 어디에 둘지 결정 필요(전부 애매함)
-export async function fetchNewsListAndConvert(
-  filterQueries: TBingNewsFilterQueries,
-  pageParam: number,
-) {
-  const { keyword } = filterQueries;
-  // api 호출
-  const fetchResult = await fetchBingNews(keyword, pageParam);
-
-  // 검색결과 없으면 not found 에러
-  if (fetchResult.value.length === 0) {
-    throw new APIError(ERRCODE.NEWS_FETCH_NOT_FOUND);
-  }
-  // 스크랩 목록
-  const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>(
-    queryOptionsFactory.scrap.list('dd').queryKey,
-  );
-  // 현재 뉴스데이터
-  const curNewsItems = getSearchQueryCache(filterQueries);
-  // newsItem형식으로 변환
-  const convertedNewsList = fetchResult.value
-    .map((item) => {
-      const isScrapped = setIsScrapped(item.name, scrappedNewsList);
-      const datePublished = parseDateToFormat(item.datePublished);
-      // 중복된 뉴스는 제거(중복된 뉴스 들어오는 경우 있음)
-      const isDuplicated = isDuplicatedNews(item.name, curNewsItems);
-      if (!isDuplicated) {
-        return convertToNewsItem(item, datePublished, keyword, isScrapped);
-      } else {
-        return undefined;
-      }
-    })
-    .filter(Boolean);
-  return convertedNewsList;
 }
 
 const useBingNewsFetch = {
