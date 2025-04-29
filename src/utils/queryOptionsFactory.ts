@@ -1,5 +1,6 @@
 import { fetchScrappedList } from '@/api/client';
 import { TBingNewsFilterQueries, TUserInfo } from '@/types';
+// eslint-disable-next-line import/no-cycle
 import { fetchNewsListAndConvert } from '@/utils/newsItem';
 
 // private queries (인증없이 호출 불가F)

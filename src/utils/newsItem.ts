@@ -3,6 +3,7 @@ import { TBingNewsFilterQueries, TNewsItem, TRawNewsItem } from '@/types';
 import { fetchBingNews } from '@/api/client';
 import APIError from '@/utils/APIError';
 import ERRCODE from '@/constants/errCode';
+// eslint-disable-next-line import/no-cycle
 import { queryOptionsFactory } from '@/utils/queryOptionsFactory';
 import { queryClient } from '@/queries/queryClient';
 import { getSearchQueryCache } from '@/queries/useBingNewsFetch';

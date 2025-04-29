@@ -14,8 +14,7 @@ import { useToast } from '@/hooks/useToast';
  */
 
 /** 토스트 박스 스타일 */
-const toastTheme =
-  'rounded-full p-2 px-6 shadow-none bg-gray-300 bg-opacity-50 text-white !w-auto';
+const toastTheme = 'rounded-full p-2 px-6 shadow-none bg-gray-300 bg-opacity-50 text-white !w-auto';
 
 /** 토스트 container 스타일 */
 const toastContainerStyle = 'flex-center w-full';

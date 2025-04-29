@@ -1,5 +1,7 @@
 {
   "extends": ["next/core-web-vitals", "airbnb-base"],
+  // shadcn 관련 컴포넌트: lintcheck 제외
+  "exclude": ["./src/hooks/useToast", "./src/components/atoms/**"],
   "env": {
     "browser": true,
     "node": true,
