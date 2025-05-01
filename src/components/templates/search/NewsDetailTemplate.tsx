@@ -69,27 +69,6 @@ export default function NewsDetailTemplate() {
           </Card.Content>
         </Card>
       </DialogContent>
-
-      {/* 모달 내용 */}
-      {/* <DialogContent>
-        <ProfileImage
-          src={detailNews.providerIcon}
-          alt={detailNews.title}
-          className={cn('absolute top-[0.6rem] left-[0.6rem] w-[auto] h-[2rem] z-30 flex')}
-        />
-        <div className="w-full">
-          <ImageView
-            src={detailNews.thumbnail}
-            alt={detailNews.title}
-            className={cn('w-full aspect-[4/3.8]')}
-          />
-        </div>
-        <div className="w-full gap-4">
-          <p className='text-lg'>{detailNews.title}</p>
-          <p>{detailNews.description}</p>
-
-        </div>
-      </DialogContent> */}
     </Dialog>
   );
 }
