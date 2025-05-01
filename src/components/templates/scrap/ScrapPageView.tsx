@@ -15,7 +15,7 @@ export default async function ScrapPageView() {
           <div className="w-full px-10">
             <TotalScrapCount />
           </div>
-          <ScrapGridList />
+          <ScrapPageFallback />
         </ErrorBoundary>
       </Suspense>
     </div>

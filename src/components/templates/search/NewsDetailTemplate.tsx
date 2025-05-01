@@ -37,7 +37,7 @@ export default function NewsDetailTemplate() {
         })
       }
     >
-      <DialogContent>
+      <DialogContent className="!bg-card">
         <ProfileImage
           src={detailNews.providerIcon}
           alt={detailNews.title}

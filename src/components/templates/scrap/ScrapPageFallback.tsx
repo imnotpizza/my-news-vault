@@ -18,9 +18,6 @@ const CardSkeleton = () => {
         <Skeleton.Box className="w-full h-4" />
         <Skeleton.Box className="w-full h-4" />
         <Skeleton.Box className="w-full h-4" />
-        <div className="flex justify-between items-center mt-2 gap-2">
-          <Skeleton.Box className="w-14" />
-        </div>
       </div>
     </Skeleton.Container>
   );

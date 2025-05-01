@@ -12,7 +12,7 @@ import LoginDialogTemplate from '../../search/LoginDialogTemplate';
 const Header = () => {
   const { isLogined } = useAuth();
   return (
-    <div className="w-full h-full mx-auto flex justify-between items-center bg-white">
+    <div className="w-full h-full mx-auto flex justify-between items-center bg-card">
       <div className="flex items-center justify-center">
         <AppLogo />
       </div>
