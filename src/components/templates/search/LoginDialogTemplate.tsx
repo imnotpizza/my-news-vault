@@ -24,21 +24,19 @@ function LoginDialogTemplate({ isOpen, setIsOpen }: IProps) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <Button onClick={() => setIsOpen(true)}>로그인</Button>
-      <DialogContent className="justify-center min-h-[15rem]">
+      <DialogContent className="justify-center min-h-[15rem] w-full">
         <DialogHeader className="justify-center gap-4">
-          <DialogTitle className="justify-center text-center">로그인</DialogTitle>
+          <DialogTitle className="justify-center text-center text-xl">로그인</DialogTitle>
         </DialogHeader>
         <DialogDescription className="justify-center text-center">
           로그인 후 서비스를 이용하세요
         </DialogDescription>
 
-        <DialogFooter>
-          <LoginButton
-            onClick={() => {
-              setIsOpen(false);
-            }}
-          />
-        </DialogFooter>
+        <LoginButton
+          onClick={() => {
+            setIsOpen(false);
+          }}
+        />
       </DialogContent>
     </Dialog>
   );
