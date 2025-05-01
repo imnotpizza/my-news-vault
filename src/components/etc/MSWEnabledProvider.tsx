@@ -30,8 +30,12 @@ export default function MSWEnabledProvider({ enabled, children }) {
     }
   }, [enabled]);
 
+  if (!enabled) {
+    return children;
+  }
+
   if (mswReady) {
-    return <>{children}</>;
+    return children;
   } else {
     return null;
   }
