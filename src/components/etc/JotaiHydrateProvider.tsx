@@ -1,7 +1,8 @@
 'use client';
 
 import { authAtom } from '@/hooks/useAuth';
-import { TUserInfo } from '@/types';
+import { queryAtom } from '@/queries/useBingNewsFetch';
+import { TBingNewsFilterQueries, TUserInfo } from '@/types';
 import { useHydrateAtoms } from 'jotai/utils';
 import React from 'react';
 
