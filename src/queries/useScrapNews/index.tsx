@@ -23,7 +23,7 @@ interface MutateParams {
  */
 export const useScrapNews = () => {
   const { authState } = useAuth();
-  const userId = authState.userInfo.email;
+  const userId = authState.userInfo?.email;
   const { filterQueries } = useBingNewsFetch.state();
   const queryStates = useMutation<void, Error, MutateParams>({
     onMutate: ({ newsItem, isScrapped }) => {
@@ -53,7 +53,7 @@ export const useScrapNews = () => {
  */
 export const useUnscrapNews = () => {
   const { authState } = useAuth();
-  const userId = authState.userInfo.email;
+  const userId = authState.userInfo?.email;
   const { filterQueries } = useBingNewsFetch.state();
   const queryStates = useMutation<void, Error, MutateParams>({
     onMutate: ({ newsItem, isScrapped }) => {

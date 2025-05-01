@@ -53,12 +53,8 @@ export default function NewsDetailTemplate() {
           />
           <Card.Content className="h-auto">
             <div className="flex flex-col gap-2 mb-6">
-              <Card.Title className={cn('text-md', styles['card-title-ellipsis'])}>
-                {detailNews.title}
-              </Card.Title>
-              <Card.Description
-                className={cn('text-sm overflow-hidden', styles['card-desc-ellipsis'])}
-              >
+              <Card.Title className={cn('text-md')}>{detailNews.title}</Card.Title>
+              <Card.Description className={cn('text-sm overflow-hidden')}>
                 {detailNews.description}
               </Card.Description>
             </div>
