@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 4000",
+    "dev:mock": "next dev -p 4000 cross-env NEXT_PUBLIC_ENABLE_MSW=true",
     "build": "next build",
     "start": "next start -p 80",
     "lint": "next lint",
@@ -71,6 +72,7 @@
     "autoprefixer": "^10.4.20",
     "axios-mock-adapter": "^2.0.0",
     "codecov": "^3.8.3",
+    "cross-env": "^7.0.3",
     "cross-fetch": "^4.1.0",
     "encoding": "^0.1.13",
     "eslint": "^8.39.0",
