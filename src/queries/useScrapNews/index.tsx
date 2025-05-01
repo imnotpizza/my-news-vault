@@ -3,9 +3,9 @@
 import { useMutation } from '@tanstack/react-query';
 import { scrapNews, unscrapNews } from '@/api/client';
 import { TBingNewsFilterQueries, TNewsItem, TUserInfo } from '@/types';
+import { useToast } from '@/hooks/useToast';
 import useBingNewsFetch, { updateNewsSearchQuery } from '../useBingNewsFetch';
 import { addScrapNewsToCache, deleteScrapNewsFromCache } from '../useScrappedNewsList';
-import { useToast } from '@/hooks/useToast';
 
 // TODO: firebase -> aws로 대체
 

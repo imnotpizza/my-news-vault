@@ -10,18 +10,17 @@ import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/useToast';
 
 /**
- * ========================================== Toast 커스터마이징 관련 ==========================================
+ * ========================================== Toast 커스터마이징 관련 ==================================
  */
 
 /** 토스트 박스 스타일 */
-const toastTheme =
-  'rounded-full p-2 px-6 shadow-none bg-gray-300 bg-opacity-50 text-white !w-auto';
+const toastTheme = 'rounded-full p-2 px-6 shadow-none bg-gray-300 bg-opacity-50 text-white !w-auto';
 
 /** 토스트 container 스타일 */
 const toastContainerStyle = 'flex-center w-full';
 
 /**
- * ========================================== 이하 코드 수정하지 말 것 ==========================================
+ * ========================================== 이하 코드 수정하지 말 것 ===================================
  */
 const ToastProvider = ToastPrimitives.Provider;
 

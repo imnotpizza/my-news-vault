@@ -8,11 +8,11 @@ import { cn } from '@/lib/utils';
 import ProfileImage from '@/components/atoms/ProfileImage';
 import ImageView from '@/components/atoms/ImageView';
 
-interface IProps {
-  newsItem: TNewsItem;
-}
-
-export const detailNewsAtom = atom<TNewsItem | null>(null);
+export const detailNewsAtom = atom<{
+  selected: TNewsItem | null;
+}>({
+  selected: null,
+});
 
 /**
  * 뉴스 상세정보 모달 템플릿
@@ -23,7 +23,7 @@ export const detailNewsAtom = atom<TNewsItem | null>(null);
  * - 뉴스 스크랩 버튼
  */
 export default function NewsDetailTemplate() {
-  const [detailNews, setDetailNews] = useAtom<TNewsItem | null>(detailNewsAtom);
+  const [{ selected: detailNews }, setDetailNews] = useAtom(detailNewsAtom);
   return (
     <Dialog open={!!detailNews} onOpenChange={(isOpen) => !isOpen && setDetailNews(null)}>
       {/* 모달 내용 */}

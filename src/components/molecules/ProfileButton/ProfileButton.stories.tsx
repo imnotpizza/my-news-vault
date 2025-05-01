@@ -10,7 +10,7 @@ export default {
   component: withStoryProviders(ProfileButton, {}),
 } as Meta;
 
-const Template: Story = (args) => <ProfileButton {...args} />;
+const Template: Story = (args: any) => <ProfileButton {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

@@ -85,6 +85,6 @@ export type TBingNewsAPIRes = {
 export type TPageProps = {
   dehydratedState?: DehydratedState;
   userInfo: TUserInfo | null;
-  query?: TBingNewsFilterQueries['query'];
+  query?: TBingNewsFilterQueries['keyword'];
   errCode?: string;
 };

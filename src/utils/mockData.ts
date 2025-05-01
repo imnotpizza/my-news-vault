@@ -1,4 +1,3 @@
-import { DEFAULT_MOCK_QUERY } from '@/msw/handlers/bingNewsSearchHandlers';
 import { TNewsItem, TRawNewsItem } from '@/types';
 
 export const mockRawNewsItem: TRawNewsItem = {
@@ -82,7 +81,7 @@ export const mockScrappedNewsItem: TNewsItem[] = [
 ];
 
 export const mockPageProps = {
-  query: DEFAULT_MOCK_QUERY,
+  query: 'query for test',
   userInfo: {
     setUserInfo: () => {},
     isSignin: false,

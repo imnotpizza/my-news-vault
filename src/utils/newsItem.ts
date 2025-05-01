@@ -1,5 +1,12 @@
 import { defaultNewsItem } from '@/constants';
 import { TBingNewsFilterQueries, TNewsItem, TRawNewsItem } from '@/types';
+import { fetchBingNews } from '@/api/client';
+import APIError from '@/utils/APIError';
+import ERRCODE from '@/constants/errCode';
+// eslint-disable-next-line import/no-cycle
+import { queryOptionsFactory } from '@/utils/queryOptionsFactory';
+import { queryClient } from '@/queries/queryClient';
+import { getSearchQueryCache } from '@/queries/useBingNewsFetch';
 
 /**
  * YYYY-MM-DD hh:mm 형식으로 날짜 변환
@@ -116,10 +123,53 @@ export const createSearchUrlWithQueries = (filterQueries: Record<string, string 
   const keys = Object.keys(filterQueries);
 
   keys.forEach((key) => {
-    if (Boolean(filterQueries[key])) {
+    if (filterQueries[key]) {
       url.append(key, filterQueries[key].toString());
     }
   });
 
   return `?${url.toString()}`;
 };
+
+/**
+ * Bing News API에서 가져온 데이터를 TNewsItem 형식으로 변환
+ * - 중복 뉴스 제거
+ * - 스크랩 데이터 사용하여 isScrapped 초기화
+ * @param filterQueries: 검색 필터링 쿼리 객체
+ * @param pageParam: 페이지 번호
+ * @returns
+ */
+export async function fetchNewsListAndConvert(
+  filterQueries: TBingNewsFilterQueries,
+  pageParam: number,
+) {
+  const { keyword } = filterQueries;
+  // api 호출
+  const fetchResult = await fetchBingNews(keyword, pageParam);
+
+  // 검색결과 없으면 not found 에러
+  if (fetchResult.value.length === 0) {
+    throw new APIError(ERRCODE.NEWS_FETCH_NOT_FOUND);
+  }
+  // 스크랩 목록
+  const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>(
+    queryOptionsFactory.scrap.list('dd').queryKey,
+  );
+  // 현재 뉴스데이터
+  const curNewsItems = getSearchQueryCache(filterQueries);
+  // newsItem형식으로 변환
+  const convertedNewsList = fetchResult.value
+    .map((item) => {
+      const isScrapped = setIsScrapped(item.name, scrappedNewsList);
+      const datePublished = parseDateToFormat(item.datePublished);
+      // 중복된 뉴스는 제거(중복된 뉴스 들어오는 경우 있음)
+      const isDuplicated = isDuplicatedNews(item.name, curNewsItems);
+      if (!isDuplicated) {
+        return convertToNewsItem(item, datePublished, keyword, isScrapped);
+      } else {
+        return undefined;
+      }
+    })
+    .filter(Boolean);
+  return convertedNewsList;
+}

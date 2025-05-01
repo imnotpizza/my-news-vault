@@ -17,19 +17,21 @@ interface IProps {
  * 뉴스 카드 컴포넌트
  */
 function NewsCard({ newsItem }: IProps) {
-  const [_, setDetailNews] = useAtom<TNewsItem | null>(detailNewsAtom);
+  const [_, setDetailNews] = useAtom(detailNewsAtom);
   const { title, description, providerIcon, thumbnail, isScrapped } = newsItem;
   return (
     <Card
       className={cn(
         'p-0 relative',
         'desktop:w-[14.44rem] desktop:h-[23.38rem]',
-        'tablet:w-[14.44rem] tablet:h-[23.38rem]',
+        'tablet:w-[14.44rem] abtlet:h-[23.38rem]',
         'mobile:w-full mobile:h-auto',
         'hover:shadow-lg transition-all duration-300',
       )}
       onClick={() => {
-        setDetailNews(newsItem);
+        setDetailNews({
+          selected: newsItem,
+        });
       }}
     >
       <ProfileImage

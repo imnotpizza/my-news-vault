@@ -14,6 +14,7 @@ import React, { useState } from 'react';
 interface IProps {
   isOpen: boolean;
   onClose: () => void;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 /**
@@ -47,7 +48,11 @@ function OpenButton() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <LoginDialogTemplate isOpen={isOpen} setIsOpen={setIsOpen} />
+      <LoginDialogTemplate
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        onClose={() => setIsOpen(false)}
+      />
     </>
   );
 }

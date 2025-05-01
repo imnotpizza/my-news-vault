@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 import ScrapGridList from '@/components/organisms/scrap/ScarpGridList';
 import TotalScrapCount from '@/components/organisms/scrap/TotalScrapCount';
-import ScrapPageFallback from './ScrapPageFallback';
 import ErrorBoundary from '@/components/atoms/ErrorBoundary';
+import ScrapPageFallback from './ScrapPageFallback';
 
 /**
  * 뉴스 검색 필터링+목록 페이지
