@@ -1,9 +1,8 @@
 import withStoryProviders from '@/hoc/withStoryProviders';
 import { Meta } from '@storybook/react';
-import { http, HttpResponse } from 'msw';
 import MSWTest from './MSWTest';
-import RootProviders from './RootProviders';
 import { mswTestHandler } from '../../../mocks/handler/newsHandler';
+import TestProviders from '../providers/withTestProviders';
 
 export default {
   title: 'Atoms/MSWTest',
@@ -11,9 +10,9 @@ export default {
 } as Meta;
 
 const Template = () => (
-  <RootProviders>
+  <TestProviders>
     <MSWTest />
-  </RootProviders>
+  </TestProviders>
 );
 
 export const Default = Template.bind({});

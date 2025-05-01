@@ -19,6 +19,10 @@ const userInfoContext = React.createContext<IUserInfoContext>({
   isSignin: false,
 });
 
+/**
+ * @deprecated
+ * authAtom으로 대체됨
+ */
 const UserInfoProvider = ({ children, initialUserInfo = null }: any) => {
   const [userInfo, setUserInfo] = React.useState<IUserInfoContext['userInfo']>(initialUserInfo);
 
