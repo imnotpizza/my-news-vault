@@ -11,6 +11,7 @@ import NewsDetailTemplate from './NewsDetailTemplate';
 export default async function SearchPageView() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-start gap-8">
+      <NewsDetailTemplate />
       <div className="desktop:w-[30.13rem] tablet:w-[30.13rem] mobile:w-full">
         <FilterQueriesForm />
       </div>
@@ -19,7 +20,6 @@ export default async function SearchPageView() {
           <NewsSearchGridList />
         </ErrorBoundary>
       </Suspense>
-      <NewsDetailTemplate />
     </div>
   );
 }

@@ -16,7 +16,7 @@ interface IScrapButtonProps {
 /** 스크랩 시 스프링 애니메이션 효과 추가 */
 function SubscribeAnimation({ isScrapped, children }) {
   return (
-    <motion.button
+    <motion.div
       initial={{ scale: 1 }}
       animate={{
         scale: isScrapped ? 1.3 : 1,
@@ -25,7 +25,7 @@ function SubscribeAnimation({ isScrapped, children }) {
       transition={{ type: 'spring', stiffness: 500, damping: 10, duration: 0.3 }}
     >
       {children}
-    </motion.button>
+    </motion.div>
   );
 }
 
