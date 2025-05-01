@@ -25,7 +25,6 @@ export const queryOptionsFactory = {
     bing: {
       list: (filterQueries: TBingNewsFilterQueries) => ({
         queryKey: [QK_PUBLIC, QK_NEWS, QK_BING, 'LIST', { ...filterQueries }],
-
         queryFn: ({ pageParam = 1 }) => fetchNewsListAndConvert(filterQueries, pageParam),
       }),
     },

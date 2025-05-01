@@ -6,6 +6,7 @@ import { TBingNewsFilterQueries, TNewsItem, TUserInfo } from '@/types';
 import { useToast } from '@/hooks/useToast';
 import useBingNewsFetch, { updateNewsSearchQuery } from '../useBingNewsFetch';
 import { addScrapNewsToCache, deleteScrapNewsFromCache } from '../useScrappedNewsList';
+import useAuth from '@/hooks/useAuth';
 
 // TODO: firebase -> aws로 대체
 
@@ -21,11 +22,13 @@ interface MutateParams {
  * @returns mutation states
  */
 export const useScrapNews = () => {
+  const { authState } = useAuth();
+  const userId = authState.userInfo.email;
   const { filterQueries } = useBingNewsFetch.state();
   const queryStates = useMutation<void, Error, MutateParams>({
     onMutate: ({ newsItem, isScrapped }) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
-      addScrapNewsToCache({ ...newsItem, isScrapped });
+      addScrapNewsToCache({ ...newsItem, isScrapped }, userId);
     },
     mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
       await scrapNews(userId, newsItem);
@@ -35,7 +38,7 @@ export const useScrapNews = () => {
   /** update 중 에러 발생시 다시 unscrap 상태로 되돌림 */
   const rollbackScrapMutation = ({ newsItem, isScrapped }) => {
     updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
-    deleteScrapNewsFromCache(newsItem.newsId);
+    deleteScrapNewsFromCache(newsItem.newsId, userId);
   };
 
   return {
@@ -49,11 +52,13 @@ export const useScrapNews = () => {
  * @returns mutation states
  */
 export const useUnscrapNews = () => {
+  const { authState } = useAuth();
+  const userId = authState.userInfo.email;
   const { filterQueries } = useBingNewsFetch.state();
   const queryStates = useMutation<void, Error, MutateParams>({
     onMutate: ({ newsItem, isScrapped }) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
-      deleteScrapNewsFromCache(newsItem.newsId);
+      deleteScrapNewsFromCache(newsItem.newsId, userId);
     },
     mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
       await unscrapNews(userId, newsItem.newsId);
@@ -63,7 +68,7 @@ export const useUnscrapNews = () => {
   /** update 중 에러 발생시 다시 scrap 상태로 되돌림 */
   const rollbackUnscrapMutation = ({ newsItem, isScrapped }) => {
     updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
-    addScrapNewsToCache({ ...newsItem, isScrapped });
+    addScrapNewsToCache({ ...newsItem, isScrapped }, userId);
   };
 
   return {
