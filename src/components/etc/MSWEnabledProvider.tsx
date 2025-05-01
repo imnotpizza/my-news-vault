@@ -27,6 +27,8 @@ export default function MSWEnabledProvider({ enabled, children }) {
         await startMsw();
         setMswReady(true);
       })();
+    } else {
+      setMswReady(true);
     }
   }, [enabled]);
 

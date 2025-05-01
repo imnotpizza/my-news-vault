@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 4000",
-    "dev:mock": "next dev -p 4000 cross-env NEXT_PUBLIC_ENABLE_MSW=true",
+    "dev:mock": "cross-env NEXT_PUBLIC_MSW_ENABLED=true next dev -p 4000",
     "build": "next build",
     "start": "next start -p 80",
     "lint": "next lint",
