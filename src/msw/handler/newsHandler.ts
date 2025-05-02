@@ -4,12 +4,16 @@ import { HttpResponse, http } from 'msw';
 
 export const mswTestHandler = [
   // 모든 게시글 조회
-  http.get('https://jsonplaceholder.typicode.com/posts', ({ params }) => {
-    const mockPosts = [
-      { userId: 1, id: 1, title: '테스트 글 제목 #1', body: '내용 예시 #1' },
-      { userId: 2, id: 2, title: '테스트 글 제목 #2', body: '내용 예시 #2' },
-    ];
-    return HttpResponse.json(mockPosts);
+  http.get('https://jsonplaceholder.typicode.com/posts', ({ request }) => {
+    const url = new URL(request.url);
+    console.log('url', url);
+    // _page, _limit 쿼리파라미터로 받아와
+    const page = Number(url.searchParams.get('_page')) || 1;
+    const limit = Number(url.searchParams.get('_limit')) || 10;
+    const mockPosts = generateMockPosts(page, limit);
+    return HttpResponse.json(mockPosts, {
+      status: 200,
+    });
   }),
 ];
 
@@ -65,3 +69,17 @@ export default [
     );
   }),
 ];
+
+function generateMockPosts(page: number, limit = 10) {
+  const startId = (page - 1) * limit + 1;
+
+  return Array.from({ length: limit }, (_, index) => {
+    const id = startId + index;
+    return {
+      userId: Math.ceil(id / 5), // 예: 5개 포스트마다 userId 하나씩 올리기
+      id,
+      title: `Mock Title #${id}`, // `Mock Title #1`, `#2`, ...
+      body: `This is the body of mock post #${id}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+    };
+  });
+}

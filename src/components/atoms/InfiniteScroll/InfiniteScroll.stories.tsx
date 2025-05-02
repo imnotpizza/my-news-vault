@@ -7,6 +7,14 @@ import Card from '@/components/atoms/CardUI';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import TestProviders from '@/components/providers/withTestProviders';
 
+// 1. Post 타입 정의
+interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
+
 const MAX_PAGE = 5;
 
 const ItemCard = ({
@@ -43,7 +51,7 @@ export default meta;
  */
 export function InfiniteScrollExample() {
   const [page, setPage] = useState(1);
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   // enabled: Maxpage 도달하면 False로
   const enabled = !isLoading && page <= MAX_PAGE;
@@ -96,7 +104,7 @@ function QueryInfiniteScroll() {
     const response = await fetch(
       `https://jsonplaceholder.typicode.com/posts?_page=${pageParam}&_limit=10`,
     );
-    const data = await response.json();
+    const data = await response.json() as Post[];
     return { data, nextPage: pageParam + 1, isLastPage: pageParam >= MAX_PAGE };
   };
 
