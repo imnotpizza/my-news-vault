@@ -1,5 +1,4 @@
-import RootProviders from '@/components/etc/RootProviders';
-import { StoryFn } from '@storybook/react';
+import TestProviders from '@/components/providers/withTestProviders';
 import React from 'react';
 
 /**
@@ -9,9 +8,9 @@ import React from 'react';
  * @returns
  */
 const withStoryProviders = (Story: any, props: any) => () => (
-    <RootProviders>
+    <TestProviders>
       <Story {...props} />
-    </RootProviders>
+    </TestProviders>
 );
 
 export default withStoryProviders;

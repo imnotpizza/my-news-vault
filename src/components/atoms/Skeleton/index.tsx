@@ -6,8 +6,8 @@ import React from 'react';
  */
 const SkeletonSlideUI = ({ className }: { className?: string }) => {
   return (
-    <div className={cn('relative overflow-hidden bg-gray-200 rounded-md', className)}>
-      <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-shimmer w-full h-full" />
+    <div className={cn('relative overflow-hidden bg-secondary rounded-md', className)}>
+      <div className="absolute inset-0 bg-gradient-to-r from-secondary via-primary to-secondary animate-shimmer w-full h-full" />
     </div>
   );
 };
@@ -41,7 +41,7 @@ const Container = ({
   return (
     <div
       className={cn(
-        'relative overflow-hidden bg-gray-100 rounded-lg flex flex-col gap-4 w-full h-auto p-6',
+        'relative overflow-hidden bg-primary rounded-lg flex flex-col gap-4 w-full h-auto p-6',
         className,
       )}
     >

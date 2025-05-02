@@ -45,3 +45,6 @@ export const defaultNewsFilterQueries: TBingNewsFilterQueries = {
 
 /** API timout: 10초 */
 export const DEFAULT_API_TIMEOUT = 1000 * 10;
+
+/** 최대 뉴스 추가 로드 수: 3개 */
+export const BING_NEWS_MAX_PAGE = 3;

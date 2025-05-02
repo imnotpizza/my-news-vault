@@ -36,9 +36,9 @@ export const prefetchScrappedNewsList = async (userId: TUserInfo['email']) => {
  * 사용자 데이터 캐시에 추가 (api호출 X)
  * @param item: 추가할 뉴스 아이템
  */
-export const addScrapNewsToCache = (item: TNewsItem) => {
+export const addScrapNewsToCache = (item: TNewsItem, userId: TUserInfo['email']) => {
   queryClient.setQueryData<TNewsItem[]>(
-    queryOptionsFactory.scrap.list('dd').queryKey,
+    queryOptionsFactory.scrap.list(userId).queryKey,
     (oldData) => {
       return [...oldData, item];
     },
@@ -49,9 +49,9 @@ export const addScrapNewsToCache = (item: TNewsItem) => {
  * 캐시에서 스크랩 데이터 삭제 (api호출 X)
  * @param newsId: 삭제할 뉴스의 id
  */
-export const deleteScrapNewsFromCache = (newsId: TNewsItem['newsId']) => {
+export const deleteScrapNewsFromCache = (newsId: TNewsItem['newsId'], userId: TUserInfo['email']) => {
   queryClient.setQueryData<TNewsItem[]>(
-    queryOptionsFactory.scrap.list('dd').queryKey,
+    queryOptionsFactory.scrap.list(userId).queryKey,
     (oldData) => {
       return oldData.filter((news: TNewsItem) => news.newsId !== newsId);
     },

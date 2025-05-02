@@ -45,7 +45,7 @@ function NewsCard({ newsItem }: IProps) {
       {/* thumbnail */}
       {/* FIXME: ImageView 적용, 현재 next/image가 외부이미지를 못읽어 문제발생 */}
       <ImageView src={thumbnail} alt={title} className={cn('w-full aspect-[4/3.8]')} />
-      <Card.Content className="p-4">
+      <Card.Content className="p-4 !text-card-foreground">
         <div className="flex flex-col gap-2 mb-6">
           <Card.Title className={cn('text-md', styles['card-title-ellipsis'])}>
             {title}

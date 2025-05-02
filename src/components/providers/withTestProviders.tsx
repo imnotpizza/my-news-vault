@@ -1,22 +1,20 @@
 // 컴포넌트에 이름 안붙어 lint error발생, hoc 구조때문에 여기만 비활성화
 /* eslint-disable react/display-name */
 import { queryClient } from '@/queries/queryClient';
-import Palette from '@/styles/palette';
-import { UserInfoProvider } from '@/utils/userInfoProvider';
+import { ToastProvider } from '@radix-ui/react-toast';
 import { QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { Toaster } from '../atoms/Toast';
+import '@/styles/reset.css';
+import '@/styles/twinit.css';
 
-const withTestProviders = () => (WrappedComponent: React.FC, props?: any) => {
+const TestProviders = ({ children }: { children: React.ReactNode }) => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={Palette}>
-        <UserInfoProvider {...props.userInfo}>
-          <WrappedComponent {...props} />
-        </UserInfoProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <ToastProvider>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <Toaster />
+    </ToastProvider>
   );
 };
 
-export default withTestProviders();
+export default TestProviders;

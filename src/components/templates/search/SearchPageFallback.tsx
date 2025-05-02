@@ -1,5 +1,5 @@
 import Skeleton from '@/components/atoms/Skeleton';
-import NewsGridList from '@/components/molecules/NewsGridList';
+import NewsGridList from '@/components/atoms/NewsGridList';
 import { cn } from '@/lib/utils';
 import React from 'react';
 
@@ -18,9 +18,6 @@ const CardSkeleton = () => {
         <Skeleton.Box className="w-full h-4" />
         <Skeleton.Box className="w-full h-4" />
         <Skeleton.Box className="w-full h-4" />
-        <div className="flex justify-between items-center mt-2 gap-2">
-          <Skeleton.Box className="w-14" />
-        </div>
       </div>
     </Skeleton.Container>
   );

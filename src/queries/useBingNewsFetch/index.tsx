@@ -1,20 +1,18 @@
 'use client';
 
-import { defaultNewsFilterQueries } from '@/constants';
+import { BING_NEWS_MAX_PAGE, defaultNewsFilterQueries } from '@/constants';
 import { queryClient } from '@/queries/queryClient';
 import { TBingNewsFilterQueries, TNewsItem } from '@/types';
-import { InfiniteData, useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import {
+  InfiniteData,
+  useInfiniteQuery,
+  useSuspenseInfiniteQuery,
+} from '@tanstack/react-query';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { flatMap } from 'lodash-es';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
 import { queryOptionsFactory } from '@/utils/queryOptionsFactory';
-
-interface Params {
-  query: TBingNewsFilterQueries['keyword'];
-  enabled: boolean;
-  maxPage: number;
-}
 
 /**
  * 뉴스 검색 쿼리 캐시 데이터 조회
@@ -39,15 +37,20 @@ export const queryAtom = atom<TBingNewsFilterQueries>({
 /**
  * bing news fetch api hook
  */
-function useBingNewsFetchQuery({ maxPage = 1 }: Params) {
+function useBingNewsFetchQuery() {
   const filterQueries = useAtomValue(queryAtom);
 
-  const queryStates = useSuspenseInfiniteQuery({
+  const queryStates = useInfiniteQuery({
     ...queryOptionsFactory.news.bing.list(filterQueries),
     getNextPageParam: (lastPage, pages) => {
-      return pages.length === maxPage ? undefined : pages.length + 1;
+      return pages.length === BING_NEWS_MAX_PAGE ? undefined : pages.length + 1;
     },
     initialPageParam: 1,
+    enabled: !!filterQueries.keyword,
+    placeholderData: {
+      pages: [],
+      pageParams: [1],
+    },
   });
 
   // 이중배열 구조 평탄화
@@ -89,7 +92,7 @@ function useBingNewsFetchState() {
    * TODO: jotai 사용하여초기화하는게 맞는지 확인: 검색 상태는 searchParams에 의해 결정되는 중...
    * */
   useEffect(() => {
-    const keyword = searchParams.get('keyword');
+    const keyword = searchParams.get('keyword') || '';
     setFilterQueries({ ...filterQueries, keyword });
   }, [searchParams]);
 

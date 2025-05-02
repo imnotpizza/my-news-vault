@@ -7,6 +7,8 @@ import NewsScrapIcon from '@/assets/news-scrap-icon.svg';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/useToast';
 import { motion } from 'motion/react';
+import { useAtom, useSetAtom } from 'jotai';
+import { detailNewsAtom } from '@/components/templates/search/NewsDetailTemplate';
 
 interface IScrapButtonProps {
   isScrapped: boolean;
@@ -16,7 +18,7 @@ interface IScrapButtonProps {
 /** 스크랩 시 스프링 애니메이션 효과 추가 */
 function SubscribeAnimation({ isScrapped, children }) {
   return (
-    <motion.button
+    <motion.div
       initial={{ scale: 1 }}
       animate={{
         scale: isScrapped ? 1.3 : 1,
@@ -25,11 +27,12 @@ function SubscribeAnimation({ isScrapped, children }) {
       transition={{ type: 'spring', stiffness: 500, damping: 10, duration: 0.3 }}
     >
       {children}
-    </motion.button>
+    </motion.div>
   );
 }
 
 export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps) {
+  const setDetailNews = useSetAtom(detailNewsAtom);
   const { toast } = useToast();
   const { isLogined, authState } = useAuth();
   const { userInfo } = authState;
@@ -61,6 +64,12 @@ export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps)
         query: newsItem.searchQuery,
         userId: userInfo!.email,
       });
+      setDetailNews({
+        selected: {
+          ...newsItem,
+          isScrapped: true,
+        },
+      });
       toast({
         description: '스크랩이 완료되었습니다',
       });
@@ -83,6 +92,12 @@ export default function ScrapButton({ newsItem, isScrapped }: IScrapButtonProps)
         isScrapped: false,
         query: newsItem.searchQuery,
         userId: userInfo!.email,
+      });
+      setDetailNews({
+        selected: {
+          ...newsItem,
+          isScrapped: false,
+        },
       });
       toast({
         description: '스크랩 삭제가 완료되었습니다',
