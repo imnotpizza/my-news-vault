@@ -6,12 +6,12 @@ import React, { useEffect } from 'react';
 async function startMsw() {
   if (process.env.NODE_ENV === 'production') return;
   if (typeof window !== 'undefined') {
-    const worker = await import('../../../mocks/browser').then((res) => res.default);
+    const worker = await import('@/msw/browser').then((res) => res.default);
     await worker.start({
       onUnhandledRequest: 'warn',
     });
   } else {
-    const server = await import('../../../mocks/server').then((res) => res.default);
+    const server = await import('@/msw/server').then((res) => res.default);
     server.listen();
   }
 }

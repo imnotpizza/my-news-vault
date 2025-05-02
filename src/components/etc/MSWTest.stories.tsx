@@ -1,7 +1,7 @@
 import withStoryProviders from '@/hoc/withStoryProviders';
 import { Meta } from '@storybook/react';
 import MSWTest from './MSWTest';
-import { mswTestHandler } from '../../../mocks/handler/newsHandler';
+import { mswTestHandler } from '@/msw/handler/newsHandler';
 import TestProviders from '../providers/withTestProviders';
 
 export default {
