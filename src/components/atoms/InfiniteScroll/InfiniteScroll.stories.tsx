@@ -6,6 +6,7 @@ import useInfiniteScroll, { InfiniteScrollWrapper } from '.';
 import Card from '@/components/atoms/CardUI';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import TestProviders from '@/components/providers/withTestProviders';
+import { mswTestHandler } from '@/msw/handler/newsHandler';
 
 // 1. Post 타입 정의
 interface Post {
@@ -97,14 +98,13 @@ export function InfiniteScrollExampleWithReactQuery() {
     </TestProviders>
   );
 }
-
 function QueryInfiniteScroll() {
   // react-query의 useInfiniteQuery를 사용한 데이터 페칭
   const fetchPosts = async ({ pageParam = 1 }) => {
     const response = await fetch(
       `https://jsonplaceholder.typicode.com/posts?_page=${pageParam}&_limit=10`,
     );
-    const data = await response.json() as Post[];
+    const data = (await response.json()) as Post[];
     return { data, nextPage: pageParam + 1, isLastPage: pageParam >= MAX_PAGE };
   };
 
@@ -139,3 +139,11 @@ function QueryInfiniteScroll() {
     </div>
   );
 }
+
+export const RQExample = InfiniteScrollExampleWithReactQuery.bind({});
+// storybook, msw 연동
+RQExample.parameters = {
+  msw: {
+    handlers: [...mswTestHandler],
+  },
+};
