@@ -3,9 +3,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { setupServer } from 'msw/node';
 import { composeStories } from '@storybook/react';
 import MSWTest from './MSWTest';
-import { mswTestHandler } from '../../../mocks/handler/newsHandler';
 import RootProviders from './RootProviders';
 import * as MSWTestStories from './MSWTest.stories';
+import { mswTestHandler } from '@/msw/handler/newsHandler';
 
 /**
  * storybook에서 설정한 테스트 컴포넌트 그대로 단위테스트용으로 사용
