@@ -1,21 +1,19 @@
-/**
- * @file: InfiniteScroll.tsx
- * @author: liam / liam@o2pluss.com
- * @since: 2024.12.13
- * @description: 무한스크롤 wrapper 컴포넌트
- */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  ForwardedRef,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface IProps {
   enabled: boolean;
   onTriggered: (...args: any[]) => any;
   page: number;
-  maxPage: number;
 }
 
-// 이미 존재하는 type 사용중, eslint-ignore 처리
-// eslint-disable-next-line no-undef
 const options: IntersectionObserverInit = {
   threshold: 0,
 };
@@ -28,7 +26,7 @@ const options: IntersectionObserverInit = {
  */
 export default function useInfiniteScroll({ enabled, onTriggered, page }: IProps) {
   const io = useRef<IntersectionObserver | null>(null);
-  const [, _setState] = useState({
+  const [_state, _setState] = useState({
     enabled,
     page,
   });
@@ -39,15 +37,6 @@ export default function useInfiniteScroll({ enabled, onTriggered, page }: IProps
       page,
     });
   }, [enabled, page]);
-
-  useEffect(() => {
-    return () => {
-      if (io.current) {
-        io.current.disconnect();
-        io.current = null;
-      }
-    };
-  }, []);
 
   const ref = useCallback((target: HTMLDivElement) => {
     if (!io.current) {
@@ -69,36 +58,53 @@ export default function useInfiniteScroll({ enabled, onTriggered, page }: IProps
   return ref;
 }
 
-export const InfiniteScrollWrapper = ({
-  className,
-  children,
-  ioRef,
-  height = 200,
-  isLoading,
-  LoadingUi = 'loading...',
-}: {
+interface InfiniteScrollWrapperProps {
   className?: string;
   children: React.ReactNode;
-  ioRef: any;
-  height?: number;
+  thresholdHeight?: number;
   isLoading?: boolean;
-  LoadingUi?: React.ReactNode;
-}) => {
-  return (
-    <div className={twMerge(className, 'ods-w-full ods-relative')}>
-      {children}
-      <div
-        ref={ioRef}
-        style={{
-          height,
-        }}
-        className={twMerge(
-          '!ods-absolute ods-w-full ods-bottom-0 ods-left-0 ods-flex ods-justify-center ods-items-center',
+  loadingUI?: React.ReactNode;
+}
+
+/**
+ * infinite scroll wrapper 컴포넌트
+ * - ods useInfiniteScroll 사용할 리스트를 다음 컴포넌트로 감싸 사용
+ * @params className: style
+ * @params children: 들어갈 컨텐츠
+ * @params thresholdHeight: threshold(IntersectionObserver에의해 관찰되는 element)의 height값,
+ * @params isLoading: 로딩 상태
+ * @params loadingUI: 로딩 UI
+ *
+ */
+export const InfiniteScrollWrapper = forwardRef(
+  (
+    {
+      className,
+      children,
+      thresholdHeight = 200,
+      isLoading,
+      loadingUI = <span>loading</span>,
+    }: InfiniteScrollWrapperProps,
+    ref: ForwardedRef<HTMLDivElement>,
+  ) => {
+    return (
+      <div className={twMerge(className, 'ods-w-full ods-relative')}>
+        {children}
+        <div
+          ref={ref}
+          style={{
+            height: thresholdHeight,
+          }}
+          className={twMerge(
+            '!ods-absolute ods-w-full ods-bottom-0 ods-left-0 ods-flex ods-justify-center ods-items-center',
+          )}
+        ></div>
+        {isLoading && (
+          <div className="ods-flex ods-justify-center ods-items-center ods-p-8">
+            {loadingUI}
+          </div>
         )}
-      ></div>
-      {isLoading && (
-        <div className="ods-flex ods-justify-center ods-items-center ods-p-8">{LoadingUi}</div>
-      )}
-    </div>
-  );
-};
+      </div>
+    );
+  },
+);
