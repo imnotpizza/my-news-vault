@@ -1,13 +1,10 @@
 import { Metadata } from 'next';
 import React from 'react';
-import MSWTest from '@/components/etc/MSWTest';
 import { createMetadataObj } from '../_lib/metadata';
-import HomePage from './_component/HomePage';
-
-//  <HomePage />
+import LandingPageTemplate from '@/components/templates/landing/LandingPageTemplate';
 
 export default function MainPage() {
-  return <HomePage />;
+  return <LandingPageTemplate />;
 }
 
 /** 메타데이터 설정 */

@@ -2,7 +2,7 @@ import { Button } from '@/components/atoms/Button';
 import Link from 'next/link';
 import React from 'react';
 
-export default function HomePage() {
+export default function LandingPageTemplate() {
   return (
     <main className="bg-gradient-to-b from-primary/80 to-primary/20 w-screen h-screen">
       <section className="py-10 sm:py-16 lg:py-24">
