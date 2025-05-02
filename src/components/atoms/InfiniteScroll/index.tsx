@@ -88,7 +88,7 @@ export const InfiniteScrollWrapper = forwardRef(
     ref: ForwardedRef<HTMLDivElement>,
   ) => {
     return (
-      <div className={twMerge(className, 'ods-w-full ods-relative')}>
+      <div className={twMerge(className, 'w-full relative')}>
         {children}
         <div
           ref={ref}
@@ -96,14 +96,10 @@ export const InfiniteScrollWrapper = forwardRef(
             height: thresholdHeight,
           }}
           className={twMerge(
-            '!ods-absolute ods-w-full ods-bottom-0 ods-left-0 ods-flex ods-justify-center ods-items-center',
+            '!absolute w-full bottom-0 left-0 flex justify-center items-center',
           )}
         ></div>
-        {isLoading && (
-          <div className="ods-flex ods-justify-center ods-items-center ods-p-8">
-            {loadingUI}
-          </div>
-        )}
+        {isLoading && <div className="flex justify-center items-center p-8">{loadingUI}</div>}
       </div>
     );
   },

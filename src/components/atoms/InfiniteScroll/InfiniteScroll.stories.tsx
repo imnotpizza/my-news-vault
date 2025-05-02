@@ -66,10 +66,10 @@ export function InfiniteScrollExample() {
   });
 
   return (
-    <div className="ods-w-full ods-h-[500px] ods-my-5">
+    <div className="w-full h-[500px] my-5">
       {/* 획득한 ref를 Wrapper에 주입 */}
       <InfiniteScrollWrapper ref={ref} isLoading={isLoading}>
-        <div className="ods-flex ods-flex-col ods-gap-4">
+        <div className="flex flex-col gap-4">
           {posts.map((post) => (
             <ItemCard key={post.id} post={post} />
           ))}
@@ -120,9 +120,9 @@ function QueryInfiniteScroll() {
   if (status === 'error') return <p>Error loading posts.</p>;
 
   return (
-    <div className="ods-w-full ods-h-[500px] ods-my-5">
+    <div className="w-full h-[500px] my-5">
       <InfiniteScrollWrapper ref={ref} isLoading={isFetchingNextPage}>
-        <div className="ods-flex ods-flex-col ods-gap-4">
+        <div className="flex flex-col gap-4">
           {data?.pages.map((page) =>
             page.data.map((post: any) => <ItemCard key={post.id} post={post} />),
           )}
