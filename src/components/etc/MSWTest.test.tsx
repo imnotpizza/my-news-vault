@@ -11,7 +11,7 @@ import { mswTestHandler } from '@/msw/handler/newsHandler';
  * storybook에서 설정한 테스트 컴포넌트 그대로 단위테스트용으로 사용
  * - mock component 중복 사용문제 개선위해
  * */
-const { Default } = composeStories(MSWTestStories);
+const { Default, MswEmpty } = composeStories(MSWTestStories);
 
 const server = setupServer(mswTestHandler[0]);
 
@@ -37,8 +37,8 @@ describe('MSWTest Component', () => {
   it('데이터가 정상적으로 렌더링 되어야 함', async () => {
     renderTest();
     await waitFor(() => {
-      expect(screen.getByText('테스트 글 제목 #1')).toBeInTheDocument();
-      expect(screen.getByText('테스트 글 제목 #2')).toBeInTheDocument();
+      expect(screen.getByText('Mock Title #1')).toBeInTheDocument();
+      expect(screen.getByText('Mock Title #2')).toBeInTheDocument();
     });
   });
 

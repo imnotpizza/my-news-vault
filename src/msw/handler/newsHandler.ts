@@ -6,6 +6,7 @@ export const mswTestHandler = [
   // 모든 게시글 조회
   http.get('https://jsonplaceholder.typicode.com/posts', ({ request }) => {
     const url = new URL(request.url);
+    console.log('###########################################1111111');
     // _page, _limit 쿼리파라미터로 받아와서 Mock 데이터 생성
     const page = Number(url.searchParams.get('_page')) || 1;
     const limit = Number(url.searchParams.get('_limit')) || 10;
@@ -18,14 +19,6 @@ export const mswTestHandler = [
 
 // JSONPlaceholder API를 모킹하기 위한 MSW 핸들러 예시
 export default [
-  // 모든 게시글 조회
-  http.get('https://jsonplaceholder.typicode.com/posts', ({ params }) => {
-    const mockPosts = [
-      { userId: 1, id: 1, title: '테스트 글 제목 #1', body: '내용 예시 #1' },
-      { userId: 2, id: 2, title: '테스트 글 제목 #2', body: '내용 예시 #2' },
-    ];
-    return HttpResponse.json(mockPosts);
-  }),
   // fetchBingNews
   http.get(
     `https://api.bing.microsoft.com/v7.0/news/search?mkt=en-us&q=&count=20&offset=0`,

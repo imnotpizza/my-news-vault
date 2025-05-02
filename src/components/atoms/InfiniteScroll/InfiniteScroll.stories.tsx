@@ -42,8 +42,14 @@ const ItemCard = ({
  *
  */
 const meta: Meta<any> = {
-  component: InfiniteScrollWrapper,
+  title: 'Atoms/InfiniteScroll',
+  component: InfiniteScrollExample,
   argTypes: {},
+  parameters: {
+    msw: {
+      handlers: [...mswTestHandler],
+    },
+  },
 };
 export default meta;
 
@@ -56,13 +62,14 @@ export function InfiniteScrollExample() {
   const [isLoading, setIsLoading] = useState(false);
   // enabled: Maxpage 도달하면 False로
   const enabled = !isLoading && page <= MAX_PAGE;
-
   const fetch2 = async ({ page: newPage }: any) => {
     setIsLoading(true);
+    console.log('##################################### 1111');
     const apiRes = await fetch(
       `https://jsonplaceholder.typicode.com/posts?_page=${newPage}&_limit=10`,
     );
     const res = await apiRes.json();
+    console.log('##################################### 2222', res);
     setPosts((prev) => [...prev, ...res]);
     setPage((p) => p + 1);
     setIsLoading(false);
@@ -139,11 +146,3 @@ function QueryInfiniteScroll() {
     </div>
   );
 }
-
-export const RQExample = InfiniteScrollExampleWithReactQuery.bind({});
-// storybook, msw 연동
-RQExample.parameters = {
-  msw: {
-    handlers: [...mswTestHandler],
-  },
-};
