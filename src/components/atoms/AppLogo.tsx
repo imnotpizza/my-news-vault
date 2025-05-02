@@ -1,17 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import Image from 'next/image';
-import { responsive } from '@/styles/responsive';
-
-const Logo = styled(Image)`
-  ${responsive.mobile} {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-`;
 
 const AppLogo = () => {
-  return <Logo src="/img/applogo.png" alt="logo" width={70} height={70} />;
+  return (
+    <Image src="/img/applogo.png" alt="logo" width={60} height={60} className="w-16-h-16" />
+  );
 };
 
 export default AppLogo;
