@@ -7,7 +7,7 @@ import React from 'react';
  */
 export default function FooterTemplate() {
   return (
-    <Layout.Footer className="py-10 bg-primary/10 border-t border-gray-200">
+    <Layout.Footer className="bg-primary/10 border-t border-gray-200 flex items-center justify-center py-4">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 text-center">
         <p className="text-sm text-gray-600">
           ⓒ {new Date().getFullYear()} My News Vault. All rights reserved.
