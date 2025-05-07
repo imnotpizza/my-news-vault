@@ -1,12 +1,14 @@
 import { FadeInAnimContainer } from '@/components/atoms/Animation';
 import { Button } from '@/components/atoms/Button';
+import Layout from '@/components/atoms/Layout';
 import Link from 'next/link';
 import React from 'react';
+import FooterTemplate from '../common/Footer';
 
 export default function LandingPageTemplate() {
   return (
     <>
-      <main className="bg-gradient-to-b from-primary/80 to-primary/20 w-screen h-auto">
+      <Layout className="bg-gradient-to-b from-primary/80 to-primary/20 w-screen h-auto">
         <section className="py-10 sm:py-16 lg:py-24">
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
@@ -114,33 +116,10 @@ export default function LandingPageTemplate() {
             </div>
           </div>
         </section>
-      </main>
-      <footer className="py-10 bg-primary/10 border-t border-gray-200">
-        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 text-center">
-          <p className="text-sm text-gray-600">
-            ⓒ {new Date().getFullYear()} My News Vault. All rights reserved.
-          </p>
-          <div className="mt-2 flex justify-center gap-4 text-sm text-gray-600">
-            <a
-              href="mailto:bobin6972@gmail.com"
-              className="hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              📧 bobin6972@gmail.com
-            </a>
-            <span>|</span>
-            <a
-              href="https://github.com/imnotpizza"
-              className="hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              💻 GitHub
-            </a>
-          </div>
-        </div>
-      </footer>
+        <Layout.Footer className="py-10 bg-primary/10 border-t border-gray-200">
+          <FooterTemplate />
+        </Layout.Footer>
+      </Layout>
     </>
   );
 }
