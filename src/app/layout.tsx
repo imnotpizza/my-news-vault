@@ -1,5 +1,5 @@
+import RootProviders from '@/components/etc/RootProviders';
 import React from 'react';
-import RootProviders from './_component/RootProviders';
 
 /**
  * _app+_document 역할
