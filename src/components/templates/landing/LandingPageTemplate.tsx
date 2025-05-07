@@ -1,17 +1,17 @@
 import { FadeInAnimContainer } from '@/components/atoms/Animation';
 import { Button } from '@/components/atoms/Button';
 import Layout from '@/components/atoms/Layout';
+import LazyLoad from '@/components/atoms/LazyLoad';
 import Link from 'next/link';
 import React from 'react';
-import FooterTemplate from '../common/Footer';
 
 export default function LandingPageTemplate() {
   return (
     <>
-      <section className="py-10 sm:py-16 lg:py-24">
+      <section className="py-10 sm:py-16 lg:py-24 sm:mb-20 lg:mb-24">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
-            <div>
+            <LazyLoad>
               {/* 좌->우 애니메이션 */}
               <FadeInAnimContainer type="left-right">
                 <div className="flex flex-col gap-4">
@@ -42,7 +42,7 @@ export default function LandingPageTemplate() {
                   </Link>
                 </div>
               </FadeInAnimContainer>
-            </div>
+            </LazyLoad>
 
             <FadeInAnimContainer type="right-left">
               <div>
@@ -57,9 +57,9 @@ export default function LandingPageTemplate() {
         </div>
       </section>
       {/* 뉴스검색 기능 설명 */}
-      <section className="py-10 sm:py-16 lg:py-24">
+      <section className="py-10 sm:py-16 lg:py-24 sm:mb-20 lg:mb-24">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
+          <LazyLoad className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
             <FadeInAnimContainer type="left-right">
               <div className="flex flex-col gap-4">
                 <h2 className="text-3xl font-bold text-black sm:text-5xl">
@@ -83,13 +83,13 @@ export default function LandingPageTemplate() {
                 />
               </div>
             </FadeInAnimContainer>
-          </div>
+          </LazyLoad>
         </div>
       </section>
       {/* 스크랩 추가 및 스크랩 열람 추가 */}
       <section className="py-10 sm:py-16 lg:py-24">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
+          <LazyLoad className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
             <FadeInAnimContainer type="left-right">
               <div className="w-full">
                 <img
@@ -112,7 +112,7 @@ export default function LandingPageTemplate() {
                 </p>
               </div>
             </FadeInAnimContainer>
-          </div>
+          </LazyLoad>
         </div>
       </section>
     </>
