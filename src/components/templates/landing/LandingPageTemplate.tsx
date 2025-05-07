@@ -122,16 +122,16 @@ export default function LandingPageTemplate() {
           </p>
           <div className="mt-2 flex justify-center gap-4 text-sm text-gray-600">
             <a
-              href="mailto:yourname@example.com"
+              href="mailto:bobin6972@gmail.com"
               className="hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              📧 yourname@example.com
+              📧 bobin6972@gmail.com
             </a>
             <span>|</span>
             <a
-              href="https://github.com/your-github-id"
+              href="https://github.com/imnotpizza"
               className="hover:underline"
               target="_blank"
               rel="noopener noreferrer"
