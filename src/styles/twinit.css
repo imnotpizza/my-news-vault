@@ -50,10 +50,10 @@
 
   /* fefef */
   :root {
-    --header-height: 4em;
-    --layout-padding: 1.5em;
-    --body-padding: 4.2em;
-    --footer-height: 10em;
+    --header-height: 4rem;
+    --layout-padding: 1.5rem;
+    --body-padding: 4.2rem;
+    --footer-height: 10rem;
     --min-width: 13.12rem;
   }
 }
