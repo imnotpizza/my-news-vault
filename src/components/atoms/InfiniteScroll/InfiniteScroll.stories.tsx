@@ -28,7 +28,7 @@ const ItemCard = ({
   };
 }) => {
   return (
-    <Card>
+    <Card data-testid="post-card">
       <Card.Content>
         <Card.Title>{post.title}</Card.Title>
         <Card.Description>{post.body}</Card.Description>

@@ -7,21 +7,16 @@ import * as InfiniteScrollStories from './InfiniteScroll.stories';
 import { mswTestHandler } from '@/msw/handler/newsHandler';
 
 // jest.setup.ts
+// FIXME: CALL_COUNT static 사용 제거 (여러개 사용시 문제발생)
 class MockIntersectionObserver {
   callback: IntersectionObserverCallback;
   elements: Element[] = [];
+  // onTriggered 호출될 횟수
+  static CALL_COUNT = 1;
 
   constructor(cb: IntersectionObserverCallback) {
     this.callback = cb;
-    setTimeout(() => {
-      // 콜백 강제로 실행
-      cb([
-        {
-          isIntersecting: true,
-          target: this.elements[0],
-        },
-      ] as any[]);
-    }, 100);
+    this.scrollTrigger();
   }
 
   observe(el: Element) {
@@ -36,14 +31,21 @@ class MockIntersectionObserver {
     this.elements = [];
   }
 
-  // 테스트 내에서 호출할 helper
-  triggerAll(entries: Partial<IntersectionObserverEntry>[]) {
-    const list = entries.map((e) => ({
-      isIntersecting: false,
-      target: this.elements[0],
-      ...e,
-    })) as IntersectionObserverEntry[];
-    this.callback(list, this);
+  // scroll 시 실행되는 callback 강제호출
+  scrollTrigger() {
+    let triggerCount = 0;
+    const intervalId = setInterval(() => {
+      if (triggerCount >= MockIntersectionObserver.CALL_COUNT) {
+        clearInterval(intervalId);
+        return;
+      }
+      this.callback([
+        {
+          isIntersecting: true,
+        },
+      ] as any[]);
+      triggerCount++;
+    }, 200);
   }
 }
 
@@ -69,13 +71,26 @@ afterEach(() => server.resetHandlers());
 // 모든 테스트 종료 후 실행
 afterAll(() => server.close());
 
-describe('test', () => {
+describe('기본 테스트', () => {
   it('InfiniteScroll 컴포넌트가 정상적으로 렌더링 되어야 함', async () => {
     render(<InfiniteScrollExample />);
 
     await waitFor(() => {
       expect(screen.getByText('Mock Title #1')).toBeInTheDocument();
       expect(screen.getByText('Mock Title #2')).toBeInTheDocument();
+      expect(screen.queryAllByTestId('post-card')).toHaveLength(10);
+    });
+  });
+
+  it('추가 스크롤 시 추가 데이터 호출', async () => {
+    render(<InfiniteScrollExample />);
+    MockIntersectionObserver.CALL_COUNT = 2; // IO 2번 trigger 시키기
+    await waitFor(async () => {
+      expect(screen.getByText('Mock Title #1')).toBeInTheDocument();
+      expect(screen.getByText('Mock Title #2')).toBeInTheDocument();
+      expect(screen.getByText('Mock Title #19')).toBeInTheDocument();
+      expect(screen.getByText('Mock Title #20')).toBeInTheDocument();
+      expect(screen.getAllByTestId('post-card')).toHaveLength(20);
     });
   });
 });
