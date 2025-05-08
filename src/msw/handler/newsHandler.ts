@@ -6,7 +6,6 @@ export const mswTestHandler = [
   // 모든 게시글 조회
   http.get('https://jsonplaceholder.typicode.com/posts', ({ request }) => {
     const url = new URL(request.url);
-    console.log('###########################################1111111');
     // _page, _limit 쿼리파라미터로 받아와서 Mock 데이터 생성
     const page = Number(url.searchParams.get('_page')) || 1;
     const limit = Number(url.searchParams.get('_limit')) || 10;
@@ -23,7 +22,6 @@ export default [
   http.get(
     `https://api.bing.microsoft.com/v7.0/news/search?mkt=en-us&q=&count=20&offset=0`,
     ({ params, request }) => {
-      console.log('######################### mock called');
       // status 200
       return HttpResponse.json(mockBingNewsRes, {
         status: 200,

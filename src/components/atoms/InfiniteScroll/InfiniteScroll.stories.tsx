@@ -64,12 +64,10 @@ export function InfiniteScrollExample() {
   const enabled = !isLoading && page <= MAX_PAGE;
   const fetch2 = async ({ page: newPage }: any) => {
     setIsLoading(true);
-    console.log('##################################### 1111');
     const apiRes = await fetch(
       `https://jsonplaceholder.typicode.com/posts?_page=${newPage}&_limit=10`,
     );
     const res = await apiRes.json();
-    console.log('##################################### 2222', res);
     setPosts((prev) => [...prev, ...res]);
     setPage((p) => p + 1);
     setIsLoading(false);
