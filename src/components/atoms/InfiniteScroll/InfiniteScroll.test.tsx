@@ -7,12 +7,17 @@ import * as InfiniteScrollStories from './InfiniteScroll.stories';
 import { mswTestHandler } from '@/msw/handler/newsHandler';
 
 // jest.setup.ts
-// FIXME: CALL_COUNT static 사용 제거 (여러개 사용시 문제발생)
+// FIXME: TOTAL_EXEC_TRIGGER_COUNT static 사용 제거 (여러개 사용시 문제발생)
 class MockIntersectionObserver {
   callback: IntersectionObserverCallback;
   elements: Element[] = [];
-  // onTriggered 호출될 횟수
-  static CALL_COUNT = 1;
+  /**
+   * onTriggered 호출될 횟수
+   * - 테스트 전에 미리 지정
+   * @example
+   * MockIntersectionObserver.TOTAL_EXEC_TRIGGER_COUNT = 2; // IO 2번 onTrigger 실행
+   */
+  static TOTAL_EXEC_TRIGGER_COUNT = 1;
 
   constructor(cb: IntersectionObserverCallback) {
     this.callback = cb;
@@ -31,11 +36,12 @@ class MockIntersectionObserver {
     this.elements = [];
   }
 
-  // scroll 시 실행되는 callback 강제호출
+  // scroll 시 실행되는 callback(onTrigger) 강제호출
+  // TODO: setInterval로 하는게 맞는지 검토
   scrollTrigger() {
     let triggerCount = 0;
     const intervalId = setInterval(() => {
-      if (triggerCount >= MockIntersectionObserver.CALL_COUNT) {
+      if (triggerCount >= MockIntersectionObserver.TOTAL_EXEC_TRIGGER_COUNT) {
         clearInterval(intervalId);
         return;
       }
@@ -84,7 +90,7 @@ describe('기본 테스트', () => {
 
   it('추가 스크롤 시 추가 데이터 호출', async () => {
     render(<InfiniteScrollExample />);
-    MockIntersectionObserver.CALL_COUNT = 2; // IO 2번 trigger 시키기
+    MockIntersectionObserver.TOTAL_EXEC_TRIGGER_COUNT = 2; // IO 2번 trigger 시키기
     await waitFor(async () => {
       expect(screen.getByText('Mock Title #1')).toBeInTheDocument();
       expect(screen.getByText('Mock Title #2')).toBeInTheDocument();
