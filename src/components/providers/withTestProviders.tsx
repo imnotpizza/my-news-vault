@@ -17,4 +17,13 @@ const TestProviders = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
+/**
+ * hook test용 wrapper
+ * @example
+ * renderHook(() => useHook(), { wrapper: testWrapper })
+ * */
+export const testWrapper = ({ children }: { children: React.ReactNode }) => (
+  <TestProviders>{children}</TestProviders>
+);
+
 export default TestProviders;

@@ -3,6 +3,7 @@
 import NewsGridList from '@/components/atoms/NewsGridList';
 import React, { useMemo } from 'react';
 import useBingNewsFetch from '@/queries/useBingNewsFetch';
+import useInfiniteScroll, { InfiniteScrollWrapper } from '@/components/atoms/InfiniteScroll';
 import NewsCard from '../NewsCard';
 import SearchPageFallback from '@/components/templates/search/SearchPageFallback';
 import SearchErrorIcon from '@/assets/search-error-icon.svg';
