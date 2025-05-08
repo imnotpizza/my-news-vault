@@ -8,4 +8,4 @@ export default function MainPage() {
 }
 
 /** 메타데이터 설정 */
-export const metadata: Metadata = createMetadataObj();
+// export const metadata: Metadata = createMetadataObj();
