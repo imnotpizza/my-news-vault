@@ -1,28 +1,28 @@
-name: MyNewsVault CI Actions
+# name: MyNewsVault CI Actions
 
-on: 
-  pull_request:
-    branches: [develop]
-jobs:
-  ci-actions:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2 # checkout
-      - name: set node-version
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18.17.1'
+# on: 
+#   pull_request:
+#     branches: [develop]
+# jobs:
+#   ci-actions:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2 # checkout
+#       - name: set node-version
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: '18.17.1'
 
-      - name: install dependencies
-        run: npm ci
+#       - name: install dependencies
+#         run: npm ci
 
-      - name: lint Check
-        run: npm run lint
+#       - name: lint Check
+#         run: npm run lint
 
-      - name: unit test
-        run: npm run test
+#       - name: unit test
+#         run: npm run test
         
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+#       - name: Upload coverage reports to Codecov
+#         uses: codecov/codecov-action@v3
+#         env:
+#           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
