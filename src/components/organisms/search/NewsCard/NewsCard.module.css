@@ -1,0 +1,15 @@
+/* 제목 줄 수 설정 */
+.card-title-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 최대 줄 수 설정 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 설명 줄 수 설정 */
+.card-desc-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* 최대 줄 수 설정 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

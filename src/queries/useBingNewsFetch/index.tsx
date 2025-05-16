@@ -1,143 +1,59 @@
-import { fetchBingNews } from '@/api/client';
-import { TBingNewsQuery, TNewsItem } from '@/types';
+'use client';
+
+import { BING_NEWS_MAX_PAGE, defaultNewsFilterQueries } from '@/constants';
+import { queryClient } from '@/queries/queryClient';
+import { TBingNewsFilterQueries, TNewsItem } from '@/types';
 import {
   InfiniteData,
   useInfiniteQuery,
-  useQuery,
   useSuspenseInfiniteQuery,
 } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
-import {
-  convertToNewsItem,
-  isDuplicatedNews,
-  parseDateToFormat,
-  setIsScrapped,
-} from '@/utils/newsItem';
-import { queryClient } from '@/queries/queryClient';
-import { useMemo } from 'react';
+import { atom, useAtom, useAtomValue } from 'jotai';
 import { flatMap } from 'lodash-es';
-import QUERY_KEY from '@/queries/keys';
-
-export interface IUseBingNewsFetchParams {
-  query: TBingNewsQuery['query'];
-  enabled: boolean;
-  maxPage: number;
-}
-
-export const queryFn = async ({ query, pageParam = 1 }) => {
-  // api 호출
-  const fetchResult = await fetchBingNews(query, 0);
-  // // 스크랩 목록
-  // const scrappedNewsList = queryClient.getQueryData<TNewsItem[]>([QUERY_KEY.SCRAP_LIST]);
-  // // 현재 뉴스데이터
-  // const curNewsItems = getSearchQueryCache(query);
-  // // newsItem형식으로 변환
-  // const newsItems = fetchResult.value.map((item) => {
-  //   const isScrapped = setIsScrapped(item.name, scrappedNewsList);
-  //   const datePublished = parseDateToFormat(item.datePublished);
-  //   const isDuplicated = isDuplicatedNews(item.name, curNewsItems);
-  //   if (!isDuplicated) {
-  //     return convertToNewsItem(item, datePublished, query, isScrapped);
-  //   } else {
-  //     return undefined;
-  //   }
-  // });
-
-  // const filteredNewsItems = newsItems.filter((item) => item !== undefined);
-  // return filteredNewsItems;
-  console.log('fetchResult', fetchResult);
-  return fetchResult.value;
-};
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useMemo } from 'react';
+import { queryOptionsFactory } from '@/utils/queryOptionsFactory';
 
 /**
  * 뉴스 검색 쿼리 캐시 데이터 조회
  * @param searchQuery: 뉴스 검색 쿼리 (queryKey)
  * @returns 캐시 데이터
  */
-export const getBingNewsQueryData = (searchQuery: TBingNewsQuery['query']) => {
-  const res = queryClient.getQueryData<InfiniteData<TNewsItem[]>>([
-    QUERY_KEY.BING_NEWS_SEARCH,
-    searchQuery,
-  ]);
+export const getSearchQueryCache = (filterQueries: TBingNewsFilterQueries) => {
+  const res = queryClient.getQueryData<InfiniteData<TNewsItem[]>>(
+    queryOptionsFactory.news.bing.list(filterQueries).queryKey,
+  );
 
   return flatMap(res?.pages, (item) => {
     return item;
   });
 };
 
-export const prefetchBingNewsFetch = async (query) => {
-  await queryClient.prefetchInfiniteQuery({
-    queryKey: [QUERY_KEY.BING_NEWS_SEARCH, query],
-    queryFn: () => {
-      return queryFn({
-        query,
-        pageParam: 1,
-      });
-    },
-    initialPageParam: 1,
-  });
-};
+/** 검색어 query atom */
+export const queryAtom = atom<TBingNewsFilterQueries>({
+  ...defaultNewsFilterQueries,
+});
 
 /**
- * 뉴스 검색 쿼리
- * @param query: 검색어
- * @param enabled: 쿼리 활성화 여부
- * @param maxPage: 호출할 최대 페이지
- * @returns queryStates
- *
- * 1. api 호출
- * 2. 결과 데이터 map으로 돌리면서
- * 2. 1. 중복요소 걸러냄
- * 3. 2. isScrapped초기화
- * 4. 2. dateformat 변경
+ * bing news fetch api hook
  */
-const useBingNewsFetch = ({ query, enabled = true, maxPage = 1 }: IUseBingNewsFetchParams) => {
-  const queryStates = useQuery({
-    queryKey: [QUERY_KEY.BING_NEWS_SEARCH, query],
-    queryFn: () => {
-      return queryFn({
-        query,
-        pageParam: 1,
-      });
+function useBingNewsFetchQuery() {
+  const filterQueries = useAtomValue(queryAtom);
+
+  const queryStates = useInfiniteQuery({
+    ...queryOptionsFactory.news.bing.list(filterQueries),
+    getNextPageParam: (lastPage, pages) => {
+      return pages.length === BING_NEWS_MAX_PAGE ? undefined : pages.length + 1;
     },
-    // getNextPageParam: (lastPage, pages) => {
-    //   return lastPage?.value?.length === 0 ? undefined : pages?.length;
-    // },
-    // initialPageParam: 1,
+    initialPageParam: 1,
+    enabled: !!filterQueries.keyword,
+    placeholderData: {
+      pages: [],
+      pageParams: [1],
+    },
   });
+
   // 이중배열 구조 평탄화
-  // const flattenData = useMemo(() => {
-  //   return flatMap(queryStates.data?.pages, (item) => {
-  //     return item;
-  //   });
-  // }, [queryStates.data?.pages]);
-
-  return {
-    ...queryStates,
-    isEmpty: false,
-    // flattenData,
-  };
-};
-
-/**
- * 뉴스 결과 리스트 호출 query hook
- */
-export const useFetchBingNewsList = ({ query, curPage, maxPage }) => {
-  const queryStates = useSuspenseInfiniteQuery({
-    queryKey: [QUERY_KEY.BING_NEWS_SEARCH, query],
-    queryFn: async ({ pageParam = curPage }) => {
-      const r = await queryFn({ query, pageParam });
-      return r;
-    },
-    getNextPageParam: (lastPage, allPages) => {
-      if (lastPage?.length < maxPage) {
-        return undefined;
-      }
-      return allPages.length + 1;
-    },
-    initialPageParam: 1,
-  });
-
   const flattenData = useMemo(() => {
     return flatMap(queryStates.data?.pages, (item) => {
       return item;
@@ -148,7 +64,43 @@ export const useFetchBingNewsList = ({ query, curPage, maxPage }) => {
     ...queryStates,
     flattenData,
   };
-};
+}
+
+/**
+ * 뉴스 검색 상태 hook
+ * @return
+    - filterQueries: 검색어 상태,
+    - setFilterQueries: 검색어 상태 변경 함수
+ * @example
+ * ```
+ * const { filterQueries, setFilterQueries } = useBingNewsFetchState();
+ * ```
+ */
+function useBingNewsFetchState() {
+  const searchParams = useSearchParams();
+
+  const [filterQueries, _setFilterQueries] = useAtom(queryAtom);
+  const setFilterQueries = (newFilterQueries: Partial<TBingNewsFilterQueries>) => {
+    _setFilterQueries({
+      ...filterQueries,
+      ...newFilterQueries,
+    });
+  };
+
+  /**
+   * 쿼리 파라미터 변경에 따라 form 상태 초기화
+   * TODO: jotai 사용하여초기화하는게 맞는지 확인: 검색 상태는 searchParams에 의해 결정되는 중...
+   * */
+  useEffect(() => {
+    const keyword = searchParams.get('keyword') || '';
+    setFilterQueries({ ...filterQueries, keyword });
+  }, [searchParams]);
+
+  return {
+    filterQueries,
+    setFilterQueries,
+  };
+}
 
 /**
  * 스크랩/언스크랩 시, 뉴스 캐시 데이터 업데이트 수행
@@ -156,13 +108,13 @@ export const useFetchBingNewsList = ({ query, curPage, maxPage }) => {
  * @param isScrapped: true: 추가, false: 삭제
  * @param query: queryKey = 검색어
  */
-export const updateNewsSearchQuery = (
+export function updateNewsSearchQuery(
   targetNewsId: TNewsItem['newsId'],
   isScrapped: TNewsItem['isScrapped'],
-  searchQuery: TBingNewsQuery['query'],
-) => {
+  filterQueries: TBingNewsFilterQueries,
+) {
   queryClient.setQueryData<InfiniteData<TNewsItem[]>>(
-    [QUERY_KEY.BING_NEWS_SEARCH, searchQuery],
+    queryOptionsFactory.news.bing.list(filterQueries).queryKey,
     (oldPagesArray) => {
       if (oldPagesArray) {
         // 캐시 데이터 존재하는 경우: 캐시 업데이트
@@ -185,6 +137,11 @@ export const updateNewsSearchQuery = (
       }
     },
   );
+}
+
+const useBingNewsFetch = {
+  query: useBingNewsFetchQuery,
+  state: useBingNewsFetchState,
 };
 
 export default useBingNewsFetch;

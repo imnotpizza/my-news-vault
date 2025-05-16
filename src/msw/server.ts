@@ -1,5 +1,5 @@
 import { setupServer } from 'msw/node';
-import { handlers } from './rootHandler';
+import { handlers } from './handler/handlers';
 
-// mock server 생성
-export const server = setupServer(...handlers);
+const server = setupServer(...handlers);
+export default server;

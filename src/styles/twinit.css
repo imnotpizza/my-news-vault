@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    --background: 224 0% 100%;
+    --foreground: 224 0% 0%;
+    --card: 224 57% 97%;
+    --card-foreground: 224 0% 10%;
+    --popover: 224 0% 95%;
+    --popover-foreground: 224 95% 0%;
+    --primary: 224 57% 44%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 224 10% 70%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 186 10% 85%;
+    --muted-foreground: 224 0% 35%;
+    /* hover */
+    --accent: 224 57% 95%;
+    --accent-foreground: 224 57% 95%;
+    --destructive: 0 50% 30%;
+    --destructive-foreground: 224 0% 90%;
+    --border: 224 20% 50%;
+    --input: 224 20% 18%;
+    --ring: 224 57% 44%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 224 10% 5%;
+    --foreground: 224 0% 90%;
+    --card: 224 0% 0%;
+    --card-foreground: 224 0% 90%;
+    --popover: 224 10% 5%;
+    --popover-foreground: 224 0% 90%;
+    --primary: 224 57% 44%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 224 10% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 186 10% 15%;
+    --muted-foreground: 224 0% 60%;
+    --accent: 186 10% 15%;
+    --accent-foreground: 224 0% 90%;
+    --destructive: 0 50% 30%;
+    --destructive-foreground: 224 0% 90%;
+    --border: 224 20% 18%;
+    --input: 224 20% 18%;
+    --ring: 224 57% 44%;
+    --radius: 0.5rem;
+  }
+
+  /* fefef */
+  :root {
+    --header-height: 4rem;
+    --layout-padding: 1.5rem;
+    --body-padding: 4.2rem;
+    --footer-height: 10rem;
+    --min-width: 13.12rem;
+  }
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+
+    /** header 요소의 height값 */
+    .layout__header-height {
+      height: var(--header-height);
+    }
+
+    /** 레이아웃의 width 속성, body 컨텐츠의 min-width, max-width는 여기서 지정 **/
+    .layout__width {
+      min-width: var(--min-width);
+    }
+
+    /**
+      * 레이아웃이 줄어들 때 생기는 좌우 여백 padding
+      * padding: Layout.Header, Layout.Footer에서 사용 중
+      * padding 값은 항상 같은 값을 유지해야 함
+    **/
+    .layout__padding {
+      padding-left: var(--layout-padding);
+      padding-right: var(--layout-padding);
+    }
+
+    /**
+      * 레이아웃의 body에 사용되는 padding
+      * margin-top: Layout.Header와 Layout.Body 사이 간격 지정
+      * margin-bottom: Layout.Body와 Layout.Footer 사이 간격 지정
+    **/
+    .body__padding {
+      padding-top: var(--body-padding);
+      padding-bottom: var(--body-padding);
+    }
+
+    /** drawer open 상태일 때 body가 밀려날 여백, .ods-drawer__drawer-width과 동일하게 지정 */
+    .body__drawer-open-margin {
+      margin-left: var(--drawer-width);
+    }
+
+    /** 레이아웃의 footer height **/
+    .layout__footer-height {
+      height: var(--footer-height);
+    }
+
+    /** drawer margin top 속성, ods-layout__header-height와 동일한 사이즈로 지정할 것 **/
+    .drawer__margin-top {
+      margin-top: var(--header-height);
+    }
+
+    /** drawer width값 */
+    .drawer__drawer-width {
+      width: var(--drawer-width);
+    }
+
+    /** bg opacity */
+    .bg-opacity-50 {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+}

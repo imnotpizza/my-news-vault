@@ -26,6 +26,9 @@ const customJestConfig = {
       lines: 70,
     },
   },
+  testEnvironmentOptions: {
+    customExportConditions: [''],
+  },
 };
 
 module.exports = createJestConfig(customJestConfig);

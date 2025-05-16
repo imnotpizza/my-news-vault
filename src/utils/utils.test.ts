@@ -8,6 +8,7 @@ import {
   setIsScrapped,
   getProviderIcon,
   getProviderName,
+  createSearchUrlWithQueries,
 } from './newsItem';
 
 describe('getProviderIcon', () => {
@@ -110,5 +111,26 @@ describe('parseDateToFormat', () => {
   it('날짜 없을때', () => {
     const result = parseDateToFormat(undefined);
     expect(result).toBe('등록된 날짜 없음');
+  });
+});
+
+describe('createSearchUrlWithQueries', () => {
+  it('주어진 객체 사용하여 query string url 생성', () => {
+    const testQueries = {
+      name: 'jack',
+      age: 10,
+    };
+    const result = createSearchUrlWithQueries(testQueries);
+    expect(result).toBe('?name=jack&age=10');
+  });
+  it('null, undefined 빈 문자열 값은 제외하고 생성', () => {
+    const result = createSearchUrlWithQueries({
+      name: 'jack',
+      age: 0,
+      hobby: null,
+      car: undefined,
+      friend: '',
+    });
+    expect(result).toBe('?name=jack&age=0');
   });
 });

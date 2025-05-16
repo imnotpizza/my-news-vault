@@ -7,10 +7,11 @@ export type TUserInfo = {
 };
 
 /**
- *  Bing News API 검색 요소들
+ *  Bing News API 검색 필터링
  */
-export type TBingNewsQuery = {
-  query: string;
+export type TBingNewsFilterQueries = {
+  /** 검색어 */
+  keyword: string;
 };
 
 /**
@@ -61,7 +62,7 @@ export type TNewsItem = {
   title: TRawNewsItem['name'];
   isScrapped: boolean;
   url: TRawNewsItem['url'];
-  searchQuery: TBingNewsQuery['query'];
+  searchQuery: TBingNewsFilterQueries['keyword'];
 };
 
 /**
@@ -84,6 +85,6 @@ export type TBingNewsAPIRes = {
 export type TPageProps = {
   dehydratedState?: DehydratedState;
   userInfo: TUserInfo | null;
-  query?: TBingNewsQuery['query'];
+  query?: TBingNewsFilterQueries['keyword'];
   errCode?: string;
 };
