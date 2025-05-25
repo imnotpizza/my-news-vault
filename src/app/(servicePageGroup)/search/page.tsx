@@ -25,3 +25,6 @@ export default async function SearchPage({ searchParams }) {
     </HydrationBoundary>
   );
 }
+
+// dynamic SSR로 설정 (userInfo때문)
+export const dynamic = 'force-dynamic';

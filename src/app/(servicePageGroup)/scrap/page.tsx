@@ -20,3 +20,6 @@ export default async function ScrapPage() {
     </HydrationBoundary>
   );
 }
+
+// dynamic SSR로 설정 (userInfo때문)
+export const dynamic = 'force-dynamic';
