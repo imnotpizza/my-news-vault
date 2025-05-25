@@ -8,6 +8,8 @@ import ERRCODE from '@/constants/errCode';
 // 한번에 몇개씩 호출할지 결정
 const NEWS_COUNT_NUM = 20;
 
+const REVALIDATE_TIME_SEC = 60; // 60초마다 재검증
+
 /**
  * Bing API 호출
  * @param query: 검색어
@@ -21,7 +23,16 @@ export const fetchBingNews = async (
   try {
     const offset = NEWS_COUNT_NUM * pageNum;
     const url = `news/search?mkt=en-us&q=${query}&count=${NEWS_COUNT_NUM}&offset=${offset}`;
-    const apiRes = await BingAPI.get<TBingNewsAPIRes>(url);
+    const apiRes = await BingAPI.get<TBingNewsAPIRes>(url, {
+      adapter: 'fetch',
+      fetchOptions: {
+        // 캐시 옵션 추가
+        cache: 'force-cache',
+        // next: {
+        //   revalidate: REVALIDATE_TIME_SEC, // 60초마다 재검증
+        // },
+      },
+    });
     return apiRes.data;
   } catch (e) {
     throw new APIError(ERRCODE.NEWS_FETCH_FAILED);
