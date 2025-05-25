@@ -2,6 +2,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 const nextConfig = {
+<<<<<<< Updated upstream
+=======
+  // standalone
+>>>>>>> Stashed changes
   output: 'standalone',
   images: {
     // nextjs에서 외부경로의 이미지를 사용할수 있게 처리
