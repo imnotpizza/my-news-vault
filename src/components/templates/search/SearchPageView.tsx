@@ -7,12 +7,13 @@ import NewsDetailTemplate from './NewsDetailTemplate';
 import axios from 'axios';
 import { revalidateTag } from 'next/cache';
 
-const fetchCacheTest = async () => {
-  const res = await fetch('http://localhost:4000/api/cache-test', {
-    cache: 'force-cache',
+const API_REVALIDATE_SEC = 10; // 10초 후에 재검증
+
+const fetchCacheTest = async (type: 'a' | 'b' | 'c') => {
+  const res = await fetch('http://localhost:4000/api/cache-test?type=' + type, {
     next: {
-      // tags: ['cache-test'], // 캐시 태그 설정
-      revalidate: 10, // 10초 후에 캐시 재검증
+      tags: [type], // 캐시 태그 설정
+      revalidate: API_REVALIDATE_SEC, // 10초 후에 캐시 재검증
     },
   });
   const data = await res.json();
@@ -23,14 +24,14 @@ const fetchCacheTest = async () => {
 /**
  * revalidate 작동 확인
  */
-const fetchCacheTestAxios = async () => {
-  const res = await axios.get('http://localhost:4000/api/cache-test', {
+const fetchCacheTestAxios = async (type: 'a' | 'b' | 'c') => {
+  const res = await axios.get('http://localhost:4000/api/cache-test?type=' + type, {
     adapter: 'fetch',
     fetchOptions: {
-      cache: 'force-cache',
       next: {
-        // tags: ['cache-test'], // 캐시 태그 설정
-        revalidate: 10, // 10초 후에 캐시 재검증
+        tags: [type], // 캐시 태그 설정
+        // 10초 후에 캐시 재검증 후 최신데이터 리턴, 10초후 새로 요청시, 일단 캐시된거 리턴하고 그다음부터 최신으로 리턴
+        revalidate: API_REVALIDATE_SEC,
       },
     },
   });
@@ -38,21 +39,21 @@ const fetchCacheTestAxios = async () => {
   return res.data;
 };
 
+// //a,b,c, 쿼리파라미터로 type 받음
+// const type = searchParams.type || 'a';
+// const cacheRes = await fetchCacheTest(type);
+// const cacheRes2 = await fetchCacheTestAxios(type);
+
 /**
  * 뉴스 검색 필터링+목록 페이지
  */
 export default async function SearchPageView() {
-  const cacheRes = await fetchCacheTest();
-  const cacheRes2 = await fetchCacheTestAxios();
-
   return (
     <div className="w-full h-full flex flex-col items-center justify-start gap-8 bg-background">
       <NewsDetailTemplate />
       <div className="desktop:w-[30.13rem] tablet:w-[30.13rem] mobile:w-full">
         <FilterQueriesForm />
       </div>
-      <div>{cacheRes.data}</div>
-      <div>{cacheRes2.data}</div>
       <Suspense fallback={<SearchPageFallback />}>
         <ErrorBoundary>
           <NewsSearchGridList />

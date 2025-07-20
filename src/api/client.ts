@@ -8,7 +8,10 @@ import ERRCODE from '@/constants/errCode';
 // 한번에 몇개씩 호출할지 결정
 const NEWS_COUNT_NUM = 20;
 
-const REVALIDATE_TIME_SEC = 60; // 60초마다 재검증
+/**
+ * (Nextjs Data Cache) API revalidate 지속시간: 10분
+ */
+const REVALIDATE_DURATION_SEC = 60 * 10;
 
 /**
  * Bing API 호출
@@ -27,10 +30,10 @@ export const fetchBingNews = async (
       adapter: 'fetch',
       fetchOptions: {
         // 캐시 옵션 추가
-        cache: 'force-cache',
-        // next: {
-        //   revalidate: REVALIDATE_TIME_SEC, // 60초마다 재검증
-        // },
+        next: {
+          tags: [query, NEWS_COUNT_NUM, offset],
+          revalidate: REVALIDATE_DURATION_SEC,
+        },
       },
     });
     return apiRes.data;

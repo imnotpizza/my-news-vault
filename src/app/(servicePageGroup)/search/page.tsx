@@ -32,5 +32,3 @@ export default async function SearchPage({ searchParams }) {
     </HydrationBoundary>
   );
 }
-
-export const revalidate = 5; // 5초마다 재검증
