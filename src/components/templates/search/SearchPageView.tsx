@@ -8,21 +8,31 @@ import axios from 'axios';
 import { revalidateTag } from 'next/cache';
 
 const fetchCacheTest = async () => {
-  const res = await fetch('http://localhost:4000/api/cache-test', {});
+  const res = await fetch('http://localhost:4000/api/cache-test', {
+    cache: 'force-cache',
+    next: {
+      // tags: ['cache-test'], // 캐시 태그 설정
+      revalidate: 10, // 10초 후에 캐시 재검증
+    },
+  });
   const data = await res.json();
   console.log('fetchCacheTest res', data);
   return data;
 };
 
+/**
+ * revalidate 작동 확인
+ */
 const fetchCacheTestAxios = async () => {
   const res = await axios.get('http://localhost:4000/api/cache-test', {
-    // adapter: 'fetch',
-    // fetchOptions: {
-    //   cache: 'force-cache',
-    //   next: {
-    //     tags: ['cache-test'], // 캐시 태그 설정
-    //   },
-    // },
+    adapter: 'fetch',
+    fetchOptions: {
+      cache: 'force-cache',
+      next: {
+        // tags: ['cache-test'], // 캐시 태그 설정
+        revalidate: 10, // 10초 후에 캐시 재검증
+      },
+    },
   });
   console.log('fetchCacheTest res', res.data);
   return res.data;
@@ -34,11 +44,6 @@ const fetchCacheTestAxios = async () => {
 export default async function SearchPageView() {
   const cacheRes = await fetchCacheTest();
   const cacheRes2 = await fetchCacheTestAxios();
-
-  // setInterval(() => {
-  //   console.log('revalidateTag cache-test');
-  //   revalidateTag('cache-test'); // 5초마다 캐시 재검증
-  // }, 5000);
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-start gap-8 bg-background">
