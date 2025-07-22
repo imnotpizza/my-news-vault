@@ -14,8 +14,8 @@ import { COOKIE_CONFIG } from '@/constants';
  * @returns userInfo 추가된 pageProps
  */
 export const getUserInfoInServerside = async (): Promise<TUserInfo | null> => {
+  const authToken = cookies().get(COOKIE_CONFIG.title);
   try {
-    const authToken = cookies().get(COOKIE_CONFIG.title);
     if (authToken) {
       const verifiedToken = await getDecodedUserInfoByToken(authToken.value);
       const { name, picture, email } = verifiedToken;
