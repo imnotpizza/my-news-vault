@@ -9,6 +9,11 @@ import ERRCODE from '@/constants/errCode';
 const NEWS_COUNT_NUM = 20;
 
 /**
+ * (Nextjs Data Cache) API revalidate 지속시간: 10분
+ */
+const REVALIDATE_DURATION_SEC = 60 * 10;
+
+/**
  * Bing API 호출
  * @param query: 검색어
  * @param pageNum: 불러올 페이지
@@ -21,7 +26,16 @@ export const fetchBingNews = async (
   try {
     const offset = NEWS_COUNT_NUM * pageNum;
     const url = `news/search?mkt=en-us&q=${query}&count=${NEWS_COUNT_NUM}&offset=${offset}`;
-    const apiRes = await BingAPI.get<TBingNewsAPIRes>(url);
+    const apiRes = await BingAPI.get<TBingNewsAPIRes>(url, {
+      adapter: 'fetch',
+      fetchOptions: {
+        // 캐시 옵션 추가
+        next: {
+          tags: [query, NEWS_COUNT_NUM, offset],
+          revalidate: REVALIDATE_DURATION_SEC,
+        },
+      },
+    });
     return apiRes.data;
   } catch (e) {
     throw new APIError(ERRCODE.NEWS_FETCH_FAILED);

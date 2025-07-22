@@ -7,7 +7,6 @@ import ToScrapPageButton from '@/components/organisms/scrap/ToScrapPageButton';
 import useAuth from '@/hooks/useAuth';
 import React, { useContext } from 'react';
 import LoginDialogTemplate from '../../search/LoginDialogTemplate';
-// import AppLogo from '@/views/header/AppLogo';
 
 const Header = () => {
   const { isLogined } = useAuth();
