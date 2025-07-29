@@ -18,6 +18,13 @@ jobs:
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+    
+      # known_hosts에 EC2 호스트 추가
+      # known_hosts에 EC2 호스트를 추가하여 SSH 연결 시 호스트 검증
+      - name: Add EC2 host to known_hosts
+        run: |
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+        
 
       # 기존 디렉토리 날리고 git clone 수행
       - name: Clone repository to mnv dir
