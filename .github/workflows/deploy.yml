@@ -39,6 +39,7 @@ jobs:
       - name: install, build and daemonize
         run: |
           ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          sudo apt-get update && sudo apt-get install -y yarn
           cd /usr/share/nginx/my-news-vault
           yarn install --frozen-lockfile
           yarn build
