@@ -19,7 +19,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
 
-      # 기존 디렉토리 날리고 git clone 수행
+      # 기존 디렉토리 날리고 git clone 수행ㅇㅇㅇ
       - name: Clone repository to mnv dir
         run: |
           rm -rf /usr/share/nginx/my-news-vault
