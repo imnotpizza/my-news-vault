@@ -3,7 +3,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 const nextConfig = {
   // standalone
-  output: 'standalone',
   images: {
     // nextjs에서 외부경로의 이미지를 사용할수 있게 처리
     remotePatterns: [
