@@ -20,8 +20,3 @@ export default async function ScrapPage() {
     </HydrationBoundary>
   );
 }
-
-/**
- * 강제로 동적 페이지로 설정 (미설정시 정적페이지로 처리하여 에러발생)
- */
-export const dynamic = 'force-dynamic';

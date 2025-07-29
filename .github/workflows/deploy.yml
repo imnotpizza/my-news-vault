@@ -1,0 +1,40 @@
+name: My News Valut Deployment
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    # 우분투 ec2랑 맞추기
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.1
+        with:
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+      # 기존 디렉토리 날리고 git clone 수행
+      - name: Clone repository to mnv dir
+        run: |
+          rm -rf /usr/share/nginx/my-news-vault
+          git clone https://github.com/imnotpizza/my-news-vault.git /usr/share/nginx/my-news-vault
+
+
+      # 빌드 및 배포
+      # env 파일 생성 후 env 추가 커맨드 dd
+      # webhook 될수있으면 추가
+      - name: install, build and daemonize
+        run: |
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          cd /usr/share/nginx/my-news-vault
+          yarn install --frozen-lockfile
+          yarn build
+          pm2 start ecosystem.config.js
+          pm2 startup
+          EOF
