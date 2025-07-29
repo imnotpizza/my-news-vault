@@ -27,7 +27,7 @@ jobs:
 
 
       # 빌드 및 배포
-      # env 파일 생성 후 env 추가 커맨드
+      # env 파일 생성 후 env 추가 커맨드 dd
       # webhook 될수있으면 추가
       - name: install, build and daemonize
         run: |
