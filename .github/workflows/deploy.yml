@@ -44,7 +44,7 @@ jobs:
           echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
           yarn --version
           cd /usr/share/nginx/my-news-vault
-          yarn install --immutable
+          yarn install --frozen-lockfile
           yarn build
           pm2 start ecosystem.config.js
           pm2 startup
