@@ -39,8 +39,10 @@ jobs:
       - name: install, build and daemonize
         run: |
           ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-          sudo apt-get update && sudo apt-get install -y yarn
-          yarn -v
+          # yarn설치
+          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+          yarn --version
           cd /usr/share/nginx/my-news-vault
           yarn install --immutable
           yarn build
