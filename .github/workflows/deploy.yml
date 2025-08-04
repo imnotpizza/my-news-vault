@@ -60,7 +60,7 @@ jobs:
             yarn build
 
             # .env 파일 루트에 생성
-            echo "${{ secrets.PROD_ENV }}" > .env
+            echo "${{ secrets.ENV_PROD }}" > .env
 
             # PM2 설치 및 실행
             npm install pm2 -g
