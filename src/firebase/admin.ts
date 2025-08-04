@@ -5,7 +5,7 @@ const config = {
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
   //@ts-ignore
   // privateKey: process.env.NEXT_PUBLIC_FIREBASE_ADMIN_PRIVATE_KEY.replace(/\\n/gm, "\n"),
-  privateKey: Buffer.from(process.env.NEXT_PUBLIC_FIREBASE_ADMIN_PRIVATE_KEY).toString(),
+  privateKey: process.env.NEXT_PUBLIC_FIREBASE_ADMIN_PRIVATE_KEY ? process.env.NEXT_PUBLIC_FIREBASE_ADMIN_PRIVATE_KEY.replace(/\\n/g, '\n') : undefined,
   clientEmail: process.env.NEXT_PUBLIC_FIREBASE_ADMIN_CLIENT_EMAIL,
 };
 if (!admin.apps.length) {

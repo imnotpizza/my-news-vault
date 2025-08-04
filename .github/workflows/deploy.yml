@@ -42,7 +42,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
             if [ -d "/usr/share/nginx/my-news-vault" ]; then
               cd /usr/share/nginx/my-news-vault
-              git pull origin main
+              git pull origin master
             else
               git clone https://github.com/imnotpizza/my-news-vault.git /usr/share/nginx/my-news-vault
             fi
