@@ -56,17 +56,14 @@ jobs:
 
             # 의존성 설치 및 빌드
             cd /usr/share/nginx/my-news-vault
-            yarn install
+            yarn install --frozen-lockfile
             yarn build
 
             # .env 파일 루트에 생성
             echo "${{ secrets.ENV_PROD }}" > .env
 
             # PM2 설치 및 실행
-            npm install pm2 -g
             pm2 start ecosystem.config.js
-            sudo pm2 startup systemd
-            pm2 save
 
             # Nginx 리로드
             sudo systemctl reload nginx
