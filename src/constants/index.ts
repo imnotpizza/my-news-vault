@@ -10,7 +10,7 @@ export const APP_NAME = 'My News Vault';
 /** pageProps 초기값 */
 export const initialPageProps: TPageProps = {
   userInfo: null,
-  dehydratedState: null,
+  dehydratedState: undefined,
 };
 
 /** 최대 호출 가능한 페이지 수 */

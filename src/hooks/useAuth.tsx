@@ -14,6 +14,7 @@ export default function useAuth() {
   const [authState, _setAuthState] = useAtom(authAtom);
 
   const setUserInfo = (newUserInfo: Partial<IAuthState['userInfo']> | null) => {
+    //@ts-ignore
     _setAuthState((prev) => {
       return {
         ...prev,

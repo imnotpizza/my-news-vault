@@ -57,7 +57,7 @@ function useBingNewsFetchQuery() {
   const flattenData = useMemo(() => {
     return flatMap(queryStates.data?.pages, (item) => {
       return item;
-    });
+    }).filter(item => item !== undefined) as TNewsItem[];
   }, [queryStates.data?.pages]);
 
   return {

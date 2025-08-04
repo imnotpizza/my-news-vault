@@ -16,6 +16,9 @@ export const signinWithFirebaseAuth = async (): Promise<TUserInfo> => {
     const token = await res.user.getIdToken();
     // 쿠키에 토큰 저장
     saveToken(token);
+    if (!displayName || !email || !photoURL) {
+      throw new APIError(ERRCODE.AUTH_USER_NOT_FOUND);
+    }
     return {
       displayName,
       email,

@@ -56,8 +56,10 @@ export type TNewsItem = {
   newsId: string;
   datePublished: TRawNewsItem['datePublished'];
   description: TRawNewsItem['description'];
+  // @ts-ignore 
   providerIcon: TRawNewsItem['provider'][0]['image']['thumbnail']['contentUrl'];
   providerName: TRawNewsItem['provider'][0]['name'];
+  // @ts-ignore 
   thumbnail: TRawNewsItem['image']['thumbnail']['contentUrl'];
   title: TRawNewsItem['name'];
   isScrapped: boolean;

@@ -11,6 +11,7 @@ import SearchErrorIcon from '@/assets/search-error-icon.svg';
 export default function NewsSearchGridList() {
   const { filterQueries } = useBingNewsFetch.state();
   const { flattenData, isFetching, isError } = useBingNewsFetch.query();
+
   if (!filterQueries.keyword) {
     return (
       <section

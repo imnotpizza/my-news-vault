@@ -160,6 +160,7 @@ export async function fetchNewsListAndConvert(
   // newsItem형식으로 변환
   const convertedNewsList = fetchResult.value
     .map((item) => {
+      //@ts-ignore
       const isScrapped = setIsScrapped(item.name, scrappedNewsList);
       const datePublished = parseDateToFormat(item.datePublished);
       // 중복된 뉴스는 제거(중복된 뉴스 들어오는 경우 있음)

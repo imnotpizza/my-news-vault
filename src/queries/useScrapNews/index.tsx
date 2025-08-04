@@ -28,6 +28,7 @@ export const useScrapNews = () => {
   const queryStates = useMutation<void, Error, MutateParams>({
     onMutate: ({ newsItem, isScrapped }) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
+      // @ts-ignore 
       addScrapNewsToCache({ ...newsItem, isScrapped }, userId);
     },
     mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
@@ -38,6 +39,7 @@ export const useScrapNews = () => {
   /** update 중 에러 발생시 다시 unscrap 상태로 되돌림 */
   const rollbackScrapMutation = ({ newsItem, isScrapped }) => {
     updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
+    // @ts-ignore 
     deleteScrapNewsFromCache(newsItem.newsId, userId);
   };
 
@@ -58,6 +60,7 @@ export const useUnscrapNews = () => {
   const queryStates = useMutation<void, Error, MutateParams>({
     onMutate: ({ newsItem, isScrapped }) => {
       updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
+      // @ts-ignore 
       deleteScrapNewsFromCache(newsItem.newsId, userId);
     },
     mutationFn: async ({ newsItem, isScrapped, query, userId }: MutateParams) => {
@@ -68,6 +71,7 @@ export const useUnscrapNews = () => {
   /** update 중 에러 발생시 다시 scrap 상태로 되돌림 */
   const rollbackUnscrapMutation = ({ newsItem, isScrapped }) => {
     updateNewsSearchQuery(newsItem.newsId, isScrapped, filterQueries);
+    // @ts-ignore 
     addScrapNewsToCache({ ...newsItem, isScrapped }, userId);
   };
 

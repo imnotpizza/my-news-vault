@@ -21,8 +21,8 @@ export const getUserInfoInServerside = async (): Promise<TUserInfo | null> => {
       const { name, picture, email } = verifiedToken;
       const userInfo: TUserInfo = {
         displayName: name,
-        photoURL: picture,
-        email,
+        photoURL: picture || '',
+        email: email || '',
       };
       return userInfo;
     } else {

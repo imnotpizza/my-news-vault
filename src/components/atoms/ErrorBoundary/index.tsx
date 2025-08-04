@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge';
 import SearchErrorIcon from '@/assets/search-error-icon.svg';
 import SearchNoneIcon from '@/assets/search-none-icon.svg';
 
-const Fallback = ({ children }) => {
+const Fallback: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <section role="status" className="w-full h-[70dvh] flex justify-center items-center grow">
       <div className="flex flex-col items-center gap-6">{children}</div>
@@ -34,7 +34,7 @@ interface IProps {
  */
 export default function ErrorBoundary({ onError, children, className }: IProps) {
   const { toast } = useToast();
-  const [fallbackUI, setFallbackUI] = React.useState(null);
+  const [fallbackUI, setFallbackUI] = React.useState<React.ReactElement | null>(null);
 
   const setFallbackIconByErrCode = (errCode: ERRCODE) => {
     switch (errCode) {

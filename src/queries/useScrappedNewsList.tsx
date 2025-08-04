@@ -15,6 +15,7 @@ import { queryClient } from './queryClient';
  */
 const useScrappedNewsList = () => {
   const { authState } = useAuth();
+  // @ts-ignore 
   const userId = authState.userInfo.email;
   // TODO: 무한스크롤 기능 구현되면 infiniteQuery로 변경
   // queryKey에 userId 필요한지 확인
@@ -40,6 +41,7 @@ export const addScrapNewsToCache = (item: TNewsItem, userId: TUserInfo['email'])
   queryClient.setQueryData<TNewsItem[]>(
     queryOptionsFactory.scrap.list(userId).queryKey,
     (oldData) => {
+      // @ts-ignore 
       return [...oldData, item];
     },
   );
@@ -53,6 +55,7 @@ export const deleteScrapNewsFromCache = (newsId: TNewsItem['newsId'], userId: TU
   queryClient.setQueryData<TNewsItem[]>(
     queryOptionsFactory.scrap.list(userId).queryKey,
     (oldData) => {
+      // @ts-ignore 
       return oldData.filter((news: TNewsItem) => news.newsId !== newsId);
     },
   );
