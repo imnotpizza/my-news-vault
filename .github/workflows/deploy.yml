@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     # 우분투 ec2랑 맞추기
+    # Ubuntu 24.04.2 LTS x86_64
     runs-on: ubuntu-latest
 
     steps:
@@ -36,17 +37,41 @@ jobs:
       # 빌드 및 배포
       # env 파일 생성 후 env 추가 커맨드 dd
       # webhook 될수있으면 추가
-      - name: install, build and daemonize
+      - name: Deploy to EC2
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-          # yarn설치
-          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-          echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-          yarn --version
-          cd /usr/share/nginx/my-news-vault
-          yarn
-          yarn build
-          npm install pm2 -g
-          pm2 start ecosystem.config.js
-          pm2 startup
+          ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+            if [ -d "/usr/share/nginx/my-news-vault" ]; then
+              cd /usr/share/nginx/my-news-vault
+              git pull origin main
+            else
+              git clone https://github.com/imnotpizza/my-news-vault.git /usr/share/nginx/my-news-vault
+            fi
+
+            # Yarn 설치
+            sudo apt update
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+            sudo apt install -y yarn
+            yarn --version
+
+            # 의존성 설치 및 빌드
+            cd /usr/share/nginx/my-news-vault
+            yarn install
+            yarn build
+
+            # .env 파일 생성
+            echo "${{ secrets.ENV_FILE }}" > .env
+
+            # PM2 설치 및 실행
+            npm install pm2 -g
+            if [ -f "ecosystem.config.js" ]; then
+              pm2 start ecosystem.config.js
+            else
+              pm2 start npm --name "my-news-vault" -- start
+            fi
+            sudo pm2 startup systemd
+            pm2 save
+
+            # Nginx 리로드
+            sudo systemctl reload nginx
           EOF
