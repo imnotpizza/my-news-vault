@@ -31,7 +31,7 @@ jobs:
       - name: Clone repository to mnv dir
         run: |
           rm -rf /usr/share/nginx/my-news-vault
-          git clone https://github.com/imnotpizza/my-news-vault.git /usr/share/nginx/my-news-vault
+          git clone https://github.com/imnotpizza/cicd-nextjs-sample.git /usr/share/nginx/my-news-vault
 
 
       # 빌드 및 배포
@@ -44,7 +44,7 @@ jobs:
               cd /usr/share/nginx/my-news-vault
               git pull origin master
             else
-              git clone https://github.com/imnotpizza/my-news-vault.git /usr/share/nginx/my-news-vault
+              git clone https://github.com/imnotpizza/cicd-nextjs-sample.git /usr/share/nginx/my-news-vault
             fi
 
             # Yarn 설치
