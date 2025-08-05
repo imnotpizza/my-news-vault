@@ -61,10 +61,4 @@ jobs:
 
             # .env 파일 루트에 생성
             echo "${{ secrets.ENV_PROD }}" > .env
-
-            # PM2 설치 및 실행
-            pm2 start ecosystem.config.js
-
-            # Nginx 리로드
-            sudo systemctl reload nginx
           EOF

@@ -3,10 +3,8 @@ import * as admin from 'firebase-admin';
 const config = {
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  privateKey: '2133123123',
-  //@ts-ignore
   // privateKey: process.env.NEXT_PUBLIC_FIREBASE_ADMIN_PRIVATE_KEY.replace(/\\n/gm, "\n"),
-  // privateKey: process.env.NEXT_PUBLIC_FIREBASE_ADMIN_PRIVATE_KEY ? process.env.NEXT_PUBLIC_FIREBASE_ADMIN_PRIVATE_KEY.replace(/\\n/g, '\n') : undefined,
+  privateKey: process.env.NEXT_PUBLIC_FIREBASE_ADMIN_PRIVATE_KEY ? process.env.NEXT_PUBLIC_FIREBASE_ADMIN_PRIVATE_KEY.replace(/\\n/g, '\n') : undefined,
   clientEmail: process.env.NEXT_PUBLIC_FIREBASE_ADMIN_CLIENT_EMAIL,
 };
 if (!admin.apps.length) {
